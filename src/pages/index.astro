@@ -3,7 +3,6 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import faqData from '@data/faq.json';
 
-// 首页 FAQ schema (取号码标记类前6问)
 const homeFaq = faqData.groups[0].items.slice(0, 6).map((item) => ({
   '@type': 'Question',
   name: item.q,
@@ -16,25 +15,32 @@ const faqSchema = {
   mainEntity: homeFaq,
 };
 
-// 公司服务链接
 const serviceUrl = 'http://xbh5.open10086.com/?authorization=f91029a83a8758aa';
+const verifyUrl = 'https://xbh5.open10086.com/factor/#/pages/index/index?authorization=f91029a83a8758aa';
 
 const breadcrumbs = [{ name: '首页', url: '/' }];
 
+// SVG 图标路径
+const icons = {
+  clear: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+  verify: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  check: 'M3 5h2M3 9h2M3 13h2M3 17h2M9 5h12M9 9h12M9 13h12M9 17h12',
+  location: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z',
+  sim: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
+};
+
 const tools = [
-  { title: '号码标记清除', desc: '手机号与座机号均可清除误标记,一站式处理', href: '/tools/marking-clear', icon: '✅', primary: true },
-  { title: '法人号码核验', desc: '企业法人手机号实名认证,三要素一致性校验', href: '/tools/legal-number-verify', icon: '🏢', primary: true },
-  { title: '号码标记自查', desc: '查询手机号/座机号被标记情况,支持多平台', href: '/tools/marking-check', icon: '🏷️', primary: false },
-  { title: '号码归属地查询', desc: '输入手机号或固话,查询归属地与运营商', href: '/tools/attribution', icon: '🔍', primary: false },
-  { title: '手机卡选号比价', desc: '移动/联通/电信套餐对比与选号办卡指南', href: '/tools/sim-cards', icon: '📱', primary: false },
+  { title: '号码标记清除', desc: '手机号与座机号均可清除误标记', href: '/tools/marking-clear', icon: icons.clear, primary: true },
+  { title: '法人号码核验', desc: '企业法人手机号三要素实名核验', href: '/tools/legal-number-verify', icon: icons.verify, primary: true },
+  { title: '号码标记自查', desc: '查询手机号/座机号被标记情况', href: '/tools/marking-check', icon: icons.check, primary: false },
+  { title: '号码归属地查询', desc: '查手机号/固话归属地与运营商', href: '/tools/attribution', icon: icons.location, primary: false },
 ];
 
 const guides = [
-  { title: '号码标记是什么？', desc: '标记来源、机制与显示规则', href: '/guide/what-is-number-marking' },
-  { title: '如何查询号码被标记', desc: '全平台查询指南(手机号与座机号)', href: '/guide/how-to-check-marking' },
-  { title: '如何清除号码标记', desc: '分平台申诉教程与材料清单', href: '/guide/how-to-clear-marking' },
+  { title: '号码标记是什么', desc: '标记来源、机制与显示规则', href: '/guide/what-is-number-marking' },
+  { title: '如何查询号码被标记', desc: '全平台查询指南', href: '/guide/how-to-check-marking' },
+  { title: '如何清除号码标记', desc: '分渠道申诉教程与材料清单', href: '/guide/how-to-clear-marking' },
   { title: '号码认证是什么', desc: '一键登录与本机号码校验原理', href: '/guide/what-is-number-auth' },
-  { title: '选号办卡指南', desc: '运营商选号规则与靓号攻略', href: '/guide/sim-card-guide' },
 ];
 ---
 <BaseLayout
@@ -43,92 +49,70 @@ const guides = [
   schema={[faqSchema]}
   breadcrumbs={breadcrumbs}
 >
-  <!-- AI 摘要: 前150字结论前置(GEO 核心) -->
-  <section class="mb-8">
-    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-3">
-      号码标记查询与清除
-    </h1>
-    <p class="text-lg text-slate-600 leading-relaxed">
-      号码通查(haomachat)提供号码标记查询与清除服务,<strong>手机号码与座机(固话)号码均支持</strong>。号码被误标记为骚扰电话、诈骗电话、推销电话后,可通过本站一键进入标记清除服务,同时聚合中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller官方入口,多渠道彻底清除误标记。操作便捷,查询免费。
-    </p>
-  </section>
-
-  <!-- 核心服务入口: 号码标记清除 -->
-  <section class="mb-12">
-    <div class="bg-gradient-to-br from-brand-600 to-brand-700 rounded-2xl p-8 text-white text-center shadow-lg">
-      <h2 class="text-2xl font-bold mb-2">号码标记清除 — 手机号 / 座机号均可处理</h2>
-      <p class="text-brand-100 mb-6">输入您的手机号码或座机号码,一键查询并清除误标记</p>
-      <a href={serviceUrl} target="_blank" rel="noopener" class="inline-block px-8 py-4 bg-white text-brand-700 rounded-xl font-bold text-lg hover:bg-brand-50 transition-colors shadow-md">
-        立即查询 / 清除标记 →
-      </a>
-      <p class="text-brand-200 text-sm mt-4">支持手机号 · 座机号</p>
-    </div>
-  </section>
-
-  <!-- 信任栏 -->
-  <section class="mb-12">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-      <div class="bg-white rounded-lg p-4 border border-slate-200 text-center">
-        <svg class="w-8 h-8 mx-auto mb-2 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-        <h3 class="text-sm font-semibold text-slate-700">官方数据来源</h3>
-        <p class="text-xs text-slate-400 mt-1">中国信通院 · Truecaller</p>
+  <!-- Hero 区 -->
+  <section class="mb-10 pt-4">
+    <div class="flex flex-col md:flex-row items-start gap-8">
+      <div class="flex-1">
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 title-underline">
+          号码标记查询与清除
+        </h1>
+        <p class="text-lg text-slate-600 leading-relaxed mb-6 mt-6">
+          号码通查提供号码标记查询与清除服务,<strong>手机号码与座机(固话)号码均支持</strong>。号码被误标记为骚扰电话、推销电话后,可通过本站一键进入清除服务,同时聚合中国信通院码号服务推进组与Truecaller官方入口,多渠道彻底清除误标记。
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href={serviceUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors shadow-sm">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.clear}/></svg>
+            立即清除标记
+          </a>
+          <a href={verifyUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-700 border border-brand-300 rounded-lg font-medium hover:bg-brand-50 transition-colors">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.verify}/></svg>
+            法人号码核验
+          </a>
+        </div>
       </div>
-      <div class="bg-white rounded-lg p-4 border border-slate-200 text-center">
-        <svg class="w-8 h-8 mx-auto mb-2 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
-        <h3 class="text-sm font-semibold text-slate-700">不存储号码</h3>
-        <p class="text-xs text-slate-400 mt-1">查询在合作方/官方完成</p>
-      </div>
-      <div class="bg-white rounded-lg p-4 border border-slate-200 text-center">
-        <svg class="w-8 h-8 mx-auto mb-2 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        <h3 class="text-sm font-semibold text-slate-700">查询免费</h3>
-        <p class="text-xs text-slate-400 mt-1">不收取任何费用</p>
-      </div>
-      <div class="bg-white rounded-lg p-4 border border-slate-200 text-center">
-        <svg class="w-8 h-8 mx-auto mb-2 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-        <h3 class="text-sm font-semibold text-slate-700">授权合作服务</h3>
-        <p class="text-xs text-slate-400 mt-1">手机号·座机号均支持</p>
+      <!-- 信任标签 -->
+      <div class="w-full md:w-64 flex-shrink-0 space-y-2">
+        <div class="flex items-center gap-2 text-sm text-slate-600">
+          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          手机号 · 座机号 均支持
+        </div>
+        <div class="flex items-center gap-2 text-sm text-slate-600">
+          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          中国信通院官方数据
+        </div>
+        <div class="flex items-center gap-2 text-sm text-slate-600">
+          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          不存储号码数据
+        </div>
+        <div class="flex items-center gap-2 text-sm text-slate-600">
+          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+          查询免费
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- 为什么信任我们 -->
-  <section class="mb-12 bg-white rounded-xl p-6 border border-slate-200">
-    <h2 class="text-xl font-bold text-slate-800 mb-4">为什么选择号码通查</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      <div>
-        <h3 class="font-semibold text-slate-700 mb-1">来源透明可验证</h3>
-        <p class="text-sm text-slate-500">每个服务入口明确标注来源——授权合作方服务、中国信通院官方平台、Truecaller,不冒充官方机构,所有链接可自行打开验证。</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-slate-700 mb-1">手机号与座机号均支持</h3>
-        <p class="text-sm text-slate-500">无论您的是手机号码还是座机(固话)号码,均可查询标记情况并发起清除,覆盖个人用户与企业固话场景。</p>
-      </div>
-      <div>
-        <h3 class="font-semibold text-slate-700 mb-1">隐私安全有保障</h3>
-        <p class="text-sm text-slate-500">本站不存储您输入的号码,查询操作在合作方服务或官方平台完成。<a href="/privacy" class="text-brand-600 hover:underline">查看隐私政策</a></p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 工具入口 -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold text-slate-800 mb-5">服务工具</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  <!-- 服务工具 -->
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-slate-800 mb-5">服务工具</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {tools.map((tool) => (
-        <a href={tool.href} class={`block rounded-xl p-5 border transition-all ${tool.primary ? 'bg-brand-50 border-brand-300 hover:border-brand-500 hover:shadow-md' : 'bg-white border-slate-200 hover:border-brand-400 hover:shadow-md'}`}>
-          <div class="text-3xl mb-2">{tool.icon}</div>
-          <h3 class="font-semibold text-slate-800 mb-1">{tool.title}{tool.primary && <span class="ml-2 text-xs px-2 py-0.5 bg-brand-600 text-white rounded">推荐</span>}</h3>
+        <a href={tool.href} class={`card p-5 ${tool.primary ? 'ring-1 ring-brand-200' : ''}`}>
+          <div class={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${tool.primary ? 'bg-brand-600' : 'bg-slate-100'}`}>
+            <svg class={`w-5 h-5 ${tool.primary ? 'text-white' : 'text-slate-500'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={tool.icon}/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-800 mb-1">{tool.title}</h3>
           <p class="text-sm text-slate-500">{tool.desc}</p>
         </a>
       ))}
     </div>
   </section>
 
-  <!-- 标记清除简介(静态HTML, AI可读) -->
-  <section class="prose-content mb-12">
+  <!-- 标记清除说明 -->
+  <section class="prose-content mb-10">
     <h2>号码标记清除说明</h2>
     <p>
-      号码标记是指手机来电时,终端安全软件根据号码库数据在来电界面显示"骚扰电话""推销""诈骗"等标签的功能。当号码被误标记后,会影响正常通话与业务。号码通查提供<strong>手机号码与座机(固话)号码</strong>的标记查询与清除服务,支持以下渠道:
+      号码标记是指手机来电时,终端安全软件根据号码库数据在来电界面显示"骚扰电话""推销"等标签的功能。当号码被误标记后,会影响正常通话与业务。号码通查提供<strong>手机号码与座机(固话)号码</strong>的标记查询与清除服务(注:诈骗类标记不在清除范围内),支持以下渠道:
     </p>
     <ul>
       <li><strong>标记清除服务入口</strong>:支持手机号与座机号,一站式查询并清除误标记,推荐优先使用。</li>
@@ -138,11 +122,11 @@ const guides = [
   </section>
 
   <!-- 权威指南 -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold text-slate-800 mb-5">权威指南</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-slate-800 mb-5">权威指南</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {guides.map((guide) => (
-        <a href={guide.href} class="block bg-white rounded-lg p-4 border border-slate-200 hover:border-brand-400 transition-all">
+        <a href={guide.href} class="card p-4">
           <h3 class="font-medium text-slate-800 mb-1">{guide.title}</h3>
           <p class="text-sm text-slate-500">{guide.desc}</p>
         </a>
@@ -150,24 +134,14 @@ const guides = [
     </div>
   </section>
 
-  <!-- 对比表入口 -->
-  <section class="mb-12">
-    <h2 class="text-2xl font-bold text-slate-800 mb-5">深度对比</h2>
-    <div class="flex flex-wrap gap-3">
-      <a href="/compare/marking-platforms" class="px-4 py-2 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-100">号码标记平台对比</a>
-      <a href="/compare/auth-providers" class="px-4 py-2 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-100">号码认证服务商对比</a>
-      <a href="/compare/lookup-apis" class="px-4 py-2 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-100">号码查询API对比</a>
-    </div>
-  </section>
-
-  <!-- FAQ (结构化, AI 易引用) -->
-  <section class="mb-8">
-    <h2 class="text-2xl font-bold text-slate-800 mb-5">常见问题</h2>
-    <div class="space-y-4">
+  <!-- FAQ -->
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-slate-800 mb-5">常见问题</h2>
+    <div class="space-y-3">
       {faqData.groups[0].items.map((item) => (
-        <div class="bg-white rounded-lg p-4 border border-slate-200">
-          <h3 class="font-semibold text-slate-800 mb-2">{item.q}</h3>
-          <p class="text-sm text-slate-600 leading-relaxed">{item.a}</p>
+        <div class="card p-4">
+          <h3 class="font-semibold text-slate-800 mb-1 text-sm">{item.q}</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">{item.a}</p>
         </div>
       ))}
     </div>
@@ -176,11 +150,10 @@ const guides = [
     </p>
   </section>
 
-  <!-- 数据来源声明 (E-E-A-T) -->
-  <section class="bg-slate-100 rounded-xl p-6">
-    <h2 class="text-lg font-bold text-slate-800 mb-2">数据来源与可信度声明</h2>
-    <p class="text-sm text-slate-600 leading-relaxed">
-      号码通查的标记查询与清除服务支持手机号码与座机(固话)号码。官方入口信息来自中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller官方渠道。归属地查询数据来自聚合数据API。号码认证知识来自运营商官方文档与中国信息通信研究院公开资料。本站不存储用户查询的号码数据。
+  <!-- 底部信任声明 -->
+  <section class="bg-slate-100 rounded-xl p-6 border border-slate-200">
+    <p class="text-sm text-slate-500 leading-relaxed">
+      号码通查由脏兮兮科技运营。标记清除服务由授权合作方提供,官方数据来源为中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller。本站不存储用户查询的号码数据,查询免费。如需帮助请<a href="/contact" class="text-brand-600 hover:underline">联系我们</a>。
     </p>
   </section>
 </BaseLayout>

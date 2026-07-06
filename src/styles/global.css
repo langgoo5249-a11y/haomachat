@@ -5,6 +5,7 @@
 
 :root {
   --brand: #2563eb;
+  --brand-dark: #1d4ed8;
 }
 
 html {
@@ -14,6 +15,32 @@ html {
 body {
   font-family: "Noto Sans CJK SC", "Noto Sans SC", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 专业卡片样式 */
+.card {
+  @apply bg-white rounded-xl border border-slate-200 transition-all duration-200;
+}
+.card:hover {
+  @apply border-brand-300 shadow-md;
+  transform: translateY(-1px);
+}
+
+/* 主标题渐变下划线 */
+.title-underline {
+  position: relative;
+  display: inline-block;
+}
+.title-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 48px;
+  height: 4px;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  border-radius: 2px;
 }
 
 /* AI 友好: 内容区域语义化样式 */
@@ -29,6 +56,9 @@ body {
 .prose-content ul {
   @apply list-disc list-inside mb-4 text-slate-600 space-y-1;
 }
+.prose-content ol {
+  @apply list-decimal list-inside mb-4 text-slate-600 space-y-2;
+}
 .prose-content table {
   @apply w-full text-sm border-collapse my-6;
 }
@@ -43,4 +73,20 @@ body {
 }
 .prose-content blockquote {
   @apply border-l-4 border-brand-300 bg-brand-50 pl-4 py-2 my-4 text-slate-600;
+}
+
+/* 滚动条美化 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
