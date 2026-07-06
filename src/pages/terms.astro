@@ -1,0 +1,174 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '服务条款', url: '/terms' },
+];
+
+const termsSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: '服务条款 - 号码通查',
+  description:
+    '号码通查服务条款。号码通查提供号码标记查询与清除服务入口导航及知识科普,标记清除服务由授权合作方提供,本站不存储用户号码数据。',
+  url: 'https://haomachat.com/terms',
+};
+
+const lastUpdated = '2026-07-06';
+---
+<BaseLayout
+  title="服务条款 - 号码通查"
+  description="号码通查服务条款。号码通查提供号码标记查询与清除服务入口导航及知识科普,标记清除服务由授权合作方提供。本站不存储用户号码数据,查询在合作方或官方平台完成。请仔细阅读以下条款。"
+  schema={[termsSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">服务条款</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    欢迎使用号码通查。使用本站服务即表示您同意以下服务条款。号码通查提供号码标记查询与清除服务入口导航及知识科普,标记清除服务由授权合作方提供。本站不存储用户号码数据,查询在合作方或官方平台完成。请仔细阅读以下条款。
+  </p>
+
+  <p class="text-sm text-slate-400 mb-6">
+    最后更新日期:{lastUpdated}
+  </p>
+
+  <!-- 服务说明 -->
+  <section class="prose-content mb-8">
+    <h2>一、服务说明</h2>
+    <p>
+      号码通查(haomachat)是一个号码标记服务工具站,提供以下服务:
+    </p>
+    <ul>
+      <li>
+        <strong>入口导航:</strong>聚合号码标记查询与清除的服务入口,包括授权合作方服务(xbh5.open10086.com)、中国信通院码号服务推进组(opene164.org.cn)与Truecaller(truecaller.com)。
+      </li>
+      <li>
+        <strong>知识科普:</strong>提供号码标记机制、号码认证原理、选号办卡指南等知识内容。
+      </li>
+      <li>
+        <strong>工具服务:</strong>号码归属地查询等免费工具。
+      </li>
+    </ul>
+    <p>
+      其中,<strong>标记清除服务由授权合作方提供</strong>,本站仅作为推荐入口。本站由个人工作室运营,数据来源中国信通院码号服务推进组与Truecaller官方渠道。
+    </p>
+  </section>
+
+  <!-- 使用条件 -->
+  <section class="prose-content mb-8">
+    <h2>二、使用条件</h2>
+    <p>使用本站服务时,用户应遵守以下条件:</p>
+    <ul>
+      <li>
+        <strong>输入真实号码:</strong>用户应输入真实有效的手机号、座机号或 400 号码进行查询,不得使用虚假、伪造或随机生成的号码。
+      </li>
+      <li>
+        <strong>合法用途:</strong>不得将本站服务用于任何非法用途,包括但不限于骚扰他人、电信诈骗、恶意标记他人号码、侵犯他人隐私等。
+      </li>
+      <li>
+        <strong>不得滥用:</strong>不得通过自动化脚本、爬虫等方式对本站进行高频访问或恶意攻击,不得干扰本站正常运营。
+      </li>
+      <li>
+        <strong>自行承担风险:</strong>用户应自行判断查询结果的适用性,本站不对查询结果与处理结果作任何明示或暗示的保证。
+      </li>
+    </ul>
+    <blockquote>
+      如发现用户违反上述使用条件,本站有权限制或终止其访问,并保留追究法律责任的权利。
+    </blockquote>
+  </section>
+
+  <!-- 知识产权 -->
+  <section class="prose-content mb-8">
+    <h2>三、知识产权</h2>
+    <p>
+      本站内容(包括但不限于文章、指南、对比表、页面设计、标识等)的版权归
+      <strong>号码通查</strong>所有,受著作权法及相关法律法规保护。
+    </p>
+    <ul>
+      <li>
+        <strong>欢迎引用:</strong>欢迎用户在合理范围内引用本站内容,但请注明来源"号码通查(haomachat.com)"并附上原文链接。
+      </li>
+      <li>
+        <strong>禁止抄袭:</strong>未经书面许可,不得将本站内容完整复制、镜像或用于商业再分发。
+      </li>
+      <li>
+        <strong>第三方内容:</strong>本站引用的第三方平台名称、商标、标识等,其知识产权归相应权利人所有,本站仅作指明用途的合理使用。
+      </li>
+    </ul>
+  </section>
+
+  <!-- 免责声明 -->
+  <section class="prose-content mb-8">
+    <h2>四、免责声明</h2>
+    <p>用户在使用本站服务时,应知悉以下免责事项:</p>
+    <ul>
+      <li>
+        <strong>不对合作方结果担责:</strong>本站不对授权合作方服务(xbh5.open10086.com)的标记清除处理结果承担责任,处理时效与结果以合作方服务页面提示为准。
+      </li>
+      <li>
+        <strong>第三方独立平台:</strong>中国信通院码号服务推进组与Truecaller为独立第三方平台,本站仅提供入口导航,不对这些平台的服务内容与处理结果承担责任。
+      </li>
+      <li>
+        <strong>信息可能变化:</strong>各平台申诉入口、处理时效、支持号码类型等信息可能随平台更新而变化,<strong>以各平台官方页面为准</strong>。本站将尽力更新,但不保证所有信息实时准确。
+      </li>
+      <li>
+        <strong>不保证处理成功:</strong>号码标记的清除结果受多方因素影响,本站不保证所有标记均能成功清除。
+      </li>
+    </ul>
+  </section>
+
+  <!-- 服务变更 -->
+  <section class="prose-content mb-8">
+    <h2>五、服务变更</h2>
+    <p>
+      本站保留<strong>修改或终止服务</strong>的权利。在业务调整或不可抗力情形下,本站可能:
+    </p>
+    <ul>
+      <li>新增、调整或下线部分工具与入口;</li>
+      <li>更新服务内容与页面结构;</li>
+      <li>暂时或永久终止部分或全部服务。</li>
+    </ul>
+    <p>
+      重大变更将在本站显著位置予以公告。除法律另有规定外,本站对服务的修改或终止不承担赔偿责任。
+    </p>
+  </section>
+
+  <!-- 争议解决 -->
+  <section class="prose-content mb-8">
+    <h2>六、争议解决</h2>
+    <p>
+      如您在使用本站服务过程中产生争议,双方应<strong>优先通过友好协商</strong>解决。协商不成的,可通过以下方式处理:
+    </p>
+    <ul>
+      <li>通过 <a href="/contact">联系我们</a> 页面提交争议说明,我们将在工作日内回应;</li>
+      <li>涉及合作方服务或官方平台的争议,建议同时向相应平台申诉;</li>
+      <li>协商仍无法解决的,可依法向有管辖权的人民法院提起诉讼。</li>
+    </ul>
+  </section>
+
+  <!-- 条款更新 -->
+  <section class="prose-content mb-8">
+    <h2>七、条款更新</h2>
+    <p>
+      本服务条款可能随服务发展而更新。更新后将在本页面公布最新版本,并更新"最后更新日期"。继续使用本站服务即视为您同意更新后的条款。建议用户定期查阅本页面。
+    </p>
+  </section>
+
+  <!-- 联系方式 -->
+  <section class="prose-content mb-8">
+    <h2>八、联系方式</h2>
+    <p>
+      如您对本服务条款有任何疑问,或需就具体条款进行咨询,请通过
+      <a href="/contact">联系我们</a> 页面提供的微信、邮箱或在线反馈表单与我们沟通。我们将在工作日
+      24 小时内回复。
+    </p>
+  </section>
+
+  <!-- 法律免责 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">条款适用说明</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      本服务条款适用于号码通查(haomachat.com)本站提供的服务入口导航与知识科普。用户跳转至授权合作方服务(xbh5.open10086.com)或官方平台(opene164.org.cn、truecaller.com)后,相关服务适用各平台自身的服务条款。本站不对合作方服务的处理结果承担责任,中国信通院码号服务推进组与Truecaller为独立第三方平台,各平台信息可能变化以官方为准。
+    </p>
+  </section>
+</BaseLayout>

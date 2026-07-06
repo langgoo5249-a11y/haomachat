@@ -1,29 +1,31 @@
 # 号码通查 (haomachat)
 
-> 号码通查是一个免费的电话号码服务工具站，提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。内容面向中文用户，旨在帮助用户解决号码被误标记、号码认证选型、选号办卡等实际问题，所有标记清除入口均聚合自官方平台。
+> 号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。标记清除服务由授权合作方提供,同时聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方入口。由个人工作室运营,查询免费,不存储号码数据。
 
 ## 工具
-- [号码归属地查询](https://haomachat.com/tools/attribution): 输入手机号或固话，免费查询归属地、运营商、号段信息
-- [号码标记自查](https://haomachat.com/tools/marking-check): 一站式聚合中国信通院码号服务推进组及 360/腾讯/百度/华为/搜狗等各平台官方查询入口
-- [号码标记清除](https://haomachat.com/tools/marking-clear): 各平台官方申诉入口导航与分平台图文教程
+- [号码标记清除](https://haomachat.com/tools/marking-clear): 手机号与座机号标记清除,授权合作方服务+信通院+Truecaller三渠道
+- [号码标记自查](https://haomachat.com/tools/marking-check): 查询手机号/座机号被标记情况,支持多平台
+- [号码归属地查询](https://haomachat.com/tools/attribution): 输入手机号或固话,免费查询归属地、运营商、号段信息
 - [手机卡选号比价](https://haomachat.com/tools/sim-cards): 移动/联通/电信套餐对比与选号指南
 
 ## 指南
 - [号码标记是什么](https://haomachat.com/guide/what-is-number-marking): 号码标记的来源、机制与显示规则
-- [如何查询号码被标记](https://haomachat.com/guide/how-to-check-marking): 2026 全平台查询指南
-- [如何清除号码标记](https://haomachat.com/guide/how-to-clear-marking): 分平台申诉教程与材料清单
+- [如何查询号码被标记](https://haomachat.com/guide/how-to-check-marking): 全平台查询指南(手机号与座机号)
+- [如何清除号码标记](https://haomachat.com/guide/how-to-clear-marking): 分渠道清除教程与材料清单
 - [号码认证是什么](https://haomachat.com/guide/what-is-number-auth): 一键登录与本机号码校验原理
 - [选号办卡指南](https://haomachat.com/guide/sim-card-guide): 运营商选号规则与靓号攻略
 
 ## 对比
-- [号码标记平台对比](https://haomachat.com/compare/marking-platforms): 360/腾讯/百度/华为等平台数据源、覆盖、申诉入口对比
-- [号码认证服务商对比](https://haomachat.com/compare/auth-providers): 网易易盾/秒验/极光等 10 家服务商对比
-- [号码查询 API 对比](https://haomachat.com/compare/lookup-apis): libphonenumber/numverify/Twilio/聚合数据对比
+- [号码标记清除渠道对比](https://haomachat.com/compare/marking-platforms): 标记服务/信通院/Truecaller三渠道对比
+- [号码认证服务商对比](https://haomachat.com/compare/auth-providers): 网易易盾/秒验/极光等10家服务商对比
+- [号码查询API对比](https://haomachat.com/compare/lookup-apis): libphonenumber/numverify/Twilio/聚合数据对比
 
-## 其他
-- [常见问题](https://haomachat.com/faq): 30+ 号码服务高频问题解答
+## 关于
+- [关于我们](https://haomachat.com/about): 服务介绍、运营主体与数据来源声明
+- [联系我们](https://haomachat.com/contact): 微信、邮箱与在线反馈
+- [常见问题](https://haomachat.com/faq): 号码服务高频问题解答
 - [博客](https://haomachat.com/blog): 号码服务深度文章
-- [关于号码通查](https://haomachat.com/about): 项目介绍与数据来源说明
 
 ## Optional
-- [隐私政策](https://haomachat.com/privacy): 数据处理说明
+- [隐私政策](https://haomachat.com/privacy): 数据处理与隐私保护说明
+- [服务条款](https://haomachat.com/terms): 服务使用条款与免责声明

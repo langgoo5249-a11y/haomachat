@@ -1,0 +1,192 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '联系我们', url: '/contact' },
+];
+
+// ContactPage schema (GEO/AI 友好)
+const contactSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: '联系我们 - 号码通查',
+  description:
+    '号码通查联系方式页面,提供微信、邮箱、在线反馈表单等多种联系方式,工作日24小时内回复。',
+  url: 'https://haomachat.com/contact',
+};
+
+// 提交后显示的提示 (纯前端, 无后端)
+const feedbackSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: '用户反馈',
+  description: '号码通查在线反馈表单,用户可提交姓名、邮箱与问题描述。',
+};
+---
+<BaseLayout
+  title="联系我们 - 号码通查"
+  description="号码通查联系方式页面。可通过微信、邮箱与我们联系,或使用在线反馈表单提交问题与建议。工作日24小时内回复。"
+  schema={[contactSchema, feedbackSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">联系我们</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    号码通查重视每一位用户的反馈。如您在使用号码标记查询与清除服务过程中遇到问题,或对网站内容有建议,可通过微信、邮箱与我们联系。我们会在工作日24小时内回复。下方也提供在线反馈表单,欢迎留言。
+  </p>
+
+  <!-- 联系方式 -->
+  <section class="prose-content mb-8">
+    <h2>联系方式</h2>
+    <p>您可以通过以下任一方式与号码通查取得联系,我们会认真对待每一条反馈:</p>
+    <ul>
+      <li>
+        <strong>微信:</strong>【请替换为微信号】(可扫描下方二维码加微信,添加时请备注"号码通查")
+      </li>
+      <li>
+        <strong>邮箱:</strong>【请替换为邮箱地址】(建议作为正式问题反馈与申诉跟进的首选渠道)
+      </li>
+      <li>
+        <strong>GitHub 反馈入口:</strong>
+        <a
+          href="https://github.com/jm6-lang/haomachat"
+          target="_blank"
+          rel="noopener noreferrer">github.com/jm6-lang/haomachat</a
+        >(可在 Issues 中提交问题、建议或信息纠错,公开可追溯)
+      </li>
+    </ul>
+  </section>
+
+  <!-- 微信二维码占位 -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">微信二维码</h2>
+    <p class="text-slate-600 mb-4 leading-relaxed">
+      扫描下方二维码可添加号码通查官方微信,我们将为您提供号码标记查询与清除的咨询指引。
+    </p>
+    <div
+      class="flex flex-col items-center justify-center w-48 h-48 bg-slate-200 border-2 border-dashed border-slate-400 rounded-xl text-slate-500"
+    >
+      <span class="text-sm font-medium">微信二维码</span>
+      <span class="text-xs mt-1">(占位区域)</span>
+    </div>
+    <p class="text-xs text-slate-400 mt-2">
+      注:此处为二维码占位区域,请将本站官方微信二维码图片替换至此处。
+    </p>
+  </section>
+
+  <!-- 服务时间 -->
+  <section class="prose-content mb-8">
+    <h2>服务时间</h2>
+    <table>
+      <thead>
+        <tr><th>时段</th><th>服务安排</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>工作日</td><td>9:00 - 18:00(在线回复与微信咨询)</td></tr>
+        <tr><td>周末及节假日</td><td>暂停实时回复,留言将在下一个工作日处理</td></tr>
+        <tr><td>回复时效</td><td>工作日收到反馈后 24 小时内回复</td></tr>
+      </tbody>
+    </table>
+    <p>
+      标记清除服务本身由授权合作方提供,7×24
+      小时可在服务页面提交,处理时效以合作方服务页面提示为准。
+    </p>
+  </section>
+
+  <!-- 常见问题引导 -->
+  <section class="bg-slate-100 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">先看看常见问题?</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      很多问题(如号码被标记怎么清除、各平台如何申诉、号码认证是否安全等)在
+      <a href="/faq" class="text-brand-600 underline hover:text-brand-700"
+        >常见问题</a
+      >
+      页面已有详细解答。建议先查阅,可能无需等待即可找到答案。如常见问题未能解决您的问题,再通过下方表单或微信、邮箱联系我们。
+    </p>
+  </section>
+
+  <!-- 在线反馈表单 -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-bold text-slate-800 mt-8 mb-4">在线反馈表单</h2>
+    <p class="text-slate-600 mb-4 leading-relaxed">
+      填写下方表单提交您的问题或建议。本表单为纯前端表单,提交后不会在服务器存储您的信息(实际接入后端时请将
+      action 替换为有效地址)。
+    </p>
+    <form
+      action=""
+      method="post"
+      class="bg-white rounded-xl border border-slate-200 p-6 space-y-5"
+      onsubmit="event.preventDefault(); alert('感谢您的反馈!本表单为演示占位,实际接入后端后将自动提交。');"
+    >
+      <div>
+        <label for="name" class="block text-sm font-medium text-slate-700 mb-1"
+          >姓名 <span class="text-slate-400">(选填)</span></label
+        >
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="您的称呼"
+          class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition"
+        />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-slate-700 mb-1"
+          >邮箱 <span class="text-red-500">*</span></label
+        >
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          placeholder="your@email.com"
+          class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition"
+        />
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium text-slate-700 mb-1"
+          >问题描述 <span class="text-red-500">*</span></label
+        >
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          placeholder="请详细描述您遇到的问题,例如:号码被标记为骚扰电话如何清除、某页面信息有误、功能建议等"
+          class="w-full px-4 py-2 rounded-lg border border-slate-300 focus:border-brand-500 focus:ring-2 focus:ring-brand-200 outline-none transition resize-y"></textarea>
+      </div>
+      <div class="flex items-center justify-between">
+        <p class="text-xs text-slate-400">
+          提交即表示您同意我们通过邮箱与您联系以跟进问题。
+        </p>
+        <button
+          type="submit"
+          class="px-6 py-2.5 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors shadow-sm"
+        >
+          提交反馈
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <!-- 其他渠道 -->
+  <section class="prose-content mb-8">
+    <h2>其他渠道</h2>
+    <ul>
+      <li>
+        如需了解本站服务定位与运营主体,请访问
+        <a href="/about">关于我们</a> 页面。
+      </li>
+      <li>隐私相关疑问请参阅 <a href="/privacy">隐私政策</a>。</li>
+      <li>使用本站服务即表示同意 <a href="/terms">服务条款</a>。</li>
+    </ul>
+  </section>
+
+  <!-- 免责说明 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">反馈说明</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      号码通查由个人工作室运营,标记清除服务由授权合作方提供。我们能协助您使用本站工具与解答号码标记相关问题,但合作方服务(xbh5.open10086.com)及官方平台(opene164.org.cn、truecaller.com)的处理结果由相应平台负责。如您对合作方服务处理结果有异议,我们可协助反馈,但最终以平台方答复为准。
+    </p>
+  </section>
+</BaseLayout>

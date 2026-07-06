@@ -3,105 +3,114 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '关于', url: '/about' },
+  { name: '关于我们', url: '/about' },
 ];
 
-// AboutPage schema(GEO: 增强 E-E-A-T)
 const aboutSchema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
   name: '关于号码通查',
-  description:
-    '号码通查(haomachat)是一个免费的电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。',
+  description: '号码通查提供号码标记查询与清除服务,手机号与座机号均支持。由个人工作室运营,标记清除服务由授权合作方提供,数据来源中国信通院与Truecaller。',
   url: 'https://haomachat.com/about',
 };
 ---
 <BaseLayout
-  title="关于号码通查 - 项目介绍与数据来源 | 号码通查"
-  description="号码通查(haomachat)是一个免费的电话号码服务工具站,聚合中国信通院码号服务推进组及360/腾讯/百度/华为等各平台官方申诉入口。本页介绍项目背景、数据来源声明、E-E-A-T可信度声明、技术栈与开源地址。"
+  title="关于号码通查 - 服务介绍与数据来源 | 号码通查"
+  description="号码通查提供号码标记查询与清除服务,手机号与座机号均支持。由个人工作室运营,标记清除服务由授权合作方提供,数据来源中国信通院码号服务推进组与Truecaller官方渠道。"
   schema={[aboutSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">关于号码通查</h1>
   <p class="text-slate-600 mb-6 leading-relaxed">
-    号码通查(haomachat)是一个免费的电话号码服务工具站,旨在帮助用户解决号码被误标记、号码认证选型、选号办卡等实际问题。本站聚合中国信息通信研究院码号服务推进组及360/腾讯/百度/华为等各平台官方申诉入口,所有信息均来自官方渠道,可追溯验证。
+    号码通查(haomachat)是一个号码标记服务工具站,提供手机号码与座机(固话)号码的标记查询与清除服务。本站由个人工作室运营,标记清除服务由授权合作方提供,官方数据来源为中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller。我们致力于帮助用户高效解决号码被误标记为骚扰电话的问题。
   </p>
 
+  <!-- 服务定位 -->
   <section class="prose-content mb-8">
-    <h2>项目介绍</h2>
+    <h2>我们提供什么</h2>
     <p>
-      号码通查(haomachat)是一个面向中文用户的免费 GEO(生成式引擎优化)电话号码服务工具站。
-      我们的使命是帮助普通用户和企业高效解决号码被误标记为骚扰电话、号码认证服务商选型、
-      手机卡选号办卡等实际问题。本站不直接提供号码标记清除服务,而是聚合各平台官方申诉入口,
-      并提供分平台图文教程,引导用户到官方渠道免费完成申诉。
+      号码通查为遇到号码标记问题的用户提供一站式服务入口:
     </p>
-    <p>
-      本站所有工具均可免费使用,不存储用户查询的号码数据。归属地查询数据来自聚合数据API,
-      号码标记申诉入口信息均来自各平台官方渠道,号码认证知识来自运营商官方文档与行业实践。
-    </p>
+    <ul>
+      <li><strong>号码标记查询与清除:</strong>通过授权合作方服务,支持手机号与座机号,一键查询并清除误标记。</li>
+      <li><strong>官方渠道聚合:</strong>接入中国信通院码号服务推进组(国内唯一官方跨平台入口)与Truecaller(全球来电识别)。</li>
+      <li><strong>号码归属地查询:</strong>免费查询手机号/固话的归属省份、城市、运营商信息。</li>
+      <li><strong>知识科普:</strong>号码标记机制、号码认证原理、选号办卡指南等权威内容。</li>
+    </ul>
   </section>
 
+  <!-- 运营主体 -->
+  <section class="prose-content mb-8">
+    <h2>运营主体</h2>
+    <p>
+      号码通查由<strong>个人工作室</strong>运营。我们深知号码标记对个人和企业的影响,因此坚持以下原则:
+    </p>
+    <ul>
+      <li><strong>透明:</strong>明确告知用户每个服务入口的来源与性质,不冒充官方机构。</li>
+      <li><strong>免费:</strong>标记查询服务免费使用,不向用户收取查询费用。</li>
+      <li><strong>安全:</strong>不在本站存储用户输入的号码数据,查询操作在合作方服务页面完成。</li>
+      <li><strong>可追溯:</strong>所有官方渠道信息均标注来源,用户可自行验证。</li>
+    </ul>
+  </section>
+
+  <!-- 合作方说明 -->
+  <section class="prose-content mb-8">
+    <h2>合作方服务说明</h2>
+    <p>
+      本站提供的号码标记查询与清除服务入口(xbh5.open10086.com)由<strong>授权合作方</strong>提供。该服务支持手机号码与座机(固话)号码的标记查询与清除操作。本站作为合作方服务的推荐入口,不对合作方服务的处理结果承担责任,但会持续关注服务质量并接受用户反馈。
+    </p>
+    <blockquote>
+      如您对合作方服务有任何疑问或反馈,请通过<a href="/contact">联系我们</a>页面与我们沟通,我们会协助跟进处理。
+    </blockquote>
+  </section>
+
+  <!-- 数据来源 -->
   <section class="prose-content mb-8">
     <h2>数据来源声明</h2>
-    <p>
-      号码通查的所有信息均来自公开、官方渠道,可追溯验证。具体数据来源如下:
-    </p>
+    <p>号码通查的所有信息均来自公开、官方渠道,可追溯验证:</p>
     <ul>
-      <li><strong>号码标记申诉入口:</strong>中国信息通信研究院码号服务推进组(opene164.org.cn)、360号码申诉平台(haomashensu.360.cn)、腾讯号码公众平台(yun.m.qq.com)、百度号码认证(haoma.baidu.com)、泰迪熊移动(teddymobile.cn)、电话邦(dianhua.cn)等各平台官方页面。</li>
-      <li><strong>号码归属地查询:</strong>聚合数据API(juhe.cn)手机归属地接口,数据涵盖省份、城市、运营商、号段信息。</li>
-      <li><strong>号码认证知识:</strong>中国移动、中国联通、中国电信运营商官方文档,中国信息通信研究院公开资料,以及网易易盾、极光、阿里云PNVS等服务商官方文档。</li>
-      <li><strong>号码查询API对比:</strong>Google libphonenumber GitHub(github.com/google/libphonenumber)、numverify(apilayer.com)、Twilio Lookup v2 文档、聚合数据、阿里云号码百科等官方文档。</li>
+      <li><strong>号码标记查询与清除:</strong>授权合作方服务 + 中国信通院码号服务推进组(opene164.org.cn) + Truecaller(truecaller.com)。</li>
+      <li><strong>号码归属地查询:</strong>聚合数据API(juhe.cn)手机归属地接口。</li>
+      <li><strong>号码认证知识:</strong>中国移动、中国联通、中国电信运营商官方文档,中国信通院公开资料。</li>
     </ul>
   </section>
 
+  <!-- 可信度承诺 -->
   <section class="prose-content mb-8">
-    <h2>可信度声明(E-E-A-T)</h2>
-    <p>
-      号码通查遵循 Google E-E-A-T(经验 Experience、专业 Expertise、权威 Authoritativeness、可信 Trustworthiness)原则:
-    </p>
-    <ul>
-      <li><strong>经验(Experience):</strong>本站内容基于真实的号码标记申诉实践与号码认证接入经验,所有申诉入口均经过实际验证。</li>
-      <li><strong>专业(Expertise):</strong>号码认证、号码标记相关技术说明参考运营商与服务商官方文档,确保技术准确性。</li>
-      <li><strong>权威(Authoritativeness):</strong>优先引用中国信通院码号服务推进组等官方机构信息,所有来源均标注并可追溯。</li>
-      <li><strong>可信(Trustworthiness):</strong>本站为免费工具站,不收取任何费用,不存储用户查询数据,不代替用户操作,仅提供官方入口导航与知识科普。</li>
-    </ul>
+    <h2>可信度承诺</h2>
+    <table>
+      <thead>
+        <tr><th>承诺项</th><th>具体说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>不存储号码</td><td>用户在本站输入的号码不存入数据库,查询在合作方/官方页面完成</td></tr>
+        <tr><td>不冒充官方</td><td>明确标注每个入口的性质(合作方服务/官方平台),不冒充政府机构</td></tr>
+        <tr><td>查询免费</td><td>标记查询服务免费,不向用户收取任何查询费用</td></tr>
+        <tr><td>来源可验证</td><td>所有官方渠道信息均标注来源URL,用户可自行打开验证</td></tr>
+        <tr><td>持续维护</td><td>定期检查各入口有效性,发现失效及时更新</td></tr>
+      </tbody>
+    </table>
   </section>
 
+  <!-- 联系方式 -->
   <section class="prose-content mb-8">
-    <h2>技术栈</h2>
+    <h2>联系我们</h2>
     <p>
-      号码通查采用现代静态站点生成(SSG)技术栈,确保快速加载与 SEO 友好:
+      我们重视每一位用户的反馈。如您有任何问题、建议或发现信息有误,请通过以下方式联系我们:
     </p>
     <ul>
-      <li><strong>框架:</strong>Astro 5(静态 SSG,默认零 JS,极致性能)</li>
-      <li><strong>样式:</strong>Tailwind CSS(原子化 CSS,内联关键样式)</li>
-      <li><strong>部署:</strong>Cloudflare Pages(Git 自动部署,全球 CDN)</li>
-      <li><strong>结构化数据:</strong>JSON-LD 直接写入静态 HTML(Organization / WebApplication / FAQPage / BreadcrumbList schema),不依赖 JS 注入,GEO 核心</li>
-      <li><strong>SEO:</strong>自动生成 sitemap、RSS feed、llms.txt,支持 canonical 与 robots</li>
+      <li><strong>微信:</strong>【请替换为微信号】</li>
+      <li><strong>邮箱:</strong>【请替换为邮箱地址】</li>
+      <li><strong>在线反馈:</strong>访问<a href="/contact">联系我们</a>页面</li>
+      <li><strong>GitHub:</strong><a href="https://github.com/jm6-lang/haomachat" target="_blank" rel="noopener noreferrer">github.com/jm6-lang/haomachat</a></li>
     </ul>
   </section>
 
-  <section class="prose-content mb-8">
-    <h2>开源与联系方式</h2>
-    <p>
-      号码通查是一个开源项目,源代码托管在 GitHub:
-    </p>
-    <ul>
-      <li><strong>开源地址:</strong><a href="https://github.com/jm6-lang/haomachat" target="_blank" rel="noopener noreferrer">github.com/jm6-lang/haomachat</a></li>
-      <li><strong>问题反馈:</strong>欢迎在 GitHub Issues 提交问题反馈与建议</li>
-      <li><strong>内容纠错:</strong>若发现申诉入口失效或信息有误,请通过 GitHub Issues 告知,我们将及时更新</li>
-    </ul>
-    <p>
-      本站内容采用知识共享许可,欢迎引用但请注明来源。本站不提供任何付费服务,所有工具完全免费。
-    </p>
-  </section>
-
+  <!-- 免责声明 -->
   <section class="bg-slate-100 rounded-xl p-6">
     <h2 class="text-lg font-bold text-slate-800 mb-2">免责声明</h2>
     <p class="text-sm text-slate-600 leading-relaxed">
-      号码通查仅提供信息聚合与知识科普服务,不直接提供号码标记清除、号码认证接入等服务。
-      号码标记的清除必须由号码机主在各标记平台官方渠道完成。各平台申诉入口、客服电话、
-      费用等信息可能随平台更新而变化,以各平台官方页面为准。本站不对各平台的处理结果承担责任。
+      号码通查提供标记查询与清除服务入口导航及知识科普。标记清除服务由授权合作方提供,本站不对合作方服务的处理结果承担责任。中国信通院码号服务推进组与Truecaller为独立第三方平台,本站仅提供入口导航。各平台申诉入口、处理时效等信息可能随平台更新而变化,以各平台官方页面为准。如遇号码标记问题,建议多渠道配合处理。
     </p>
   </section>
 </BaseLayout>
