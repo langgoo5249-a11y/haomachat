@@ -1,5 +1,5 @@
 ---
-// 中文首页 - GEO 核心页面
+// 中文首页 - 以号码标记清除为核心
 import BaseLayout from '@layouts/BaseLayout.astro';
 import faqData from '@data/faq.json';
 
@@ -16,51 +16,79 @@ const faqSchema = {
   mainEntity: homeFaq,
 };
 
+// 公司服务链接
+const serviceUrl = 'http://xbh5.open10086.com/?authorization=f91029a83a8758aa';
+
 const breadcrumbs = [{ name: '首页', url: '/' }];
 
 const tools = [
-  { title: '号码归属地查询', desc: '输入手机号或固话,免费查询归属地、运营商、号段信息', href: '/tools/attribution', icon: '🔍' },
-  { title: '号码标记自查', desc: '聚合中国信通院及360/腾讯/百度/华为等各平台官方查询入口', href: '/tools/marking-check', icon: '🏷️' },
-  { title: '号码标记清除', desc: '各平台官方申诉入口导航与分平台图文清除教程', href: '/tools/marking-clear', icon: '✅' },
-  { title: '手机卡选号比价', desc: '移动/联通/电信套餐对比与选号办卡指南', href: '/tools/sim-cards', icon: '📱' },
+  { title: '号码标记清除', desc: '手机号与座机号均可清除误标记,一站式处理', href: '/tools/marking-clear', icon: '✅', primary: true },
+  { title: '号码标记自查', desc: '查询手机号/座机号被标记情况,支持多平台', href: '/tools/marking-check', icon: '🏷️', primary: false },
+  { title: '号码归属地查询', desc: '输入手机号或固话,查询归属地与运营商', href: '/tools/attribution', icon: '🔍', primary: false },
+  { title: '手机卡选号比价', desc: '移动/联通/电信套餐对比与选号办卡指南', href: '/tools/sim-cards', icon: '📱', primary: false },
 ];
 
 const guides = [
   { title: '号码标记是什么？', desc: '标记来源、机制与显示规则', href: '/guide/what-is-number-marking' },
-  { title: '如何查询号码被标记', desc: '2026 全平台查询指南', href: '/guide/how-to-check-marking' },
+  { title: '如何查询号码被标记', desc: '全平台查询指南(手机号与座机号)', href: '/guide/how-to-check-marking' },
   { title: '如何清除号码标记', desc: '分平台申诉教程与材料清单', href: '/guide/how-to-clear-marking' },
   { title: '号码认证是什么', desc: '一键登录与本机号码校验原理', href: '/guide/what-is-number-auth' },
   { title: '选号办卡指南', desc: '运营商选号规则与靓号攻略', href: '/guide/sim-card-guide' },
 ];
 ---
 <BaseLayout
-  title="号码通查 - 免费号码归属地查询/号码标记查询清除/号码认证/手机卡选号"
-  description="号码通查是免费的电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。聚合中国信通院码号服务推进组及360/腾讯/百度/华为等各平台官方申诉入口。"
+  title="号码通查 - 号码标记查询与清除(手机号/座机号均支持)"
+  description="号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。聚合中国信通院码号服务推进组与Truecaller官方入口,一站式解决号码被误标记为骚扰电话的问题。"
   schema={[faqSchema]}
   breadcrumbs={breadcrumbs}
 >
   <!-- AI 摘要: 前150字结论前置(GEO 核心) -->
   <section class="mb-8">
     <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-3">
-      号码通查 — 免费电话号码服务工具站
+      号码标记查询与清除
     </h1>
     <p class="text-lg text-slate-600 leading-relaxed">
-      号码通查(haomachat)提供免费的电话号码归属地查询、号码标记自查与清除指引、号码认证知识科普及手机卡选号比价。本站聚合中国信息通信研究院码号服务推进组(opene164.org.cn)及360手机卫士、腾讯手机管家、百度号码认证、华为等各平台官方申诉入口,帮助用户高效解决号码被误标记为骚扰电话等问题。所有标记清除入口均来自官方渠道,免费使用。
+      号码通查(haomachat)提供号码标记查询与清除服务,<strong>手机号码与座机(固话)号码均支持</strong>。号码被误标记为骚扰电话、诈骗电话、推销电话后,可通过本站一键进入标记清除服务,同时聚合中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller官方入口,多渠道彻底清除误标记。操作便捷,查询免费。
     </p>
+  </section>
+
+  <!-- 核心服务入口: 号码标记清除 -->
+  <section class="mb-12">
+    <div class="bg-gradient-to-br from-brand-600 to-brand-700 rounded-2xl p-8 text-white text-center shadow-lg">
+      <h2 class="text-2xl font-bold mb-2">号码标记清除 — 手机号 / 座机号均可处理</h2>
+      <p class="text-brand-100 mb-6">输入您的手机号码或座机号码,一键查询并清除误标记</p>
+      <a href={serviceUrl} target="_blank" rel="noopener" class="inline-block px-8 py-4 bg-white text-brand-700 rounded-xl font-bold text-lg hover:bg-brand-50 transition-colors shadow-md">
+        立即查询 / 清除标记 →
+      </a>
+      <p class="text-brand-200 text-sm mt-4">支持手机号 · 座机号 · 400号码</p>
+    </div>
   </section>
 
   <!-- 工具入口 -->
   <section class="mb-12">
-    <h2 class="text-2xl font-bold text-slate-800 mb-5">免费工具</h2>
+    <h2 class="text-2xl font-bold text-slate-800 mb-5">服务工具</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       {tools.map((tool) => (
-        <a href={tool.href} class="block bg-white rounded-xl p-5 border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all">
+        <a href={tool.href} class={`block rounded-xl p-5 border transition-all ${tool.primary ? 'bg-brand-50 border-brand-300 hover:border-brand-500 hover:shadow-md' : 'bg-white border-slate-200 hover:border-brand-400 hover:shadow-md'}`}>
           <div class="text-3xl mb-2">{tool.icon}</div>
-          <h3 class="font-semibold text-slate-800 mb-1">{tool.title}</h3>
+          <h3 class="font-semibold text-slate-800 mb-1">{tool.title}{tool.primary && <span class="ml-2 text-xs px-2 py-0.5 bg-brand-600 text-white rounded">推荐</span>}</h3>
           <p class="text-sm text-slate-500">{tool.desc}</p>
         </a>
       ))}
     </div>
+  </section>
+
+  <!-- 标记清除简介(静态HTML, AI可读) -->
+  <section class="prose-content mb-12">
+    <h2>号码标记清除说明</h2>
+    <p>
+      号码标记是指手机来电时,终端安全软件根据号码库数据在来电界面显示"骚扰电话""推销""诈骗"等标签的功能。当号码被误标记后,会影响正常通话与业务。号码通查提供<strong>手机号码与座机(固话)号码</strong>的标记查询与清除服务,支持以下渠道:
+    </p>
+    <ul>
+      <li><strong>标记清除服务入口</strong>:支持手机号与座机号,一站式查询并清除误标记,推荐优先使用。</li>
+      <li><strong>中国信通院码号服务推进组</strong>(opene164.org.cn):国内唯一官方跨平台号码标记查询与清除入口,支持手机号、座机号及400号免费查询,中国联通手机号及400号可一站式清除。</li>
+      <li><strong>Truecaller</strong>(truecaller.com):全球最大来电识别应用,适合有国际往来的号码,提交取消收录后24-48小时移除。</li>
+    </ul>
   </section>
 
   <!-- 权威指南 -->
@@ -106,7 +134,7 @@ const guides = [
   <section class="bg-slate-100 rounded-xl p-6">
     <h2 class="text-lg font-bold text-slate-800 mb-2">数据来源与可信度声明</h2>
     <p class="text-sm text-slate-600 leading-relaxed">
-      号码通查的标记申诉入口信息均来自各平台官方渠道(360号码申诉平台、腾讯号码公众平台、百度号码认证、中国信通院码号服务推进组等)。归属地查询数据来自聚合数据API。号码认证知识来自运营商官方文档与中国信息通信研究院公开资料。本站不存储用户查询的号码数据,所有工具均可免费使用。
+      号码通查的标记查询与清除服务支持手机号码与座机(固话)号码。官方入口信息来自中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller官方渠道。归属地查询数据来自聚合数据API。号码认证知识来自运营商官方文档与中国信息通信研究院公开资料。本站不存储用户查询的号码数据。
     </p>
   </section>
 </BaseLayout>

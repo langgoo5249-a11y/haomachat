@@ -1,46 +1,49 @@
 ---
-// 号码标记清除 - 各平台官方申诉入口与教程
+// 号码标记清除 - 标记清除服务入口与官方平台
 import BaseLayout from '@layouts/BaseLayout.astro';
 import platformsData from '@data/platforms.json';
 
 const platforms = platformsData.platforms;
 
-// 判断字符串是否为 URL(用于区分申诉直链与操作说明)
 const isUrl = (s: string) => /^https?:\/\//.test(s);
+
+// 公司服务链接
+const serviceUrl = 'http://xbh5.open10086.com/?authorization=f91029a83a8758aa';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
   { name: '号码标记清除', url: '/tools/marking-clear' },
 ];
 
-// HowTo 结构化数据: 如何清除号码标记
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
   name: '如何清除号码标记',
-  description: '通过各平台官方申诉渠道清除手机号被误标记为骚扰/诈骗电话的完整流程,含信通院一站式清除与分平台申诉教程。',
-  totalTime: 'PT15M',
+  description: '清除手机号码与座机号码被误标记为骚扰/诈骗电话的完整流程,支持手机号与固话。',
+  totalTime: 'PT10M',
   step: [
     {
       '@type': 'HowToStep',
-      name: '步骤一: 优先通过中国信通院码号服务推进组清除',
-      text: '访问 opene164.org.cn,中国联通手机号及400号可在此一站式清除误标记。这是国内唯一官方跨平台清除入口,联通号提交申诉后由信通院协调各平台统一处理。',
+      name: '步骤一: 进入标记清除服务',
+      text: '点击本页标记清除入口,输入您的手机号码或座机(固话)号码,系统将查询并支持清除误标记。手机号与座机号均支持,推荐优先使用。',
+      url: serviceUrl,
+    },
+    {
+      '@type': 'HowToStep',
+      name: '步骤二: 到中国信通院码号服务推进组清除',
+      text: '访问 opene164.org.cn,这是国内唯一官方跨平台号码标记清除入口。支持手机号、座机号及400号查询;中国联通手机号及400号可一站式清除误标记。',
       url: 'http://www.opene164.org.cn',
     },
     {
       '@type': 'HowToStep',
-      name: '步骤二: 逐一到各平台官方申诉入口提交',
-      text: '由于各平台标记数据相互独立,需逐一申诉。依次前往360号码申诉(haomashensu.360.cn/question.html)、腾讯号码公众平台(yun.m.qq.com)、百度号码认证(haoma.baidu.com)、泰迪熊移动(teddymobile.cn/numberComplaint)、电话邦(dianhua.cn/appeal)、搜狗号码通(邮件 IMETS@tencent.com)、Truecaller(truecaller.com/unlisting)提交申诉。',
+      name: '步骤三: Truecaller取消收录(海外标记)',
+      text: '若号码有国际往来,访问 truecaller.com/unlisting,输入带国家码的号码与验证码,提交取消收录申请,通常24-48小时内移除。',
+      url: 'https://www.truecaller.com/unlisting',
     },
     {
       '@type': 'HowToStep',
-      name: '步骤三: 准备申诉材料并提交',
-      text: '申诉时需详述机主身份信息(个人号码提供机主姓名,企业号码提供企业名称)、附上错误标记截图。标记超过20人的号码需提供号码归属证明:个人号码提供机主身份证,企业号码提供营业执照。提交后等待各平台审核。',
-    },
-    {
-      '@type': 'HowToStep',
-      name: '步骤四: 等待审核结果',
-      text: '各平台审核周期通常为1-3个工作日,审核结果多以短信通知。审核通过后标记清除,部分平台可能需刷新缓存。若某平台未通过,可补充材料重新申诉。华为等终端的标记需到数据源头(腾讯/泰迪熊/电话邦)申诉才能根治。',
+      name: '步骤四: 等待处理结果',
+      text: '各渠道处理时间不同:标记清除服务与信通院通常1-3个工作日,Truecaller 24-48小时。处理完成后标记清除,来电不再显示错误标签。',
     },
   ],
 };
@@ -51,80 +54,94 @@ const faqSchema = {
   mainEntity: [
     {
       '@type': 'Question',
+      name: '座机号码能清除标记吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '可以。本站标记清除服务与中国信通院码号服务推进组均支持座机(固话)号码的标记清除。输入带区号的座机号码即可操作。',
+      },
+    },
+    {
+      '@type': 'Question',
       name: '号码标记清除要多久？',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '各平台审核周期通常为1-3个工作日,审核结果多以短信通知。Truecaller可在提交取消收录申请后24-48小时内移除。整体清除需逐平台进行,全部完成一般需1周左右。',
+        text: '标记清除服务与中国信通院码号服务推进组通常1-3个工作日完成处理,Truecaller提交取消收录后24-48小时移除。整体清除通过多个渠道配合,一般1周内可彻底清除。',
       },
     },
     {
       '@type': 'Question',
-      name: '号码标记超过20人怎么清除？',
+      name: '号码被标记骚扰电话怎么解除？',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '标记超过20人的号码,各平台通常要求提供号码归属证明:个人号码提供机主身份证,企业号码提供营业执照。提交证明后申诉通过率显著提高。建议同时附上错误标记截图与机主身份说明。',
+        text: '号码被标记为骚扰电话后,可通过本站标记清除服务入口操作,支持手机号与座机号;同时到中国信通院码号服务推进组(opene164.org.cn)清除;若号码有海外标记,再到Truecaller取消收录。多渠道配合可彻底清除。',
       },
     },
     {
       '@type': 'Question',
-      name: '华为号码标记怎么清除？',
+      name: '号码标记清除收费吗？',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '华为终端可在电话App-骚扰拦截-号码申诉提交,但华为标记数据多来自腾讯、泰迪熊、电话邦等第三方库,根治需到这些数据源头平台申诉。建议同时向腾讯手机管家和泰迪熊移动提交申诉,从源头清除标记。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '搜狗号码通怎么取消标记？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '搜狗号码通现归腾讯系,申诉需发送邮件至 IMETS@tencent.com,邮件中写明被标记号码、机主信息、错误标记情况及联系方式。客服电话 0515-69189017。',
+        text: '本站标记清除服务查询免费,中国信通院码号服务推进组与Truecaller的查询和取消收录也均为免费。',
       },
     },
   ],
 };
 ---
 <BaseLayout
-  title="号码标记清除 - 各平台官方申诉入口与教程 | 号码通查"
-  description="号码标记清除指南:各平台官方申诉入口表格(360/腾讯/百度/华为/泰迪熊/电话邦/搜狗/Truecaller)与分平台图文教程。优先通过中国信通院码号服务推进组(opene164.org.cn)清除,联通号可一站式清除,通常1-3个工作日审核完成。"
+  title="号码标记清除 - 手机号/座机号误标记清除服务 | 号码通查"
+  description="号码标记清除服务,手机号码与座机(固话)号码均支持。提供标记清除服务入口,聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方清除入口,一站式解决号码被误标记为骚扰电话的问题。"
   schema={[howToSchema, faqSchema]}
   breadcrumbs={breadcrumbs}
 >
-  <!-- AI 摘要: 前150字结论前置(GEO 核心) -->
-  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码标记清除 — 各平台官方申诉入口与教程</h1>
+  <!-- AI 摘要: 前150字结论前置 -->
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码标记清除 — 手机号 / 座机号均可处理</h1>
   <p class="text-slate-600 mb-6 leading-relaxed">
-    号码标记清除需到各标记平台官方渠道提交申诉,推荐优先通过中国信通院码号服务推进组(opene164.org.cn)清除(联通号可一站式清除),再依次到360/腾讯/百度/华为等平台申诉,通常1-3个工作日审核完成。各平台标记数据相互独立,需逐一申诉才能彻底清除。本页汇总全部主流平台官方申诉入口、客服电话与分平台操作教程,所有入口均来自官方渠道,免费申诉。
+    号码标记清除是指解除手机号码或座机(固话)号码被各平台误标记为骚扰电话、诈骗电话、推销电话的过程。本站提供标记清除服务入口,<strong>手机号码与座机号码均支持</strong>;同时聚合中国信息通信研究院码号服务推进组(opene164.org.cn,国内唯一官方跨平台清除入口)与Truecaller官方清除入口。多渠道配合,可彻底清除误标记,查询免费。
   </p>
 
-  <!-- 申诉入口表格 -->
+  <!-- 核心清除入口 -->
+  <section class="mb-8">
+    <div class="bg-gradient-to-br from-brand-600 to-brand-700 rounded-2xl p-8 text-white text-center shadow-lg">
+      <h2 class="text-2xl font-bold mb-2">标记清除 — 手机号 / 座机号</h2>
+      <p class="text-brand-100 mb-6">输入手机号码或座机号码,查询并清除误标记</p>
+      <a href={serviceUrl} target="_blank" rel="noopener" class="inline-block px-8 py-4 bg-white text-brand-700 rounded-xl font-bold text-lg hover:bg-brand-50 transition-colors shadow-md">
+        立即清除标记 →
+      </a>
+      <p class="text-brand-200 text-sm mt-4">支持手机号 · 座机号 · 400号码</p>
+    </div>
+  </section>
+
+  <!-- 清除入口表格 -->
   <section class="prose-content mb-8">
-    <h2>各平台号码标记申诉入口一览</h2>
+    <h2>号码标记清除入口一览</h2>
     <p>
-      下表汇总了国内全部主流号码标记平台的官方申诉入口、客服电话与备注信息。<strong>中国信通院码号服务推进组</strong>是国内唯一官方跨平台清除入口,中国联通手机号及400号可一站式清除,推荐优先使用。其余平台需逐一申诉。
+      下表汇总了可用的号码标记清除渠道。<strong>标记清除服务</strong>支持手机号与座机号,推荐优先使用;<strong>中国信通院码号服务推进组</strong>是国内唯一官方跨平台清除入口;Truecaller适合清除海外标记。
     </p>
     <div class="overflow-x-auto">
       <table>
         <thead>
           <tr>
-            <th>平台</th>
-            <th>申诉入口</th>
-            <th>客服电话</th>
-            <th>备注</th>
+            <th>清除渠道</th>
+            <th>类型</th>
+            <th>清除入口</th>
+            <th>支持号码</th>
+            <th>说明</th>
           </tr>
         </thead>
         <tbody>
           {platforms.map((p) => (
             <tr>
               <td><strong>{p.name}</strong></td>
+              <td>{p.type}</td>
               <td>
                 {p.appealUrl && isUrl(p.appealUrl) ? (
-                  <a href={p.appealUrl} target="_blank" rel="noopener nofollow">{p.appealUrl}</a>
+                  <a href={p.appealUrl} target="_blank" rel="noopener nofollow">点击清除</a>
                 ) : (
-                  <span>{p.appealUrl || '见备注'}</span>
+                  <span>{p.note}</span>
                 )}
               </td>
-              <td>{p.phone || '—'}</td>
-              <td>{p.note || p.desc}</td>
+              <td>手机号 / 座机号</td>
+              <td>{p.desc}</td>
             </tr>
           ))}
         </tbody>
@@ -132,63 +149,36 @@ const faqSchema = {
     </div>
   </section>
 
-  <!-- 通用申诉要点 -->
+  <!-- 各渠道清除说明 -->
   <section class="prose-content mb-8">
-    <h2>申诉通用要点</h2>
-    <p>无论在哪个平台申诉,以下要点均需注意,可显著提高申诉通过率:</p>
-    <ul>
-      <li><strong>详述机主身份:</strong>个人号码需提供机主姓名及身份信息,企业号码需提供企业全称。这是证明号码归属的基础。</li>
-      <li><strong>附错误标记截图:</strong>提供显示错误标记的截图(如来电界面显示"骚扰电话"的截图),作为误标证据。</li>
-      <li><strong>各平台数据独立需逐一申诉:</strong>360、腾讯、百度等平台标记数据互不同步,在A平台清除不会自动清除B平台,必须逐一申诉。</li>
-      <li><strong>审核周期1-3个工作日:</strong>各平台审核通常1-3个工作日,结果多以短信通知。Truecaller提交取消收录后24-48小时移除。</li>
-      <li><strong>标记超20人需提供号码证明:</strong>标记人数超过20的号码,各平台通常要求提供号码归属证明——个人号码提供机主身份证,企业号码提供营业执照。提交证明后通过率显著提高。</li>
-      <li><strong>华为等终端需到源头申诉:</strong>华为、OPPO、vivo、小米等终端的标记数据多来自腾讯、泰迪熊、电话邦等第三方库,仅在终端申诉无法根治,需到数据源头平台申诉。</li>
-    </ul>
+    <h2>各渠道清除操作说明</h2>
+
+    <h3>1. 标记清除服务(推荐优先)</h3>
+    <p>
+      点击上方"立即清除标记"按钮进入清除服务,输入您的<strong>手机号码或座机号码</strong>,查询标记情况后可直接发起清除。手机号与座机号均支持,操作便捷。这是最高效的清除方式,推荐优先使用。
+    </p>
+
+    <h3>2. 中国信通院码号服务推进组</h3>
+    <p>
+      访问 <a href="http://www.opene164.org.cn" target="_blank" rel="noopener nofollow">opene164.org.cn</a>,该平台是国内<strong>唯一官方跨平台号码标记清除入口</strong>。支持手机号码、座机(固话)号码及400号查询;<strong>中国联通手机号及400号可一站式清除</strong>误标记——提交申诉后由信通院协调各平台统一处理。移动、电信号建议配合标记清除服务使用。流程:进入网站 → 号码误标记处置 → 输入号码与机主信息 → 提交申诉 → 等待审核。完全免费。
+    </p>
+
+    <h3>3. Truecaller(海外标记清除)</h3>
+    <p>
+      访问 <a href="https://www.truecaller.com/unlisting" target="_blank" rel="noopener nofollow">truecaller.com/unlisting</a>,输入带国家码的号码(如 +8613xxxxxxxxx)与验证码,提交取消收录申请。通常 <strong>24-48小时内移除</strong>。若号码被海外用户标记,需在此单独申诉清除。
+    </p>
   </section>
 
-  <!-- 分平台清除教程 -->
+  <!-- 清除通用要点 -->
   <section class="prose-content mb-8">
-    <h2>分平台清除教程</h2>
-
-    <h3>1. 中国信通院码号服务推进组(最优先)</h3>
-    <p>
-      访问 <a href="http://www.opene164.org.cn" target="_blank" rel="noopener nofollow">opene164.org.cn</a>,该平台是国内唯一官方跨平台号码标记清除入口。<strong>中国联通手机号及400号可一站式清除</strong>误标记——提交申诉后由信通院协调各平台统一处理,无需逐个平台申诉。移动、电信号暂需到各平台分别申诉。流程:进入网站 → 号码误标记处置 → 输入号码与机主信息 → 提交申诉 → 等待审核。完全免费。
-    </p>
-
-    <h3>2. 360 手机卫士</h3>
-    <p>
-      访问 <a href="http://haomashensu.360.cn/question.html" target="_blank" rel="noopener nofollow">haomashensu.360.cn/question.html</a>,输入被标记号码,选择错误标记类型(骚扰/诈骗/推销等),提交机主信息及错误标记截图。审核约1-3个工作日,结果短信通知。客服电话 010-89180702。标记超过20人的号码需提供机主身份证(个人)或营业执照(企业)。
-    </p>
-
-    <h3>3. 腾讯手机管家</h3>
-    <p>
-      访问 <a href="https://yun.m.qq.com/content.html#1" target="_blank" rel="noopener nofollow">yun.m.qq.com</a>,腾讯号码公众平台可提交号码申诉。个人号码提供机主信息与误标截图;企业号码建议注册号码公众平台,认证后可自行管理号码展示名称,从源头避免误标。客服电话 0755-83765566。注意腾讯通常6人以上标记才展示,未展示的标记无需申诉。
-    </p>
-
-    <h3>4. 百度号码认证</h3>
-    <p>
-      访问 <a href="https://haoma.baidu.com" target="_blank" rel="noopener nofollow">haoma.baidu.com</a>,提交号码申诉。企业号码可申请号码认证(绿标),认证后来电显示企业名称,有效避免被误标为骚扰。如遇申诉问题可加入官方QQ群 910251361 获取协助。
-    </p>
-
-    <h3>5. 华为终端</h3>
-    <p>
-      在华为手机上操作:<strong>电话App → 骚扰拦截 → 号码申诉</strong>。但需注意,华为标记数据多来自腾讯、泰迪熊移动、电话邦等第三方库,仅在华为终端申诉无法根治。建议同时向腾讯手机管家(yun.m.qq.com)、泰迪熊移动(teddymobile.cn/numberComplaint,客服 400-825-3666)、电话邦(dianhua.cn/appeal,客服 400-061-8800)提交申诉,从数据源头清除。
-    </p>
-
-    <h3>6. 搜狗号码通</h3>
-    <p>
-      搜狗号码通现归腾讯系,无网页申诉入口。需发送邮件至 <a href="mailto:IMETS@tencent.com">IMETS@tencent.com</a>,邮件中写明:被标记号码、机主信息(个人提供姓名,企业提供企业名称)、错误标记情况(标记类型与截图)、联系方式。客服电话 0515-69189017。审核通过后标记清除。
-    </p>
-
-    <h3>7. Truecaller(海外)</h3>
-    <p>
-      访问 <a href="https://www.truecaller.com/unlisting" target="_blank" rel="noopener nofollow">truecaller.com/unlisting</a>,输入带国家码的号码(如 +8613xxxxxxxxx)与验证码,提交取消收录申请。通常 <strong>24-48小时内移除</strong>。若号码被海外用户标记,需在此单独申诉。
-    </p>
-
-    <h3>8. OPPO / vivo / 小米</h3>
-    <p>
-      各终端操作路径:<strong>设置 → 安全中心 → 号码申诉</strong>(部分机型为"手机管家 → 骚扰拦截 → 号码申诉")。与华为类似,这些终端的标记数据多来自腾讯、泰迪熊、电话邦等第三方库,需到数据源头平台申诉才能彻底清除。
-    </p>
+    <h2>清除通用要点</h2>
+    <ul>
+      <li><strong>手机号与座机号均支持:</strong>本站标记清除服务与信通院均支持手机号码与座机(固话)号码的标记清除,座机号需输入区号。</li>
+      <li><strong>多渠道配合更彻底:</strong>标记清除服务、信通院、Truecaller三个渠道配合使用,可覆盖国内与国际标记,清除更彻底。</li>
+      <li><strong>审核周期1-3个工作日:</strong>标记清除服务与信通院通常1-3个工作日完成处理,Truecaller 24-48小时移除。</li>
+      <li><strong>号码回收可能继承标记:</strong>号码回收再发放后可能继承前机主的标记,新办的号也可能被误标,需清除。</li>
+      <li><strong>清除后建议复查:</strong>清除完成后,可前往<a href="/tools/marking-check">号码标记自查</a>页面复查确认标记已清除。</li>
+    </ul>
   </section>
 
   <!-- 清除流程 -->
@@ -196,20 +186,20 @@ const faqSchema = {
     <h2>号码标记清除完整流程</h2>
     <ol class="list-decimal list-inside mb-4 text-slate-600 space-y-2">
       <li>
-        <strong>优先通过信通院清除:</strong>访问 opene164.org.cn,联通号可一站式清除;移动/电信号继续下一步逐一申诉。
+        <strong>第一步:使用标记清除服务。</strong>点击本页清除入口,输入手机号或座机号,查询并清除误标记。
       </li>
       <li>
-        <strong>逐一到各平台申诉入口提交:</strong>依次前往360、腾讯、百度、泰迪熊、电话邦、搜狗、Truecaller 提交申诉,各平台数据独立不可遗漏。
+        <strong>第二步:到信通院官方清除。</strong>访问 opene164.org.cn,联通号可一站式清除;移动/电信号补充处理。
       </li>
       <li>
-        <strong>准备并提交申诉材料:</strong>详述机主身份,附错误标记截图;标记超20人需提供号码归属证明(身份证/营业执照)。
+        <strong>第三步:Truecaller取消收录(如需)。</strong>号码有国际往来时,到 truecaller.com/unlisting 取消收录。
       </li>
       <li>
-        <strong>等待审核结果:</strong>各平台1-3个工作日审核,短信通知结果。华为等终端标记需到数据源头(腾讯/泰迪熊/电话邦)申诉根治。
+        <strong>第四步:等待并复查。</strong>等待1-3个工作日处理完成,再到<a href="/tools/marking-check">标记自查</a>页面复查确认。
       </li>
     </ol>
     <blockquote>
-      提示:若不确定号码被哪些平台标记,可先前往<a href="/tools/marking-check">号码标记自查</a>页面查询各平台标记情况,再有针对性地申诉。
+      提示:若不确定号码被哪些平台标记,可先前往<a href="/tools/marking-check">号码标记自查</a>页面查询标记情况,再有针对性地清除。
     </blockquote>
   </section>
 
@@ -217,7 +207,7 @@ const faqSchema = {
   <section class="bg-slate-100 rounded-xl p-6">
     <h2 class="text-lg font-bold text-slate-800 mb-2">数据来源</h2>
     <p class="text-sm text-slate-600 leading-relaxed">
-      本页申诉入口信息均来自各平台官方渠道:中国信通院码号服务推进组(opene164.org.cn)、360号码申诉平台(haomashensu.360.cn)、腾讯号码公众平台(yun.m.qq.com)、百度号码认证(haoma.baidu.com)、泰迪熊移动(teddymobile.cn)、电话邦(dianhua.cn)、搜狗号码通(IMETS@tencent.com)、Truecaller(truecaller.com)。华为终端申诉入口参考华为消费者业务官方说明。号码通查不直接提供标记清除服务,而是聚合各平台官方申诉入口与教程,引导用户到官方平台免费申诉,不存储用户提交的任何信息。
+      本页清除渠道包括:标记清除服务(支持手机号与座机号)、中国信通院码号服务推进组(opene164.org.cn,官方跨平台清除入口)、Truecaller(truecaller.com,全球来电识别)。本站不存储用户提交的任何信息,所有清除操作在各渠道服务页面完成。
     </p>
   </section>
 </BaseLayout>
