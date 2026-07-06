@@ -1,0 +1,114 @@
+{
+  "platforms": [
+    {
+      "name": "中国信通院码号服务推进组",
+      "type": "官方跨平台聚合",
+      "url": "http://www.opene164.org.cn",
+      "desc": "中国信息通信研究院运营,国内唯一官方跨平台号码标记查询与清除入口。支持移动/联通/电信/固话免费查询;中国联通手机号及400号可一站式清除误标记。",
+      "queryUrl": "http://www.opene164.org.cn",
+      "appealUrl": "http://www.opene164.org.cn",
+      "phone": "",
+      "cost": "免费",
+      "note": "优先使用此平台,可一次查询多平台标记情况"
+    },
+    {
+      "name": "360手机卫士",
+      "type": "安全厂商",
+      "url": "http://haomashensu.360.cn/index.html",
+      "desc": "360旗下号码标记库,国内主流标记源之一,覆盖大量安卓终端。",
+      "queryUrl": "http://haomashensu.360.cn/index.html",
+      "appealUrl": "http://haomashensu.360.cn/question.html",
+      "phone": "010-89180702",
+      "cost": "免费",
+      "note": "需提供机主信息及错误标记截图"
+    },
+    {
+      "name": "腾讯手机管家",
+      "type": "安全厂商",
+      "url": "https://yun.m.qq.com/content.html#1",
+      "desc": "腾讯号码公众平台,与华为等终端共享数据,通常6人以上标记才展示。",
+      "queryUrl": "https://yun.m.qq.com/content.html#1",
+      "appealUrl": "https://yun.m.qq.com/content.html#1",
+      "phone": "0755-83765566",
+      "cost": "免费",
+      "note": "企业可注册号码公众平台自行管理"
+    },
+    {
+      "name": "百度号码认证",
+      "type": "搜索厂商",
+      "url": "https://haoma.baidu.com",
+      "desc": "百度旗下号码标记与认证平台,提供企业号码认证(绿标)服务。",
+      "queryUrl": "https://haoma.baidu.com",
+      "appealUrl": "https://haoma.baidu.com",
+      "phone": "",
+      "cost": "查询免费/认证收费",
+      "note": "QQ群 910251361"
+    },
+    {
+      "name": "华为号码认证",
+      "type": "终端厂商",
+      "url": "https://consumer.huawei.com",
+      "desc": "华为终端自带来电标记,申诉入口在电话App-骚扰拦截-号码申诉。",
+      "queryUrl": "",
+      "appealUrl": "电话App → 骚扰拦截 → 号码申诉",
+      "phone": "",
+      "cost": "免费",
+      "note": "数据多来自腾讯/泰迪熊/电话邦,需到源头申诉"
+    },
+    {
+      "name": "泰迪熊移动",
+      "type": "第三方号码库",
+      "url": "https://www.teddymobile.cn/numberComplain",
+      "desc": "第三方号码库,为多款终端与App提供来电识别数据。",
+      "queryUrl": "https://www.teddymobile.cn",
+      "appealUrl": "https://www.teddymobile.cn/numberComplaint",
+      "phone": "400-825-3666",
+      "cost": "免费",
+      "note": "华为/小米等终端的部分标记数据来源"
+    },
+    {
+      "name": "电话邦",
+      "type": "第三方号码库",
+      "url": "http://www.dianhua.cn",
+      "desc": "第三方号码库,为终端厂商供数。",
+      "queryUrl": "http://www.dianhua.cn",
+      "appealUrl": "http://www.dianhua.cn/appeal",
+      "phone": "400-061-8800",
+      "cost": "免费",
+      "note": ""
+    },
+    {
+      "name": "搜狗号码通",
+      "type": "安全厂商(腾讯系)",
+      "url": "",
+      "desc": "现归腾讯系,申诉需发送邮件说明情况。",
+      "queryUrl": "",
+      "appealUrl": "邮件 IMETS@tencent.com",
+      "phone": "0515-69189017",
+      "cost": "免费",
+      "note": "邮件需写明号码、机主信息、错误标记情况"
+    },
+    {
+      "name": "OPPO/vivo/小米",
+      "type": "终端厂商",
+      "url": "",
+      "desc": "各终端自带安全中心号码申诉入口,数据多来自第三方库。",
+      "queryUrl": "",
+      "appealUrl": "设置 → 安全中心 → 号码申诉",
+      "phone": "",
+      "cost": "免费",
+      "note": "需到数据源头(腾讯/泰迪熊/电话邦)申诉才能根治"
+    },
+    {
+      "name": "Truecaller",
+      "type": "全球来电识别",
+      "url": "https://www.truecaller.com",
+      "desc": "全球最大来电识别应用,可取消号码收录。",
+      "queryUrl": "https://www.truecaller.com/search",
+      "appealUrl": "https://www.truecaller.com/unlisting",
+      "phone": "",
+      "cost": "免费",
+      "note": "输入带国家码号码+验证码,24-48小时移除"
+    }
+  ]
+}

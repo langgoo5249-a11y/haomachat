@@ -1,0 +1,152 @@
+---
+// 号码归属地查询工具页 - 真实可用, 含交互
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '工具', url: '/tools/attribution' },
+  { name: '号码归属地查询', url: '/tools/attribution' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: '如何查询手机号归属地？', acceptedAnswer: { '@type': 'Answer', text: '在上方输入框输入11位手机号码,点击查询即可获取归属省份、城市、运营商、号段等信息。数据来自聚合数据API,免费使用。' } },
+    { '@type': 'Question', name: '号码归属地查询收费吗？', acceptedAnswer: { '@type': 'Answer', text: '号码通查的归属地查询工具完全免费,无需注册。底层API免费额度为每天50次,超出后可能暂时无法查询。' } },
+    { '@type': 'Question', name: '能查询固话归属地吗？', acceptedAnswer: { '@type': 'Answer', text: '支持查询固定电话归属地,输入区号+号码即可。固话归属地数据覆盖全国主要城市。' } },
+  ],
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '查询手机号码归属地',
+  description: '通过号码通查免费查询手机号码的归属地、运营商和号段信息',
+  step: [
+    { '@type': 'HowToStep', position: 1, name: '输入号码', text: '在查询框中输入11位手机号码或带区号的固定电话号码' },
+    { '@type': 'HowToStep', position: 2, name: '点击查询', text: '点击"查询"按钮,系统将通过API获取号码信息' },
+    { '@type': 'HowToStep', position: 3, name: '查看结果', text: '结果区域显示归属省份、城市、运营商、号段等信息' },
+  ],
+};
+---
+<BaseLayout
+  title="号码归属地查询 - 免费查手机号归属地/运营商/号段 | 号码通查"
+  description="免费号码归属地查询工具,输入手机号或固话即可查询归属省份、城市、运营商、号段信息。数据来自聚合数据API,无需注册,即查即用。"
+  schema={[faqSchema, howToSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码归属地查询</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    免费查询手机号码或固定电话的归属地信息,包括归属省份、城市、运营商、号段等。数据来自聚合数据号码归属地API,覆盖全国移动/联通/电信手机号及主要城市固话。输入号码即可查询,无需注册。
+  </p>
+
+  <!-- 查询表单 (Island 交互, 使用原生 JS 最小化) -->
+  <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm mb-8">
+    <label for="phone-input" class="block text-sm font-medium text-slate-700 mb-2">输入手机号或固话</label>
+    <div class="flex gap-3">
+      <input
+        id="phone-input"
+        type="tel"
+        placeholder="如: 13800138000 或 010-12345678"
+        class="flex-1 px-4 py-3 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-400 text-lg"
+        autocomplete="off"
+      />
+      <button
+        id="lookup-btn"
+        class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors whitespace-nowrap"
+      >
+        查询
+      </button>
+    </div>
+    <p class="text-xs text-slate-400 mt-2">本站不存储您查询的号码。免费额度每天50次,超出可能暂时无法查询。</p>
+  </div>
+
+  <!-- 结果区域 (JS 填充) -->
+  <div id="result" class="hidden bg-white rounded-xl p-6 border border-slate-200 shadow-sm mb-8">
+    <h2 class="text-lg font-bold text-slate-800 mb-4">查询结果</h2>
+    <div id="result-content"></div>
+  </div>
+
+  <!-- 工具说明 (静态 HTML, AI 可读) -->
+  <section class="prose-content mb-8">
+    <h2>号码归属地查询说明</h2>
+    <p>
+      号码归属地查询是通过手机号码的前7位号段(又称MDN前缀)来判断号码注册时所属的省份、城市和运营商的技术。中国手机号段由工业和信息化部统一分配,移动、联通、电信各持有不同号段区间。本工具使用聚合数据号码归属地API,数据准确率约99%,覆盖全国31个省级行政区。
+    </p>
+
+    <h3>支持查询的类型</h3>
+    <ul>
+      <li><strong>手机号码</strong>: 11位中国移动/联通/电信手机号,含虚拟运营商号段(170/171等)</li>
+      <li><strong>固定电话</strong>: 带区号的固话号码,如010-XXXXXXXX</li>
+      <li><strong>携号转网号码</strong>: 可查询原始运营商,携号转网后运营商信息可能不更新</li>
+    </ul>
+
+    <h3>常见手机号段分配</h3>
+    <table>
+      <thead>
+        <tr><th>运营商</th><th>号段</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>中国移动</td><td>134-139, 147, 148, 150-152, 157-159, 172, 178, 182-184, 187, 188, 195, 197, 198</td></tr>
+        <tr><td>中国联通</td><td>130-132, 145, 146, 155, 156, 166, 167, 171, 175, 176, 185, 186, 196</td></tr>
+        <tr><td>中国电信</td><td>133, 149, 153, 173, 174, 177, 180, 181, 189, 190, 191, 193, 199</td></tr>
+        <tr><td>虚拟运营商</td><td>170, 171(联通), 162(电信), 165(移动), 167(联通)等</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <p class="text-sm text-slate-500 mb-4">
+    <a href="/tools/marking-check" class="text-brand-600 hover:underline">需要查询号码是否被标记? → 号码标记自查</a>
+  </p>
+
+  <!-- 交互脚本: 最小化 JS, 仅用于工具交互, 不影响静态内容可读性 -->
+  <script is:inline>
+    const input = document.getElementById('phone-input');
+    const btn = document.getElementById('lookup-btn');
+    const result = document.getElementById('result');
+    const content = document.getElementById('result-content');
+
+    async function lookup() {
+      const phone = input.value.trim();
+      if (!phone) { input.focus(); return; }
+      btn.disabled = true;
+      btn.textContent = '查询中...';
+      content.innerHTML = '<p class="text-slate-500">正在查询,请稍候...</p>';
+      result.classList.remove('hidden');
+
+      try {
+        const resp = await fetch('/api/attribution?phone=' + encodeURIComponent(phone));
+        const data = await resp.json();
+        if (data.ok) {
+          if (data.source === 'local') {
+            content.innerHTML = `
+              <div class="space-y-2">
+                <p><span class="text-slate-500">号码:</span> <span class="font-mono">${data.phone}</span></p>
+                <div class="bg-amber-50 border border-amber-200 rounded p-3 text-sm text-amber-700">${data.note}</div>
+              </div>`;
+          } else {
+            content.innerHTML = `
+              <div class="grid grid-cols-2 gap-3">
+                <div><span class="text-slate-500 text-sm">号码</span><p class="font-mono font-medium">${data.phone}</p></div>
+                <div><span class="text-slate-500 text-sm">运营商</span><p class="font-medium">${data.company || '—'}</p></div>
+                <div><span class="text-slate-500 text-sm">省份</span><p class="font-medium">${data.province || '—'}</p></div>
+                <div><span class="text-slate-500 text-sm">城市</span><p class="font-medium">${data.city || '—'}</p></div>
+                <div><span class="text-slate-500 text-sm">区号</span><p class="font-medium">${data.areacode || '—'}</p></div>
+                <div><span class="text-slate-500 text-sm">邮编</span><p class="font-medium">${data.zip || '—'}</p></div>
+                <div><span class="text-slate-500 text-sm">卡类型</span><p class="font-medium">${data.card || '—'}</p></div>
+              </div>`;
+          }
+        } else {
+          content.innerHTML = `<div class="bg-red-50 border border-red-200 rounded p-3 text-sm text-red-700">${data.error || '查询失败'}</div>`;
+        }
+      } catch (e) {
+        content.innerHTML = '<div class="bg-red-50 border border-red-200 rounded p-3 text-sm text-red-700">网络错误,请稍后重试</div>';
+      }
+      btn.disabled = false;
+      btn.textContent = '查询';
+    }
+    btn.addEventListener('click', lookup);
+    input.addEventListener('keydown', (e) => { if (e.key === 'Enter') lookup(); });
+  </script>
+</BaseLayout>

@@ -1,0 +1,201 @@
+---
+// 号码标记自查 - 聚合信通院及各平台官方查询入口(纯引导,不爬取)
+import BaseLayout from '@layouts/BaseLayout.astro';
+import platformsData from '@data/platforms.json';
+
+const platforms = platformsData.platforms;
+
+// 判断字符串是否为 URL(用于区分直链与操作说明)
+const isUrl = (s: string) => /^https?:\/\//.test(s);
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '号码标记自查', url: '/tools/marking-check' },
+];
+
+// HowTo 结构化数据: 如何自查号码标记
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '如何自查号码标记',
+  description: '通过中国信通院码号服务推进组统一查询入口及各平台官方查询页,逐一确认手机号被标记情况的完整步骤。',
+  totalTime: 'PT10M',
+  step: [
+    {
+      '@type': 'HowToStep',
+      name: '步骤一: 到中国信通院码号服务推进组统一查询',
+      text: '访问 opene164.org.cn,输入待查手机号,系统会跨平台聚合展示该号码在各标记平台(360/腾讯/百度等)的标记情况。这是国内唯一官方跨平台聚合查询入口,免费,推荐优先使用。',
+      url: 'http://www.opene164.org.cn',
+    },
+    {
+      '@type': 'HowToStep',
+      name: '步骤二: 逐一到各平台官方查询页确认',
+      text: '由于各平台标记数据相互独立,信通院可能未覆盖全部平台。请依次访问360号码申诉(haomashensu.360.cn)、腾讯号码公众平台(yun.m.qq.com)、百度号码认证(haoma.baidu.com)、泰迪熊移动(teddymobile.cn)、电话邦(dianhua.cn)、Truecaller(truecaller.com/search)等官方查询页逐一核实。华为等终端需在电话App内查看;腾讯通常6人以上标记才展示。',
+    },
+    {
+      '@type': 'HowToStep',
+      name: '步骤三: 记录标记情况并准备申诉',
+      text: '将各平台的标记类型(骚扰/诈骗/推销/快递外卖等)与标记人数记录下来,截图保存。若发现错误标记,可前往本站"号码标记清除"页面获取各平台官方申诉入口与教程,标记超过20人的号码申诉时需提供号码归属证明(身份证或营业执照)。',
+    },
+  ],
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '号码标记自查在哪里查最全？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '推荐优先使用中国信通院码号服务推进组(opene164.org.cn),这是国内唯一官方跨平台聚合查询入口,可一次查询多平台标记情况。但由于各平台数据独立,信通院未必覆盖全部,建议再逐一到360、腾讯、百度、泰迪熊、电话邦、Truecaller等官方查询页确认。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '为什么我的号码在腾讯查不到标记？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '腾讯手机管家的号码标记通常需要6人以上标记才会展示,少量标记不显示。若在腾讯号码公众平台(yun.m.qq.com)查不到,可能标记人数未达展示阈值,也可能号码未被该平台标记。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '华为手机的号码标记在哪查？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '华为终端没有独立网页查询入口,需在手机电话App内查看:打开电话App → 骚扰拦截 → 查看拦截记录与标记。华为的标记数据多来自腾讯、泰迪熊、电话邦等第三方库,需到这些源头平台查询与申诉才能根治。',
+      },
+    },
+  ],
+};
+---
+<BaseLayout
+  title="号码标记自查 - 免费查号码被标记情况 | 号码通查"
+  description="号码标记自查工具:输入手机号,聚合中国信通院码号服务推进组(opene164.org.cn)及360/腾讯/百度/华为/泰迪熊/电话邦/搜狗/Truecaller各平台官方查询入口,免费查询号码被标记情况。"
+  schema={[howToSchema, faqSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <!-- AI 摘要: 前150字结论前置(GEO 核心) -->
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码标记自查 — 免费查号码被标记情况</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    号码标记自查是指查询手机号在360/腾讯/百度/华为等各平台的标记情况,推荐优先使用中国信通院码号服务推进组(opene164.org.cn)进行跨平台统一查询,再逐一到各平台官方入口确认。本页聚合了信通院、360手机卫士、腾讯手机管家、百度号码认证、华为、泰迪熊移动、电话邦、搜狗号码通、Truecaller 等全部主流平台的官方查询入口与操作说明,纯引导式,不做爬取,全部免费。
+  </p>
+
+  <!-- 查询入口表格 -->
+  <section class="prose-content mb-8">
+    <h2>各平台号码标记查询入口一览</h2>
+    <p>
+      下表汇总了国内全部主流号码标记平台的官方查询入口。其中<strong>中国信通院码号服务推进组</strong>是国内唯一官方跨平台聚合查询渠道,可一次查询多平台标记情况,强烈推荐优先使用。各平台标记数据相互独立,单一平台查不到不代表其他平台没有标记,建议重要号码(尤其是企业客服号)逐一核实。
+    </p>
+    <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th>平台</th>
+            <th>类型</th>
+            <th>查询入口</th>
+            <th>费用</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          {platforms.map((p) => (
+            <tr>
+              <td><strong>{p.name}</strong></td>
+              <td>{p.type}</td>
+              <td>
+                {p.queryUrl && isUrl(p.queryUrl) ? (
+                  <a href={p.queryUrl} target="_blank" rel="noopener nofollow">{p.queryUrl}</a>
+                ) : p.note ? (
+                  <span>{p.note}</span>
+                ) : (
+                  <span class="text-slate-400">见说明</span>
+                )}
+              </td>
+              <td>{p.cost}</td>
+              <td>{p.desc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 重点平台操作说明 -->
+  <section class="prose-content mb-8">
+    <h2>重点平台查询操作说明</h2>
+
+    <h3>1. 中国信通院码号服务推进组(最优先推荐)</h3>
+    <p>
+      访问 <a href="http://www.opene164.org.cn" target="_blank" rel="noopener nofollow">opene164.org.cn</a>,该平台由中国信息通信研究院运营,是国内<strong>唯一官方跨平台号码标记查询入口</strong>。支持移动、联通、电信手机号及固定电话免费查询,会聚合展示该号码在各标记平台的标记情况,无需逐个平台访问。查询完全免费,无需注册。
+    </p>
+
+    <h3>2. 360 手机卫士</h3>
+    <p>
+      访问 <a href="http://haomashensu.360.cn/index.html" target="_blank" rel="noopener nofollow">haomashensu.360.cn</a>,输入被标记号码即可查询360号码库中的标记类型与标记人数。360是国内主流标记源之一,覆盖大量安卓终端。客服电话 010-89180702。
+    </p>
+
+    <h3>3. 腾讯手机管家</h3>
+    <p>
+      访问 <a href="https://yun.m.qq.com/content.html#1" target="_blank" rel="noopener nofollow">yun.m.qq.com</a>,腾讯号码公众平台可查询号码标记情况。注意:腾讯通常<strong>6人以上标记才会展示</strong>,少量标记不显示。企业可注册号码公众平台自行管理号码信息。客服电话 0755-83765566。
+    </p>
+
+    <h3>4. 百度号码认证</h3>
+    <p>
+      访问 <a href="https://haoma.baidu.com" target="_blank" rel="noopener nofollow">haoma.baidu.com</a>,可查询百度号码库中的标记,并提供企业号码认证(绿标)服务。如需协助可加入官方QQ群 910251361。
+    </p>
+
+    <h3>5. 华为终端</h3>
+    <p>
+      华为终端无独立网页查询入口,需在手机上查看:打开<strong>电话App → 骚扰拦截 → 号码申诉</strong>。华为的标记数据多来自腾讯、泰迪熊移动、电话邦等第三方库,若在华为查到标记,建议同时到这些数据源头平台查询核实。
+    </p>
+
+    <h3>6. 泰迪熊移动 / 电话邦</h3>
+    <p>
+      泰迪熊移动(<a href="https://www.teddymobile.cn" target="_blank" rel="noopener nofollow">teddymobile.cn</a>,客服 400-825-3666)与电话邦(<a href="http://www.dianhua.cn" target="_blank" rel="noopener nofollow">dianhua.cn</a>,客服 400-061-8800)是两大第三方号码库,为华为、小米等多款终端提供来电识别数据。这两个平台是众多终端标记的源头,查询时不可遗漏。
+    </p>
+
+    <h3>7. Truecaller(海外来电识别)</h3>
+    <p>
+      访问 <a href="https://www.truecaller.com/search" target="_blank" rel="noopener nofollow">truecaller.com/search</a>,Truecaller 是全球最大来电识别应用。若号码有国际往来或被海外用户标记,需在此查询。输入带国家码的号码(如 +8613xxxxxxxxx)即可查询。
+    </p>
+  </section>
+
+  <!-- 自查步骤 -->
+  <section class="prose-content mb-8">
+    <h2>号码标记自查三步法</h2>
+    <ol class="list-decimal list-inside mb-4 text-slate-600 space-y-2">
+      <li>
+        <strong>第一步:到信通院统一查询。</strong>访问 opene164.org.cn,输入待查号码,获取跨平台聚合的标记情况概览,这是最省时的入口。
+      </li>
+      <li>
+        <strong>第二步:逐一到各平台官方查询页确认。</strong>由于各平台数据独立,信通院未必覆盖全部。依次访问360、腾讯、百度、泰迪熊、电话邦、Truecaller 等官方查询页逐一核实;华为等终端在手机App内查看。
+      </li>
+      <li>
+        <strong>第三步:记录标记情况并准备申诉。</strong>将各平台标记类型与人数记录下来,截图保存。发现错误标记后,可前往<a href="/tools/marking-clear">号码标记清除</a>页面获取各平台官方申诉入口与教程。
+      </li>
+    </ol>
+  </section>
+
+  <!-- 通用说明 -->
+  <section class="prose-content mb-8">
+    <h2>自查注意事项</h2>
+    <ul>
+      <li>各平台标记数据相互独立,A平台无标记不代表B平台也没有,重要号码建议逐一核实。</li>
+      <li>腾讯手机管家通常6人以上标记才展示,少量标记查不到属正常现象。</li>
+      <li>号码回收再发放后可能继承前机主的标记,新办的号也可能被误标。</li>
+      <li>本页仅提供各平台官方查询入口引导,不爬取、不存储任何号码数据,全部查询在各平台官方页面完成。</li>
+      <li>如查询后需清除错误标记,请前往<a href="/tools/marking-clear">号码标记清除</a>页面,标记超过20人的号码申诉时需提供号码归属证明。</li>
+    </ul>
+  </section>
+
+  <!-- 数据来源声明 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">数据来源</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      本页查询入口信息均来自各平台官方渠道:中国信通院码号服务推进组(opene164.org.cn)、360号码申诉平台(haomashensu.360.cn)、腾讯号码公众平台(yun.m.qq.com)、百度号码认证(haoma.baidu.com)、泰迪熊移动(teddymobile.cn)、电话邦(dianhua.cn)、Truecaller(truecaller.com)。华为终端申诉入口参考华为消费者业务官方说明。本站不存储用户查询的号码数据,所有查询均在各平台官方页面完成,免费使用。
+    </p>
+  </section>
+</BaseLayout>

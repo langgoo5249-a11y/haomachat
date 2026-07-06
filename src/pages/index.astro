@@ -1,0 +1,112 @@
+---
+// 中文首页 - GEO 核心页面
+import BaseLayout from '@layouts/BaseLayout.astro';
+import faqData from '@data/faq.json';
+
+// 首页 FAQ schema (取号码标记类前6问)
+const homeFaq = faqData.groups[0].items.slice(0, 6).map((item) => ({
+  '@type': 'Question',
+  name: item.q,
+  acceptedAnswer: { '@type': 'Answer', text: item.a },
+}));
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: homeFaq,
+};
+
+const breadcrumbs = [{ name: '首页', url: '/' }];
+
+const tools = [
+  { title: '号码归属地查询', desc: '输入手机号或固话,免费查询归属地、运营商、号段信息', href: '/tools/attribution', icon: '🔍' },
+  { title: '号码标记自查', desc: '聚合中国信通院及360/腾讯/百度/华为等各平台官方查询入口', href: '/tools/marking-check', icon: '🏷️' },
+  { title: '号码标记清除', desc: '各平台官方申诉入口导航与分平台图文清除教程', href: '/tools/marking-clear', icon: '✅' },
+  { title: '手机卡选号比价', desc: '移动/联通/电信套餐对比与选号办卡指南', href: '/tools/sim-cards', icon: '📱' },
+];
+
+const guides = [
+  { title: '号码标记是什么？', desc: '标记来源、机制与显示规则', href: '/guide/what-is-number-marking' },
+  { title: '如何查询号码被标记', desc: '2026 全平台查询指南', href: '/guide/how-to-check-marking' },
+  { title: '如何清除号码标记', desc: '分平台申诉教程与材料清单', href: '/guide/how-to-clear-marking' },
+  { title: '号码认证是什么', desc: '一键登录与本机号码校验原理', href: '/guide/what-is-number-auth' },
+  { title: '选号办卡指南', desc: '运营商选号规则与靓号攻略', href: '/guide/sim-card-guide' },
+];
+---
+<BaseLayout
+  title="号码通查 - 免费号码归属地查询/号码标记查询清除/号码认证/手机卡选号"
+  description="号码通查是免费的电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。聚合中国信通院码号服务推进组及360/腾讯/百度/华为等各平台官方申诉入口。"
+  schema={[faqSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <!-- AI 摘要: 前150字结论前置(GEO 核心) -->
+  <section class="mb-8">
+    <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-3">
+      号码通查 — 免费电话号码服务工具站
+    </h1>
+    <p class="text-lg text-slate-600 leading-relaxed">
+      号码通查(haomachat)提供免费的电话号码归属地查询、号码标记自查与清除指引、号码认证知识科普及手机卡选号比价。本站聚合中国信息通信研究院码号服务推进组(opene164.org.cn)及360手机卫士、腾讯手机管家、百度号码认证、华为等各平台官方申诉入口,帮助用户高效解决号码被误标记为骚扰电话等问题。所有标记清除入口均来自官方渠道,免费使用。
+    </p>
+  </section>
+
+  <!-- 工具入口 -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-slate-800 mb-5">免费工具</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {tools.map((tool) => (
+        <a href={tool.href} class="block bg-white rounded-xl p-5 border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all">
+          <div class="text-3xl mb-2">{tool.icon}</div>
+          <h3 class="font-semibold text-slate-800 mb-1">{tool.title}</h3>
+          <p class="text-sm text-slate-500">{tool.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 权威指南 -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-slate-800 mb-5">权威指南</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+      {guides.map((guide) => (
+        <a href={guide.href} class="block bg-white rounded-lg p-4 border border-slate-200 hover:border-brand-400 transition-all">
+          <h3 class="font-medium text-slate-800 mb-1">{guide.title}</h3>
+          <p class="text-sm text-slate-500">{guide.desc}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <!-- 对比表入口 -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-slate-800 mb-5">深度对比</h2>
+    <div class="flex flex-wrap gap-3">
+      <a href="/compare/marking-platforms" class="px-4 py-2 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-100">号码标记平台对比</a>
+      <a href="/compare/auth-providers" class="px-4 py-2 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-100">号码认证服务商对比</a>
+      <a href="/compare/lookup-apis" class="px-4 py-2 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-100">号码查询API对比</a>
+    </div>
+  </section>
+
+  <!-- FAQ (结构化, AI 易引用) -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-bold text-slate-800 mb-5">常见问题</h2>
+    <div class="space-y-4">
+      {faqData.groups[0].items.map((item) => (
+        <div class="bg-white rounded-lg p-4 border border-slate-200">
+          <h3 class="font-semibold text-slate-800 mb-2">{item.q}</h3>
+          <p class="text-sm text-slate-600 leading-relaxed">{item.a}</p>
+        </div>
+      ))}
+    </div>
+    <p class="mt-4 text-sm">
+      <a href="/faq" class="text-brand-600 hover:underline">查看全部常见问题 →</a>
+    </p>
+  </section>
+
+  <!-- 数据来源声明 (E-E-A-T) -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">数据来源与可信度声明</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      号码通查的标记申诉入口信息均来自各平台官方渠道(360号码申诉平台、腾讯号码公众平台、百度号码认证、中国信通院码号服务推进组等)。归属地查询数据来自聚合数据API。号码认证知识来自运营商官方文档与中国信息通信研究院公开资料。本站不存储用户查询的号码数据,所有工具均可免费使用。
+    </p>
+  </section>
+</BaseLayout>

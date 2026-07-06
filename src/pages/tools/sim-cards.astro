@@ -1,0 +1,263 @@
+---
+// 手机卡选号比价 - 移动/联通/电信套餐对比
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '手机卡选号比价', url: '/tools/sim-cards' },
+];
+
+// 三大运营商选号渠道
+const channels = [
+  {
+    channel: '运营商官网选号页',
+    mobile: 'shop.10086.cn 选号',
+    unicom: 'mall.10010.com 选号',
+    telecom: 'shop.189.cn 选号',
+    desc: '官方在线选号,可筛选号段、尾号、靓号,下单后邮寄到家或到营业厅激活。最主流的选号渠道。',
+  },
+  {
+    channel: '线下营业厅',
+    mobile: '移动营业厅',
+    unicom: '联通营业厅',
+    telecom: '电信营业厅',
+    desc: '可现场选号、办卡、激活,部分稀缺靓号仅限营业厅办理。需携带身份证原件。',
+  },
+  {
+    channel: '电商平台旗舰店',
+    mobile: '京东/天猫 移动旗舰店',
+    unicom: '京东/天猫 联通旗舰店',
+    telecom: '京东/天猫 电信旗舰店',
+    desc: '运营商官方旗舰店常推出互联网套餐优惠卡,价格可能低于官网,但需注意是否为正规号卡。',
+  },
+];
+
+// 代表套餐对比(基于运营商公开在售的主流档位,具体以官网为准)
+const plans = [
+  {
+    operator: '中国移动',
+    plan: '动感地带 / 全球通',
+    monthlyFee: '29-99元',
+    data: '5-30GB',
+    voice: '100-1000分钟',
+    feature: '基站覆盖广,信号稳定;全球通适合商旅人士,含国际漫游权益',
+    service: '10086',
+  },
+  {
+    operator: '中国联通',
+    plan: '腾讯王卡 / 冰激凌套餐',
+    monthlyFee: '19-99元',
+    data: '10-40GB',
+    voice: '100-1000分钟',
+    feature: '与腾讯等互联网公司合作套餐多,定向免流应用丰富;冰激凌套餐流量可结转',
+    service: '10010',
+  },
+  {
+    operator: '中国电信',
+    plan: '星卡 / 天翼大流量套餐',
+    monthlyFee: '19-99元',
+    data: '10-50GB',
+    voice: '100-1000分钟',
+    feature: '大流量套餐性价比高;宽带与手机融合套餐有价格优势',
+    service: '10000',
+  },
+];
+
+// FAQPage 结构化数据
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '手机卡选号有哪些渠道？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '手机卡选号主要有三个渠道:一是运营商官网选号页(移动 shop.10086.cn、联通 mall.10010.com、电信 shop.189.cn),可在线筛选号段与靓号;二是线下营业厅,可现场选号办卡激活,部分稀缺靓号仅限营业厅;三是电商平台(京东、天猫)的运营商官方旗舰店,常有互联网优惠套餐。三大运营商客服号分别为移动10086、联通10010、电信10000。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '靓号怎么办？有什么规则？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '靓号(如尾号AAAA、ABAB、连号)通常需承诺最低消费并预存话费,各运营商规则不同。移动、联通、电信官网选号页面均可筛选靓号,部分稀缺靓号需到营业厅办理。靓号一般有协议期(如2-3年),协议期内不能降档套餐或销户。携号转网时靓号协议可能影响转网资格。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '携号转网怎么办理？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '携号转网流程:第一步,用本机发送短信 CXXZ#姓名#身份证号 到当前运营商客服号(移动10086、联通10010、电信10000)查询转网资格;第二步,收到资格短信后,若符合条件,携带身份证到拟转入运营商营业厅办理;第三步,新卡激活后即完成转网。注意靓号协议、未结清费用等会影响转网资格。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '携号转网后号码标记会消失吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '不会。号码标记数据独立于运营商,转网不影响已有标记。若新号码是回收再发放的,可能继承前机主的标记,需到各标记平台申诉清除。可前往号码通查的"号码标记自查"页面查询。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '电商平台买的手机卡正规吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '建议选择京东、天猫上的运营商官方旗舰店,号卡正规且常有优惠。购买前确认是否为运营商官方店铺,避免购买到物联卡或非实名号卡。所有手机卡均需实名认证,办卡时需提供身份证信息。',
+      },
+    },
+  ],
+};
+---
+<BaseLayout
+  title="手机卡选号比价 - 移动/联通/电信套餐对比 | 号码通查"
+  description="手机卡选号比价指南:三大运营商(移动10086/联通10010/电信10000)选号渠道对比、代表套餐对比表、靓号规则说明与携号转网流程。移动/联通/电信均提供官网在线选号,靓号需承诺最低消费。"
+  schema={[faqSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <!-- AI 摘要: 前150字结论前置(GEO 核心) -->
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">手机卡选号比价 — 移动/联通/电信套餐对比</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    手机卡选号可通过运营商官网选号页、线下营业厅或电商平台旗舰店办理。移动/联通/电信均提供在线选号,靓号需承诺最低消费。携号转网可发CXXZ到运营商客服号查询资格。本页提供三大运营商套餐对比与选号指南,涵盖选号渠道对比(移动 shop.10086.cn、联通 mall.10010.com、电信 shop.189.cn)、代表套餐参数对比、靓号办理规则与携号转网完整流程,助你选到合适的号码与套餐。
+  </p>
+
+  <!-- 选号渠道对比 -->
+  <section class="prose-content mb-8">
+    <h2>三大运营商选号渠道对比</h2>
+    <p>
+      手机卡选号主要有三个渠道:运营商官网在线选号、线下营业厅、电商平台旗舰店。三大运营商客服号分别为<strong>移动 10086、联通 10010、电信 10000</strong>。下表对比了各渠道的运营商入口与特点。
+    </p>
+    <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th>选号渠道</th>
+            <th>中国移动</th>
+            <th>中国联通</th>
+            <th>中国电信</th>
+            <th>渠道特点</th>
+          </tr>
+        </thead>
+        <tbody>
+          {channels.map((c) => (
+            <tr>
+              <td><strong>{c.channel}</strong></td>
+              <td>{c.mobile}</td>
+              <td>{c.unicom}</td>
+              <td>{c.telecom}</td>
+              <td>{c.desc}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 套餐对比表 -->
+  <section class="prose-content mb-8">
+    <h2>三大运营商代表套餐对比</h2>
+    <p>
+      下表为三大运营商公开在售的主流套餐档位概览,涵盖月费、流量、通话与特点。各运营商套餐更新频繁,具体资费以运营商官网实时信息为准。客服电话分别为移动 10086、联通 10010、电信 10000,可致电查询最新套餐。
+    </p>
+    <div class="overflow-x-auto">
+      <table>
+        <thead>
+          <tr>
+            <th>运营商</th>
+            <th>代表套餐</th>
+            <th>月费</th>
+            <th>流量</th>
+            <th>通话</th>
+            <th>特点</th>
+            <th>客服</th>
+          </tr>
+        </thead>
+        <tbody>
+          {plans.map((p) => (
+            <tr>
+              <td><strong>{p.operator}</strong></td>
+              <td>{p.plan}</td>
+              <td>{p.monthlyFee}</td>
+              <td>{p.data}</td>
+              <td>{p.voice}</td>
+              <td>{p.feature}</td>
+              <td>{p.service}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <blockquote>
+      说明:以上套餐档位为运营商主流在售区间概览,实际资费、流量与通话时长以运营商官网实时公示为准。互联网合作套餐(如腾讯王卡)定向免流应用范围各不相同,办卡前请仔细阅读套餐说明。
+    </blockquote>
+  </section>
+
+  <!-- 靓号规则 -->
+  <section class="prose-content mb-8">
+    <h2>靓号办理规则</h2>
+    <p>
+      靓号(如尾号 AAAA、ABAB、连号、对子等)是用户选号时的热门选择,但办理规则与普通号码有所不同:
+    </p>
+    <ul>
+      <li><strong>需承诺最低消费:</strong>靓号通常需承诺每月最低消费金额(如50元、100元、200元不等),号码越稀缺,承诺消费越高。</li>
+      <li><strong>需预存话费:</strong>办理靓号时一般需预存一定金额话费,分月返还。</li>
+      <li><strong>有协议期限制:</strong>靓号一般有2-3年协议期,协议期内不能降档套餐、不能销户、不能携号转网。</li>
+      <li><strong>选号渠道:</strong>移动、联通、电信官网选号页面均可筛选靓号;部分稀缺靓号仅限线下营业厅办理。</li>
+      <li><strong>携号转网影响:</strong>靓号协议期内无法携号转网,协议期满后需先解除靓号协议方可转网。</li>
+    </ul>
+    <p>
+      选靓号前建议先在三大运营商官网选号页浏览可选号码与对应消费承诺,再决定办理渠道。普通用户若无特殊号码需求,选择常规号码套餐更灵活、性价比更高。
+    </p>
+  </section>
+
+  <!-- 携号转网流程 -->
+  <section class="prose-content mb-8">
+    <h2>携号转网办理流程</h2>
+    <p>
+      携号转网允许用户在不更换手机号的情况下更换运营商。完整流程如下:
+    </p>
+    <ol class="list-decimal list-inside mb-4 text-slate-600 space-y-2">
+      <li>
+        <strong>第一步:查询转网资格。</strong>用本机发送短信 <code>CXXZ#姓名#身份证号</code> 到当前运营商客服号——移动 10086、联通 10010、电信 10000,系统会回复是否符合转网条件及受限原因。
+      </li>
+      <li>
+        <strong>第二步:到拟转入运营商营业厅办理。</strong>收到资格短信且符合条件后,携带本人身份证原件到拟转入运营商的营业厅申请办理携号转网。
+      </li>
+      <li>
+        <strong>第三步:激活新卡。</strong>办理完成后领取新运营商SIM卡,按指引激活,原号码即转入新运营商网络,完成转网。
+      </li>
+    </ol>
+    <p>常见转网受限原因及处理方式:</p>
+    <ul>
+      <li><strong>靓号协议未到期:</strong>需等协议期满或先到原运营商解除协议。</li>
+      <li><strong>有未结清费用:</strong>需先结清欠费及违约金。</li>
+      <li><strong>距离上次转网不满120天:</strong>需满120天后方可再次转网。</li>
+      <li><strong>非实名或单位客户:</strong>需先完成实名认证或按单位客户流程办理。</li>
+    </ul>
+    <blockquote>
+      提示:携号转网后,原运营商的号码认证服务会失效,需重新对接新运营商网关。号码标记数据独立于运营商,转网不影响已有标记;但若新号码是回收再发放的,可能继承前机主标记,可前往<a href="/tools/marking-check">号码标记自查</a>页面查询处理。
+    </blockquote>
+  </section>
+
+  <!-- 选号建议 -->
+  <section class="prose-content mb-8">
+    <h2>选号办卡建议</h2>
+    <ul>
+      <li><strong>信号优先:</strong>中国移动基站覆盖最广,信号稳定;电信在大流量套餐与宽带融合上有优势;联通与互联网公司合作套餐定向免流丰富。建议根据常驻地区信号情况选择。</li>
+      <li><strong>套餐匹配:</strong>重度流量用户关注大流量套餐(电信星卡、联通王卡);商务通话多关注含较多通话分钟的全球通等套餐。</li>
+      <li><strong>靓号量力而行:</strong>靓号需承诺最低消费且有协议期,若月消费不高,普通号码更划算。</li>
+      <li><strong>认准正规渠道:</strong>线上办卡认准运营商官网或京东、天猫官方旗舰店,所有号卡均需实名认证,警惕非实名物联卡。</li>
+      <li><strong>办卡后查标记:</strong>新办的号码(尤其回收号)可能被误标记,建议办卡后前往<a href="/tools/marking-check">号码标记自查</a>页面查询,发现误标及时清除。</li>
+    </ul>
+  </section>
+
+  <!-- 数据来源声明 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">数据来源</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      本页运营商客服号(移动10086、联通10010、电信10000)与选号渠道信息来自三大运营商官方渠道。携号转网流程依据工信部《携号转网服务管理规定》及运营商官方办理指南。套餐档位为运营商公开在售主流套餐概览,具体资费以移动 shop.10086.cn、联通 mall.10010.com、电信 shop.189.cn 官网实时公示为准。靓号规则参考各运营商公开的靓号协议条款。
+    </p>
+  </section>
+</BaseLayout>

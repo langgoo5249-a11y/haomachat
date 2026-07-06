@@ -1,0 +1,44 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '博客', url: '/blog' },
+];
+---
+<BaseLayout
+  title="博客 - 号码标记/认证/选号深度文章 | 号码通查"
+  description="号码通查博客,发布号码标记清除、号码认证选型、手机卡选号等深度文章,内容基于官方数据与行业实践。"
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">博客</h1>
+  <p class="text-slate-600 mb-8 leading-relaxed">
+    号码通查博客发布电话号码服务领域的深度文章,涵盖号码标记查询与清除教程、号码认证(一键登录/本机号码校验)选型指南、手机卡选号攻略等。所有内容基于中国信通院、各平台官方渠道与运营商公开资料,可追溯验证。
+  </p>
+
+  <div class="space-y-4">
+    {posts.map((post) => (
+      <a href={`/blog/${post.id}/`} class="block bg-white rounded-xl p-5 border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all">
+        <div class="text-xs text-slate-400 mb-1">{post.data.pubDate.toLocaleDateString('zh-CN')} · {post.data.author}</div>
+        <h2 class="text-lg font-semibold text-slate-800 mb-1">{post.data.title}</h2>
+        <p class="text-sm text-slate-500">{post.data.description}</p>
+        {post.data.tags.length > 0 && (
+          <div class="mt-2 flex flex-wrap gap-1">
+            {post.data.tags.map((tag) => (
+              <span class="text-xs px-2 py-0.5 bg-slate-100 text-slate-500 rounded">{tag}</span>
+            ))}
+          </div>
+        )}
+      </a>
+    ))}
+  </div>
+
+  {posts.length === 0 && (
+    <p class="text-slate-500 text-center py-12">暂无文章,敬请期待。</p>
+  )}
+</BaseLayout>

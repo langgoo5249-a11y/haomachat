@@ -1,0 +1,12 @@
+{
+  "apis": [
+    { "name": "Google libphonenumber", "type": "开源库(自托管)", "free": "完全免费", "carrier": "否", "marking": "否", "region": "全球", "note": "号码解析/格式化/有效性/号码类型,无归属地反查" },
+    { "name": "libphonenumberapi.com", "type": "托管API", "free": "完全免费", "carrier": "否", "marking": "否", "region": "全球", "note": "libphonenumber的托管版,无需key" },
+    { "name": "numverify (apilayer)", "type": "云API", "free": "100次/月", "carrier": "是", "marking": "否", "region": "全球", "note": "有效性/运营商/移动固话/归属国" },
+    { "name": "Twilio Lookup v2", "type": "云API", "free": "无($0.005起/次)", "carrier": "是", "marking": "否", "region": "全球", "note": "line-type/carrier/SIM-swap/号码活跃度" },
+    { "name": "AbstractAPI Phone Validator", "type": "云API", "free": "250次/月", "carrier": "是", "marking": "否", "region": "190+国家", "note": "有效性/line type/carrier" },
+    { "name": "聚合数据-手机归属地", "type": "国内API", "free": "50次/天", "carrier": "是", "marking": "否", "region": "中国大陆", "note": "归属地/号段/卡类型/运营商" },
+    { "name": "阿里云号码百科", "type": "国内API", "free": "按量(加密版)", "carrier": "是", "marking": "否", "region": "中国大陆", "note": "省份/城市/运营商/携号转网/号段" },
+    { "name": "聚合数据-来电显示", "type": "国内API", "free": "企业专用", "carrier": "是", "marking": "部分(诈骗/营销)", "region": "中国大陆", "note": "含诈骗/营销/广告识别,仅企业可用" }
+  ]
+}

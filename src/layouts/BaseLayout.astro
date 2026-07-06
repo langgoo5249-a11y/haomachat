@@ -1,0 +1,114 @@
+---
+// BaseLayout - 全站基础布局
+// 关键: JSON-LD 结构化数据直接写入静态 HTML <head>, 不用 JS 注入(GEO 核心)
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
+import '@styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  lang?: 'zh' | 'en';
+  /** JSON-LD 对象数组, 每页可传多个 schema */
+  schema?: object[];
+  /** 面包屑 [{name, url}] */
+  breadcrumbs?: { name: string; url: string }[];
+  /** 是否在页面正文前插入 AI 摘要(AI 友好) */
+  noindex?: boolean;
+  canonical?: string;
+}
+
+const {
+  title,
+  description,
+  lang = 'zh',
+  schema = [],
+  breadcrumbs = [],
+  noindex = false,
+  canonical,
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://haomachat.com';
+const canonicalUrl = canonical || new URL(Astro.url.pathname, site).toString();
+
+// 全站级 Organization schema
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${site}/#organization`,
+  name: '号码通查',
+  alternateName: 'haomachat',
+  url: site,
+  logo: `${site}/favicon.svg`,
+  description: '免费电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。',
+  knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '手机卡选号'],
+  sameAs: ['https://github.com/jm6-lang/haomachat'],
+};
+
+// WebApplication schema
+const appSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '号码通查',
+  applicationCategory: 'TelephonyApplication',
+  operatingSystem: 'Web',
+  url: site,
+  offers: { '@type': 'Offer', price: '0', 'priceCurrency': 'CNY' },
+  description: '免费号码归属地查询、号码标记自查与清除指引工具',
+};
+
+// 面包屑 schema
+const breadcrumbSchema =
+  breadcrumbs.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((b, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: b.name,
+          item: b.url.startsWith('http') ? b.url : `${site}${b.url}`,
+        })),
+      }
+    : null;
+
+const allSchema = [orgSchema, appSchema, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...schema];
+const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
+---
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="alternate" type="application/rss+xml" title="号码通查博客" href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <!-- JSON-LD: 直接写入 HTML, 不用 JS 注入(GEO 关键) -->
+    {allSchema.map((s) => (
+      <script type="application/ld+json" set:html={JSON.stringify(s)} />
+    ))}
+  </head>
+  <body class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
+    <Header lang={lang} />
+    <main class="flex-1 w-full max-w-5xl mx-auto px-4 py-8">
+      {
+        breadcrumbs.length > 0 && (
+          <nav class="text-sm text-slate-500 mb-4" aria-label="面包屑">
+            {breadcrumbs.map((b, i) => (
+              <span>
+                {i > 0 && ' / '}
+                <a href={b.url} class="hover:text-brand-600">{b.name}</a>
+              </span>
+            ))}
+          </nav>
+        )
+      }
+      <slot />
+    </main>
+    <Footer lang={lang} />
+  </body>
+</html>

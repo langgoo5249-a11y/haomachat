@@ -1,0 +1,57 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: post,
+  }));
+}
+
+const post = Astro.props;
+const { Content } = await render(post);
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '博客', url: '/blog' },
+  { name: post.data.title, url: `/blog/${post.id}/` },
+];
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
+  author: { '@type': 'Organization', name: post.data.author, url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/favicon.svg' },
+  },
+  mainEntityOfPage: `https://haomachat.com/blog/${post.id}/`,
+  keywords: post.data.tags.join(', '),
+};
+---
+<BaseLayout
+  title={`${post.data.title} | 号码通查博客`}
+  description={post.data.description}
+  schema={[articleSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <article class="prose-content max-w-none">
+    <div class="text-sm text-slate-400 mb-2">
+      {post.data.pubDate.toLocaleDateString('zh-CN')} · {post.data.author}
+    </div>
+    <h1 class="text-3xl font-bold text-slate-800 mb-4">{post.data.title}</h1>
+    <p class="text-lg text-slate-600 mb-6">{post.data.description}</p>
+    <Content />
+  </article>
+
+  <div class="mt-8 pt-6 border-t border-slate-200">
+    <a href="/blog" class="text-brand-600 hover:underline">← 返回博客列表</a>
+  </div>
+</BaseLayout>

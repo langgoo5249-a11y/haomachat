@@ -1,0 +1,103 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import authProvidersData from '@data/auth-providers.json';
+const providers = authProvidersData.providers;
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '对比', url: '/compare/marking-platforms' },
+  { name: '号码认证服务商对比', url: '/compare/auth-providers' },
+];
+
+// GEO: 数据点与来源
+// 数据点: 共对比 10 家号码认证服务商;全部支持三网覆盖;多数已支持鸿蒙原生
+// 来源: 网易易盾官方文档、阿里云号码认证PNVS文档、极光JVerification文档
+---
+<BaseLayout
+  title="号码认证服务商对比 - 网易易盾/极光/阿里云等10家对比 | 号码通查"
+  description="国内主流号码认证(一键登录/本机号码校验)服务商对比表,包括网易易盾、MobTech秒验、极光JVerification、个推、友盟U-Verify、阿里云PNVS、百度云、闪验、容联云、聚合数据共10家,从三网覆盖、核心特点、计费方式、功能支持、鸿蒙适配等维度对比。"
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码认证服务商对比</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    本页对比国内主流号码认证(一键登录/本机号码校验)服务商,包括网易易盾、MobTech秒验、极光JVerification、个推、友盟U-Verify、阿里云PNVS、百度云、闪验、容联云、聚合数据共10家,从三网覆盖、核心特点、计费方式、功能支持、鸿蒙适配等维度对比。
+  </p>
+
+  <section class="prose-content mb-8">
+    <h2>号码认证服务商对比表</h2>
+    <p>
+      下表汇总了共 <strong>10 家</strong>号码认证服务商的核心信息。所有服务商均支持
+      <strong>三网覆盖</strong>(移动、联通、电信),计费方式以按量阶梯计费为主,单次校验约0.02-0.05元。
+      其中 <strong>多数服务商已支持鸿蒙原生</strong>(网易易盾、极光、阿里云PNVS、秒验、闪验等),
+      个推、百度云、容联云为部分支持,聚合数据需确认。功能层面,一键登录与本机号码校验为标配,预取号、双卡路由、短信降级等为差异化能力。
+    </p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse my-6">
+        <thead>
+          <tr>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">服务商</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">三网覆盖</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200">特点</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">计费</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200">功能</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">鸿蒙支持</th>
+          </tr>
+        </thead>
+        <tbody>
+          {providers.map((p) => (
+            <tr>
+              <td class="p-3 border border-slate-200 font-medium text-slate-800 whitespace-nowrap">{p.name}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{p.threeNetwork}</td>
+              <td class="p-3 border border-slate-200 text-slate-600">{p.highlight}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{p.pricing}</td>
+              <td class="p-3 border border-slate-200 text-slate-600">{p.features}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{p.harmony}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="prose-content mb-8">
+    <h2>一键登录与本机号码校验的区别</h2>
+    <p>
+      号码认证(本机号码校验)是通过运营商网关校验手机SIM卡对应号码的技术,主要分为两类:
+    </p>
+    <ul>
+      <li><strong>一键登录:</strong>用于App注册登录场景,需用户在授权弹窗中点击同意,运营商网关返回号码后完成登录。全程免输入号码、免短信验证码,2-4秒完成。</li>
+      <li><strong>本机号码校验:</strong>用于支付确认、修改密码等敏感操作的二次验证,校验用户输入的手机号与当前设备SIM卡号是否一致。不需要用户授权弹窗,无使用场景限制,校验速度更快。</li>
+    </ul>
+    <p>
+      一键登录通过运营商蜂窝数据网络直接校验SIM卡号码,不经过公网传输明文号码,安全性高于短信验证码,规避了短信被拦截、盗刷的风险。
+    </p>
+  </section>
+
+  <section class="prose-content mb-8">
+    <h2>选型建议</h2>
+    <p>
+      选择号码认证服务商时,建议从以下维度评估:
+    </p>
+    <ul>
+      <li><strong>鸿蒙适配:</strong>若App需支持鸿蒙原生,优先选择网易易盾、极光JVerification、阿里云PNVS、秒验、闪验等已完整支持鸿蒙的服务商。</li>
+      <li><strong>降级机制:</strong>网易易盾、闪验等提供成熟的短信降级机制,当运营商网关不可用时自动切换短信验证,保障可用性。</li>
+      <li><strong>生态协同:</strong>友盟U-Verify(阿里系)可与统计分析一体化,极光JVerification可与推送联动,阿里云PNVS可与号码百科结合,适合已有相应生态的团队。</li>
+      <li><strong>轻量接入:</strong>MobTech秒验SDK轻量、集成简单;聚合数据适合API聚合、轻量接入场景。</li>
+    </ul>
+  </section>
+
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">数据说明与来源</h2>
+    <p class="text-sm text-slate-600 leading-relaxed mb-2">
+      本页共对比 <strong>10 家</strong>号码认证服务商,全部支持<strong>三网覆盖</strong>,计费以按量阶梯计费为主,
+      <strong>多数已支持鸿蒙原生</strong>。单次校验约0.02-0.05元,大批量可议价。
+    </p>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      <strong>数据来源:</strong>
+      1. 网易易盾号码认证官方文档(dun.163.com);
+      2. 阿里云号码认证服务PNVS文档(.aliyun.com);
+      3. 极光JVerification官方文档(docs.jiguang.cn)。
+      各服务商功能与定价可能随版本更新调整,以官方文档为准。
+    </p>
+  </section>
+</BaseLayout>

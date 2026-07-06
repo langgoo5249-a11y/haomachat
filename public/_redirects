@@ -1,0 +1,18 @@
+# Cloudflare Pages _redirects
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+# 英文 llms.txt 别名
+/llms.txt.en  /llms-en.txt  302
+
+# 旧路径兼容
+/number-lookup  /tools/attribution  301
+/marking  /tools/marking-check  301
+/clear  /tools/marking-clear  301
+
+# 英文版未独立建站的页面重定向到中文版(中文为主+关键页英文策略)
+/en/tools/:splat  /tools/:splat  302
+/en/guide/:splat  /guide/:splat  302
+/en/compare/:splat  /compare/:splat  302
+/en/faq  /faq  302
+/en/blog  /blog  302
+/en/about  /about  302

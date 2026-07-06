@@ -1,0 +1,14 @@
+{
+  "providers": [
+    { "name": "网易易盾", "threeNetwork": "三网", "highlight": "老牌安全厂商,降级机制成熟", "pricing": "按量阶梯计费", "features": "一键登录/本机校验/预取号/掩码展示", "harmony": "支持" },
+    { "name": "MobTech秒验", "threeNetwork": "三网", "highlight": "集成简单,SDK轻量", "pricing": "按量计费", "features": "一键登录/本机校验/双卡路由", "harmony": "支持" },
+    { "name": "极光JVerification", "threeNetwork": "三网", "highlight": "极光系,推送+认证联动", "pricing": "按量计费", "features": "一键登录/本机校验/预取号", "harmony": "支持" },
+    { "name": "个推(每日互动)", "threeNetwork": "三网", "highlight": "数据驱动,受众标签丰富", "pricing": "按量计费", "features": "一键登录/本机校验", "harmony": "部分支持" },
+    { "name": "友盟+ U-Verify", "threeNetwork": "三网", "highlight": "阿里系,统计+认证一体", "pricing": "按量计费", "features": "一键登录/本机校验", "harmony": "支持" },
+    { "name": "阿里云号码认证PNVS", "threeNetwork": "三网", "highlight": "阿里云生态,稳定性强", "pricing": "按量计费", "features": "一键登录/本机校验/号码百科", "harmony": "支持" },
+    { "name": "百度云智能认证", "threeNetwork": "三网", "highlight": "百度系,AI能力叠加", "pricing": "按量计费", "features": "一键登录/本机校验", "harmony": "部分支持" },
+    { "name": "闪验(创蓝253)", "threeNetwork": "三网", "highlight": "短信+认证一体化", "pricing": "按量计费", "features": "一键登录/本机校验/短信降级", "harmony": "支持" },
+    { "name": "容联云", "threeNetwork": "三网", "highlight": "通讯云全能力", "pricing": "按量计费", "features": "一键登录/本机校验", "harmony": "部分支持" },
+    { "name": "聚合数据", "threeNetwork": "三网(转售)", "highlight": "API聚合,适合轻量接入", "pricing": "按量计费", "features": "一键登录/归属地查询", "harmony": "需确认" }
+  ]
+}

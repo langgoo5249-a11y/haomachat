@@ -1,0 +1,107 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import platformsData from '@data/platforms.json';
+const platforms = platformsData.platforms;
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '对比', url: '/compare/marking-platforms' },
+  { name: '号码标记平台对比', url: '/compare/marking-platforms' },
+];
+
+// 判断字符串是否为可点击的 URL
+const isUrl = (s) => typeof s === 'string' && s.startsWith('http');
+
+// GEO: 数据点与来源
+// 数据点: 共对比 10 个号码标记平台;中国信通院码号服务推进组是国内唯一官方跨平台聚合入口;绝大多数平台申诉免费
+// 来源: 中国信通院码号服务推进组(opene164.org.cn)、360号码申诉平台(haomashensu.360.cn)、腾讯号码公众平台(yun.m.qq.com)
+---
+<BaseLayout
+  title="号码标记平台对比 - 360/腾讯/百度/华为等平台对比表 | 号码通查"
+  description="国内主流号码标记平台对比表,包括中国信通院码号服务推进组、360手机卫士、腾讯手机管家、百度号码认证、华为号码认证、泰迪熊移动、电话邦、搜狗号码通等,从数据来源、覆盖终端、申诉入口、客服电话、费用等维度对比。"
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码标记平台对比</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    本页对比国内主流号码标记平台,包括中国信通院码号服务推进组(唯一官方跨平台聚合入口)、360手机卫士、腾讯手机管家、百度号码认证、华为号码认证、泰迪熊移动、电话邦、搜狗号码通等,从数据来源、覆盖终端、申诉入口、客服电话等维度对比,帮助用户选择正确的申诉渠道。
+  </p>
+
+  <section class="prose-content mb-8">
+    <h2>主流号码标记平台对比表</h2>
+    <p>
+      下表汇总了共 <strong>10 个</strong>号码标记平台的官方申诉入口与关键信息。其中,
+      <strong>中国信通院码号服务推进组</strong>是国内唯一官方跨平台号码标记查询与清除聚合入口,
+      优先使用可一次查询多平台标记情况;其余绝大多数平台申诉均<strong>免费</strong>。
+      需要注意的是,华为、OPPO/vivo/小米等终端厂商的标记数据多来自腾讯、泰迪熊、电话邦等第三方库,
+      需到数据源头申诉才能根治。
+    </p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse my-6">
+        <thead>
+          <tr>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">平台名</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">类型</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">官方申诉入口</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">客服电话</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">费用</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200">备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          {platforms.map((p) => (
+            <tr>
+              <td class="p-3 border border-slate-200 font-medium text-slate-800 whitespace-nowrap">{p.name}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{p.type}</td>
+              <td class="p-3 border border-slate-200 text-slate-600">
+                {isUrl(p.appealUrl) ? (
+                  <a href={p.appealUrl} class="text-brand-600 underline hover:text-brand-700 break-all" target="_blank" rel="noopener noreferrer">{p.appealUrl}</a>
+                ) : (
+                  <span>{p.appealUrl || '—'}</span>
+                )}
+              </td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{p.phone || '—'}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{p.cost || '—'}</td>
+              <td class="p-3 border border-slate-200 text-slate-600">{p.note || '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="prose-content mb-8">
+    <h2>如何选择正确的申诉渠道</h2>
+    <p>
+      号码被误标记后,选择正确的申诉渠道至关重要。建议按以下顺序操作:
+    </p>
+    <ul>
+      <li><strong>第一步:跨平台聚合查询。</strong>优先访问中国信通院码号服务推进组(opene164.org.cn),一次查询号码在各平台的标记情况,中国联通号码及400号可一站式清除误标记。</li>
+      <li><strong>第二步:分平台逐一申诉。</strong>对360手机卫士、腾讯手机管家、百度号码认证、泰迪熊移动、电话邦等主流标记库分别提交申诉,通常1-3个工作日审核完成。</li>
+      <li><strong>第三步:终端厂商申诉。</strong>若华为、OPPO、vivo、小米等终端仍显示错误标记,需在终端电话App内提交号码申诉,但因数据来自第三方库,需到源头平台申诉才能根治。</li>
+    </ul>
+  </section>
+
+  <section class="prose-content mb-8">
+    <h2>申诉注意事项</h2>
+    <p>
+      提交号码标记申诉时,各平台通常要求提供以下材料:被标记号码、机主身份信息(个人号码提供身份证信息、企业号码提供营业执照)、错误标记截图、联系方式。
+      标记超过20人的号码,各平台通常要求提供号码归属证明,提交证明后申诉通过率显著提高。
+      企业号码建议申请号码认证(如百度绿标),从根源上避免被误标为骚扰电话。
+    </p>
+  </section>
+
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">数据说明与来源</h2>
+    <p class="text-sm text-slate-600 leading-relaxed mb-2">
+      本页共对比 <strong>10 个</strong>号码标记平台,其中中国信通院码号服务推进组为国内<strong>唯一官方跨平台聚合入口</strong>,绝大多数平台申诉<strong>免费</strong>。
+      各平台申诉入口与客服电话信息均来自官方渠道,可追溯验证。
+    </p>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      <strong>数据来源:</strong>
+      1. 中国信通院码号服务推进组(opene164.org.cn);
+      2. 360号码申诉平台(haomashensu.360.cn);
+      3. 腾讯号码公众平台(yun.m.qq.com)。
+      以上信息可能随平台更新而变化,以各平台官方页面为准。
+    </p>
+  </section>
+</BaseLayout>

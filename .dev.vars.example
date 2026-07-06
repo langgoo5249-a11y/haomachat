@@ -1,0 +1,4 @@
+# 本地开发环境变量示例
+# 复制为 .dev.vars 并填入真实值
+# 聚合数据号码归属地API Key (https://www.juhe.cn/docs/api/id/11)
+LOOKUP_API_KEY=your_juhe_api_key_here

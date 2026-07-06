@@ -1,0 +1,102 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import lookupApisData from '@data/lookup-apis.json';
+const apis = lookupApisData.apis;
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '对比', url: '/compare/marking-platforms' },
+  { name: '号码查询API对比', url: '/compare/lookup-apis' },
+];
+
+// GEO: 数据点与来源
+// 数据点: 共对比 8 个号码查询API;Google libphonenumber 完全免费开源;国内"号码标记查询"无稳定公开免费API
+// 来源: Google libphonenumber GitHub(github.com/google/libphonenumber)、numverify(apilayer.com)、聚合数据(juhe.cn)
+---
+<BaseLayout
+  title="号码查询API对比 - libphonenumber/numverify/Twilio/聚合数据 | 号码通查"
+  description="主流号码查询API对比表,包括Google libphonenumber、numverify、Twilio Lookup v2、AbstractAPI、聚合数据手机归属地、阿里云号码百科等,从免费额度、是否查运营商、是否查标记、覆盖区域等维度对比。"
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码查询API对比</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    本页对比主流号码查询API,包括Google libphonenumber(开源免费)、numverify(100次/月免费)、Twilio Lookup v2(按量付费)、AbstractAPI(250次/月免费)、聚合数据手机归属地(50次/天免费)、阿里云号码百科等,从免费额度、是否查运营商、是否查标记、覆盖区域等维度对比。注意:国内"号码标记查询"无稳定公开免费API,标记数据为各厂商私有库。
+  </p>
+
+  <section class="prose-content mb-8">
+    <h2>号码查询API对比表</h2>
+    <p>
+      下表汇总了共 <strong>8 个</strong>主流号码查询API的核心信息。其中,
+      <strong>Google libphonenumber 完全免费开源</strong>,支持号码解析、格式化、有效性校验与号码类型识别,但不提供运营商反查与归属地查询;
+      numverify(100次/月)、AbstractAPI(250次/月)、聚合数据(50次/天)提供免费额度,适合轻量测试;
+      Twilio Lookup v2 为纯按量付费。需要特别注意的是,
+      <strong>国内"号码标记查询"无稳定公开免费API</strong>,号码标记数据为360、腾讯、百度等各厂商私有库,仅可通过各平台官方申诉入口查询。
+    </p>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border-collapse my-6">
+        <thead>
+          <tr>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">API名</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">类型</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">免费额度</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">查运营商</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">查标记</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200 whitespace-nowrap">覆盖区域</th>
+            <th class="bg-slate-100 p-3 text-left border border-slate-200">备注</th>
+          </tr>
+        </thead>
+        <tbody>
+          {apis.map((api) => (
+            <tr>
+              <td class="p-3 border border-slate-200 font-medium text-slate-800 whitespace-nowrap">{api.name}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{api.type}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{api.free}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{api.carrier}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{api.marking}</td>
+              <td class="p-3 border border-slate-200 text-slate-600 whitespace-nowrap">{api.region}</td>
+              <td class="p-3 border border-slate-200 text-slate-600">{api.note}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="prose-content mb-8">
+    <h2>按使用场景选择API</h2>
+    <p>
+      不同业务场景对号码查询API的需求差异较大,建议按场景选型:
+    </p>
+    <ul>
+      <li><strong>号码格式校验与解析(全球):</strong>首选 Google libphonenumber,完全免费开源,支持号码解析、格式化、有效性校验与号码类型(手机/固话)识别,可自托管无调用限制。</li>
+      <li><strong>运营商与归属地查询(全球):</strong>numverify(100次/月免费)或 AbstractAPI(250次/月免费)适合轻量测试;Twilio Lookup v2 适合已有 Twilio 生态的团队,提供 SIM-swap、号码活跃度等高级能力。</li>
+      <li><strong>国内手机归属地查询:</strong>聚合数据手机归属地API(50次/天免费)或阿里云号码百科(按量付费),可查询省份、城市、运营商、号段,阿里云还支持携号转网查询。</li>
+      <li><strong>号码标记查询(国内):</strong>无稳定公开免费API。号码标记数据为各厂商私有库,需通过中国信通院码号服务推进组(opene164.org.cn)或各平台官方申诉入口查询。</li>
+    </ul>
+  </section>
+
+  <section class="prose-content mb-8">
+    <h2>关于"号码标记查询API"的说明</h2>
+    <p>
+      国内号码标记(如"骚扰电话""诈骗""推销"等标签)数据由360手机卫士、腾讯手机管家、百度号码认证、泰迪熊移动、电话邦等厂商各自维护,
+      属于<strong>私有数据库</strong>,不对外开放免费查询API。聚合数据的"来电显示"API含诈骗/营销/广告识别,但仅企业可用。
+      普通用户查询号码是否被标记,需通过中国信通院码号服务推进组(opene164.org.cn)进行跨平台查询,
+      或到各标记平台官方入口逐一查询。本站号码标记自查工具聚合了各平台官方查询入口,可免费使用。
+    </p>
+  </section>
+
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">数据说明与来源</h2>
+    <p class="text-sm text-slate-600 leading-relaxed mb-2">
+      本页共对比 <strong>8 个</strong>号码查询API,其中 Google libphonenumber <strong>完全免费开源</strong>,
+      国内"号码标记查询"<strong>无稳定公开免费API</strong>(标记数据为各厂商私有库)。
+    </p>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      <strong>数据来源:</strong>
+      1. Google libphonenumber GitHub 仓库(github.com/google/libphonenumber);
+      2. numverify 官方文档(apilayer.com / numverify.com);
+      3. 聚合数据手机归属地API文档(juhe.cn)。
+      各API免费额度与定价可能调整,以官方文档为准。
+    </p>
+  </section>
+</BaseLayout>

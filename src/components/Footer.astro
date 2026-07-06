@@ -1,0 +1,52 @@
+---
+// Footer 组件
+export interface Props {
+  lang?: 'zh' | 'en';
+}
+const { lang = 'zh' } = Astro.props;
+const isEn = lang === 'en';
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-slate-200 bg-white mt-12">
+  <div class="max-w-5xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+    <div>
+      <h3 class="font-semibold text-slate-700 mb-2">{isEn ? 'Tools' : '工具'}</h3>
+      <ul class="space-y-1 text-slate-500">
+        <li><a href={isEn ? '/en/tools/attribution' : '/tools/attribution'} class="hover:text-brand-600">{isEn ? 'Attribution Lookup' : '归属地查询'}</a></li>
+        <li><a href={isEn ? '/en/tools/marking-check' : '/tools/marking-check'} class="hover:text-brand-600">{isEn ? 'Marking Check' : '标记自查'}</a></li>
+        <li><a href={isEn ? '/en/tools/marking-clear' : '/tools/marking-clear'} class="hover:text-brand-600">{isEn ? 'Clear Marking' : '标记清除'}</a></li>
+        <li><a href={isEn ? '/en/tools/sim-cards' : '/tools/sim-cards'} class="hover:text-brand-600">{isEn ? 'SIM Cards' : '选号比价'}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold text-slate-700 mb-2">{isEn ? 'Guides' : '指南'}</h3>
+      <ul class="space-y-1 text-slate-500">
+        <li><a href={isEn ? '/en/guide/what-is-number-marking' : '/guide/what-is-number-marking'} class="hover:text-brand-600">{isEn ? 'What is Marking' : '号码标记是什么'}</a></li>
+        <li><a href={isEn ? '/en/guide/how-to-check-marking' : '/guide/how-to-check-marking'} class="hover:text-brand-600">{isEn ? 'Check Marking' : '如何查询标记'}</a></li>
+        <li><a href={isEn ? '/en/guide/how-to-clear-marking' : '/guide/how-to-clear-marking'} class="hover:text-brand-600">{isEn ? 'Clear Marking' : '如何清除标记'}</a></li>
+        <li><a href={isEn ? '/en/guide/what-is-number-auth' : '/guide/what-is-number-auth'} class="hover:text-brand-600">{isEn ? 'Number Auth' : '号码认证'}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold text-slate-700 mb-2">{isEn ? 'Compare' : '对比'}</h3>
+      <ul class="space-y-1 text-slate-500">
+        <li><a href={isEn ? '/en/compare/marking-platforms' : '/compare/marking-platforms'} class="hover:text-brand-600">{isEn ? 'Marking Platforms' : '标记平台对比'}</a></li>
+        <li><a href={isEn ? '/en/compare/auth-providers' : '/compare/auth-providers'} class="hover:text-brand-600">{isEn ? 'Auth Providers' : '认证服务商'}</a></li>
+        <li><a href={isEn ? '/en/compare/lookup-apis' : '/compare/lookup-apis'} class="hover:text-brand-600">{isEn ? 'Lookup APIs' : '查询API对比'}</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold text-slate-700 mb-2">{isEn ? 'Resources' : '资源'}</h3>
+      <ul class="space-y-1 text-slate-500">
+        <li><a href={isEn ? '/en/faq' : '/faq'} class="hover:text-brand-600">FAQ</a></li>
+        <li><a href={isEn ? '/en/blog' : '/blog'} class="hover:text-brand-600">{isEn ? 'Blog' : '博客'}</a></li>
+        <li><a href="/llms.txt" class="hover:text-brand-600">llms.txt</a></li>
+        <li><a href="/rss.xml" class="hover:text-brand-600">RSS</a></li>
+        <li><a href="https://github.com/jm6-lang/haomachat" class="hover:text-brand-600">GitHub</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-slate-100 py-4 text-center text-xs text-slate-400">
+    © {year} {isEn ? 'haomachat' : '号码通查'} · {isEn ? 'A GEO-optimized phone number service toolkit' : 'GEO 优化的电话号码服务工具站'} · <a href="/about" class="hover:text-brand-600">{isEn ? 'About' : '关于'}</a>
+  </div>
+</footer>

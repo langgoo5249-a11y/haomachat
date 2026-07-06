@@ -1,0 +1,53 @@
+---
+// Header 导航组件
+export interface Props {
+  lang?: 'zh' | 'en';
+}
+const { lang = 'zh' } = Astro.props;
+const isEn = lang === 'en';
+
+const navItems = isEn
+  ? [
+      { label: 'Attribution', href: '/en/tools/attribution' },
+      { label: 'Marking Check', href: '/en/tools/marking-check' },
+      { label: 'Clear Marking', href: '/en/tools/marking-clear' },
+      { label: 'Guides', href: '/en/guide/what-is-number-marking' },
+      { label: 'Compare', href: '/en/compare/marking-platforms' },
+      { label: 'FAQ', href: '/en/faq' },
+    ]
+  : [
+      { label: '归属地查询', href: '/tools/attribution' },
+      { label: '标记自查', href: '/tools/marking-check' },
+      { label: '标记清除', href: '/tools/marking-clear' },
+      { label: '选号比价', href: '/tools/sim-cards' },
+      { label: '指南', href: '/guide/what-is-number-marking' },
+      { label: '对比', href: '/compare/marking-platforms' },
+      { label: 'FAQ', href: '/faq' },
+      { label: '博客', href: '/blog' },
+    ];
+---
+<header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
+  <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
+    <a href={isEn ? '/en' : '/'} class="flex items-center gap-2 font-bold text-lg text-brand-700">
+      <img src="/favicon.svg" alt="号码通查" width="28" height="28" />
+      <span>{isEn ? 'haomachat' : '号码通查'}</span>
+    </a>
+    <nav class="hidden md:flex items-center gap-5 text-sm">
+      {navItems.map((item) => (
+        <a href={item.href} class="text-slate-600 hover:text-brand-600 transition-colors">{item.label}</a>
+      ))}
+    </nav>
+    <a
+      href={isEn ? '/' : '/en'}
+      class="text-xs px-2 py-1 rounded border border-slate-300 text-slate-500 hover:border-brand-400 hover:text-brand-600"
+    >
+      {isEn ? '中文' : 'EN'}
+    </a>
+  </div>
+  <!-- 移动端导航 -->
+  <nav class="md:hidden flex overflow-x-auto gap-4 px-4 py-2 text-xs border-t border-slate-100">
+    {navItems.map((item) => (
+      <a href={item.href} class="whitespace-nowrap text-slate-600">{item.label}</a>
+    ))}
+  </nav>
+</header>
