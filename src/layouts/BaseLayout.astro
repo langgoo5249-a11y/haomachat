@@ -3,6 +3,7 @@
 // 关键: JSON-LD 结构化数据直接写入静态 HTML <head>, 不用 JS 注入(GEO 核心)
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
+import CustomerServiceFloat from '@components/CustomerServiceFloat.astro';
 import '@styles/global.css';
 
 export interface Props {
@@ -41,8 +42,8 @@ const orgSchema = {
   url: site,
   logo: `${site}/favicon.svg`,
   description: '免费电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。',
-  knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '手机卡选号'],
-  sameAs: ['https://github.com/jm6-lang/haomachat'],
+  knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '法人号码核验', '手机卡选号'],
+  sameAs: [],
 };
 
 // WebApplication schema
@@ -110,5 +111,6 @@ const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
       <slot />
     </main>
     <Footer lang={lang} />
+    <CustomerServiceFloat />
   </body>
 </html>

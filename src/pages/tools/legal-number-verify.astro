@@ -1,0 +1,211 @@
+---
+// 法人号码核验查询工具页
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const serviceUrl = 'https://xbh5.open10086.com/factor/#/pages/index/index?authorization=f91029a83a8758aa';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '法人号码核验', url: '/tools/legal-number-verify' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '法人号码核验是什么？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '法人号码核验是通过运营商数据校验企业法人代表手机号码真实性的服务。输入企业法人的姓名、身份证号与手机号,系统通过运营商网关校验三者是否一致,用于企业实名认证、风控审核、反欺诈等场景。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '法人号码核验支持哪些校验？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '法人号码核验支持:手机号实名认证(校验姓名+身份证号+手机号三要素是否一致)、号码状态查询(是否在网/停机)、运营商归属查询。数据来自三大运营商(移动/联通/电信)官方网关。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '法人号码核验有什么用？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '法人号码核验常用于:企业开户实名认证、金融风控审核、合同签署身份验证、反欺诈与反洗钱合规、电商平台商家入驻审核等场景,确保企业法人联系方式真实有效。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '法人号码核验需要什么信息？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '通常需要提供:法人代表姓名、法人身份证号码、法人手机号码。系统将这三要素提交至运营商网关进行一致性校验,返回核验结果。所有数据通过加密传输,不存储。',
+      },
+    },
+  ],
+};
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '法人号码核验查询',
+  description: '通过运营商数据核验企业法人代表手机号码真实性的操作步骤',
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: '进入核验服务',
+      text: '点击本页"立即核验"按钮,进入法人号码核验服务页面。',
+      url: serviceUrl,
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: '输入法人信息',
+      text: '在核验页面输入企业法人代表的姓名、身份证号码与手机号码。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: '提交核验',
+      text: '确认信息无误后提交,系统将通过运营商网关实时校验三要素一致性。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: '查看结果',
+      text: '系统返回核验结果:三要素一致/不一致/号码异常等。核验过程加密传输,数据不存储。',
+    },
+  ],
+};
+---
+<BaseLayout
+  title="法人号码核验查询 - 企业法人手机号实名认证 | 号码通查"
+  description="法人号码核验查询工具:通过运营商数据校验企业法人代表姓名、身份证号、手机号三要素一致性。用于企业实名认证、风控审核、反欺诈等场景。数据来自三大运营商官方网关,加密传输不存储。"
+  schema={[faqSchema, howToSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">法人号码核验查询</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    法人号码核验是通过运营商数据校验企业法人代表手机号码真实性的服务。输入法人姓名、身份证号与手机号,系统通过三大运营商(移动/联通/电信)官方网关实时校验三要素一致性,用于企业实名认证、金融风控、反欺诈等场景。核验过程加密传输,数据不存储。
+  </p>
+
+  <!-- 核验入口 -->
+  <section class="mb-8">
+    <div class="bg-gradient-to-br from-brand-600 to-brand-700 rounded-2xl p-8 text-white text-center shadow-lg">
+      <h2 class="text-2xl font-bold mb-2">法人号码核验 — 三要素一致性校验</h2>
+      <p class="text-brand-100 mb-6">姓名 + 身份证号 + 手机号,运营商实时核验</p>
+      <a href={serviceUrl} target="_blank" rel="noopener" class="inline-block px-8 py-4 bg-white text-brand-700 rounded-xl font-bold text-lg hover:bg-brand-50 transition-colors shadow-md">
+        立即核验 →
+      </a>
+      <p class="text-brand-200 text-sm mt-4">运营商官方数据 · 加密传输 · 不存储</p>
+    </div>
+  </section>
+
+  <!-- 服务保障 -->
+  <section class="mb-8 bg-white rounded-xl p-6 border border-slate-200">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">服务保障</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-brand-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm">运营商官方数据</h3>
+          <p class="text-xs text-slate-500 mt-1">核验数据来自移动/联通/电信三大运营商官方网关,结果准确可靠。</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-brand-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm">加密传输不存储</h3>
+          <p class="text-xs text-slate-500 mt-1">核验数据通过加密通道传输,不在服务器存储,保护企业隐私。<a href="/privacy" class="text-brand-600 hover:underline">隐私政策</a></p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-brand-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm">实时秒级响应</h3>
+          <p class="text-xs text-slate-500 mt-1">运营商网关实时校验,提交后秒级返回核验结果。</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <svg class="w-6 h-6 text-brand-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <div>
+          <h3 class="font-semibold text-slate-700 text-sm">授权合作服务</h3>
+          <p class="text-xs text-slate-500 mt-1">核验服务由授权合作方提供,本站提供入口导航,来源透明。</p>
+        </div>
+      </div>
+    </div>
+    <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-sm">
+      <span class="text-slate-500">遇到问题? <a href="/contact" class="text-brand-600 hover:underline">联系我们</a></span>
+      <span class="text-slate-500">查看 <a href="/faq" class="text-brand-600 hover:underline">常见问题</a></span>
+    </div>
+  </section>
+
+  <!-- 工具说明 -->
+  <section class="prose-content mb-8">
+    <h2>法人号码核验说明</h2>
+    <p>
+      法人号码核验(又称手机号实名认证、三要素核验)是通过运营商数据校验"姓名+身份证号+手机号"三要素是否一致的服务。数据来自中国移动、中国联通、中国电信三大运营商官方网关,核验结果准确可靠。
+    </p>
+
+    <h3>核验内容</h3>
+    <ul>
+      <li><strong>三要素一致性:</strong>校验姓名、身份证号、手机号是否为同一人,即该手机号是否实名登记在该身份证名下。</li>
+      <li><strong>号码状态:</strong>查询手机号是否在网、是否停机、是否销户。</li>
+      <li><strong>运营商归属:</strong>查询手机号所属运营商(移动/联通/电信)。</li>
+    </ul>
+
+    <h3>应用场景</h3>
+    <table>
+      <thead>
+        <tr><th>场景</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>企业开户</td><td>银行开户、支付账户注册时的法人实名认证</td></tr>
+        <tr><td>金融风控</td><td>贷款审批、信用评估中的法人身份核验</td></tr>
+        <tr><td>合同签署</td><td>电子合同签署前的法人身份验证</td></tr>
+        <tr><td>反欺诈</td><td>防范冒用他人身份注册企业、签订合同</td></tr>
+        <tr><td>反洗钱</td><td>满足KYC(了解你的客户)合规要求</td></tr>
+        <tr><td>电商入驻</td><td>商家入驻平台时的法人资质审核</td></tr>
+      </tbody>
+    </table>
+
+    <h3>核验流程</h3>
+    <ol class="list-decimal list-inside mb-4 text-slate-600 space-y-2">
+      <li><strong>进入核验服务:</strong>点击上方"立即核验"按钮。</li>
+      <li><strong>输入法人信息:</strong>填写法人代表姓名、身份证号码、手机号码。</li>
+      <li><strong>提交核验:</strong>系统通过运营商网关实时校验三要素一致性。</li>
+      <li><strong>查看结果:</strong>返回核验结果(一致/不一致/号码异常),数据加密传输不存储。</li>
+    </ol>
+  </section>
+
+  <!-- 相关工具 -->
+  <section class="mb-8">
+    <h2 class="text-2xl font-bold text-slate-800 mb-4">相关工具</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+      <a href="/tools/marking-clear" class="block bg-white rounded-lg p-4 border border-slate-200 hover:border-brand-400 transition-all">
+        <h3 class="font-medium text-slate-800 mb-1">号码标记清除</h3>
+        <p class="text-sm text-slate-500">手机号/座机号误标记清除</p>
+      </a>
+      <a href="/tools/attribution" class="block bg-white rounded-lg p-4 border border-slate-200 hover:border-brand-400 transition-all">
+        <h3 class="font-medium text-slate-800 mb-1">号码归属地查询</h3>
+        <p class="text-sm text-slate-500">查手机号归属地与运营商</p>
+      </a>
+      <a href="/tools/marking-check" class="block bg-white rounded-lg p-4 border border-slate-200 hover:border-brand-400 transition-all">
+        <h3 class="font-medium text-slate-800 mb-1">号码标记自查</h3>
+        <p class="text-sm text-slate-500">查号码被标记情况</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- 数据来源声明 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">数据来源</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      法人号码核验服务由授权合作方提供,核验数据来自中国移动、中国联通、中国电信三大运营商官方网关。核验数据通过加密通道传输,不在服务器存储。本站作为合作方服务的推荐入口,不对核验结果承担责任,但会持续关注服务质量并接受用户反馈。如有疑问请<a href="/contact">联系我们</a>。
+    </p>
+  </section>
+</BaseLayout>
