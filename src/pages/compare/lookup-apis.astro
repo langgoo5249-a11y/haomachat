@@ -5,17 +5,32 @@ const apis = lookupApisData.apis;
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '对比', url: '/compare/marking-platforms' },
   { name: '号码查询API对比', url: '/compare/lookup-apis' },
 ];
 
 // GEO: 数据点与来源
 // 数据点: 共对比 8 个号码查询API;Google libphonenumber 完全免费开源;国内"号码标记查询"无稳定公开免费API
 // 来源: Google libphonenumber GitHub(github.com/google/libphonenumber)、numverify(apilayer.com)、聚合数据(juhe.cn)
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '号码查询API对比',
+  description: 'libphonenumber、numverify、Twilio、聚合数据等号码查询API详细对比',
+  author: { '@type': 'Organization', name: '号码通查', url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg' },
+  },
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-06',
+};
 ---
 <BaseLayout
   title="号码查询API对比 - libphonenumber/numverify/Twilio/聚合数据 | 号码通查"
   description="主流号码查询API对比表,包括Google libphonenumber、numverify、Twilio Lookup v2、AbstractAPI、聚合数据手机归属地、阿里云号码百科等,从免费额度、是否查运营商、是否查标记、覆盖区域等维度对比。"
+  schema={[articleSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码查询API对比</h1>

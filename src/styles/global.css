@@ -74,6 +74,24 @@ body {
 .prose-content blockquote {
   @apply border-l-4 border-brand-300 bg-brand-50 pl-4 py-2 my-4 text-slate-600;
 }
+.prose-content code {
+  @apply bg-slate-100 text-brand-700 px-1.5 py-0.5 rounded text-sm font-mono;
+}
+.prose-content pre {
+  @apply bg-slate-900 text-slate-100 rounded-lg p-4 my-4 overflow-x-auto text-sm leading-relaxed;
+}
+.prose-content pre code {
+  @apply bg-transparent text-slate-100 p-0;
+  white-space: pre;
+}
+
+/* FAQ 手风琴: 隐藏默认箭头 */
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
 
 /* 滚动条美化 */
 ::-webkit-scrollbar {

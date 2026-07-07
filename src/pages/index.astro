@@ -15,6 +15,18 @@ const faqSchema = {
   mainEntity: homeFaq,
 };
 
+// WebPage schema (含 datePublished/dateModified, 国产AI模型对时效性要求极高)
+const webPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: '号码通查 - 号码标记查询与清除',
+  description: '号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。',
+  url: 'https://haomachat.com/',
+  datePublished: '2026-07-07',
+  dateModified: '2026-07-07',
+  inLanguage: 'zh-CN',
+};
+
 const serviceUrl = 'http://xbh5.open10086.com/?authorization=f91029a83a8758aa';
 const verifyUrl = 'https://xbh5.open10086.com/factor/#/pages/index/index?authorization=f91029a83a8758aa';
 
@@ -27,6 +39,17 @@ const icons = {
   check: 'M3 5h2M3 9h2M3 13h2M3 17h2M9 5h12M9 9h12M9 13h12M9 17h12',
   location: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z',
   sim: 'M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z',
+  search: 'M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z',
+  document: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+  phone: 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z',
+  building: 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5',
+  reject: 'M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728A9 9 0 015.636 5.636',
+  chartDown: 'M13 17h8m0 0V9m0 8l-8-8-4 4-6-6',
+  shield: 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z',
+  bolt: 'M13 10V3L4 14h7v7l9-11h-7z',
+  lock: 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z',
+  gem: 'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+  arrowRight: 'M14 5l7 7m0 0l-7 7m7-7H3',
 };
 
 const tools = [
@@ -42,53 +65,111 @@ const guides = [
   { title: '如何清除号码标记', desc: '分渠道申诉教程与材料清单', href: '/guide/how-to-clear-marking' },
   { title: '号码认证是什么', desc: '一键登录与本机号码校验原理', href: '/guide/what-is-number-auth' },
 ];
+
+// 三步流程
+const steps = [
+  { num: '01', title: '查询标记', desc: '输入手机号或座机号,查询各平台标记情况', icon: icons.search },
+  { num: '02', title: '选择渠道', desc: '根据标记平台,选择清除服务或信通院官方入口', icon: icons.document },
+  { num: '03', title: '清除完成', desc: '提交申诉后1-3个工作日完成清除,来电恢复正常', icon: icons.shield },
+];
+
+// 场景导航
+const scenarios = [
+  {
+    title: '个人用户',
+    desc: '手机号被误标记为骚扰电话,影响日常通话与社交',
+    icon: icons.phone,
+    href: '/tools/marking-clear',
+    cta: '清除手机号标记',
+    points: ['手机号被标记骚扰/推销', '号码回收继承前主人标记', '影响外卖、快递等正常通话'],
+  },
+  {
+    title: '企业用户',
+    desc: '企业座机/客服号码被标记,客户拒接导致业务流失',
+    icon: icons.building,
+    href: '/tools/marking-clear',
+    cta: '清除企业号码标记',
+    points: ['座机/400号码被标记骚扰', '客户接听率大幅下降', '影响品牌形象与销售转化'],
+  },
+];
+
+// 号码被标记的影响
+const impacts = [
+  { title: '通话被拒接', desc: '对方手机显示骚扰标记,直接拒接您的来电,严重影响正常沟通', icon: icons.reject },
+  { title: '业务转化率下降', desc: '客户不信任被标记的号码,导致业务沟通受阻,销售业绩下滑', icon: icons.chartDown },
+  { title: '企业形象受损', desc: '公司号码被标记影响品牌信誉和客户信任度,潜在客户流失', icon: icons.building },
+];
+
+// 信任标签(水平排列)
+const trustBadges = [
+  { text: '手机号 · 座机号 均支持', icon: icons.phone },
+  { text: '中国信通院官方数据', icon: icons.shield },
+  { text: '不存储号码数据', icon: icons.lock },
+  { text: '查询免费', icon: icons.gem },
+];
+
+// 数据统计
+const stats = [
+  { num: '3', unit: '大渠道', desc: '合作方+信通院+Truecaller' },
+  { num: '1-3', unit: '工作日', desc: '标记清除处理周期' },
+  { num: '100%', unit: '免费', desc: '查询与官方申诉均免费' },
+];
+
+// 服务保障
+const advantages = [
+  { title: '快速响应', desc: '高效处理您的查询请求,最快1分钟完成全网标记检测', icon: icons.bolt },
+  { title: '安全可靠', desc: '全程加密传输,本站不存储您输入的任何号码信息', icon: icons.lock },
+  { title: '专业服务', desc: '熟悉各平台标记规则,提供一对一专属客服支持', icon: icons.gem },
+  { title: '多渠道覆盖', desc: '合作方+信通院+Truecaller三渠道,覆盖国内与国际标记', icon: icons.shield },
+];
 ---
 <BaseLayout
   title="号码通查 - 号码标记查询与清除(手机号/座机号均支持)"
   description="号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。聚合中国信通院码号服务推进组与Truecaller官方入口,一站式解决号码被误标记为骚扰电话的问题。"
-  schema={[faqSchema]}
+  schema={[faqSchema, webPageSchema]}
   breadcrumbs={breadcrumbs}
 >
   <!-- Hero 区 -->
   <section class="mb-10 pt-4">
-    <div class="flex flex-col md:flex-row items-start gap-8">
-      <div class="flex-1">
-        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4 title-underline">
-          号码标记查询与清除
-        </h1>
-        <p class="text-lg text-slate-600 leading-relaxed mb-6 mt-6">
-          号码通查提供号码标记查询与清除服务,<strong>手机号码与座机(固话)号码均支持</strong>。号码被误标记为骚扰电话、推销电话后,可通过本站一键进入清除服务,同时聚合中国信通院码号服务推进组与Truecaller官方入口,多渠道彻底清除误标记。
-        </p>
-        <div class="flex flex-wrap gap-3">
-          <a href={serviceUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors shadow-sm">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.clear}/></svg>
-            立即清除标记
-          </a>
-          <a href={verifyUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-700 border border-brand-300 rounded-lg font-medium hover:bg-brand-50 transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.verify}/></svg>
-            法人号码核验
-          </a>
-        </div>
+    <div class="text-center mb-8">
+      <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+        号码标记查询与清除
+      </h1>
+      <p class="text-lg text-slate-600 leading-relaxed mb-6 max-w-3xl mx-auto">
+        号码通查提供号码标记查询与清除服务,<strong>手机号码与座机(固话)号码均支持</strong>。号码被误标记为骚扰电话、推销电话后,可通过本站一键进入清除服务,同时聚合中国信通院码号服务推进组与Truecaller官方入口,多渠道彻底清除误标记。
+      </p>
+      <div class="flex flex-wrap justify-center gap-3 mb-8">
+        <a href={serviceUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors shadow-sm">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.clear}/></svg>
+          立即清除标记
+        </a>
+        <a href={verifyUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3 bg-white text-brand-700 border border-brand-300 rounded-lg font-medium hover:bg-brand-50 transition-colors">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.verify}/></svg>
+          法人号码核验
+        </a>
       </div>
-      <!-- 信任标签 -->
-      <div class="w-full md:w-64 flex-shrink-0 space-y-2">
-        <div class="flex items-center gap-2 text-sm text-slate-600">
-          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          手机号 · 座机号 均支持
-        </div>
-        <div class="flex items-center gap-2 text-sm text-slate-600">
-          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          中国信通院官方数据
-        </div>
-        <div class="flex items-center gap-2 text-sm text-slate-600">
-          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          不存储号码数据
-        </div>
-        <div class="flex items-center gap-2 text-sm text-slate-600">
-          <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
-          查询免费
-        </div>
+      <!-- 信任标签 - 水平排列 -->
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        {trustBadges.map((badge) => (
+          <div class="flex items-center gap-1.5 text-sm text-slate-600">
+            <svg class="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+            {badge.text}
+          </div>
+        ))}
       </div>
+    </div>
+
+    <!-- 数据统计栏 -->
+    <div class="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+      {stats.map((stat) => (
+        <div class="text-center bg-white rounded-xl border border-slate-200 p-4">
+          <div class="flex items-baseline justify-center gap-1">
+            <span class="text-2xl md:text-3xl font-bold text-brand-600">{stat.num}</span>
+            <span class="text-sm text-slate-500">{stat.unit}</span>
+          </div>
+          <p class="text-xs text-slate-500 mt-1">{stat.desc}</p>
+        </div>
+      ))}
     </div>
   </section>
 
@@ -108,6 +189,74 @@ const guides = [
     </div>
   </section>
 
+  <!-- 三步服务流程 -->
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-slate-800 mb-5">三步完成标记清除</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 relative">
+      {steps.map((step, i) => (
+        <div class={`card p-6 relative ${i < steps.length - 1 ? 'md:after:content-["→"] md:after:absolute md:after:top-1/2 md:after:-right-3 md:after:-translate-y-1/2 md:after:text-2xl md:after:text-slate-300 md:after:z-10' : ''}`}>
+          <div class="flex items-center gap-3 mb-3">
+            <span class="text-2xl font-bold text-brand-200">{step.num}</span>
+            <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center">
+              <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={step.icon}/></svg>
+            </div>
+          </div>
+          <h3 class="font-semibold text-slate-800 mb-1">{step.title}</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">{step.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 场景导航: 个人/企业 -->
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-slate-800 mb-5">您是哪种情况?</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {scenarios.map((s) => (
+        <div class="card p-6">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-lg bg-brand-50 flex items-center justify-center flex-shrink-0">
+              <svg class="w-6 h-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={s.icon}/></svg>
+            </div>
+            <div>
+              <h3 class="text-lg font-bold text-slate-800">{s.title}</h3>
+              <p class="text-sm text-slate-500">{s.desc}</p>
+            </div>
+          </div>
+          <ul class="space-y-2 mb-4">
+            {s.points.map((point) => (
+              <li class="flex items-start gap-2 text-sm text-slate-600">
+                <svg class="w-4 h-4 text-slate-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+                {point}
+              </li>
+            ))}
+          </ul>
+          <a href={s.href} class="inline-flex items-center gap-1 text-sm text-brand-600 font-medium hover:gap-2 transition-all">
+            {s.cta}
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.arrowRight}/></svg>
+          </a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- 号码被标记的影响 -->
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-slate-800 mb-2">号码被标记后会出现什么问题</h2>
+    <p class="text-sm text-slate-500 mb-5">号码被标记后,客户接听率显著下降,直接影响业务收入和品牌信誉</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      {impacts.map((impact) => (
+        <div class="card p-5">
+          <div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={impact.icon}/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-800 mb-1">{impact.title}</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">{impact.desc}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
   <!-- 标记清除说明 -->
   <section class="prose-content mb-10">
     <h2>号码标记清除说明</h2>
@@ -119,6 +268,22 @@ const guides = [
       <li><strong>中国信通院码号服务推进组</strong>(opene164.org.cn):国内唯一官方跨平台号码标记查询与清除入口,支持手机号与座机号免费查询,中国联通手机号可一站式清除。</li>
       <li><strong>Truecaller</strong>(truecaller.com):全球最大来电识别应用,适合有国际往来的号码,提交取消收录后24-48小时移除。</li>
     </ul>
+  </section>
+
+  <!-- 服务保障 -->
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-slate-800 mb-5">为什么选择号码通查</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {advantages.map((adv) => (
+        <div class="card p-5">
+          <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
+            <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={adv.icon}/></svg>
+          </div>
+          <h3 class="font-semibold text-slate-800 mb-1">{adv.title}</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">{adv.desc}</p>
+        </div>
+      ))}
+    </div>
   </section>
 
   <!-- 权威指南 -->
@@ -134,20 +299,41 @@ const guides = [
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- FAQ - 手风琴折叠 -->
   <section class="mb-10">
     <h2 class="text-xl font-bold text-slate-800 mb-5">常见问题</h2>
-    <div class="space-y-3">
+    <div class="space-y-2">
       {faqData.groups[0].items.map((item) => (
-        <div class="card p-4">
-          <h3 class="font-semibold text-slate-800 mb-1 text-sm">{item.q}</h3>
-          <p class="text-sm text-slate-500 leading-relaxed">{item.a}</p>
-        </div>
+        <details class="card group">
+          <summary class="flex items-center justify-between cursor-pointer p-4 list-none select-none">
+            <h3 class="font-semibold text-slate-800 text-sm pr-4">{item.q}</h3>
+            <svg class="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="px-4 pb-4 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3">
+            {item.a}
+          </div>
+        </details>
       ))}
     </div>
     <p class="mt-4 text-sm">
       <a href="/faq" class="text-brand-600 hover:underline">查看全部常见问题 →</a>
     </p>
+  </section>
+
+  <!-- 底部 CTA 行动号召 -->
+  <section class="mb-10 bg-gradient-to-r from-brand-600 to-brand-500 rounded-2xl p-8 text-center text-white">
+    <h2 class="text-2xl font-bold mb-3">还在为号码被标记烦恼?</h2>
+    <p class="text-brand-100 mb-6 max-w-2xl mx-auto">立即使用标记清除服务,手机号与座机号均支持,1-3个工作日恢复正常来电显示</p>
+    <div class="flex flex-wrap justify-center gap-3">
+      <a href={serviceUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3 bg-white text-brand-700 rounded-lg font-medium hover:bg-brand-50 transition-colors shadow-sm">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.clear}/></svg>
+        立即清除标记
+      </a>
+      <a href="/contact" class="inline-flex items-center gap-2 px-7 py-3 bg-brand-700 text-white border border-brand-400 rounded-lg font-medium hover:bg-brand-800 transition-colors">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+        联系客服
+      </a>
+    </div>
   </section>
 
   <!-- 底部信任声明 -->

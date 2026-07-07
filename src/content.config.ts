@@ -11,6 +11,9 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('号码通查'),
     tags: z.array(z.string()).default([]),
+    heroImage: z.string().optional(),
+    draft: z.boolean().default(false),
+    category: z.string().optional(),
   }),
 });
 

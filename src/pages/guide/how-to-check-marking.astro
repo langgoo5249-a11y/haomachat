@@ -4,7 +4,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '指南', url: '/guide/what-is-number-marking' },
   { name: '如何查询号码被标记', url: '/guide/how-to-check-marking' },
 ];
 
@@ -50,11 +49,28 @@ const howToSchema = {
     { '@type': 'HowToStep', position: 3, name: 'Truecaller查询', text: '若号码有国际往来,访问 truecaller.com/search 查询海外标记' },
   ],
 };
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '如何查询号码被标记？2026查询指南',
+  description: '全平台号码标记查询指南,含信通院跨平台查询、360/腾讯/百度分平台查询入口与操作步骤',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-06',
+  author: { '@type': 'Organization', name: '号码通查', url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  },
+  image: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  mainEntityOfPage: 'https://haomachat.com/guide/how-to-check-marking',
+};
 ---
 <BaseLayout
   title="如何查询号码被标记？2026查询指南 | 号码通查"
   description="查询号码是否被标记,推荐优先使用标记查询服务入口,再辅以中国信通院码号服务推进组(opene164.org.cn)跨平台统一查询,若号码有国际往来再到Truecaller查询。本文附各渠道查询入口表格与操作步骤。"
-  schema={[faqSchema, howToSchema]}
+  schema={[articleSchema, faqSchema, howToSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">如何查询号码被标记？2026 查询指南</h1>

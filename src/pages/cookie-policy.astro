@@ -1,0 +1,212 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: 'Cookie 政策', url: '/cookie-policy' },
+];
+
+const cookieSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Cookie 政策 - 号码通查',
+  description:
+    '号码通查Cookie政策。说明本站使用的功能性Cookie、分析Cookie(如Google Analytics)与广告Cookie(如Google AdSense个性化广告)的类型、用途、有效期,以及用户如何通过浏览器管理与禁用Cookie。',
+  url: 'https://haomachat.com/cookie-policy',
+};
+
+const lastUpdated = '2026-07-06';
+---
+<BaseLayout
+  title="Cookie 政策 - 号码通查"
+  description="号码通查Cookie政策。本站使用功能性Cookie、分析Cookie(如Google Analytics)与广告Cookie(如Google AdSense个性化广告)。本页说明各类Cookie的用途、是否必需、有效期,以及用户如何通过浏览器设置管理或禁用Cookie。"
+  schema={[cookieSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">Cookie 政策</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    号码通查(haomachat.com)使用 Cookie 及类似技术以保证网站功能正常运行、改进访问体验并展示广告。本 Cookie 政策说明本站使用的 Cookie 类型、用途、有效期,以及您如何管理或禁用 Cookie。本政策是本站 <a href="/privacy" class="text-brand-600 underline hover:text-brand-700">隐私政策</a> 的补充,请结合阅读。
+  </p>
+
+  <p class="text-sm text-slate-400 mb-6">
+    最后更新日期:{lastUpdated}
+  </p>
+
+  <!-- Cookie 是什么 -->
+  <section class="prose-content mb-8">
+    <h2>一、Cookie 是什么</h2>
+    <p>
+      Cookie 是网站在您访问时存储在您浏览器(设备)上的小型文本文件。它使网站能够"记住"您的访问与操作,例如保持登录状态、记住语言偏好、统计访问数据以及展示更相关的广告。Cookie 本身并不包含病毒,通常也不直接存储个人身份信息,但可被第三方用于识别用户行为。
+    </p>
+    <p>
+      除 Cookie 外,本站及第三方服务可能使用类似技术(如网络信标、像素标签、本地存储等),本政策所述原则同样适用于这些技术。
+    </p>
+  </section>
+
+  <!-- 本站使用的Cookie类型 -->
+  <section class="prose-content mb-8">
+    <h2>二、本站使用的 Cookie 类型</h2>
+    <p>本站使用的 Cookie 按用途可分为以下几类:</p>
+    <table>
+      <thead>
+        <tr><th>Cookie 类型</th><th>用途</th><th>是否必需</th><th>有效期</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>功能性 Cookie</td>
+          <td>记录语言偏好、工具选项状态等,保证网站基本功能正常运行</td>
+          <td>是</td>
+          <td>会话期或最长 1 年</td>
+        </tr>
+        <tr>
+          <td>分析 Cookie</td>
+          <td>统计页面访问量、来源与使用行为(如 Google Analytics),帮助改进内容与体验</td>
+          <td>否</td>
+          <td>最长 2 年</td>
+        </tr>
+        <tr>
+          <td>广告 Cookie</td>
+          <td>展示个性化广告并衡量广告效果(如 Google AdSense)</td>
+          <td>否</td>
+          <td>最长 13 个月</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <strong>功能性 Cookie(必需):</strong>用于记录用户的语言偏好、工具选项状态等,保证网站基本功能正常运行。此类 Cookie 为网站运行所必需,关闭后部分功能可能无法使用。
+      </li>
+      <li>
+        <strong>分析 Cookie:</strong>用于统计页面访问量、用户来源与使用行为(如使用 Google Analytics),帮助本站改进内容与体验。此类 Cookie 收集的是聚合的、非身份可识别的数据。
+      </li>
+      <li>
+        <strong>广告 Cookie:</strong>用于展示更具相关性的广告并衡量广告效果。本站通过 Google AdSense 展示广告时,广告 Cookie 会根据用户的访问行为提供个性化广告。
+      </li>
+    </ul>
+    <p>
+      上述"有效期"为一般性说明,具体 Cookie 的有效期可能因第三方服务版本更新而调整,以浏览器中实际存储的为准。
+    </p>
+  </section>
+
+  <!-- 第三方Cookie说明 -->
+  <section class="prose-content mb-8">
+    <h2>三、第三方 Cookie 说明</h2>
+    <p>
+      本站部分 Cookie 由第三方服务提供商设置和管理,本站无法直接控制这些 Cookie。本站可能使用的第三方 Cookie 包括:
+    </p>
+    <ul>
+      <li>
+        <strong>Google AdSense(广告):</strong>Google 作为第三方供应商,使用 Cookie 在本站及合作网站上展示广告,并可能根据用户过往访问行为投放个性化广告。用户可访问
+        <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google 广告设置</a> 管理个性化广告,或访问
+        <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info</a> 退出第三方供应商的个性化广告。详情参阅
+        <a href="https://policies.google.com/technologies/ads" rel="nofollow noopener" target="_blank">Google 广告隐私政策</a>。
+      </li>
+      <li>
+        <strong>Google Analytics(分析):</strong>如本站使用 Google Analytics 统计访问数据,Google 会通过 Cookie 收集聚合的、匿名化的访问信息(如页面访问量、来源类型)。用户可安装
+        <a href="https://tools.google.com/dlpage/gaoptout" rel="nofollow noopener" target="_blank">Google Analytics 选择停用浏览器插件</a> 阻止数据收集。详情参阅
+        <a href="https://policies.google.com/technologies/cookies" rel="nofollow noopener" target="_blank">Google Cookie 政策</a>。
+      </li>
+    </ul>
+    <p>
+      第三方服务提供商对其设置的 Cookie 享有独立控制权,并依据各自的隐私政策处理相关数据。建议用户在使用前阅读相应第三方的隐私政策。
+    </p>
+  </section>
+
+  <!-- 如何管理/禁用Cookie -->
+  <section class="prose-content mb-8">
+    <h2>四、如何管理与禁用 Cookie</h2>
+    <p>
+      您可以通过浏览器设置管理、清除或禁用 Cookie。需要说明的是,禁用功能性 Cookie 可能影响网站部分功能,禁用分析与广告 Cookie 不影响网站基本使用。常用浏览器的 Cookie 管理方法如下:
+    </p>
+    <table>
+      <thead>
+        <tr><th>浏览器</th><th>Cookie 管理路径</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Google Chrome</td>
+          <td>设置 → 隐私和安全 → 第三方 Cookie(或网站设置 → Cookie 和网站数据)</td>
+        </tr>
+        <tr>
+          <td>Mozilla Firefox</td>
+          <td>设置 → 隐私与安全 → Cookie 和网站数据</td>
+        </tr>
+        <tr>
+          <td>Microsoft Edge</td>
+          <td>设置 → Cookie 和网站权限 → 管理和删除 Cookie</td>
+        </tr>
+        <tr>
+          <td>Safari(桌面)</td>
+          <td>偏好设置 → 隐私 → Cookie 和网站数据</td>
+        </tr>
+        <tr>
+          <td>Safari(移动)</td>
+          <td>设置 → Safari → 隐私与安全性 → 阻止所有 Cookie</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>
+        <strong>清除现有 Cookie:</strong>在浏览器历史记录或隐私设置中可清除已存储的 Cookie。
+      </li>
+      <li>
+        <strong>禁用 Cookie:</strong>可在浏览器设置中选择阻止所有 Cookie 或仅阻止第三方 Cookie。
+      </li>
+      <li>
+        <strong>无痕/隐私模式:</strong>使用浏览器的无痕或隐私浏览模式可在关闭窗口后自动清除 Cookie。
+      </li>
+    </ul>
+    <p>
+      此外,您可通过以下渠道管理个性化广告 Cookie:
+    </p>
+    <ul>
+      <li>
+        Google 广告设置:<a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">https://www.google.com/settings/ads</a>
+      </li>
+      <li>
+        第三方供应商退出(aboutads.info):<a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">https://www.aboutads.info/choices/</a>
+      </li>
+      <li>
+        欧洲数字广告联盟(youronlinechoices.eu):<a href="https://www.youronlinechoices.com/" rel="nofollow noopener" target="_blank">https://www.youronlinechoices.com/</a>
+      </li>
+    </ul>
+    <blockquote>
+      提示:不同浏览器版本的设置路径可能略有差异,请以您所用浏览器的实际菜单为准。
+    </blockquote>
+  </section>
+
+  <!-- Cookie 变更声明 -->
+  <section class="prose-content mb-8">
+    <h2>五、Cookie 变更声明</h2>
+    <p>
+      本站可能根据业务发展、第三方服务调整或法律法规要求,新增、修改或停用部分 Cookie。Cookie 政策变更后,本站将在本页面公布最新版本,并更新页面顶部的"最后更新日期"。<strong>Cookie 政策的解释以本页最新版本为准</strong>。如发生影响用户权益的重大变更(例如新增第三方 Cookie),本站将在显著位置予以提示。
+    </p>
+    <p>
+      建议用户定期查阅本页面以获取最新信息。
+    </p>
+  </section>
+
+  <!-- 联系方式 -->
+  <section class="prose-content mb-8">
+    <h2>六、联系方式</h2>
+    <p>
+      如您对本 Cookie 政策有任何疑问或建议,请通过以下方式与我们联系:
+    </p>
+    <ul>
+      <li><strong>微信:</strong>SXLH-888(添加时请备注"号码通查")</li>
+      <li><strong>邮箱:</strong>644428571@qq.com</li>
+      <li><strong>在线反馈:</strong>可通过 <a href="/contact">联系我们</a> 页面的在线反馈表单提交</li>
+    </ul>
+    <p>
+      我们将在工作日 24 小时内回复。相关文档亦可参阅 <a href="/privacy">隐私政策</a>、<a href="/terms">服务条款</a> 与 <a href="/disclaimer">免责声明</a>。
+    </p>
+  </section>
+
+  <!-- Cookie 政策说明 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">Cookie 政策说明</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      本 Cookie 政策适用于号码通查(haomachat.com)本站设置的 Cookie 及本站接入的第三方(如 Google AdSense、Google Analytics)Cookie。用户跳转至授权合作方服务(xbh5.open10086.com)或官方平台(opene164.org.cn、truecaller.com)后,相关 Cookie 适用各平台自身的 Cookie 政策。本站不对第三方平台的 Cookie 处理行为承担责任,建议用户在使用前阅读相应平台的条款。
+    </p>
+  </section>
+</BaseLayout>

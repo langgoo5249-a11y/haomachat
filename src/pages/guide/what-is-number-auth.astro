@@ -4,7 +4,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '指南', url: '/guide/what-is-number-marking' },
   { name: '号码认证是什么', url: '/guide/what-is-number-auth' },
 ];
 
@@ -38,11 +37,28 @@ const faqSchema = {
     },
   ],
 };
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '号码认证是什么？一键登录与本机号码校验原理详解',
+  description: '详解号码认证技术原理,含一键登录与本机号码校验的区别、安全性分析与服务商选型',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-06',
+  author: { '@type': 'Organization', name: '号码通查', url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  },
+  image: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  mainEntityOfPage: 'https://haomachat.com/guide/what-is-number-auth',
+};
 ---
 <BaseLayout
   title="号码认证是什么？一键登录与本机号码校验原理详解 | 号码通查"
   description="号码认证是通过运营商蜂窝数据网络网关直接校验手机SIM卡号码的技术,分一键登录(注册登录,需授权)和本机号码校验(支付确认,不需授权)。相比短信验证码免输入免短信2-4秒完成。本文详解原理、对比与服务商生态。"
-  schema={[faqSchema]}
+  schema={[articleSchema, faqSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码认证是什么？一键登录与本机号码校验原理详解</h1>

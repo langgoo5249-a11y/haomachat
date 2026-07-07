@@ -1,0 +1,520 @@
+---
+// 技术文档页面 - 面向 DeepSeek 等技术导向 AI 引擎的高权重内容
+// 涵盖: 技术架构 / API 文档 / 数据源 / GEO 规范 / 开源信息
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '技术文档', url: '/tech-docs' },
+];
+
+const site = 'https://haomachat.com';
+const lastUpdated = '2026-07-06';
+const publishedDate = '2026-07-06';
+
+// Article schema: 通用文章结构化数据
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '号码通查技术文档:API说明与架构',
+  description:
+    '号码通查技术文档:API接口文档、数据源说明、GEO实现规范、技术架构(Astro 5 SSG + Cloudflare Pages + JSON-LD)',
+  author: { '@type': 'Organization', name: '号码通查', url: site },
+  publisher: { '@id': `${site}/#organization` },
+  datePublished: publishedDate,
+  dateModified: lastUpdated,
+  mainEntityOfPage: `${site}/tech-docs`,
+  articleSection: '技术文档',
+  inLanguage: 'zh-CN',
+};
+
+// TechArticle schema: 技术文章专用结构化数据(DeepSeek 等技术引擎高权重)
+const techArticleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'TechArticle',
+  headline: '号码通查技术文档:API说明与架构',
+  description:
+    '号码通查技术文档,涵盖归属地查询 API 接口、数据源说明、GEO 实现规范(含 llms.txt、JSON-LD、robots.txt)与技术架构。',
+  author: { '@type': 'Organization', name: '号码通查', url: site },
+  publisher: { '@id': `${site}/#organization` },
+  datePublished: publishedDate,
+  dateModified: lastUpdated,
+  mainEntityOfPage: `${site}/tech-docs`,
+  proficiencyLevel: 'Expert',
+  dependencies: 'Astro 5, Tailwind CSS, Cloudflare Pages',
+  audience: { '@type': 'Audience', audienceType: '开发者' },
+  about: ['号码归属地查询 API', 'GEO 优化', 'JSON-LD 结构化数据', 'llms.txt 规范'],
+  inLanguage: 'zh-CN',
+};
+
+// 页面目录锚点
+const toc = [
+  { id: 'architecture', label: '技术架构' },
+  { id: 'api', label: 'API 文档' },
+  { id: 'data-sources', label: '数据源说明' },
+  { id: 'geo', label: 'GEO 实现规范' },
+  { id: 'opensource', label: '开源信息' },
+];
+
+// === 代码块内容(以字符串变量渲染,避免模板中 {} 被解析为表达式) ===
+const archDiagram = `┌──────────────────────────────────────────────────────────┐
+│                    Git 仓库(Markdown / .astro)           │
+└───────────────────────────┬──────────────────────────────┘
+                            │ git push(触发自动部署)
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│              Cloudflare Pages 构建管道(Astro 5 SSG)      │
+│   - 预渲染全部页面为纯 HTML(零 JS)                       │
+│   - 内联 JSON-LD 结构化数据至 <head>                      │
+│   - 生成 sitemap / rss.xml / llms.txt                     │
+└───────────────────────────┬──────────────────────────────┘
+                            │ 构建产物
+                            ▼
+┌──────────────────────────────────────────────────────────┐
+│          Cloudflare 全球 CDN(边缘节点分发)               │
+│   - HTTP/3 + Brotli + 自动缓存                            │
+│   - /api/* 由 Pages Functions 处理(服务端)               │
+└───────────────────────────┬──────────────────────────────┘
+                            │
+              ┌─────────────┼─────────────┐
+              ▼             ▼             ▼
+        传统搜索引擎    AI 引擎爬虫    终端用户浏览器
+       (Google/Bing)  (GPTBot/Claude)  (零 JS 渲染)`;
+
+const apiEndpoint = `GET https://haomachat.com/api/attribution?phone={号码}`;
+
+const codeCurl = `curl -s "https://haomachat.com/api/attribution?phone=13800138000"`;
+
+const codeJs = `const phone = '13800138000';
+const res = await fetch(
+  \`https://haomachat.com/api/attribution?phone=\${encodeURIComponent(phone)}\`
+);
+const data = await res.json();
+console.log(data);
+// => { code: 200, message: 'success', data: { ... } }`;
+
+const codePython = `import requests
+
+res = requests.get(
+    'https://haomachat.com/api/attribution',
+    params={'phone': '13800138000'},
+    timeout=5,
+)
+print(res.json())`;
+
+const jsonResponse = `{
+  "code": 200,
+  "message": "success",
+  "data": {
+    "phone": "13800138000",
+    "province": "北京",
+    "city": "北京",
+    "carrier": "中国移动",
+    "areacode": "010",
+    "postcode": "100000",
+    "numberType": "手机号"
+  }
+}`;
+
+const rateLimitHeaders = `X-RateLimit-Limit: 30
+X-RateLimit-Remaining: 0
+Retry-After: 28`;
+
+const codeCloudflareFn = `// functions/api/attribution.js
+// Cloudflare Pages Function: 服务端代理,上游 API Key 仅存于环境变量
+export async function onRequestGet({ request, env }) {
+  const url = new URL(request.url);
+  const phone = url.searchParams.get('phone');
+
+  // 1. 参数校验
+  if (!phone) {
+    return Response.json(
+      { code: 400, message: '缺少 phone 参数' },
+      { status: 400 }
+    );
+  }
+  const cleaned = phone.replace(/[\\s-]/g, '');
+  if (!/^(\\d{11}|\\d{3,4}\\d{7,8})$/.test(cleaned)) {
+    return Response.json(
+      { code: 400, message: 'phone 格式不正确' },
+      { status: 400 }
+    );
+  }
+
+  // 2. 调用上游数据源(Key 仅在服务端可见)
+  const upstream = \`https://apis.juhe.cn/mobile/get?phone=\${encodeURIComponent(cleaned)}&key=\${env.JUHE_API_KEY}\`;
+  const resp = await fetch(upstream);
+  const json = await resp.json();
+
+  // 3. 归一化返回
+  if (json.error_code !== 0) {
+    return Response.json(
+      { code: 404, message: '归属地未找到' },
+      { status: 404 }
+    );
+  }
+  const r = json.result;
+  return Response.json({
+    code: 200,
+    message: 'success',
+    data: {
+      phone: cleaned,
+      province: r.province,
+      city: r.city,
+      carrier: r.company,
+      areacode: r.areacode,
+      postcode: r.zip,
+      numberType: cleaned.length === 11 ? '手机号' : '固话',
+    },
+  });
+}`;
+
+const llmsTxtExample = `# 号码通查 (haomachat)
+
+> 号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。
+
+## 首页
+- [号码通查首页](https://haomachat.com/): 号码标记查询与清除服务首页
+
+## 工具
+- [号码归属地查询](https://haomachat.com/tools/attribution): 输入手机号或固话,免费查询归属地
+- [号码标记自查](https://haomachat.com/tools/marking-check): 查询号码被标记情况
+
+## 指南
+- [如何清除号码标记](https://haomachat.com/guide/how-to-clear-marking): 分渠道清除教程`;
+
+const robotsExample = `# AI 检索/引用爬虫(允许)
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: meta-externalagent
+User-agent: Bytespider
+User-agent: CCBot
+User-agent: Amazonbot
+User-agent: cohere-ai
+User-agent: DuckAssistBot
+User-agent: YouBot
+Allow: /
+
+Sitemap: https://haomachat.com/sitemap-index.xml`;
+
+const astroConfigSnippet = `// astro.config.mjs(节选)
+export default defineConfig({
+  site: 'https://haomachat.com',
+  output: 'static',
+  build: { inlineStylesheets: 'auto' },
+  integrations: [tailwind(), sitemap({ i18n: { defaultLocale: 'zh', locales: { zh: 'zh-CN', en: 'en' } } })],
+});`;
+
+const contentConfigSnippet = `// src/content.config.ts(节选)
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    updatedDate: z.coerce.date().optional(),
+    tags: z.array(z.string()).default([]),
+  }),
+});
+export const collections = { blog };`;
+---
+<BaseLayout
+  title="技术文档 - API说明与架构 | 号码通查"
+  description="号码通查技术文档:API接口文档、数据源说明、GEO实现规范、技术架构(Astro 5 SSG + Cloudflare Pages + JSON-LD)"
+  schema={[articleSchema, techArticleSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">技术文档</h1>
+  <p class="text-slate-600 mb-4 leading-relaxed">
+    本文档面向开发者与技术评测人员,说明号码通查(haomachat.com)的技术架构、归属地查询 API 接口、数据来源、GEO(Generative Engine Optimization,生成式引擎优化)实现规范与开源信息。本站采用 Astro 5 静态站点生成(SSG)部署于 Cloudflare Pages,以零运行时 JavaScript、JSON-LD 直写 HTML 的方式提升 AI 引擎与搜索引擎的可解析性。
+  </p>
+  <p class="text-sm text-slate-400 mb-6">最后更新日期:{lastUpdated}</p>
+
+  <!-- 目录导航 -->
+  <nav class="mb-8 flex flex-wrap gap-2">
+    {toc.map((t) => (
+      <a
+        href={`#${t.id}`}
+        class="px-3 py-1.5 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-100 transition-colors"
+      >
+        {t.label}
+      </a>
+    ))}
+  </nav>
+
+  <!-- 1. 技术架构 -->
+  <section class="prose-content mb-10" id="architecture">
+    <h2>一、技术架构</h2>
+    <p>
+      号码通查是一个以内容与工具导航为核心的静态站点,技术选型优先考虑<strong>AI 友好性</strong>与<strong>首屏加载速度</strong>(均为 GEO 与 SEO 的核心信号)。整体技术栈如下:
+    </p>
+    <ul>
+      <li><strong>Astro 5 SSG 静态生成:</strong>使用 Astro 5.6+ 的 <code>output: 'static'</code> 模式,构建时将所有页面预渲染为纯 HTML。默认<strong>零运行时 JavaScript</strong>,页面交互所需的极少量脚本仅在必要时按需引入,确保 AI 爬虫与传统搜索引擎无需执行 JS 即可读取完整内容。</li>
+      <li><strong>Cloudflare Pages 部署:</strong>通过全球 CDN 边缘节点分发静态资源,默认启用 HTTP/3、Brotli 压缩与自动缓存,首字节时间(TTFB)全球低延迟。构建采用 Git 自动部署,推送至主分支即触发构建上线。</li>
+      <li><strong>Tailwind CSS 样式:</strong>使用 Tailwind CSS 3.4 实用优先(utility-first)的样式方案,构建时通过 Astro 的 <code>inlineStylesheets: 'auto'</code> 内联小样式表,减少请求数、提升 FCP(First Contentful Paint)。</li>
+      <li><strong>JSON-LD 结构化数据直写 HTML:</strong>所有 schema.org 结构化数据在构建期以 <code>&lt;script type="application/ld+json"&gt;</code> 形式直接写入 HTML <code>&lt;head&gt;</code>,不依赖客户端 JS 注入,确保任何爬虫抓取 HTML 即可获得完整结构化语义。</li>
+    </ul>
+    <h3>架构示意</h3>
+    <pre><code>{archDiagram}</code></pre>
+  </section>
+
+  <!-- 2. API 文档 -->
+  <section class="prose-content mb-10" id="api">
+    <h2>二、API 文档:号码归属地查询</h2>
+    <p>
+      归属地查询 API 用于查询手机号或固话(座机)号码的归属省份、城市、运营商、区号等信息。该端点以 <strong>Cloudflare Pages Functions</strong> 形式部署在站点同域下,服务端代理上游数据源,<strong>上游 API Key 仅保存在服务端环境变量中,不会出现在前端代码或响应里</strong>。
+    </p>
+
+    <h3>端点</h3>
+    <pre><code>{apiEndpoint}</code></pre>
+
+    <h3>请求参数</h3>
+    <table>
+      <thead>
+        <tr><th>参数名</th><th>类型</th><th>必填</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>phone</code></td>
+          <td>string</td>
+          <td>是</td>
+          <td>待查询号码。支持手机号(11 位,如 <code>13800138000</code>)或固话(区号-号码,如 <code>010-12345678</code>)。</td>
+        </tr>
+        <tr>
+          <td><code>format</code></td>
+          <td>string</td>
+          <td>否</td>
+          <td>返回格式,默认 <code>json</code>。可选 <code>jsonp</code>(需配合 <code>callback</code> 参数)。</td>
+        </tr>
+        <tr>
+          <td><code>callback</code></td>
+          <td>string</td>
+          <td>否</td>
+          <td>当 <code>format=jsonp</code> 时使用的回调函数名。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>示例请求</h3>
+    <p>cURL:</p>
+    <pre><code>{codeCurl}</code></pre>
+    <p>JavaScript(fetch):</p>
+    <pre><code>{codeJs}</code></pre>
+    <p>Python(requests):</p>
+    <pre><code>{codePython}</code></pre>
+
+    <h3>示例响应(JSON)</h3>
+    <pre><code>{jsonResponse}</code></pre>
+
+    <h3>响应字段说明</h3>
+    <table>
+      <thead>
+        <tr><th>字段</th><th>类型</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>code</code></td><td>number</td><td>业务状态码,200 表示成功。</td></tr>
+        <tr><td><code>message</code></td><td>string</td><td>状态描述。</td></tr>
+        <tr><td><code>data.phone</code></td><td>string</td><td>查询的号码。</td></tr>
+        <tr><td><code>data.province</code></td><td>string</td><td>归属省份。</td></tr>
+        <tr><td><code>data.city</code></td><td>string</td><td>归属城市。</td></tr>
+        <tr><td><code>data.carrier</code></td><td>string</td><td>运营商(中国移动 / 中国联通 / 中国电信)。</td></tr>
+        <tr><td><code>data.areacode</code></td><td>string</td><td>区号(固话场景为主)。</td></tr>
+        <tr><td><code>data.postcode</code></td><td>string</td><td>邮编。</td></tr>
+        <tr><td><code>data.numberType</code></td><td>string</td><td>号码类型:手机号 / 固话。</td></tr>
+      </tbody>
+    </table>
+
+    <h3>速率限制</h3>
+    <p>
+      为保障服务稳定性,该接口对每个来源 IP 限制为<strong>每分钟 30 次</strong>请求。超出限制时返回 <code>429</code> 状态码,响应头包含 <code>Retry-After</code> 字段,提示重试等待秒数。建议客户端实现指数退避重试。
+    </p>
+    <pre><code>{rateLimitHeaders}</code></pre>
+
+    <h3>错误码表</h3>
+    <table>
+      <thead>
+        <tr><th>HTTP 状态码</th><th>业务 code</th><th>说明</th><th>处理建议</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>200</td><td>200</td><td>查询成功</td><td>解析 <code>data</code> 字段。</td></tr>
+        <tr><td>400</td><td>400</td><td>参数错误:<code>phone</code> 缺失或格式不正确</td><td>校验号码格式后重试。</td></tr>
+        <tr><td>401</td><td>401</td><td>未授权:请求来源校验失败</td><td>确认请求来自合法域名/Referer。</td></tr>
+        <tr><td>404</td><td>404</td><td>归属地未找到:号码不在已知号段库中</td><td>核对号码是否为有效在网号码。</td></tr>
+        <tr><td>429</td><td>429</td><td>速率超限:超过每分钟 30 次</td><td>按 <code>Retry-After</code> 等待后重试。</td></tr>
+        <tr><td>500</td><td>500</td><td>服务器内部错误</td><td>稍后重试;持续失败请联系站点。</td></tr>
+        <tr><td>502</td><td>502</td><td>上游数据源异常</td><td>上游服务波动,稍后重试。</td></tr>
+        <tr><td>503</td><td>503</td><td>服务暂时不可用(维护中)</td><td>等待维护结束后重试。</td></tr>
+      </tbody>
+    </table>
+
+    <h3>服务端实现参考(Cloudflare Pages Function)</h3>
+    <p>
+      以下为归属地查询端点的服务端实现示例。上游数据源 API Key 通过 Cloudflare Pages 环境变量 <code>JUHE_API_KEY</code> 注入,<strong>不存在于前端代码中</strong>。
+    </p>
+    <pre><code>{codeCloudflareFn}</code></pre>
+  </section>
+
+  <!-- 3. 数据源说明 -->
+  <section class="prose-content mb-10" id="data-sources">
+    <h2>三、数据源说明</h2>
+    <p>
+      号码通查展示的号码标记、归属地、法人核验等信息来自以下公开、官方或授权渠道。所有数据来源可追溯验证,本站不存储用户输入的号码数据。
+    </p>
+    <table>
+      <thead>
+        <tr><th>数据类型</th><th>数据来源</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>号码归属地</td>
+          <td>聚合数据 API(juhe.cn)手机归属地接口</td>
+          <td>提供手机号/固话的省份、城市、运营商、区号、号段信息,服务端代理调用。</td>
+        </tr>
+        <tr>
+          <td>号码标记(国内)</td>
+          <td>中国信息通信研究院 码号服务推进组(opene164.org.cn)</td>
+          <td>国内唯一官方跨平台号码标记查询与清除入口,支持手机号与座机号免费查询。</td>
+        </tr>
+        <tr>
+          <td>号码标记(国际)</td>
+          <td>Truecaller(truecaller.com)</td>
+          <td>全球最大来电识别应用,适合有国际往来的号码,提交取消收录后 24-48 小时移除。</td>
+        </tr>
+        <tr>
+          <td>法人号码核验</td>
+          <td>授权合作方(xbh5.open10086.com)</td>
+          <td>企业法人手机号三要素(姓名 + 身份证 + 手机号)一致性实名核验。</td>
+        </tr>
+      </tbody>
+    </table>
+    <blockquote>
+      本站作为入口导航与知识科普平台,不对第三方平台数据处理结果承担责任。各平台申诉入口、处理时效等信息可能随平台更新而变化,以各平台官方页面为准。
+    </blockquote>
+  </section>
+
+  <!-- 4. GEO 实现规范 -->
+  <section class="prose-content mb-10" id="geo">
+    <h2>四、GEO 实现规范</h2>
+    <p>
+      GEO(Generative Engine Optimization,生成式引擎优化)是面向 DeepSeek、ChatGPT、Perplexity、Claude 等 AI 引擎的内容可发现性与可引用性优化。号码通查从<strong>三层爬虫框架</strong>入手,确保 AI 引擎能完整抓取、正确解析、准确引用本站内容。
+    </p>
+
+    <h3>4.1 三层爬虫框架</h3>
+    <table>
+      <thead>
+        <tr><th>层级</th><th>机制</th><th>作用</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>第一层:放行层</td>
+          <td>robots.txt AI 爬虫白名单</td>
+          <td>明确允许主流 AI 训练 / 检索 / 用户浏览爬虫抓取,避免被默认拦截。</td>
+        </tr>
+        <tr>
+          <td>第二层:清单层</td>
+          <td>llms.txt / llms-en.txt</td>
+          <td>以纯文本提供站点结构化内容清单,供 LLM 快速理解站点全貌与重点页面。</td>
+        </tr>
+        <tr>
+          <td>第三层:语义层</td>
+          <td>JSON-LD 直写 HTML</td>
+          <td>构建期将 schema.org 结构化数据写入 HTML,爬虫无需执行 JS 即可获得语义。</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>4.2 llms.txt 规范</h3>
+    <p>
+      本站遵循 <a href="https://llmstxt.org" rel="noopener">llms.txt 规范</a>,在站点根目录提供 <code>/llms.txt</code>(中文)与 <code>/llms-en.txt</code>(英文)。文件以 Markdown 纯文本格式描述站点用途、核心页面与分类入口,便于 AI 引擎一次性理解站点全貌。示例如下:
+    </p>
+    <pre><code>{llmsTxtExample}</code></pre>
+
+    <h3>4.3 JSON-LD schema 类型清单</h3>
+    <p>
+      本站在不同页面输出对应的 schema.org 类型,全部以 <code>&lt;script type="application/ld+json"&gt;</code> 形式直写 HTML <code>&lt;head&gt;</code>。全站级与页面级 schema 清单如下:
+    </p>
+    <table>
+      <thead>
+        <tr><th>schema 类型</th><th>适用页面</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>Organization</code></td><td>全站</td><td>组织实体、联系点、sameAs 等。</td></tr>
+        <tr><td><code>WebSite</code></td><td>全站</td><td>站点信息,含 SearchAction 站内搜索。</td></tr>
+        <tr><td><code>WebApplication</code></td><td>全站</td><td>声明本站为号码服务 Web 应用。</td></tr>
+        <tr><td><code>BreadcrumbList</code></td><td>所有内页</td><td>面包屑导航结构化。</td></tr>
+        <tr><td><code>FAQPage</code></td><td>首页 / FAQ</td><td>问答结构化,便于 AI 直接引用答案。</td></tr>
+        <tr><td><code>Article</code> / <code>TechArticle</code></td><td>本技术文档页</td><td>技术文章结构化,提升技术引擎权重。</td></tr>
+        <tr><td><code>BlogPosting</code></td><td>号码百科文章</td><td>博客文章结构化。</td></tr>
+        <tr><td><code>HowTo</code></td><td>操作指南页</td><td>步骤化操作结构化。</td></tr>
+        <tr><td><code>AboutPage</code> / <code>ContactPage</code> / <code>WebPage</code></td><td>关于 / 联系 / 政策页</td><td>页面类型语义标注。</td></tr>
+      </tbody>
+    </table>
+
+    <h3>4.4 robots.txt AI 爬虫放行策略</h3>
+    <p>
+      Cloudflare 等 CDN 默认可能拦截部分 AI 爬虫,本站在 <code>robots.txt</code> 中<strong>显式放行</strong>主流 AI 训练、检索与用户浏览爬虫,并在 CDN 控制台对应放行。放行的 AI 爬虫 User-agent 包括:
+    </p>
+    <pre><code>{robotsExample}</code></pre>
+    <blockquote>
+      完整 robots.txt 见站点根目录 <code>/robots.txt</code>。除放行 AI 爬虫外,同时放行 Googlebot、Bingbot、Baiduspider、Sogou、360Spider 等传统搜索引擎。
+    </blockquote>
+  </section>
+
+  <!-- 5. 开源信息 -->
+  <section class="prose-content mb-10" id="opensource">
+    <h2>五、开源信息</h2>
+    <p>
+      号码通查采用主流现代前端技术栈构建,以下为技术栈、部署方式与内容更新机制的公开说明。
+    </p>
+
+    <h3>5.1 技术栈</h3>
+    <table>
+      <thead>
+        <tr><th>组件</th><th>技术</th><th>版本</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>站点框架</td><td>Astro</td><td>5.6+</td><td>SSG 静态生成,零运行时 JS。</td></tr>
+        <tr><td>样式方案</td><td>Tailwind CSS</td><td>3.4+</td><td>实用优先样式,构建期裁剪。</td></tr>
+        <tr><td>部署平台</td><td>Cloudflare Pages</td><td>—</td><td>全球 CDN 边缘分发 + Pages Functions。</td></tr>
+        <tr><td>号码解析</td><td>libphonenumber-js</td><td>1.12+</td><td>号码格式化与有效性校验。</td></tr>
+        <tr><td>内容集合</td><td>Astro Content Collections</td><td>—</td><td>Markdown 博客内容管理。</td></tr>
+      </tbody>
+    </table>
+
+    <h3>5.2 部署方式</h3>
+    <p>
+      采用 <strong>Git 自动部署</strong>:代码推送至主分支后,Cloudflare Pages 自动拉取、执行 <code>astro build</code> 构建命令,将产物分发至全球边缘节点。构建配置(<code>astro.config.mjs</code>)中开启 <code>inlineStylesheets: 'auto'</code> 以内联小样式表,并通过 <code>@astrojs/sitemap</code> 自动生成 sitemap。
+    </p>
+    <pre><code>{astroConfigSnippet}</code></pre>
+
+    <h3>5.3 内容更新机制</h3>
+    <p>
+      号码百科类深度文章采用 <strong>Markdown 内容集合(Content Collections)</strong> 管理,文章源文件存放于 <code>src/content/blog/</code> 目录,通过 <code>src/content.config.ts</code> 中定义的 Zod schema 校验 frontmatter 字段(title、description、pubDate、tags 等)。新增或修改 Markdown 文件后推送至主分支,即自动重新构建并更新 sitemap 与 RSS,形成<strong>内容新鲜度信号</strong>(GEO / SEO 的正向因素)。
+    </p>
+    <pre><code>{contentConfigSnippet}</code></pre>
+
+    <h3>5.4 站点资源索引</h3>
+    <ul>
+      <li><strong>站点地图:</strong><code>/sitemap-index.xml</code></li>
+      <li><strong>RSS 订阅:</strong><code>/rss.xml</code></li>
+      <li><strong>LLM 清单:</strong><code>/llms.txt</code>(中文)、<code>/llms-en.txt</code>(英文)</li>
+      <li><strong>爬虫策略:</strong><code>/robots.txt</code></li>
+    </ul>
+  </section>
+
+  <!-- 总结 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">文档总结</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      号码通查以 Astro 5 SSG + Cloudflare Pages + Tailwind CSS 构建零 JS 静态站点,通过 JSON-LD 直写 HTML、llms.txt 清单与 robots.txt AI 放行策略实现三层 GEO 爬虫框架。归属地查询 API 以 Cloudflare Pages Functions 服务端代理实现,上游 API Key 仅存于环境变量不外泄。数据来源覆盖聚合数据、中国信通院码号服务推进组、Truecaller 与授权合作方法人核验服务。如需进一步沟通,请访问<a href="/contact">联系我们</a>。
+    </p>
+  </section>
+</BaseLayout>

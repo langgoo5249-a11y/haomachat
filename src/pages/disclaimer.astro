@@ -1,0 +1,194 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '免责声明', url: '/disclaimer' },
+];
+
+const disclaimerSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: '免责声明 - 号码通查',
+  description:
+    '号码通查免责声明。本站提供号码标记查询与清除服务入口导航及知识科普,非直接服务提供商,不保证标记清除成功,展示第三方广告(如Google AdSense),诈骗类标记不在清除范围。',
+  url: 'https://haomachat.com/disclaimer',
+};
+
+const lastUpdated = '2026-07-06';
+---
+<BaseLayout
+  title="免责声明 - 号码通查"
+  description="号码通查免责声明。本站为号码标记查询与清除服务的入口导航及知识科普站,非直接服务提供商,不保证标记清除成功,第三方平台信息可能变化,展示第三方广告(如Google AdSense)但不对其内容负责。诈骗类标记不在本站清除范围。"
+  schema={[disclaimerSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">免责声明</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    本免责声明用于说明号码通查(haomachat.com)的服务性质、责任边界与使用风险。使用本站服务即表示您已阅读、理解并同意本声明的全部内容。本站由脏兮兮科技运营,提供号码标记查询与清除服务入口导航及知识科普,具体免责事项如下。
+  </p>
+
+  <p class="text-sm text-slate-400 mb-6">
+    最后更新日期:{lastUpdated}
+  </p>
+
+  <!-- 服务性质说明 -->
+  <section class="prose-content mb-8">
+    <h2>一、服务性质说明</h2>
+    <p>
+      号码通查是一个<strong>入口导航与知识科普</strong>平台,而非号码标记查询与清除服务的直接提供商。具体而言:
+    </p>
+    <ul>
+      <li>
+        <strong>非直接服务提供商:</strong>本站本身不直接执行号码标记查询与清除操作,仅聚合并提供通往授权合作方服务及官方平台的入口。
+      </li>
+      <li>
+        <strong>知识科普性质:</strong>本站提供的号码标记机制、号码认证原理、选号办卡指南等内容属于知识科普,仅供参考,不构成任何承诺或保证。
+      </li>
+      <li>
+        <strong>责任边界:</strong>本站对跳转至第三方平台后的实际查询与处理过程不参与、不控制,亦不承担相应责任。
+      </li>
+    </ul>
+  </section>
+
+  <!-- 不保证标记清除成功 -->
+  <section class="prose-content mb-8">
+    <h2>二、不保证标记清除成功</h2>
+    <p>
+      号码标记的清除结果受标记来源、平台规则、号码历史等多方因素影响,<strong>本站不保证任何标记均能成功清除</strong>。具体而言:
+    </p>
+    <ul>
+      <li>标记清除的实际操作由授权合作方或官方平台执行,处理时效与结果以相应平台为准;</li>
+      <li>部分标记可能因平台规则限制、号码状态或其他原因无法清除;</li>
+      <li>本站不对清除结果作出任何明示或暗示的成功保证。</li>
+    </ul>
+  </section>
+
+  <!-- 第三方平台信息可能变化 -->
+  <section class="prose-content mb-8">
+    <h2>三、第三方平台信息可能变化</h2>
+    <p>
+      本站提供的各平台申诉入口、处理时效、支持号码类型、所需材料等信息,可能随第三方平台的更新调整而变化。本站将尽力保持信息更新,但<strong>不保证所有信息实时准确</strong>。涉及具体操作时,请以各平台官方页面公布的最新信息为准:
+    </p>
+    <ul>
+      <li>授权合作方标记清除服务:xbh5.open10086.com;</li>
+      <li>中国信通院码号服务推进组:opene164.org.cn;</li>
+      <li>Truecaller:truecaller.com。</li>
+    </ul>
+  </section>
+
+  <!-- 号码数据来源说明 -->
+  <section class="prose-content mb-8">
+    <h2>四、号码数据来源说明</h2>
+    <p>
+      本站<strong>不存储用户输入的号码数据</strong>。用户在本站输入的手机号、座机号、400
+      号码等查询内容,不存入本站数据库,亦不在服务器日志中长期保留。号码标记查询与清除操作在授权合作方服务页面或官方平台完成,用户输入的号码直接提交至相应平台,本站不中转也不留存。本站展示的号码标记相关数据来源于中国信通院码号服务推进组与Truecaller等官方渠道。
+    </p>
+  </section>
+
+  <!-- 广告免责 -->
+  <section class="prose-content mb-8">
+    <h2>五、广告免责</h2>
+    <p>
+      本站可能展示第三方广告(包括但不限于 Google AdSense),以支持网站的持续运营。关于本站广告,本站作出以下免责声明:
+    </p>
+    <ul>
+      <li>
+        <strong>广告来源:</strong>本站展示的广告由第三方广告平台(如 Google AdSense)提供,广告内容由相应广告主与广告平台负责。
+      </li>
+      <li>
+        <strong>不对广告内容负责:</strong>本站不对广告内容的真实性、合法性、准确性、完整性承担责任,不对广告主的履约能力作出任何保证。
+      </li>
+      <li>
+        <strong>第三方交易:</strong>用户点击广告后离开本站进入第三方页面,相关交易、售后及争议适用广告主与第三方平台的规则,与本站无关。
+      </li>
+      <li>
+        <strong>个性化广告:</strong>第三方广告平台可能使用 Cookie 提供个性化广告,用户可访问 Google 广告设置管理个性化广告,详见 <a href="/cookie-policy">Cookie 政策</a>。
+      </li>
+    </ul>
+    <p>
+      用户应自行判断广告信息的可靠性,在做出消费或决策前核实广告内容。如发现违法广告,可向本站反馈,我们将协助联系广告平台处理。
+    </p>
+  </section>
+
+  <!-- 不构成法律建议 -->
+  <section class="prose-content mb-8">
+    <h2>六、不构成法律建议</h2>
+    <p>
+      本站提供的所有内容(包括但不限于文章、指南、对比表、FAQ 及本免责声明)均<strong>不构成法律建议</strong>。这些内容仅为一般性信息分享与知识科普,不构成律师与客户关系,亦不能替代专业法律意见。如您遇到具体的法律问题(如号码标记纠纷、电信诈骗维权、个人信息保护等),建议咨询具备相应资质的执业律师或相关主管部门。
+    </p>
+  </section>
+
+  <!-- 知识产权免责 -->
+  <section class="prose-content mb-8">
+    <h2>七、知识产权免责</h2>
+    <p>
+      本站原创内容(文章、指南、对比表、页面设计、标识等)的版权归号码通查所有。同时,本站就知识产权作如下免责声明:
+    </p>
+    <ul>
+      <li>
+        <strong>第三方权利:</strong>本站引用的第三方平台名称、商标、标识等,其知识产权归相应权利人所有,本站仅作指明用途的合理使用,不主张任何权利。
+      </li>
+      <li>
+        <strong>内容准确性:</strong>本站尽力确保内容准确,但不对内容的绝对准确性、完整性作出保证;如发现内容错误,欢迎通过 <a href="/contact">联系我们</a> 反馈。
+      </li>
+      <li>
+        <strong>侵权处理:</strong>如认为本站内容侵犯了您的合法权益,请通过 <a href="/contact">联系我们</a> 提供权属证明,我们将在核实后及时处理。
+      </li>
+    </ul>
+  </section>
+
+  <!-- 诈骗标记不在清除范围 -->
+  <section class="prose-content mb-8">
+    <h2>八、诈骗标记不在清除范围</h2>
+    <p>
+      特别声明:<strong>涉嫌电信网络诈骗等违法犯罪的号码标记,不在本站(及关联合作方/官方平台)的标记清除服务范围之内</strong>。具体而言:
+    </p>
+    <ul>
+      <li>
+        诈骗类标记通常由公安机关、反诈中心或相关主管部门依法标记与处置,属于司法或行政执法范畴。
+      </li>
+      <li>
+        本站及关联服务<strong>不会、亦无权</strong>协助清除因诈骗、骚扰等违法行为产生的标记。
+      </li>
+      <li>
+        如您的号码被误标记为诈骗,建议通过官方反诈渠道(如国家反诈中心)或相应主管部门依法申诉,切勿寻求非正规渠道"洗白"标记。
+      </li>
+    </ul>
+    <blockquote>
+      提示:本站坚决反对任何利用号码标记服务为违法犯罪行为"洗白"的企图,对涉嫌违法的请求将不予受理。
+    </blockquote>
+  </section>
+
+  <!-- 声明更新 -->
+  <section class="prose-content mb-8">
+    <h2>九、声明更新</h2>
+    <p>
+      本免责声明可能随业务发展或法律法规变化而更新。更新后将在本页面公布最新版本,并更新"最后更新日期"。建议用户定期查阅本页面以获取最新信息。<strong>本声明的解释以本页最新版本为准</strong>。
+    </p>
+  </section>
+
+  <!-- 联系方式 -->
+  <section class="prose-content mb-8">
+    <h2>十、联系方式</h2>
+    <p>
+      如您对本免责声明有任何疑问或建议,或认为本站存在需要说明的情形,请通过以下方式与我们联系:
+    </p>
+    <ul>
+      <li><strong>微信:</strong>SXLH-888(添加时请备注"号码通查")</li>
+      <li><strong>邮箱:</strong>644428571@qq.com</li>
+      <li><strong>在线反馈:</strong>可通过 <a href="/contact">联系我们</a> 页面的在线反馈表单提交</li>
+    </ul>
+    <p>
+      我们将在工作日 24 小时内回复。相关文档亦可参阅 <a href="/privacy">隐私政策</a>、<a href="/terms">服务条款</a> 与 <a href="/cookie-policy">Cookie 政策</a>。
+    </p>
+  </section>
+
+  <!-- 免责总述 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">免责总述</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      号码通查为入口导航与知识科普平台,非直接服务提供商;不保证标记清除成功,第三方平台信息可能变化;本站不存储号码数据;展示第三方广告(如 Google AdSense)但不对广告内容负责;本站内容不构成法律建议;涉嫌诈骗等违法犯罪的号码标记不在清除范围。使用本站服务即视为您已理解并接受上述免责事项。
+    </p>
+  </section>
+</BaseLayout>

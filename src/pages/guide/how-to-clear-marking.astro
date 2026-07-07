@@ -4,7 +4,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '指南', url: '/guide/what-is-number-marking' },
   { name: '如何清除号码标记', url: '/guide/how-to-clear-marking' },
 ];
 
@@ -60,11 +59,28 @@ const howToSchema = {
     { '@type': 'HowToStep', position: 5, name: '等待审核', text: '提交后等待1-3个工作日审核,通过后标记清除' },
   ],
 };
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '如何清除号码标记？清除教程与材料清单',
+  description: '分渠道号码标记清除教程,含清除服务入口、信通院一站式清除、Truecaller取消收录,及申诉材料清单',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-06',
+  author: { '@type': 'Organization', name: '号码通查', url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  },
+  image: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  mainEntityOfPage: 'https://haomachat.com/guide/how-to-clear-marking',
+};
 ---
 <BaseLayout
   title="如何清除号码标记？清除教程与材料清单 | 号码通查"
   description="清除号码标记可通过标记清除服务、中国信通院码号服务推进组(opene164.org.cn)与Truecaller三个渠道提交申诉。推荐优先使用标记清除服务(支持手机号与座机号),再到信通院清除(联通号可一站式清除),海外标记到Truecaller取消收录。本文附清除步骤、材料清单与时效说明。"
-  schema={[faqSchema, howToSchema]}
+  schema={[articleSchema, faqSchema, howToSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">如何清除号码标记？清除教程与材料清单</h1>

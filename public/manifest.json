@@ -1,0 +1,21 @@
+{
+  "name": "号码通查 - 号码标记查询与清除服务",
+  "short_name": "号码通查",
+  "description": "免费号码标记查询与清除服务,手机号与座机号均支持。聚合中国信通院与Truecaller官方入口。",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "lang": "zh-CN",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["utilities", "productivity"],
+  "dir": "ltr"
+}

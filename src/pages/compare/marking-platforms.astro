@@ -5,15 +5,30 @@ const platforms = platformsData.platforms;
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '对比', url: '/compare/marking-platforms' },
   { name: '号码标记清除渠道对比', url: '/compare/marking-platforms' },
 ];
 
 const isUrl = (s) => typeof s === 'string' && s.startsWith('http');
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '号码标记清除渠道对比',
+  description: '标记清除服务、中国信通院码号服务推进组、Truecaller三渠道详细对比',
+  author: { '@type': 'Organization', name: '号码通查', url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg' },
+  },
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-06',
+};
 ---
 <BaseLayout
   title="号码标记清除渠道对比 - 标记服务/信通院/Truecaller | 号码通查"
   description="号码标记查询与清除渠道对比表,包括标记清除服务(支持手机号与座机号)、中国信通院码号服务推进组(官方跨平台入口)、Truecaller(全球来电识别),从类型、支持号码、费用、特点等维度对比,帮助用户选择正确的清除渠道。"
+  schema={[articleSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码标记清除渠道对比</h1>

@@ -5,17 +5,32 @@ const providers = authProvidersData.providers;
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '对比', url: '/compare/marking-platforms' },
   { name: '号码认证服务商对比', url: '/compare/auth-providers' },
 ];
 
 // GEO: 数据点与来源
 // 数据点: 共对比 10 家号码认证服务商;全部支持三网覆盖;多数已支持鸿蒙原生
 // 来源: 网易易盾官方文档、阿里云号码认证PNVS文档、极光JVerification文档
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '号码认证服务商对比',
+  description: '网易易盾、秒验、极光等10家号码认证服务商详细对比',
+  author: { '@type': 'Organization', name: '号码通查', url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg' },
+  },
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-06',
+};
 ---
 <BaseLayout
   title="号码认证服务商对比 - 网易易盾/极光/阿里云等10家对比 | 号码通查"
   description="国内主流号码认证(一键登录/本机号码校验)服务商对比表,包括网易易盾、MobTech秒验、极光JVerification、个推、友盟U-Verify、阿里云PNVS、百度云、闪验、容联云、聚合数据共10家,从三网覆盖、核心特点、计费方式、功能支持、鸿蒙适配等维度对比。"
+  schema={[articleSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码认证服务商对比</h1>

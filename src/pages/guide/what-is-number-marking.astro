@@ -4,7 +4,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '指南', url: '/guide/what-is-number-marking' },
   { name: '号码标记是什么', url: '/guide/what-is-number-marking' },
 ];
 
@@ -38,11 +37,28 @@ const faqSchema = {
     },
   ],
 };
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '号码标记是什么？号码被标记的原因与机制详解',
+  description: '详解号码标记的来源、众包标记机制、企业认证标记与第三方号码库,以及来电显示规则',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-06',
+  author: { '@type': 'Organization', name: '号码通查', url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  },
+  image: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  mainEntityOfPage: 'https://haomachat.com/guide/what-is-number-marking',
+};
 ---
 <BaseLayout
   title="号码标记是什么？号码被标记的原因与机制详解 | 号码通查"
   description="号码标记是指手机来电时终端安全软件根据号码库数据显示骚扰、推销、诈骗等标签的功能。标记来源包括众包用户标记、企业认证和第三方号码库(泰迪熊/电话邦)。本文详解标记机制、各平台阈值及对企业个人的影响。"
-  schema={[faqSchema]}
+  schema={[articleSchema, faqSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码标记是什么？号码被标记的原因与机制详解</h1>

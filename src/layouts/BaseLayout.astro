@@ -17,6 +17,10 @@ export interface Props {
   /** 是否在页面正文前插入 AI 摘要(AI 友好) */
   noindex?: boolean;
   canonical?: string;
+  /** 页面级 og:image 路径(默认用全站通用图) */
+  ogImage?: string;
+  /** og:type, 默认 website */
+  ogType?: string;
 }
 
 const {
@@ -27,12 +31,28 @@ const {
   breadcrumbs = [],
   noindex = false,
   canonical,
+  ogImage,
+  ogType = 'website',
 } = Astro.props;
 
 const site = Astro.site?.toString().replace(/\/$/, '') || 'https://haomachat.com';
 const canonicalUrl = canonical || new URL(Astro.url.pathname, site).toString();
+const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
 
-// 全站级 Organization schema
+// OG 图片: 页面级优先, 否则用全站默认图
+const ogImageUrl = ogImage
+  ? (ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`)
+  : `${site}/og-default.jpg`;
+
+// hreflang: 中英文 alternate
+const currentPath = Astro.url.pathname;
+const isEnPage = currentPath.startsWith('/en/');
+const zhUrl = isEnPage ? `${site}${currentPath.replace(/^\/en/, '')}` : canonicalUrl;
+const enUrl = isEnPage ? canonicalUrl : `${site}/en${currentPath === '/' ? '' : currentPath}`;
+
+// 全站级 Organization schema(补全 contactPoint/sameAs 等)
+// sameAs 链接中文权威源: 信通院/工信部/百度百科/微信公众号/知乎
+// 国产AI模型(元宝/千问/豆包)对 sameAs 中的中文权威源权重很高
 const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -40,10 +60,48 @@ const orgSchema = {
   name: '号码通查',
   alternateName: 'haomachat',
   url: site,
-  logo: `${site}/favicon.svg`,
+  logo: {
+    '@type': 'ImageObject',
+    url: `${site}/og-default.jpg`,
+    width: 1200,
+    height: 630,
+  },
   description: '免费电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。',
   knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '法人号码核验', '手机卡选号'],
-  sameAs: [],
+  sameAs: [
+    'https://github.com/jm6-lang/haomachat',
+    'https://www.opene164.org.cn',
+    'https://www.miit.gov.cn',
+    'https://www.caict.ac.cn',
+  ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    availableLanguage: ['Chinese', 'English'],
+    email: '644428571@qq.com',
+  },
+  foundingDate: '2026',
+};
+
+// WebSite schema (含 SearchAction, 用于 Google 站点搜索框)
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${site}/#website`,
+  url: site,
+  name: '号码通查',
+  alternateName: 'haomachat',
+  description: '号码标记查询与清除服务,手机号与座机号均支持',
+  inLanguage: 'zh-CN',
+  publisher: { '@id': `${site}/#organization` },
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: {
+      '@type': 'EntryPoint',
+      urlTemplate: `${site}/faq?q={search_term_string}`,
+    },
+    'query-input': 'required name=search_term_string',
+  },
 };
 
 // WebApplication schema
@@ -54,8 +112,9 @@ const appSchema = {
   applicationCategory: 'TelephonyApplication',
   operatingSystem: 'Web',
   url: site,
-  offers: { '@type': 'Offer', price: '0', 'priceCurrency': 'CNY' },
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
   description: '免费号码归属地查询、号码标记自查与清除指引工具',
+  publisher: { '@id': `${site}/#organization` },
 };
 
 // 面包屑 schema
@@ -73,21 +132,53 @@ const breadcrumbSchema =
       }
     : null;
 
-const allSchema = [orgSchema, appSchema, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...schema];
-const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
+const allSchema = [orgSchema, websiteSchema, appSchema, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...schema];
 ---
 <!doctype html>
 <html lang={htmlLang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#2563eb" />
+    <meta name="author" content="号码通查" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
-    <link rel="alternate" type="application/rss+xml" title="号码通查博客" href="/rss.xml" />
+
+    <!-- AI 内容发现: llms.txt (供 AI 爬虫发现站点内容目录) -->
+    <link rel="llms" type="text/plain" href="/llms.txt" />
+    <link rel="llms-full" type="text/plain" href="/llms-full.txt" />
+
+    <!-- hreflang: 中英文 alternate -->
+    <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
+    <link rel="alternate" hreflang="en" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={site} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={ogType} />
+    <meta property="og:site_name" content="号码通查" />
+    <meta property="og:locale" content={lang === 'en' ? 'en_US' : 'zh_CN'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="号码通查 - 号码标记查询与清除服务" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <link rel="alternate" type="application/rss+xml" title="号码通查号码百科" href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+
     <!-- JSON-LD: 直接写入 HTML, 不用 JS 注入(GEO 关键) -->
     {allSchema.map((s) => (
       <script type="application/ld+json" set:html={JSON.stringify(s)} />

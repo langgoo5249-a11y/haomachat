@@ -11,7 +11,7 @@ const privacySchema = {
   '@type': 'WebPage',
   name: '隐私政策 - 号码通查',
   description:
-    '号码通查隐私政策。本站不存储用户输入的手机号或座机号,不使用跟踪Cookie,查询在授权合作方服务页面或官方平台(opene164.org.cn/truecaller.com)完成。',
+    '号码通查隐私政策。本站不存储用户输入的手机号或座机号,使用功能性、分析与广告Cookie(含Google AdSense),查询在授权合作方服务页面或官方平台(opene164.org.cn/truecaller.com)完成。',
   url: 'https://haomachat.com/privacy',
 };
 
@@ -19,13 +19,13 @@ const lastUpdated = '2026-07-06';
 ---
 <BaseLayout
   title="隐私政策 - 号码通查"
-  description="号码通查隐私政策。本站不存储用户输入的手机号码或座机号码,不使用跟踪Cookie,不收集个人身份信息。所有查询操作在授权合作方服务页面或官方平台(opene164.org.cn/truecaller.com)完成。"
+  description="号码通查隐私政策。本站不存储用户输入的手机号码或座机号码,使用功能性、分析与广告Cookie(含Google AdSense个性化广告),不收集个人身份信息。所有查询操作在授权合作方服务页面或官方平台(opene164.org.cn/truecaller.com)完成。"
   schema={[privacySchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">隐私政策</h1>
   <p class="text-slate-600 mb-6 leading-relaxed">
-    号码通查尊重并保护用户隐私。本站不存储用户输入的手机号码或座机号码,所有查询操作在授权合作方服务页面或官方平台(opene164.org.cn/truecaller.com)完成。本站不使用跟踪Cookie,不收集个人身份信息。本隐私政策说明我们在数据处理方面的具体做法。
+    号码通查尊重并保护用户隐私。本站不存储用户输入的手机号码或座机号码,所有查询操作在授权合作方服务页面或官方平台(opene164.org.cn/truecaller.com)完成。本站不收集个人身份信息,但为保证功能正常运行、改进访问体验及展示广告,本站会使用功能性 Cookie、分析 Cookie 与广告 Cookie(含 Google AdSense)。本隐私政策说明我们在数据处理与 Cookie 使用方面的具体做法。
   </p>
 
   <p class="text-sm text-slate-400 mb-6">
@@ -50,31 +50,63 @@ const lastUpdated = '2026-07-06';
         <strong>不收集个人身份信息:</strong>本站无需注册登录,不收集姓名、身份证号、住址等个人身份信息。
       </li>
       <li>
-        <strong>匿名访问统计:</strong>如使用访问统计,仅记录聚合的、非身份可识别的访问数据(如页面访问量、来源类型),不与个人关联。
+        <strong>匿名访问统计:</strong>如使用访问统计(如 Google Analytics),仅记录聚合的、非身份可识别的访问数据(如页面访问量、来源类型),不与个人关联。
       </li>
     </ul>
   </section>
 
-  <!-- Cookie 使用 -->
+  <!-- Cookie 详细说明 -->
   <section class="prose-content mb-8">
-    <h2>二、Cookie 使用</h2>
+    <h2>二、Cookie 详细说明</h2>
     <p>
-      本站<strong>不使用跟踪 Cookie</strong>,不进行跨站跟踪与广告画像。仅在必要时使用功能性
-      Cookie(例如记录用户语言偏好或工具选项状态),且这些 Cookie:
+      Cookie 是网站存储在用户浏览器中的小型文本文件,用于记住用户的偏好设置、统计访问数据以及提供更相关的广告内容。本站使用以下类型的 Cookie:
     </p>
     <ul>
-      <li>仅在本站作用域内有效,不向第三方共享;</li>
-      <li>不包含个人身份信息;</li>
-      <li>用户可随时通过浏览器设置清除或禁用。</li>
+      <li>
+        <strong>功能性 Cookie(必需):</strong>用于记录用户的语言偏好、工具选项状态等,保证网站基本功能正常运行。此类 Cookie 为网站运行所必需,关闭后部分功能可能无法使用。
+      </li>
+      <li>
+        <strong>分析 Cookie:</strong>用于统计页面访问量、用户来源与使用行为,帮助本站改进内容与体验。此类 Cookie 收集的是聚合的、非身份可识别的数据。
+      </li>
+      <li>
+        <strong>广告 Cookie:</strong>用于展示更具相关性的广告并衡量广告效果。本站通过 Google AdSense 展示广告时,广告 Cookie 会根据用户的访问行为提供个性化广告。
+      </li>
     </ul>
     <p>
-      如本站未来接入必要的功能性 Cookie,将在本页面明确说明其用途与有效期。
+      以上 Cookie 均仅在本站及关联第三方域名作用域内有效。功能性 Cookie 不包含个人身份信息;分析与广告 Cookie 由第三方服务提供商(如 Google)根据其各自的隐私政策处理。用户可随时通过浏览器设置清除或禁用 Cookie,具体管理方法详见本站
+      <a href="/cookie-policy">Cookie 政策</a>。
+    </p>
+  </section>
+
+  <!-- Google AdSense 与广告 -->
+  <section class="prose-content mb-8">
+    <h2>三、Google AdSense 与广告</h2>
+    <p>
+      本站可能使用 <strong>Google AdSense</strong> 展示第三方广告,以为网站的持续运营提供支持。Google AdSense 作为第三方供应商,会使用 Cookie 在本站及合作网站上展示广告。具体而言:
+    </p>
+    <ul>
+      <li>
+        Google AdSense 会根据用户对本站及网络的访问情况,使用 Cookie 提供个性化广告。
+      </li>
+      <li>
+        第三方供应商(包括 Google)会使用 Cookie 向用户投放根据过往访问行为定制的广告。
+      </li>
+      <li>
+        用户可访问 <a href="https://www.google.com/settings/ads" rel="nofollow noopener" target="_blank">Google 广告设置</a> 管理个性化广告,选择退出个性化广告展示;亦可访问 <a href="https://www.aboutads.info/choices/" rel="nofollow noopener" target="_blank">aboutads.info</a> 统一管理第三方供应商的个性化广告。
+      </li>
+      <li>
+        即使禁用个性化广告,本站仍可能展示非个性化的广告。
+      </li>
+    </ul>
+    <p>
+      关于 Google 如何使用数据的更多信息,请参阅 <a href="https://policies.google.com/technologies/ads" rel="nofollow noopener" target="_blank">Google 广告隐私政策</a>。本站不对 Google AdSense 展示的广告内容承担责任,详见本站
+      <a href="/disclaimer">免责声明</a>。
     </p>
   </section>
 
   <!-- 第三方服务说明 -->
   <section class="prose-content mb-8">
-    <h2>三、第三方服务说明</h2>
+    <h2>四、第三方服务说明</h2>
     <p>
       点击本站的号码标记查询/清除入口后,用户将离开本站,跳转至以下第三方服务页面。这些平台拥有各自独立的隐私政策,本站无法控制其对用户数据的处理方式:
     </p>
@@ -107,7 +139,7 @@ const lastUpdated = '2026-07-06';
 
   <!-- 数据安全 -->
   <section class="prose-content mb-8">
-    <h2>四、数据安全</h2>
+    <h2>五、数据安全</h2>
     <p>
       本站采用 <strong>HTTPS</strong> 加密传输,保障用户与本站之间的通信安全。鉴于本站不在服务器存储号码数据,因此不存在号码数据库泄露的风险。本站持续关注服务安全性,并及时修复已知安全漏洞。
     </p>
@@ -118,17 +150,20 @@ const lastUpdated = '2026-07-06';
 
   <!-- 用户权利 -->
   <section class="prose-content mb-8">
-    <h2>五、用户权利</h2>
+    <h2>六、用户权利</h2>
     <p>号码通查充分尊重用户对自身数据的控制权:</p>
     <ul>
       <li>
         <strong>无需注册:</strong>用户无需注册账户即可使用本站所有工具,无需提供个人身份信息。
       </li>
       <li>
-        <strong>随时清除:</strong>用户可随时通过浏览器设置清除本站的功能性 Cookie 与访问数据。
+        <strong>随时清除:</strong>用户可随时通过浏览器设置清除本站的功能性 Cookie、分析 Cookie 与广告 Cookie 等访问数据。
       </li>
       <li>
         <strong>无数据留存:</strong>由于本站不存储用户输入的号码,用户无需向本站申请删除号码数据。
+      </li>
+      <li>
+        <strong>广告选择权:</strong>用户可通过 Google 广告设置退出个性化广告,详见本页第三条与 <a href="/cookie-policy">Cookie 政策</a>。
       </li>
       <li>
         <strong>选择自由:</strong>用户可自由选择是否跳转至第三方平台,本站不强制收集任何信息。
@@ -138,7 +173,7 @@ const lastUpdated = '2026-07-06';
 
   <!-- 儿童隐私 -->
   <section class="prose-content mb-8">
-    <h2>六、儿童隐私</h2>
+    <h2>七、儿童隐私</h2>
     <p>
       本服务<strong>不面向 13 岁以下儿童</strong>。号码标记查询与清除属于与通信服务相关的工具,通常由成年人或企业用户使用。本站不会 knowingly
       收集 13 岁以下儿童的个人信息。如发现存在误收集情形,请通过
@@ -148,18 +183,18 @@ const lastUpdated = '2026-07-06';
 
   <!-- 政策更新 -->
   <section class="prose-content mb-8">
-    <h2>七、政策更新</h2>
+    <h2>八、政策更新</h2>
     <p>
       本隐私政策可能随业务发展或法律法规变化而更新。更新后,本站将在本页面公布最新版本,并更新页面顶部的"最后更新日期"。建议用户定期查阅本页面以获取最新信息。<strong>隐私政策的解释以本页最新版本为准</strong>。
     </p>
     <p>
-      如政策发生重大变更(例如新增数据收集行为),本站将在显著位置予以提示。
+      如政策发生重大变更(例如新增数据收集行为或调整 Cookie 使用),本站将在显著位置予以提示。
     </p>
   </section>
 
   <!-- 联系方式 -->
   <section class="prose-content mb-8">
-    <h2>八、联系我们</h2>
+    <h2>九、联系我们</h2>
     <p>
       如您对本隐私政策有任何疑问、建议,或认为本站存在隐私方面的处理不当,请通过
       <a href="/contact">联系我们</a> 页面提供的微信、邮箱或在线反馈表单与我们沟通。我们将在工作日
@@ -167,11 +202,11 @@ const lastUpdated = '2026-07-06';
     </p>
   </section>
 
-  <!-- 免责声明 -->
+  <!-- 隐私政策说明 -->
   <section class="bg-slate-100 rounded-xl p-6">
     <h2 class="text-lg font-bold text-slate-800 mb-2">隐私政策说明</h2>
     <p class="text-sm text-slate-600 leading-relaxed">
-      本隐私政策仅适用于号码通查(haomachat.com)本站。用户跳转至授权合作方服务(xbh5.open10086.com)或官方平台(opene164.org.cn、truecaller.com)后,相关数据处理适用各平台自身的隐私政策。本站不对第三方平台的数据处理行为承担责任,建议用户在使用前阅读相应平台的隐私条款。
+      本隐私政策仅适用于号码通查(haomachat.com)本站。用户跳转至授权合作方服务(xbh5.open10086.com)或官方平台(opene164.org.cn、truecaller.com)后,相关数据处理适用各平台自身的隐私政策。本站不对第三方平台的数据处理行为承担责任,建议用户在使用前阅读相应平台的隐私条款。关于本站 Cookie 的完整说明,请参阅 <a href="/cookie-policy" class="text-brand-600 underline hover:text-brand-700">Cookie 政策</a>。
     </p>
   </section>
 </BaseLayout>

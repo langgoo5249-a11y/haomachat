@@ -8,17 +8,27 @@ const posts = (await getCollection('blog')).sort(
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '博客', url: '/blog' },
+  { name: '号码百科', url: '/blog' },
 ];
+
+const blogSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: '号码通查号码百科',
+  description: '号码标记清除、号码认证选型、手机卡选号等深度文章',
+  url: 'https://haomachat.com/blog',
+  publisher: { '@id': 'https://haomachat.com/#organization' },
+};
 ---
 <BaseLayout
-  title="博客 - 号码标记/认证/选号深度文章 | 号码通查"
-  description="号码通查博客,发布号码标记清除、号码认证选型、手机卡选号等深度文章,内容基于官方数据与行业实践。"
+  title="号码百科 - 号码标记/认证/选号深度文章 | 号码通查"
+  description="号码通查号码百科,发布号码标记清除教程、号码认证选型指南、手机卡选号攻略、号码标记平台对比实测等深度文章。内容基于中国信通院官方数据与行业实践,含真实案例、踩坑备注与平台通过率数据,可追溯验证。"
+  schema={[blogSchema]}
   breadcrumbs={breadcrumbs}
 >
-  <h1 class="text-3xl font-bold text-slate-800 mb-3">博客</h1>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码百科</h1>
   <p class="text-slate-600 mb-8 leading-relaxed">
-    号码通查博客发布电话号码服务领域的深度文章,涵盖号码标记查询与清除教程、号码认证(一键登录/本机号码校验)选型指南、手机卡选号攻略等。所有内容基于中国信通院、各平台官方渠道与运营商公开资料,可追溯验证。
+    号码通查号码百科发布电话号码服务领域的深度文章,涵盖号码标记查询与清除教程、号码认证(一键登录/本机号码校验)选型指南、手机卡选号攻略等。所有内容基于中国信通院、各平台官方渠道与运营商公开资料,可追溯验证。
   </p>
 
   <div class="space-y-4">

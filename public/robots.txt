@@ -6,6 +6,8 @@ User-agent: *
 Allow: /
 
 # === AI 检索/引用爬虫(允许) ===
+
+# OpenAI (训练 + 搜索索引 + 用户实时浏览)
 User-agent: GPTBot
 Allow: /
 
@@ -15,28 +17,60 @@ Allow: /
 User-agent: ChatGPT-User
 Allow: /
 
+# Anthropic (训练 + 搜索 + 用户)
 User-agent: ClaudeBot
 Allow: /
 
 User-agent: Claude-SearchBot
 Allow: /
 
+User-agent: Claude-User
+Allow: /
+
+# Perplexity (爬虫 + 用户实时浏览)
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
+# Google AI (训练opt-out控制)
 User-agent: Google-Extended
 Allow: /
 
+# Apple AI (训练opt-out控制)
 User-agent: Applebot-Extended
 Allow: /
 
+# Meta AI
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: meta-externalfetcher
+Allow: /
+
+# 字节跳动 (豆包/TikTok)
 User-agent: Bytespider
 Allow: /
 
+# Common Crawl (公共数据集)
 User-agent: CCBot
 Allow: /
 
+# Amazon AI
 User-agent: Amazonbot
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# DuckDuckGo AI
+User-agent: DuckAssistBot
+Allow: /
+
+# You.com AI
+User-agent: YouBot
 Allow: /
 
 # === 传统搜索引擎 ===
@@ -55,5 +89,9 @@ Allow: /
 User-agent: 360Spider
 Allow: /
 
-# Sitemap
+# Sitemap (标准 XML sitemap,所有爬虫共用)
 Sitemap: https://haomachat.com/sitemap-index.xml
+
+# AI 内容发现文件 (非标准,供 AI 工具读取)
+# llms.txt: 全站页面目录(链接列表)
+# llms-full.txt: 全站页面完整内容摘要(构建时自动生成)

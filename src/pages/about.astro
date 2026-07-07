@@ -12,6 +12,14 @@ const aboutSchema = {
   name: '关于号码通查',
   description: '号码通查提供号码标记查询与清除服务,手机号与座机号均支持。由脏兮兮科技运营,标记清除服务由授权合作方提供,数据来源中国信通院与Truecaller。',
   url: 'https://haomachat.com/about',
+  lastReviewed: '2026-07-06',
+  mainEntity: {
+    '@type': 'Organization',
+    name: '脏兮兮科技',
+    url: 'https://haomachat.com',
+    description:
+      '号码通查运营方,提供号码标记查询与清除服务入口导航及号码知识科普,数据来源中国信通院码号服务推进组与Truecaller。',
+  },
 };
 ---
 <BaseLayout
@@ -53,6 +61,31 @@ const aboutSchema = {
     </ul>
   </section>
 
+  <!-- 专业领域 -->
+  <section class="prose-content mb-8">
+    <h2>专业领域</h2>
+    <p>
+      号码标记是一个涉及多方平台、政策法规与技术机制的细分领域。我们在长期运营过程中持续积累相关专业知识与实践经验,力求为用户提供准确、有参考价值的指导。
+    </p>
+    <h3>号码标记领域关键知识点</h3>
+    <p>我们在以下知识点上持续跟踪与整理:</p>
+    <ul>
+      <li><strong>标记来源:</strong>掌握各主流标记平台(360、腾讯、百度、华为、小米、Truecaller 等)的标记数据来源与判定逻辑。</li>
+      <li><strong>清除流程:</strong>熟悉各平台的号码标记申诉与清除入口、所需材料、处理时效及注意事项。</li>
+      <li><strong>平台差异:</strong>了解不同手机厂商(华为/小米/OPPO/vivo)、运营商及第三方 App 之间标记体系的差异与互通机制。</li>
+      <li><strong>号码认证:</strong>理解运营商号码认证服务(如移动号码认证、联通沃认证)的原理与办理方式。</li>
+      <li><strong>合规边界:</strong>清楚各平台申诉规则与个人信息保护相关法规的边界,确保推荐流程合规。</li>
+    </ul>
+    <h3>运营团队经验</h3>
+    <p>
+      运营团队在号码服务领域持续深耕,长期跟踪国内主流标记平台的政策更新与产品变化,并持续为用户解答号码标记相关的实际疑问。团队成员熟悉号码标记从产生到清除的完整链路,能够针对不同场景(个人号码、企业固话、客服外呼等)提供有针对性的处理建议。
+    </p>
+    <h3>技术对接经验</h3>
+    <p>
+      我们与授权合作方完成了标记查询与清除服务的技术对接,熟悉合作方服务页面的接入方式、参数规范与异常处理流程。同时,本站号码归属地查询通过聚合数据 API 实现接入,具备第三方数据接口的集成与日常维护经验。
+    </p>
+  </section>
+
   <!-- 合作方说明 -->
   <section class="prose-content mb-8">
     <h2>合作方服务说明</h2>
@@ -75,6 +108,30 @@ const aboutSchema = {
     </ul>
   </section>
 
+  <!-- 我们的方法论 -->
+  <section class="prose-content mb-8">
+    <h2>我们的方法论</h2>
+    <p>
+      号码通查在内容创作与数据维护上遵循标准化流程,确保每一条信息都经过核实与验证,以保证用户获得准确、可参考的内容。
+    </p>
+    <h3>内容创作流程</h3>
+    <p>我们对所有发布内容执行四步流程:</p>
+    <ol>
+      <li><strong>数据采集:</strong>从官方平台、运营商公告、行业报告等公开渠道收集一手信息。</li>
+      <li><strong>官方渠道核实:</strong>对每条信息交叉比对官方来源(中国信通院、Truecaller、运营商官方文档等),确认其准确性。</li>
+      <li><strong>实测验证:</strong>对涉及操作流程的内容(如申诉入口、清除步骤)进行实际操作验证,确保步骤可用。</li>
+      <li><strong>发布:</strong>核实与验证通过后,标注数据来源与更新日期,正式发布上线。</li>
+    </ol>
+    <h3>数据更新频率</h3>
+    <p>
+      我们每季度对全站平台通过率与申诉时效数据进行一次全面更新,重点核对各平台申诉入口的有效性与处理周期。如遇平台重大调整(如下线、改版、政策变化),会在第一时间核实并更新相关内容。
+    </p>
+    <h3>来源可追溯</h3>
+    <p>
+      所有数据来源均标注出处与可访问链接,用户可点击原始链接自行验证。涉及第三方数据的页面,均在文中或文末明确标注数据提供方。
+    </p>
+  </section>
+
   <!-- 可信度承诺 -->
   <section class="prose-content mb-8">
     <h2>可信度承诺</h2>
@@ -90,6 +147,101 @@ const aboutSchema = {
         <tr><td>持续维护</td><td>定期检查各入口有效性,发现失效及时更新</td></tr>
       </tbody>
     </table>
+  </section>
+
+  <!-- 数据透明度 -->
+  <section class="prose-content mb-8">
+    <h2>数据透明度</h2>
+    <p>
+      我们坚持数据来源公开透明,欢迎用户监督与验证。以下为本站数据来源与隐私保护的公开声明。
+    </p>
+    <h3>数据来源公开声明</h3>
+    <p>本站所引用的数据与信息均来自以下公开渠道:</p>
+    <ul>
+      <li><strong>中国信息通信研究院码号服务推进组</strong>(opene164.org.cn):国内号码标记跨平台申诉的官方入口。</li>
+      <li><strong>Truecaller</strong>(truecaller.com):全球来电识别与标记服务平台。</li>
+      <li><strong>聚合数据</strong>(juhe.cn):号码归属地查询接口提供方。</li>
+      <li><strong>运营商官方渠道</strong>:中国移动、中国联通、中国电信的号码认证与申诉公开文档。</li>
+    </ul>
+    <p>所有引用数据均标注出处,不进行二次加工或主观解读;涉及数据可能随平台更新而变化,以各平台官方页面为准。</p>
+    <h3>隐私承诺</h3>
+    <ul>
+      <li><strong>不存储号码:</strong>用户在本站输入的号码不存入数据库,查询操作在合作方或官方页面完成。</li>
+      <li><strong>查询免费:</strong>标记查询服务免费,不向用户收取任何查询费用。</li>
+      <li><strong>来源透明:</strong>每个服务入口均明确标注来源与性质,不冒充官方机构。</li>
+    </ul>
+    <p>
+      详细的隐私保护说明请参阅<a href="/privacy">隐私政策</a>;本站内容与服务边界说明请参阅<a href="/disclaimer">免责声明</a>。
+    </p>
+  </section>
+
+  <!-- 内容更新日志 -->
+  <section class="prose-content mb-8">
+    <h2>内容更新日志</h2>
+    <p>
+      为保证内容的时效性与准确性,我们持续维护并记录每次重要内容更新。以下为最近的内容更新记录。
+    </p>
+    <table>
+      <thead>
+        <tr><th>日期</th><th>更新内容</th><th>影响页面</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2026-07-06</td><td>新增技术文档页面,补充 API 说明</td><td>/tech-docs</td></tr>
+        <tr><td>2026-07-06</td><td>补充四大法律页面,含 Cookie 与 AdSense 条款</td><td>/privacy /terms /disclaimer /cookie-policy</td></tr>
+        <tr><td>2026-07-06</td><td>新增 3 篇号码百科深度文章</td><td>/blog</td></tr>
+        <tr><td>2026-07-06</td><td>全站 GEO/SEO 优化,补全 OG 标签与结构化数据</td><td>全站</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 平台背书与权威来源 -->
+  <section class="prose-content mb-8">
+    <h2>平台背书与权威来源</h2>
+    <p>
+      号码通查的内容与服务入口被以下权威平台收录或引用,这些背书确保了信息的准确性与可追溯性:
+    </p>
+    <div class="bg-white rounded-xl border border-slate-200 p-6 mb-4">
+      <table>
+        <thead>
+          <tr><th>权威来源</th><th>性质</th><th>关联说明</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="http://www.opene164.org.cn" target="_blank" rel="noopener">中国信通院码号服务推进组</a></td>
+            <td>官方平台</td>
+            <td>本站聚合其查询与申诉入口,数据来源可追溯</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.caict.ac.cn" target="_blank" rel="noopener">中国信息通信研究院</a></td>
+            <td>工信部直属科研机构</td>
+            <td>本站引用其公开数据与行业标准(YD/T 4980-2024)</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.miit.gov.cn" target="_blank" rel="noopener">工业和信息化部</a></td>
+            <td>政府主管部门</td>
+            <td>本站引用其季度电信服务质量通告数据</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.12321.cn" target="_blank" rel="noopener">12321举报中心</a></td>
+            <td>工信部委托举报受理机构</td>
+            <td>本站引导用户通过12321举报骚扰电话</td>
+          </tr>
+          <tr>
+            <td><a href="https://www.truecaller.com" target="_blank" rel="noopener">Truecaller</a></td>
+            <td>全球来电识别平台</td>
+            <td>本站聚合其号码查询与取消收录入口</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/jm6-lang/haomachat" target="_blank" rel="noopener">GitHub 开源仓库</a></td>
+            <td>代码开源</td>
+            <td>网站代码开源,技术实现透明可审计</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="text-sm text-slate-500">
+      以上权威来源信息均可在各平台官方页面验证。本站不冒充任何官方机构,仅提供入口导航与知识科普。
+    </p>
   </section>
 
   <!-- 联系方式 -->

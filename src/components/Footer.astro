@@ -31,23 +31,23 @@ const year = new Date().getFullYear();
   </div>
 
   <!-- 链接区 -->
-  <div class="max-w-5xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+  <div class="max-w-5xl mx-auto px-4 py-8 grid grid-cols-2 md:grid-cols-5 gap-6 text-sm">
     <div>
       <h3 class="font-semibold text-white mb-2">{isEn ? 'Tools' : '服务工具'}</h3>
       <ul class="space-y-1 text-slate-400">
-        <li><a href={isEn ? '/en/tools/marking-clear' : '/tools/marking-clear'} class="hover:text-brand-400">{isEn ? 'Clear Marking' : '号码标记清除'}</a></li>
+        <li><a href="/tools/marking-clear" class="hover:text-brand-400">{isEn ? 'Clear Marking' : '号码标记清除'}</a></li>
         <li><a href="/tools/legal-number-verify" class="hover:text-brand-400">{isEn ? 'Legal Number Verify' : '法人号码核验'}</a></li>
-        <li><a href={isEn ? '/en/tools/marking-check' : '/tools/marking-check'} class="hover:text-brand-400">{isEn ? 'Marking Check' : '号码标记自查'}</a></li>
-        <li><a href={isEn ? '/en/tools/attribution' : '/tools/attribution'} class="hover:text-brand-400">{isEn ? 'Attribution Lookup' : '归属地查询'}</a></li>
-        <li><a href={isEn ? '/en/tools/sim-cards' : '/tools/sim-cards'} class="hover:text-brand-400">{isEn ? 'SIM Cards' : '选号比价'}</a></li>
+        <li><a href="/tools/marking-check" class="hover:text-brand-400">{isEn ? 'Marking Check' : '号码标记自查'}</a></li>
+        <li><a href="/tools/attribution" class="hover:text-brand-400">{isEn ? 'Attribution Lookup' : '归属地查询'}</a></li>
+        <li><a href="/tools/sim-cards" class="hover:text-brand-400">{isEn ? 'SIM Cards' : '选号比价'}</a></li>
       </ul>
     </div>
     <div>
       <h3 class="font-semibold text-white mb-2">{isEn ? 'Guides' : '指南'}</h3>
       <ul class="space-y-1 text-slate-400">
-        <li><a href={isEn ? '/en/guide/what-is-number-marking' : '/guide/what-is-number-marking'} class="hover:text-brand-400">{isEn ? 'What is Marking' : '号码标记是什么'}</a></li>
-        <li><a href={isEn ? '/en/guide/how-to-clear-marking' : '/guide/how-to-clear-marking'} class="hover:text-brand-400">{isEn ? 'Clear Marking' : '如何清除标记'}</a></li>
-        <li><a href={isEn ? '/en/guide/what-is-number-auth' : '/guide/what-is-number-auth'} class="hover:text-brand-400">{isEn ? 'Number Auth' : '号码认证'}</a></li>
+        <li><a href="/guide/what-is-number-marking" class="hover:text-brand-400">{isEn ? 'What is Marking' : '号码标记是什么'}</a></li>
+        <li><a href="/guide/how-to-clear-marking" class="hover:text-brand-400">{isEn ? 'Clear Marking' : '如何清除标记'}</a></li>
+        <li><a href="/guide/what-is-number-auth" class="hover:text-brand-400">{isEn ? 'Number Auth' : '号码认证'}</a></li>
       </ul>
     </div>
     <div>
@@ -55,9 +55,16 @@ const year = new Date().getFullYear();
       <ul class="space-y-1 text-slate-400">
         <li><a href="/about" class="hover:text-brand-400">{isEn ? 'About Us' : '关于我们'}</a></li>
         <li><a href="/contact" class="hover:text-brand-400">{isEn ? 'Contact' : '联系我们'}</a></li>
-        <li><a href="/privacy" class="hover:text-brand-400">{isEn ? 'Privacy Policy' : '隐私政策'}</a></li>
-        <li><a href="/terms" class="hover:text-brand-400">{isEn ? 'Terms' : '服务条款'}</a></li>
         <li><a href="/faq" class="hover:text-brand-400">FAQ</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold text-white mb-2">{isEn ? 'Legal' : '法律信息'}</h3>
+      <ul class="space-y-1 text-slate-400">
+        <li><a href="/privacy" class="hover:text-brand-400">{isEn ? 'Privacy Policy' : '隐私政策'}</a></li>
+        <li><a href="/terms" class="hover:text-brand-400">{isEn ? 'Terms of Service' : '服务条款'}</a></li>
+        <li><a href="/disclaimer" class="hover:text-brand-400">{isEn ? 'Disclaimer' : '免责声明'}</a></li>
+        <li><a href="/cookie-policy" class="hover:text-brand-400">{isEn ? 'Cookie Policy' : 'Cookie政策'}</a></li>
       </ul>
     </div>
     <div>

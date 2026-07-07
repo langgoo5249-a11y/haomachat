@@ -7,10 +7,18 @@
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'
 
 # 预览域名 noindex(防止 *.pages.dev 与正式域名重复收录)
 https://*:pages.dev/*
   X-Robots-Tag: noindex, nofollow
+
+# HTML 页面短缓存(便于更新及时生效)
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+/
+  Cache-Control: public, max-age=0, must-revalidate
 
 # 静态资源长缓存
 /_astro/*
@@ -23,11 +31,15 @@ https://*:pages.dev/*
   Cache-Control: public, max-age=604800
 /*.png
   Cache-Control: public, max-age=604800
+/*.jpg
+  Cache-Control: public, max-age=604800
 /*.woff2
   Cache-Control: public, max-age=31536000, immutable
 
 # llms.txt / robots.txt 不缓存(便于更新)
 /llms.txt
+  Cache-Control: public, max-age=3600
+/llms-full.txt
   Cache-Control: public, max-age=3600
 /llms-en.txt
   Cache-Control: public, max-age=3600

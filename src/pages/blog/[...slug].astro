@@ -15,7 +15,7 @@ const { Content } = await render(post);
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '博客', url: '/blog' },
+  { name: '号码百科', url: '/blog' },
   { name: post.data.title, url: `/blog/${post.id}/` },
 ];
 
@@ -26,18 +26,30 @@ const articleSchema = {
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString(),
   dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
-  author: { '@type': 'Organization', name: post.data.author, url: 'https://haomachat.com' },
+  author: {
+    '@type': 'Organization',
+    name: post.data.author,
+    url: 'https://haomachat.com/about',
+    description: '号码通查 - 电话号码标记查询与清除服务工具站,由脏兮兮科技运营',
+    knowsAbout: ['电话号码标记', '号码标记清除', '号码认证', '号码归属地查询', '法人号码核验'],
+  },
   publisher: {
     '@type': 'Organization',
     name: '号码通查',
     logo: { '@type': 'ImageObject', url: 'https://haomachat.com/favicon.svg' },
   },
   mainEntityOfPage: `https://haomachat.com/blog/${post.id}/`,
+  image: {
+    '@type': 'ImageObject',
+    url: 'https://haomachat.com/og-default.jpg',
+    width: 1200,
+    height: 630,
+  },
   keywords: post.data.tags.join(', '),
 };
 ---
 <BaseLayout
-  title={`${post.data.title} | 号码通查博客`}
+  title={`${post.data.title} | 号码通查号码百科`}
   description={post.data.description}
   schema={[articleSchema]}
   breadcrumbs={breadcrumbs}
@@ -52,6 +64,6 @@ const articleSchema = {
   </article>
 
   <div class="mt-8 pt-6 border-t border-slate-200">
-    <a href="/blog" class="text-brand-600 hover:underline">← 返回博客列表</a>
+    <a href="/blog" class="text-brand-600 hover:underline">← 返回号码百科</a>
   </div>
 </BaseLayout>

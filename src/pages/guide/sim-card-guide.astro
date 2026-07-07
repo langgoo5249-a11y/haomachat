@@ -4,7 +4,6 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '指南', url: '/guide/what-is-number-marking' },
   { name: '选号办卡指南', url: '/guide/sim-card-guide' },
 ];
 
@@ -50,11 +49,28 @@ const howToSchema = {
     { '@type': 'HowToStep', position: 3, name: '营业厅办理', text: '携带授权码与身份证到新运营商营业厅办理携入,选择新套餐,完成转网' },
   ],
 };
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: '选号办卡指南 - 运营商选号规则与靓号攻略',
+  description: '移动/联通/电信选号规则、靓号攻略、携号转网流程与注意事项',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-06',
+  author: { '@type': 'Organization', name: '号码通查', url: 'https://haomachat.com' },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  },
+  image: { '@type': 'ImageObject', url: 'https://haomachat.com/og-default.jpg', width: 1200, height: 630 },
+  mainEntityOfPage: 'https://haomachat.com/guide/sim-card-guide',
+};
 ---
 <BaseLayout
   title="选号办卡指南 - 运营商选号规则与靓号攻略 | 号码通查"
   description="手机卡选号可通过运营商官网在线选号、线下营业厅或电商平台旗舰店办理。移动10086/联通10010/电信10000均提供在线选号。靓号(尾号AAAA/ABAB/连号)需承诺最低消费并预存话费。携号转网可编辑短信CXXZ发送至运营商客服号查询资格。"
-  schema={[faqSchema, howToSchema]}
+  schema={[articleSchema, faqSchema, howToSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">选号办卡指南 - 运营商选号规则与靓号攻略</h1>
