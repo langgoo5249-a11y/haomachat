@@ -1,6 +1,9 @@
 # Cloudflare Pages _redirects
 # https://developers.cloudflare.com/pages/configuration/redirects/
 
+# 搜索引擎站长验证文件: 强制200直接返回,绕过 clean URL 重定向(.html->无扩展名)
+/baidu_verify_codeva-J2OVio818i.html  /baidu_verify_codeva-J2OVio818i.html  200
+
 # Sitemap 兼容: Google Search Console 默认找 /sitemap.xml
 /sitemap.xml  /sitemap-index.xml  301
 
