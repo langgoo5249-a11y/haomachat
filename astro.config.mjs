@@ -41,7 +41,7 @@ const pageLastmod = {
 };
 
 export default defineConfig({
-  site: 'https://haomachat.com',
+  site: 'https://zangxixitech.cn',
   output: 'static',
   trailingSlash: 'ignore',
   prefetch: {
@@ -58,7 +58,7 @@ export default defineConfig({
       // 注入真实 lastmod(来自内容修改日期,非构建时间)
       // Google 会验证 lastmod 真实性,虚假日期会导致整站 lastmod 被忽略
       serialize(item) {
-        const path = item.url.replace('https://haomachat.com', '');
+        const path = item.url.replace('https://zangxixitech.cn', '');
         const normalizedPath = path === '' ? '/' : path;
         // 尝试精确匹配,再尝试去掉末尾斜杠匹配
         const date = pageLastmod[normalizedPath] || pageLastmod[normalizedPath.replace(/\/$/, '') + '/'];

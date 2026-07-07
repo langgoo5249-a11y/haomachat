@@ -35,7 +35,7 @@ const {
   ogType = 'website',
 } = Astro.props;
 
-const site = Astro.site?.toString().replace(/\/$/, '') || 'https://haomachat.com';
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://zangxixitech.cn';
 const canonicalUrl = canonical || new URL(Astro.url.pathname, site).toString();
 const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
 
@@ -58,7 +58,7 @@ const orgSchema = {
   '@type': 'Organization',
   '@id': `${site}/#organization`,
   name: '号码通查',
-  alternateName: 'haomachat',
+  alternateName: 'zangxixitech',
   url: site,
   logo: {
     '@type': 'ImageObject',
@@ -90,7 +90,7 @@ const websiteSchema = {
   '@id': `${site}/#website`,
   url: site,
   name: '号码通查',
-  alternateName: 'haomachat',
+  alternateName: 'zangxixitech',
   description: '号码标记查询与清除服务,手机号与座机号均支持',
   inLanguage: 'zh-CN',
   publisher: { '@id': `${site}/#organization` },

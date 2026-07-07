@@ -2,10 +2,10 @@
   "schema": "https://schema.org",
   "type": "Organization",
   "name": "号码通查",
-  "alternateName": "haomachat",
+  "alternateName": "zangxixitech",
   "legalName": "脏兮兮科技",
-  "url": "https://haomachat.com",
-  "logo": "https://haomachat.com/og-default.jpg",
+  "url": "https://zangxixitech.cn",
+  "logo": "https://zangxixitech.cn/og-default.jpg",
   "description": "号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。聚合中国信通院码号服务推进组与Truecaller官方入口,一站式解决号码被误标记为骚扰电话的问题。",
   "foundingDate": "2026",
   "founder": {
@@ -33,32 +33,32 @@
     "中国信通院码号服务推进组"
   ],
   "sameAs": [
-    "https://haomachat.com",
+    "https://zangxixitech.cn",
     "https://github.com/jm6-lang/haomachat"
   ],
   "services": [
     {
       "name": "号码标记清除",
       "description": "手机号与座机号标记清除,授权合作方服务+信通院+Truecaller三渠道",
-      "url": "https://haomachat.com/tools/marking-clear",
+      "url": "https://zangxixitech.cn/tools/marking-clear",
       "free": true
     },
     {
       "name": "法人号码核验",
       "description": "企业法人手机号实名认证,姓名+身份证+手机号三要素一致性校验",
-      "url": "https://haomachat.com/tools/legal-number-verify",
+      "url": "https://zangxixitech.cn/tools/legal-number-verify",
       "free": false
     },
     {
       "name": "号码标记自查",
       "description": "查询手机号/座机号被标记情况,支持多平台",
-      "url": "https://haomachat.com/tools/marking-check",
+      "url": "https://zangxixitech.cn/tools/marking-check",
       "free": true
     },
     {
       "name": "号码归属地查询",
       "description": "输入手机号或固话,免费查询归属地、运营商、号段信息",
-      "url": "https://haomachat.com/tools/attribution",
+      "url": "https://zangxixitech.cn/tools/attribution",
       "free": true
     }
   ],

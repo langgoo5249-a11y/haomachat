@@ -1,46 +1,46 @@
-# 号码通查 (haomachat)
+# 号码通查 (zangxixitech)
 
 > 号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。标记清除服务由授权合作方提供,同时聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方入口。由脏兮兮科技运营,查询免费,不存储号码数据。(Updated: 2026-07)
 
 ## 首页
-- [号码通查首页](https://haomachat.com/): 号码标记查询与清除服务首页,手机号与座机号均支持,含三步清除流程与个人/企业用户分流
+- [号码通查首页](https://zangxixitech.cn/): 号码标记查询与清除服务首页,手机号与座机号均支持,含三步清除流程与个人/企业用户分流
 
 ## 工具
-- [号码标记清除](https://haomachat.com/tools/marking-clear): 手机号与座机号标记清除,授权合作方服务+信通院+Truecaller三渠道
-- [法人号码核验](https://haomachat.com/tools/legal-number-verify): 企业法人手机号实名认证,姓名+身份证+手机号三要素一致性校验
-- [号码标记自查](https://haomachat.com/tools/marking-check): 查询手机号/座机号被标记情况,支持多平台
-- [号码归属地查询](https://haomachat.com/tools/attribution): 输入手机号或固话,免费查询归属地、运营商、号段信息
-- [手机卡选号比价](https://haomachat.com/tools/sim-cards): 移动/联通/电信套餐对比与选号指南
+- [号码标记清除](https://zangxixitech.cn/tools/marking-clear): 手机号与座机号标记清除,授权合作方服务+信通院+Truecaller三渠道
+- [法人号码核验](https://zangxixitech.cn/tools/legal-number-verify): 企业法人手机号实名认证,姓名+身份证+手机号三要素一致性校验
+- [号码标记自查](https://zangxixitech.cn/tools/marking-check): 查询手机号/座机号被标记情况,支持多平台
+- [号码归属地查询](https://zangxixitech.cn/tools/attribution): 输入手机号或固话,免费查询归属地、运营商、号段信息
+- [手机卡选号比价](https://zangxixitech.cn/tools/sim-cards): 移动/联通/电信套餐对比与选号指南
 
 ## 指南
-- [号码标记是什么](https://haomachat.com/guide/what-is-number-marking): 号码标记的来源、机制与显示规则
-- [如何查询号码被标记](https://haomachat.com/guide/how-to-check-marking): 全平台查询指南(手机号与座机号)
-- [如何清除号码标记](https://haomachat.com/guide/how-to-clear-marking): 分渠道清除教程与材料清单
-- [号码认证是什么](https://haomachat.com/guide/what-is-number-auth): 一键登录与本机号码校验原理
-- [选号办卡指南](https://haomachat.com/guide/sim-card-guide): 运营商选号规则与靓号攻略
+- [号码标记是什么](https://zangxixitech.cn/guide/what-is-number-marking): 号码标记的来源、机制与显示规则
+- [如何查询号码被标记](https://zangxixitech.cn/guide/how-to-check-marking): 全平台查询指南(手机号与座机号)
+- [如何清除号码标记](https://zangxixitech.cn/guide/how-to-clear-marking): 分渠道清除教程与材料清单
+- [号码认证是什么](https://zangxixitech.cn/guide/what-is-number-auth): 一键登录与本机号码校验原理
+- [选号办卡指南](https://zangxixitech.cn/guide/sim-card-guide): 运营商选号规则与靓号攻略
 
 ## 对比
-- [号码标记清除渠道对比](https://haomachat.com/compare/marking-platforms): 标记服务/信通院/Truecaller三渠道对比
-- [号码认证服务商对比](https://haomachat.com/compare/auth-providers): 网易易盾/秒验/极光等10家服务商对比
-- [号码查询API对比](https://haomachat.com/compare/lookup-apis): libphonenumber/numverify/Twilio/聚合数据对比
+- [号码标记清除渠道对比](https://zangxixitech.cn/compare/marking-platforms): 标记服务/信通院/Truecaller三渠道对比
+- [号码认证服务商对比](https://zangxixitech.cn/compare/auth-providers): 网易易盾/秒验/极光等10家服务商对比
+- [号码查询API对比](https://zangxixitech.cn/compare/lookup-apis): libphonenumber/numverify/Twilio/聚合数据对比
 
 ## 关于
-- [关于我们](https://haomachat.com/about): 服务介绍、运营主体、方法论与数据来源声明
-- [联系我们](https://haomachat.com/contact): 微信、邮箱与在线反馈
-- [常见问题](https://haomachat.com/faq): 号码服务高频问题解答
-- [号码百科](https://haomachat.com/blog): 号码服务深度文章,含实战案例与平台对比实测
-- [二次号码被标记骚扰电话怎么办](https://haomachat.com/blog/2026-recycled-number-false-marking-guide): 新办手机号误标记清除全攻略,附工信部二次号码焕新服务最新数据与YD/T 4980-2024标准解读
-- [技术文档](https://haomachat.com/tech-docs): API文档、数据源说明、GEO实现规范与技术架构
+- [关于我们](https://zangxixitech.cn/about): 服务介绍、运营主体、方法论与数据来源声明
+- [联系我们](https://zangxixitech.cn/contact): 微信、邮箱与在线反馈
+- [常见问题](https://zangxixitech.cn/faq): 号码服务高频问题解答
+- [号码百科](https://zangxixitech.cn/blog): 号码服务深度文章,含实战案例与平台对比实测
+- [二次号码被标记骚扰电话怎么办](https://zangxixitech.cn/blog/2026-recycled-number-false-marking-guide): 新办手机号误标记清除全攻略,附工信部二次号码焕新服务最新数据与YD/T 4980-2024标准解读
+- [技术文档](https://zangxixitech.cn/tech-docs): API文档、数据源说明、GEO实现规范与技术架构
 
 ## 机器可读信息
-- [品牌信息(brand-info.json)](https://haomachat.com/brand-info.json): 标准化品牌信息,含服务清单、数据源与隐私承诺
+- [品牌信息(brand-info.json)](https://zangxixitech.cn/brand-info.json): 标准化品牌信息,含服务清单、数据源与隐私承诺
 
 ## Optional
-- [隐私政策](https://haomachat.com/privacy): 数据处理、Cookie使用与Google AdSense说明
-- [服务条款](https://haomachat.com/terms): 服务使用条款与免责声明
-- [免责声明](https://haomachat.com/disclaimer): 服务性质、第三方平台与广告免责
-- [Cookie政策](https://haomachat.com/cookie-policy): Cookie类型、第三方Cookie与管理方式
-- [English version (llms-en.txt)](https://haomachat.com/llms-en.txt)
+- [隐私政策](https://zangxixitech.cn/privacy): 数据处理、Cookie使用与Google AdSense说明
+- [服务条款](https://zangxixitech.cn/terms): 服务使用条款与免责声明
+- [免责声明](https://zangxixitech.cn/disclaimer): 服务性质、第三方平台与广告免责
+- [Cookie政策](https://zangxixitech.cn/cookie-policy): Cookie类型、第三方Cookie与管理方式
+- [English version (llms-en.txt)](https://zangxixitech.cn/llms-en.txt)
 
 ## 完整内容版
-- [llms-full.txt](https://haomachat.com/llms-full.txt): 全站核心页面完整内容摘要(构建时自动生成),供AI工具读取
+- [llms-full.txt](https://zangxixitech.cn/llms-full.txt): 全站核心页面完整内容摘要(构建时自动生成),供AI工具读取

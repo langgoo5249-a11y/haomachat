@@ -1,4 +1,4 @@
-# 号码通查 (haomachat)
+# 号码通查 (zangxixitech)
 
 > GEO(生成式引擎优化)导向的电话号码服务工具站，部署于 Cloudflare Pages。
 
@@ -45,23 +45,24 @@ LOOKUP_API_KEY=你的聚合数据API密钥
    - Production branch: `main`
 4. 在 Environment variables 中设置 `NODE_VERSION=20` 和 `LOOKUP_API_KEY`（加密 secret）
 5. **关键**：Security → Bots → 放行 AI 爬虫（GPTBot、OAI-SearchBot、ClaudeBot、PerplexityBot 等），Cloudflare 默认会拦截 AI 爬虫
-6. 绑定自定义域名（CNAME → `haomachat.pages.dev`）
+6. 绑定自定义域名：在 Pages 项目 → Custom domains 中添加 `zangxixitech.cn`
 
 ## GEO 优化清单
 
 - [x] 全站 SSG，关键内容在初始 HTML 中（AI 爬虫不执行 JS）
-- [x] `/llms.txt` + `/llms-en.txt`（中英双版本）
-- [x] `/robots.txt` 放行 AI 检索爬虫
-- [x] `/sitemap-index.xml` + `/rss.xml`
+- [x] `/llms.txt` + `/llms-full.txt` + `/llms-en.txt`（中英双版本 + 完整内容版）
+- [x] `/robots.txt` 放行 AI 检索爬虫（24 个爬虫白名单）
+- [x] `/sitemap-index.xml` + `/rss.xml`（含真实 lastmod）
 - [x] JSON-LD：Organization / WebApplication / FAQPage / HowTo / Article / BreadcrumbList
 - [x] 每页前 150 字结论前置
 - [x] 语义化 HTML（table / ul / h2 / h3）
-- [x] `/_headers` 安全头 + 预览域名 noindex
+- [x] `/_headers` 安全头（CSP + HSTS）+ 预览域名 noindex
+- [x] 中文 AI 模型强化：sameAs 中文权威源 / FAQ microdata / datePublished+dateModified
 
 ## 项目结构
 
 ```
-haomachat/
+zangxixitech/
 ├── astro.config.mjs
 ├── public/              # llms.txt, robots.txt, _headers, _redirects
 ├── functions/api/       # Pages Functions (归属地查询代理)

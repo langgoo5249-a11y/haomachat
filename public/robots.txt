@@ -90,7 +90,7 @@ User-agent: 360Spider
 Allow: /
 
 # Sitemap (标准 XML sitemap,所有爬虫共用)
-Sitemap: https://haomachat.com/sitemap-index.xml
+Sitemap: https://zangxixitech.cn/sitemap-index.xml
 
 # AI 内容发现文件 (非标准,供 AI 工具读取)
 # llms.txt: 全站页面目录(链接列表)
