@@ -1,6 +1,9 @@
 # Cloudflare Pages _redirects
 # https://developers.cloudflare.com/pages/configuration/redirects/
 
+# Sitemap 兼容: Google Search Console 默认找 /sitemap.xml
+/sitemap.xml  /sitemap-index.xml  301
+
 # 旧路径兼容
 /number-lookup  /tools/attribution  301
 /marking  /tools/marking-check  301
