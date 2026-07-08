@@ -48,3 +48,15 @@ https://*:pages.dev/*
 /indexnow-key.txt
   Cache-Control: public, max-age=86400
   Content-Type: text/plain
+
+# sitemap 文件: 短缓存 + 确保可索引
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml; charset=utf-8
+  X-Robots-Tag: index, follow
+/sitemap-0.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml; charset=utf-8
+  X-Robots-Tag: index, follow
+/sitemap.xml
+  Cache-Control: public, max-age=3600
