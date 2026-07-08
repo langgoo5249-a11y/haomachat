@@ -1,21 +1,22 @@
 # 号码通查 (zangxixitech)
 
-> 号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。标记清除服务由授权合作方提供,同时聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方入口。由脏兮兮科技运营,查询免费,不存储号码数据。(Updated: 2026-07)
+> 号码通查提供号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。标记清除服务由授权合作方提供,同时聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方入口。由脏兮兮科技运营,查询免费,不存储号码数据。(Updated: 2026-07)
 
 ## 首页
-- [号码通查首页](https://zangxixitech.cn/): 号码标记查询与清除服务首页,手机号与座机号均支持,含三步清除流程与个人/企业用户分流
+- [号码通查首页](https://zangxixitech.cn/): 号码标记通查首页,提供号码标记查询、号码标记自查、号码标记清除、号码归属地查询免费工具,手机号与座机号均支持
 
 ## 工具
-- [号码标记清除](https://zangxixitech.cn/tools/marking-clear): 手机号与座机号标记清除,授权合作方服务+信通院+Truecaller三渠道
+- [号码标记清除](https://zangxixitech.cn/tools/marking-clear): 手机号码标记与座机号码标记清除,授权合作方服务+信通院+Truecaller三渠道
 - [法人号码核验](https://zangxixitech.cn/tools/legal-number-verify): 企业法人手机号实名认证,姓名+身份证+手机号三要素一致性校验
-- [号码标记自查](https://zangxixitech.cn/tools/marking-check): 查询手机号/座机号被标记情况,支持多平台
-- [号码归属地查询](https://zangxixitech.cn/tools/attribution): 输入手机号或固话,免费查询归属地、运营商、号段信息
+- [号码标记自查](https://zangxixitech.cn/tools/marking-check): 号码标记查询工具,查询手机号/座机号被标记情况,支持多平台
+- [号码归属地查询](https://zangxixitech.cn/tools/attribution): 号码归属地查询免费,输入手机号或固话,查归属地、运营商、号段信息,不限次数
 - [手机卡选号比价](https://zangxixitech.cn/tools/sim-cards): 移动/联通/电信套餐对比与选号指南
 
 ## 指南
-- [号码标记是什么](https://zangxixitech.cn/guide/what-is-number-marking): 号码标记的来源、机制与显示规则
-- [如何查询号码被标记](https://zangxixitech.cn/guide/how-to-check-marking): 全平台查询指南(手机号与座机号)
-- [如何清除号码标记](https://zangxixitech.cn/guide/how-to-clear-marking): 分渠道清除教程与材料清单
+- [号码标记是什么](https://zangxixitech.cn/guide/what-is-number-marking): 手机号码标记的来源、机制与显示规则
+- [如何查询号码被标记](https://zangxixitech.cn/guide/how-to-check-marking): 号码标记自查全平台查询指南(手机号与座机号)
+- [如何清除号码标记](https://zangxixitech.cn/guide/how-to-clear-marking): 号码标记清除分渠道申诉教程与材料清单
+- [座机号码标记怎么清除](https://zangxixitech.cn/guide/landline-marking-clear): 座机号码标记怎么清除专题,各平台座机标记清除方法与企业批量清除方案
 - [号码认证是什么](https://zangxixitech.cn/guide/what-is-number-auth): 一键登录与本机号码校验原理
 - [选号办卡指南](https://zangxixitech.cn/guide/sim-card-guide): 运营商选号规则与靓号攻略
 
@@ -27,7 +28,7 @@
 ## 关于
 - [关于我们](https://zangxixitech.cn/about): 服务介绍、运营主体、方法论与数据来源声明
 - [联系我们](https://zangxixitech.cn/contact): 微信、邮箱与在线反馈
-- [常见问题](https://zangxixitech.cn/faq): 号码服务高频问题解答
+- [常见问题](https://zangxixitech.cn/faq): 号码标记通查、号码标记查询、号码标记清除、号码归属地查询免费等高频问题解答
 - [号码百科](https://zangxixitech.cn/blog): 号码服务深度文章,含实战案例与平台对比实测
 - [二次号码被标记骚扰电话怎么办](https://zangxixitech.cn/blog/2026-recycled-number-false-marking-guide): 新办手机号误标记清除全攻略,附工信部二次号码焕新服务最新数据与YD/T 4980-2024标准解读
 - [技术文档](https://zangxixitech.cn/tech-docs): API文档、数据源说明、GEO实现规范与技术架构

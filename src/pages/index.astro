@@ -19,8 +19,8 @@ const faqSchema = {
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
-  name: '号码通查 - 号码标记查询与清除',
-  description: '号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。',
+  name: '号码标记通查 - 号码标记查询/号码标记自查/号码标记清除/号码归属地查询免费',
+  description: '号码通查提供号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。',
   url: 'https://zangxixitech.cn/',
   datePublished: '2026-07-07',
   dateModified: '2026-07-07',
@@ -53,16 +53,17 @@ const icons = {
 };
 
 const tools = [
-  { title: '号码标记清除', desc: '手机号与座机号均可清除误标记', href: '/tools/marking-clear/', icon: icons.clear, primary: true },
+  { title: '号码标记清除', desc: '手机号码标记与座机号码标记清除', href: '/tools/marking-clear/', icon: icons.clear, primary: true },
   { title: '法人号码核验', desc: '企业法人手机号三要素实名核验', href: '/tools/legal-number-verify/', icon: icons.verify, primary: true },
-  { title: '号码标记自查', desc: '查询手机号/座机号被标记情况', href: '/tools/marking-check/', icon: icons.check, primary: false },
-  { title: '号码归属地查询', desc: '查手机号/固话归属地与运营商', href: '/tools/attribution/', icon: icons.location, primary: false },
+  { title: '号码标记自查', desc: '号码标记查询,手机号/座机号均可查', href: '/tools/marking-check/', icon: icons.check, primary: false },
+  { title: '号码归属地查询', desc: '号码归属地查询免费,不限次数', href: '/tools/attribution/', icon: icons.location, primary: false },
 ];
 
 const guides = [
   { title: '号码标记是什么', desc: '标记来源、机制与显示规则', href: '/guide/what-is-number-marking/' },
-  { title: '如何查询号码被标记', desc: '全平台查询指南', href: '/guide/how-to-check-marking/' },
-  { title: '如何清除号码标记', desc: '分渠道申诉教程与材料清单', href: '/guide/how-to-clear-marking/' },
+  { title: '如何查询号码被标记', desc: '号码标记自查全平台查询指南', href: '/guide/how-to-check-marking/' },
+  { title: '如何清除号码标记', desc: '号码标记清除分渠道申诉教程', href: '/guide/how-to-clear-marking/' },
+  { title: '座机号码标记怎么清除', desc: '座机/固话标记清除专题', href: '/guide/landline-marking-clear/' },
   { title: '号码认证是什么', desc: '一键登录与本机号码校验原理', href: '/guide/what-is-number-auth/' },
 ];
 
@@ -124,8 +125,8 @@ const advantages = [
 ];
 ---
 <BaseLayout
-  title="号码通查 - 号码标记查询与清除(手机号/座机号均支持)"
-  description="号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。聚合中国信通院码号服务推进组与Truecaller官方入口,一站式解决号码被误标记为骚扰电话的问题。"
+  title="号码标记通查 - 号码标记查询/号码标记自查/号码标记清除/号码归属地查询免费 | 号码通查"
+  description="号码通查提供号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持,聚合信通院与Truecaller官方入口。"
   schema={[faqSchema, webPageSchema]}
   breadcrumbs={breadcrumbs}
 >
@@ -133,10 +134,10 @@ const advantages = [
   <section class="mb-10 pt-4">
     <div class="text-center mb-8">
       <h1 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
-        号码标记查询与清除
+        号码标记通查 - 号码标记查询与号码标记清除
       </h1>
       <p class="text-lg text-slate-600 leading-relaxed mb-6 max-w-3xl mx-auto">
-        号码通查提供号码标记查询与清除服务,<strong>手机号码与座机(固话)号码均支持</strong>。号码被误标记为骚扰电话、推销电话后,可通过本站一键进入清除服务,同时聚合中国信通院码号服务推进组与Truecaller官方入口,多渠道彻底清除误标记。
+        号码通查提供<strong>号码标记通查</strong>服务,包括<strong>号码标记查询</strong>、<strong>号码标记自查</strong>、<strong>号码标记清除</strong>和<strong>号码归属地查询免费</strong>工具。手机号码标记与座机号码标记均支持,聚合中国信通院码号服务推进组与Truecaller官方入口。座机号码标记怎么清除？本站提供分平台图文教程与官方申诉入口导航。
       </p>
       <div class="flex flex-wrap justify-center gap-3 mb-8">
         <a href={serviceUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors shadow-sm">
