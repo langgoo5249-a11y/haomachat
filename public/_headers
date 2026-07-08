@@ -45,3 +45,6 @@ https://*:pages.dev/*
   Cache-Control: public, max-age=3600
 /robots.txt
   Cache-Control: public, max-age=3600
+/indexnow-key.txt
+  Cache-Control: public, max-age=86400
+  Content-Type: text/plain

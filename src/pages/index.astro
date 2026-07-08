@@ -53,17 +53,17 @@ const icons = {
 };
 
 const tools = [
-  { title: '号码标记清除', desc: '手机号与座机号均可清除误标记', href: '/tools/marking-clear', icon: icons.clear, primary: true },
-  { title: '法人号码核验', desc: '企业法人手机号三要素实名核验', href: '/tools/legal-number-verify', icon: icons.verify, primary: true },
-  { title: '号码标记自查', desc: '查询手机号/座机号被标记情况', href: '/tools/marking-check', icon: icons.check, primary: false },
-  { title: '号码归属地查询', desc: '查手机号/固话归属地与运营商', href: '/tools/attribution', icon: icons.location, primary: false },
+  { title: '号码标记清除', desc: '手机号与座机号均可清除误标记', href: '/tools/marking-clear/', icon: icons.clear, primary: true },
+  { title: '法人号码核验', desc: '企业法人手机号三要素实名核验', href: '/tools/legal-number-verify/', icon: icons.verify, primary: true },
+  { title: '号码标记自查', desc: '查询手机号/座机号被标记情况', href: '/tools/marking-check/', icon: icons.check, primary: false },
+  { title: '号码归属地查询', desc: '查手机号/固话归属地与运营商', href: '/tools/attribution/', icon: icons.location, primary: false },
 ];
 
 const guides = [
-  { title: '号码标记是什么', desc: '标记来源、机制与显示规则', href: '/guide/what-is-number-marking' },
-  { title: '如何查询号码被标记', desc: '全平台查询指南', href: '/guide/how-to-check-marking' },
-  { title: '如何清除号码标记', desc: '分渠道申诉教程与材料清单', href: '/guide/how-to-clear-marking' },
-  { title: '号码认证是什么', desc: '一键登录与本机号码校验原理', href: '/guide/what-is-number-auth' },
+  { title: '号码标记是什么', desc: '标记来源、机制与显示规则', href: '/guide/what-is-number-marking/' },
+  { title: '如何查询号码被标记', desc: '全平台查询指南', href: '/guide/how-to-check-marking/' },
+  { title: '如何清除号码标记', desc: '分渠道申诉教程与材料清单', href: '/guide/how-to-clear-marking/' },
+  { title: '号码认证是什么', desc: '一键登录与本机号码校验原理', href: '/guide/what-is-number-auth/' },
 ];
 
 // 三步流程
@@ -79,7 +79,7 @@ const scenarios = [
     title: '个人用户',
     desc: '手机号被误标记为骚扰电话,影响日常通话与社交',
     icon: icons.phone,
-    href: '/tools/marking-clear',
+    href: '/tools/marking-clear/',
     cta: '清除手机号标记',
     points: ['手机号被标记骚扰/推销', '号码回收继承前主人标记', '影响外卖、快递等正常通话'],
   },
@@ -87,7 +87,7 @@ const scenarios = [
     title: '企业用户',
     desc: '企业座机/客服号码被标记,客户拒接导致业务流失',
     icon: icons.building,
-    href: '/tools/marking-clear',
+    href: '/tools/marking-clear/',
     cta: '清除企业号码标记',
     points: ['座机/400号码被标记骚扰', '客户接听率大幅下降', '影响品牌形象与销售转化'],
   },
@@ -316,7 +316,7 @@ const advantages = [
       ))}
     </div>
     <p class="mt-4 text-sm">
-      <a href="/faq" class="text-brand-600 hover:underline">查看全部常见问题 →</a>
+      <a href="/faq/" class="text-brand-600 hover:underline">查看全部常见问题 →</a>
     </p>
   </section>
 
@@ -329,7 +329,7 @@ const advantages = [
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.clear}/></svg>
         立即清除标记
       </a>
-      <a href="/contact" class="inline-flex items-center gap-2 px-7 py-3 bg-brand-700 text-white border border-brand-400 rounded-lg font-medium hover:bg-brand-800 transition-colors">
+      <a href="/contact/" class="inline-flex items-center gap-2 px-7 py-3 bg-brand-700 text-white border border-brand-400 rounded-lg font-medium hover:bg-brand-800 transition-colors">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
         联系客服
       </a>
@@ -339,7 +339,7 @@ const advantages = [
   <!-- 底部信任声明 -->
   <section class="bg-slate-100 rounded-xl p-6 border border-slate-200">
     <p class="text-sm text-slate-500 leading-relaxed">
-      号码通查由脏兮兮科技运营。标记清除服务由授权合作方提供,官方数据来源为中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller。本站不存储用户查询的号码数据,查询免费。如需帮助请<a href="/contact" class="text-brand-600 hover:underline">联系我们</a>。
+      号码通查由脏兮兮科技运营。标记清除服务由授权合作方提供,官方数据来源为中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller。本站不存储用户查询的号码数据,查询免费。如需帮助请<a href="/contact/" class="text-brand-600 hover:underline">联系我们</a>。
     </p>
   </section>
 </BaseLayout>
