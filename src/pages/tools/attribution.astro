@@ -12,7 +12,7 @@ const faqSchema = {
   '@type': 'FAQPage',
   mainEntity: [
     { '@type': 'Question', name: '如何查询手机号归属地？', acceptedAnswer: { '@type': 'Answer', text: '在上方输入框输入11位手机号码,点击查询即可获取归属省份、城市、运营商、号段等信息。数据来自聚合数据API,免费使用。' } },
-    { '@type': 'Question', name: '号码归属地查询收费吗？', acceptedAnswer: { '@type': 'Answer', text: '号码通查的归属地查询工具完全免费,无需注册。底层API免费额度为每天50次,超出后可能暂时无法查询。' } },
+    { '@type': 'Question', name: '号码归属地查询收费吗？', acceptedAnswer: { '@type': 'Answer', text: '号码通查的归属地查询工具完全免费,无需注册。数据来自360手机号码归属地接口,不限查询次数。' } },
     { '@type': 'Question', name: '能查询固话归属地吗？', acceptedAnswer: { '@type': 'Answer', text: '支持查询固定电话归属地,输入区号+号码即可。固话归属地数据覆盖全国主要城市。' } },
   ],
 };
@@ -31,13 +31,13 @@ const howToSchema = {
 ---
 <BaseLayout
   title="号码归属地查询 - 免费查手机号归属地/运营商/号段 | 号码通查"
-  description="免费号码归属地查询工具,输入手机号或固话即可查询归属省份、城市、运营商、号段信息。数据来自聚合数据API,无需注册,即查即用。"
+  description="免费号码归属地查询工具,输入手机号或固话即可查询归属省份、城市、运营商、号段信息。无需注册,不限次数,即查即用。"
   schema={[faqSchema, howToSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码归属地查询</h1>
   <p class="text-slate-600 mb-6 leading-relaxed">
-    免费查询手机号码或固定电话的归属地信息,包括归属省份、城市、运营商、号段等。数据来自聚合数据号码归属地API,覆盖全国移动/联通/电信手机号及主要城市固话。输入号码即可查询,无需注册。
+    免费查询手机号码或固定电话的归属地信息,包括归属省份、城市、运营商、号段等。数据来自360手机号码归属地接口,覆盖全国移动/联通/电信手机号及主要城市固话。输入号码即可查询,无需注册,不限次数。
   </p>
 
   <!-- 查询表单 (Island 交互, 使用原生 JS 最小化) -->
@@ -58,7 +58,7 @@ const howToSchema = {
         查询
       </button>
     </div>
-    <p class="text-xs text-slate-400 mt-2">本站不存储您查询的号码。免费额度每天50次,超出可能暂时无法查询。</p>
+    <p class="text-xs text-slate-400 mt-2">本站不存储您查询的号码。免费查询,无需注册。</p>
   </div>
 
   <!-- 结果区域 (JS 填充) -->
@@ -71,7 +71,7 @@ const howToSchema = {
   <section class="prose-content mb-8">
     <h2>号码归属地查询说明</h2>
     <p>
-      号码归属地查询是通过手机号码的前7位号段(又称MDN前缀)来判断号码注册时所属的省份、城市和运营商的技术。中国手机号段由工业和信息化部统一分配,移动、联通、电信各持有不同号段区间。本工具使用聚合数据号码归属地API,数据准确率约99%,覆盖全国31个省级行政区。
+      号码归属地查询是通过手机号码的前7位号段(又称MDN前缀)来判断号码注册时所属的省份、城市和运营商的技术。中国手机号段由工业和信息化部统一分配,移动、联通、电信各持有不同号段区间。本工具使用360手机号码归属地接口,数据准确率约99%,覆盖全国31个省级行政区。
     </p>
 
     <h3>支持查询的类型</h3>
@@ -119,11 +119,14 @@ const howToSchema = {
         const data = await resp.json();
         if (data.ok) {
           if (data.source === 'local') {
-            content.innerHTML = `
-              <div class="space-y-2">
-                <p><span class="text-slate-500">号码:</span> <span class="font-mono">${data.phone}</span></p>
-                <div class="bg-amber-50 border border-amber-200 rounded p-3 text-sm text-amber-700">${data.note}</div>
-              </div>`;
+            const fields = [];
+            fields.push(`<p><span class="text-slate-500">号码:</span> <span class="font-mono">${data.phone}</span></p>`);
+            if (data.company) fields.push(`<p><span class="text-slate-500">运营商:</span> <span class="font-medium">${data.company}</span></p>`);
+            if (data.province) fields.push(`<p><span class="text-slate-500">省份:</span> <span class="font-medium">${data.province}</span></p>`);
+            if (data.city) fields.push(`<p><span class="text-slate-500">城市:</span> <span class="font-medium">${data.city}</span></p>`);
+            if (data.areacode) fields.push(`<p><span class="text-slate-500">区号:</span> <span class="font-medium">${data.areacode}</span></p>`);
+            if (data.note) fields.push(`<div class="bg-amber-50 border border-amber-200 rounded p-3 text-sm text-amber-700">${data.note}</div>`);
+            content.innerHTML = `<div class="space-y-2">${fields.join('')}</div>`;
           } else {
             content.innerHTML = `
               <div class="grid grid-cols-2 gap-3">
