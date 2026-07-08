@@ -18,6 +18,9 @@ const allFaqItems = groups.flatMap((g) => g.items);
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-08',
+  inLanguage: 'zh-CN',
   mainEntity: allFaqItems.map((item) => ({
     '@type': 'Question',
     name: item.q,

@@ -60,3 +60,6 @@ https://*:pages.dev/*
   X-Robots-Tag: index, follow
 /sitemap.xml
   Cache-Control: public, max-age=3600
+/ai.xml
+  Cache-Control: public, max-age=3600
+  Content-Type: application/xml; charset=utf-8

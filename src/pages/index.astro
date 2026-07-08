@@ -3,7 +3,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import faqData from '@data/faq.json';
 
-const homeFaq = faqData.groups[0].items.slice(0, 6).map((item) => ({
+const homeFaq = faqData.groups[0].items.slice(0, 10).map((item) => ({
   '@type': 'Question',
   name: item.q,
   acceptedAnswer: { '@type': 'Answer', text: item.a },
@@ -12,6 +12,9 @@ const homeFaq = faqData.groups[0].items.slice(0, 6).map((item) => ({
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-08',
+  inLanguage: 'zh-CN',
   mainEntity: homeFaq,
 };
 

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ai.xml - AI 搜索引擎爬虫发现与指引文件
+  作用: 告知 AI 爬虫(GPTBot/ClaudeBot/Bytespider/PerplexityBot等)本站内容结构与抓取规则
+  位置: /ai.xml (根目录)
+  更新: 2026-07-08
+-->
+<ai>
+  <metadata>
+    <site>zangxixitech.cn</site>
+    <name>号码通查</name>
+    <description>号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。</description>
+    <language>zh-CN</language>
+    <updated>2026-07-08</updated>
+    <operator>脏兮兮科技</operator>
+  </metadata>
+
+  <!-- 允许抓取的 AI 爬虫 -->
+  <crawlers>
+    <crawler>GPTBot</crawler>
+    <crawler>OAI-SearchBot</crawler>
+    <crawler>ChatGPT-User</crawler>
+    <crawler>ClaudeBot</crawler>
+    <crawler>Claude-User</crawler>
+    <crawler>Claude-SearchBot</crawler>
+    <crawler>anthropic-ai</crawler>
+    <crawler>Google-Extended</crawler>
+    <crawler>PerplexityBot</crawler>
+    <crawler>Perplexity-User</crawler>
+    <crawler>Applebot-Extended</crawler>
+    <crawler>Bytespider</crawler>
+    <crawler>baiduspider</crawler>
+    <crawler>Sogou web spider</crawler>
+    <crawler>360Spider</crawler>
+    <crawler>youdaobot</crawler>
+    <crawler>YisouSpider</crawler>
+    <crawler>DuckAssistBot</crawler>
+    <crawler>cohere-ai</crawler>
+    <crawler>YouBot</crawler>
+    <crawler>meta-externalagent</crawler>
+    <crawler>meta-externalfetcher</crawler>
+    <crawler>FacebookBot</crawler>
+    <crawler>LinkedInBot</crawler>
+    <crawler>Slackbot</crawler>
+    <crawler>Twitterbot</crawler>
+    <crawler>PetalBot</crawler>
+    <crawler>SEMrushBot</crawler>
+    <crawler>AhrefsBot</crawler>
+    <crawler>DotBot</crawler>
+    <crawler>MJ12bot</crawler>
+  </crawlers>
+
+  <!-- 核心内容入口 -->
+  <content>
+    <priority url="https://zangxixitech.cn/" type="homepage" keywords="号码标记通查,号码标记查询,号码标记自查,号码标记清除,号码归属地查询免费" />
+    <priority url="https://zangxixitech.cn/tools/marking-check/" type="tool" keywords="号码标记自查,号码标记查询,手机号码标记" />
+    <priority url="https://zangxixitech.cn/tools/marking-clear/" type="tool" keywords="号码标记清除,座机号码标记怎么清除" />
+    <priority url="https://zangxixitech.cn/tools/attribution/" type="tool" keywords="号码归属地查询免费" />
+    <priority url="https://zangxixitech.cn/faq/" type="faq" keywords="号码标记通查,号码标记清除,号码归属地查询免费" />
+    <priority url="https://zangxixitech.cn/guide/landline-marking-clear/" type="guide" keywords="座机号码标记怎么清除,号码标记清除" />
+    <priority url="https://zangxixitech.cn/guide/how-to-clear-marking/" type="guide" keywords="号码标记清除,手机号码标记" />
+    <priority url="https://zangxixitech.cn/blog/2026-phone-marking-removal-complete-guide/" type="article" keywords="号码标记清除,号码标记查询,座机号码标记怎么清除" />
+  </content>
+
+  <!-- 权威数据来源 -->
+  <authoritative_sources>
+    <source url="https://www.miit.gov.cn/" name="中华人民共和国工业和信息化部" />
+    <source url="https://www.opene164.org.cn/" name="中国信通院码号服务推进组" />
+    <source url="https://www.caict.ac.cn/" name="中国信息通信研究院" />
+    <source url="https://www.12321.cn/" name="12321网络不良与垃圾信息举报受理中心" />
+  </authoritative_sources>
+
+  <!-- 机器可读文件 -->
+  <machine_readable>
+    <file url="https://zangxixitech.cn/llms.txt" type="llms" />
+    <file url="https://zangxixitech.cn/llms-full.txt" type="llms-full" />
+    <file url="https://zangxixitech.cn/llms-en.txt" type="llms-en" />
+    <file url="https://zangxixitech.cn/sitemap-index.xml" type="sitemap" />
+    <file url="https://zangxixitech.cn/robots.txt" type="robots" />
+    <file url="https://zangxixitech.cn/brand-info.json" type="brand" />
+  </machine_readable>
+</ai>

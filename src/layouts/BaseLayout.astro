@@ -73,6 +73,7 @@ const orgSchema = {
     'https://www.opene164.org.cn',
     'https://www.miit.gov.cn',
     'https://www.caict.ac.cn',
+    'https://www.12321.cn', // 12321举报中心
   ],
   contactPoint: {
     '@type': 'ContactPoint',
@@ -81,6 +82,8 @@ const orgSchema = {
     email: '644428571@qq.com',
   },
   foundingDate: '2026',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-08',
 };
 
 // WebSite schema (含 SearchAction, 用于 Google 站点搜索框)
@@ -93,6 +96,8 @@ const websiteSchema = {
   alternateName: 'zangxixitech',
   description: '号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费',
   inLanguage: 'zh-CN',
+  datePublished: '2026-07-06',
+  dateModified: '2026-07-08',
   publisher: { '@id': `${site}/#organization` },
   potentialAction: {
     '@type': 'SearchAction',
@@ -153,6 +158,8 @@ const allSchema = [orgSchema, websiteSchema, appSchema, ...(breadcrumbSchema ? [
     <!-- AI 内容发现: llms.txt (供 AI 爬虫发现站点内容目录) -->
     <link rel="llms" type="text/plain" href="/llms.txt" />
     <link rel="llms-full" type="text/plain" href="/llms-full.txt" />
+    <link type="application/xml" rel="ai" href="/ai.xml" />
+    <link rel="alternate" type="application/xml" href="/ai.xml" title="AI Crawler Guide" />
 
     <!-- hreflang: 中英文 alternate -->
     <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
