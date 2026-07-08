@@ -26,7 +26,7 @@ const webPageSchema = {
   description: '号码通查提供号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。',
   url: 'https://zangxixitech.cn/',
   datePublished: '2026-07-07',
-  dateModified: '2026-07-07',
+  dateModified: '2026-07-08',
   inLanguage: 'zh-CN',
 };
 
@@ -132,6 +132,8 @@ const advantages = [
   description="号码通查提供号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持,聚合信通院与Truecaller官方入口。"
   schema={[faqSchema, webPageSchema]}
   breadcrumbs={breadcrumbs}
+  publishedDate="2026-07-07T00:00:00+08:00"
+  modifiedDate="2026-07-08T00:00:00+08:00"
 >
   <!-- Hero 区 -->
   <section class="mb-10 pt-4">
@@ -179,7 +181,7 @@ const advantages = [
 
   <!-- 服务工具 -->
   <section class="mb-10">
-    <h2 class="text-xl font-bold text-slate-800 mb-5">服务工具</h2>
+    <h2 class="text-xl font-bold text-slate-800 mb-5">号码标记查询与清除工具</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {tools.map((tool) => (
         <a href={tool.href} class={`card p-5 ${tool.primary ? 'ring-1 ring-brand-200' : ''}`}>
@@ -263,14 +265,14 @@ const advantages = [
 
   <!-- 标记清除说明 -->
   <section class="prose-content mb-10">
-    <h2>号码标记清除说明</h2>
+    <h2>号码标记怎么清除？官方渠道说明</h2>
     <p>
       号码标记是指手机来电时,终端安全软件根据号码库数据在来电界面显示"骚扰电话""推销"等标签的功能。当号码被误标记后,会影响正常通话与业务。号码通查提供<strong>手机号码与座机(固话)号码</strong>的标记查询与清除服务(注:诈骗类标记不在清除范围内),支持以下渠道:
     </p>
     <ul>
       <li><strong>标记清除服务入口</strong>:支持手机号与座机号,一站式查询并清除误标记,推荐优先使用。</li>
-      <li><strong>中国信通院码号服务推进组</strong>(opene164.org.cn):国内唯一官方跨平台号码标记查询与清除入口,支持手机号与座机号免费查询,中国联通手机号可一站式清除。</li>
-      <li><strong>Truecaller</strong>(truecaller.com):全球最大来电识别应用,适合有国际往来的号码,提交取消收录后24-48小时移除。</li>
+      <li><strong><a href="https://www.opene164.org.cn" target="_blank" rel="noopener">中国信通院码号服务推进组</a></strong>(opene164.org.cn):国内唯一官方跨平台号码标记查询与清除入口,支持手机号与座机号免费查询,中国联通手机号可一站式清除。</li>
+      <li><strong><a href="https://www.truecaller.com" target="_blank" rel="noopener">Truecaller</a></strong>(truecaller.com):全球最大来电识别应用,适合有国际往来的号码,提交取消收录后24-48小时移除。</li>
     </ul>
   </section>
 
@@ -292,7 +294,7 @@ const advantages = [
 
   <!-- 权威指南 -->
   <section class="mb-10">
-    <h2 class="text-xl font-bold text-slate-800 mb-5">权威指南</h2>
+    <h2 class="text-xl font-bold text-slate-800 mb-5">号码标记权威指南与教程</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {guides.map((guide) => (
         <a href={guide.href} class="card p-4">
@@ -343,7 +345,7 @@ const advantages = [
   <!-- 底部信任声明 -->
   <section class="bg-slate-100 rounded-xl p-6 border border-slate-200">
     <p class="text-sm text-slate-500 leading-relaxed">
-      号码通查由脏兮兮科技运营。标记清除服务由授权合作方提供,官方数据来源为中国信息通信研究院码号服务推进组(opene164.org.cn)与Truecaller。本站不存储用户查询的号码数据,查询免费。如需帮助请<a href="/contact/" class="text-brand-600 hover:underline">联系我们</a>。
+      号码通查由脏兮兮科技运营。标记清除服务由授权合作方提供,官方数据来源为<a href="https://www.opene164.org.cn" target="_blank" rel="noopener" class="text-brand-600 hover:underline">中国信息通信研究院码号服务推进组</a>(opene164.org.cn)与<a href="https://www.truecaller.com" target="_blank" rel="noopener" class="text-brand-600 hover:underline">Truecaller</a>。本站不存储用户查询的号码数据,查询免费。如需帮助请<a href="/contact/" class="text-brand-600 hover:underline">联系我们</a>。
     </p>
   </section>
 </BaseLayout>

@@ -53,6 +53,9 @@ const articleSchema = {
   description={post.data.description}
   schema={[articleSchema]}
   breadcrumbs={breadcrumbs}
+  ogType="article"
+  publishedDate={post.data.pubDate.toISOString()}
+  modifiedDate={(post.data.updatedDate || post.data.pubDate).toISOString()}
 >
   <article class="prose-content max-w-none">
     <div class="text-sm text-slate-400 mb-2">
