@@ -220,6 +220,17 @@ const allSchema = [orgSchema, websiteSchema, appSchema, ...(breadcrumbSchema ? [
         s.parentNode.insertBefore(hm, s);
       })();
     </script>
+
+    <!-- 字节跳动自动推送 (用户浏览页面时自动推送URL给蜘蛛,加速收录) -->
+    <script is:inline>
+      (function(){
+        var el = document.createElement("script");
+        el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?2e69d9a815b6645e6fffd1cdb3318782dc1ed592db41b2d2ce0aff8cbac580a730632485602430134f60bc55ca391050b680e2741bf7233a8f1da9902314a3fa";
+        el.id = "ttzz";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(el, s);
+      })(window)
+    </script>
   </head>
   <body class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
     <Header lang={lang} />
