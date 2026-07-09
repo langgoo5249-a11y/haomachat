@@ -54,11 +54,59 @@ const articleSchema = {
   image: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
   mainEntityOfPage: 'https://zangxixitech.cn/guide/what-is-number-marking',
 };
+
+// HowTo JSON-LD: "如何查询号码标记"步骤型结构化数据,AI引擎对步骤型内容解析效率更高
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '如何查询自己的号码是否被标记',
+  description: '通过中国信通院码号服务推进组和号码通查工具,一站式查询手机号/座机号在各平台的标记状态。',
+  totalTime: 'PT5M',
+  supply: [],
+  tool: [
+    { '@type': 'HowToItem', name: '能上网的手机或电脑' },
+    { '@type': 'HowToItem', name: '需要查询的电话号码' },
+  ],
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: '访问信通院码号服务推进组官网',
+      text: '打开浏览器,访问中国信通院码号服务推进组官网 opene164.org.cn,这是工信部委托建设的唯一官方跨平台号码标记查询入口。',
+      url: 'https://www.opene164.org.cn',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: '进入号码标记查询服务',
+      text: '在首页点击"服务平台"→"号码标记服务",进入查询页面。支持移动/联通/电信手机号及座机号查询,完全免费。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: '输入号码并获取验证码',
+      text: '在查询框中输入需要查询的电话号码,点击获取验证码并输入,提交查询请求。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: '查看全平台标记状态',
+      text: '系统将返回360、腾讯、百度、搜狗、泰迪熊、电话邦、触宝等主流标记服务商的标记结果。如显示"骚扰电话""推销"等标签,说明已被标记。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 5,
+      name: '使用号码通查工具辅助查询',
+      text: '也可使用号码通查(zangxixitech.cn)的标记自查工具,聚合展示各平台标记情况,查询后可直接进入对应平台申诉入口。',
+      url: 'https://zangxixitech.cn',
+    },
+  ],
+};
 ---
 <BaseLayout
   title="号码标记是什么？号码被标记的原因与机制详解 | 号码通查"
   description="号码标记是指手机来电时终端安全软件根据号码库数据显示骚扰、推销、诈骗等标签的功能。标记来源包括众包用户标记、企业认证和第三方号码库(泰迪熊/电话邦)。本文详解标记机制、各平台阈值及对企业个人的影响。"
-  schema={[articleSchema, faqSchema]}
+  schema={[articleSchema, faqSchema, howToSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码标记是什么？号码被标记的原因与机制详解</h1>

@@ -47,11 +47,41 @@ const articleSchema = {
   },
   keywords: post.data.tags.join(', '),
 };
+
+// BlogPosting JSON-LD: BlogPosting 是 Article 的子类型,部分 AI 引擎(如 Perplexity)对 BlogPosting 解析更精准
+const blogPostingSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
+  author: {
+    '@type': 'Organization',
+    name: post.data.author,
+    url: 'https://zangxixitech.cn/about',
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: '号码通查',
+    logo: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/favicon.svg' },
+  },
+  mainEntityOfPage: `https://zangxixitech.cn/blog/${post.id}/`,
+  image: {
+    '@type': 'ImageObject',
+    url: 'https://zangxixitech.cn/og-default.jpg',
+    width: 1200,
+    height: 630,
+  },
+  keywords: post.data.tags.join(', '),
+  wordCount: post.body?.length || 0,
+  articleSection: '号码百科',
+};
 ---
 <BaseLayout
   title={`${post.data.title} | 号码通查号码百科`}
   description={post.data.description}
-  schema={[articleSchema]}
+  schema={[articleSchema, blogPostingSchema]}
   breadcrumbs={breadcrumbs}
   ogType="article"
   publishedDate={post.data.pubDate.toISOString()}

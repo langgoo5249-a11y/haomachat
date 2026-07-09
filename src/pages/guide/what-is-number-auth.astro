@@ -54,11 +54,58 @@ const articleSchema = {
   image: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
   mainEntityOfPage: 'https://zangxixitech.cn/guide/what-is-number-auth',
 };
+
+// HowTo JSON-LD: "如何开通号码认证"步骤型结构化数据
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: '如何为企业开通号码认证服务',
+  description: '通过运营商或第三方认证平台,为企业号码开通来电显示认证(绿标),避免被标记为骚扰电话。',
+  totalTime: 'PT3D',
+  supply: [],
+  tool: [
+    { '@type': 'HowToItem', name: '企业营业执照' },
+    { '@type': 'HowToItem', name: '法人身份证' },
+    { '@type': 'HowToItem', name: '需认证的企业电话号码' },
+  ],
+  step: [
+    {
+      '@type': 'HowToStep',
+      position: 1,
+      name: '选择认证渠道',
+      text: '号码认证有两个渠道:一是直接联系运营商(移动/联通/电信)客户经理开通;二是通过第三方认证平台(腾讯号码公众平台、360号码认证)提交认证。运营商认证覆盖更广,第三方平台审核更快。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 2,
+      name: '准备认证材料',
+      text: '准备企业营业执照复印件、法人身份证、号码归属证明(话费账单或开户凭证),以及企业LOGO图片(用于来电显示)。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 3,
+      name: '提交认证申请',
+      text: '在所选平台填写企业信息、上传资质材料、提交号码认证申请。腾讯号码公众平台需QQ账号登录,360号码认证通过haomashensu.360.cn提交。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 4,
+      name: '等待审核结果',
+      text: '运营商认证审核约3-5个工作日,第三方平台约1-3个工作日。审核通过后,外呼时对方手机将显示企业名称和LOGO,而非"骚扰电话"。',
+    },
+    {
+      '@type': 'HowToStep',
+      position: 5,
+      name: '验证认证效果',
+      text: '认证生效后,用已认证号码拨打另一部手机,确认来电界面显示企业名称和LOGO。如未显示,联系平台客服确认同步状态。',
+    },
+  ],
+};
 ---
 <BaseLayout
   title="号码认证是什么？一键登录与本机号码校验原理详解 | 号码通查"
   description="号码认证是通过运营商蜂窝数据网络网关直接校验手机SIM卡号码的技术,分一键登录(注册登录,需授权)和本机号码校验(支付确认,不需授权)。相比短信验证码免输入免短信2-4秒完成。本文详解原理、对比与服务商生态。"
-  schema={[articleSchema, faqSchema]}
+  schema={[articleSchema, faqSchema, howToSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码认证是什么？一键登录与本机号码校验原理详解</h1>

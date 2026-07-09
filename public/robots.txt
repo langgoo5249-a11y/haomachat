@@ -1,11 +1,11 @@
 # 号码通查 - robots.txt
-# 放行主流搜索引擎与 AI 检索/引用爬虫
+# 放行所有搜索引擎与 AI 检索/引用爬虫(全量允许)
 # 注意: Cloudflare 默认可能拦截 AI 爬虫,需在 Dashboard > Security > Bots 放行
 
 User-agent: *
 Allow: /
 
-# === AI 检索/引用爬虫(允许) ===
+# === 国际 AI 检索/引用爬虫(允许) ===
 
 # OpenAI (训练 + 搜索索引 + 用户实时浏览)
 User-agent: GPTBot
@@ -49,10 +49,6 @@ Allow: /
 User-agent: meta-externalfetcher
 Allow: /
 
-# 字节跳动 (豆包/TikTok)
-User-agent: Bytespider
-Allow: /
-
 # Common Crawl (公共数据集)
 User-agent: CCBot
 Allow: /
@@ -73,17 +69,83 @@ Allow: /
 User-agent: YouBot
 Allow: /
 
+# Diffbot (AI 数据提取)
+User-agent: Diffbot
+Allow: /
+
+# Imagesift (AI 图像搜索)
+User-agent: ImagesiftBot
+Allow: /
+
+# FacebookBot (Meta)
+User-agent: FacebookBot
+Allow: /
+
+# === 中国 AI 爬虫(允许) ===
+
+# 字节跳动 - 豆包/TikTok (训练 + 搜索)
+User-agent: Bytespider
+Allow: /
+
+# 字节跳动 - 今日头条搜索爬虫
+User-agent: ToutiaoSpider
+Allow: /
+
+# 华为 - PetalBot 搜索引擎爬虫
+User-agent: PetalBot
+Allow: /
+
+# 360 搜索 - Yisouspider
+User-agent: Yisouspider
+Allow: /
+
+# 百度 - 全系爬虫(网页/图片/新闻/视频/移动)
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Baiduspider-render
+Allow: /
+
+User-agent: Baiduspider-image
+Allow: /
+
+User-agent: Baiduspider-news
+Allow: /
+
+User-agent: Baiduspider-video
+Allow: /
+
+User-agent: Baiduspider-mobile
+Allow: /
+
+# 搜狗 - 全系爬虫
+User-agent: Sogou web spider
+Allow: /
+
+User-agent: Sogou inst spider
+Allow: /
+
+User-agent: Sogou spider2
+Allow: /
+
+User-agent: Sogou blog
+Allow: /
+
+User-agent: Sogou News Spider
+Allow: /
+
+User-agent: Sogou Pic Spider
+Allow: /
+
+# 神马搜索 (UC/阿里)
+User-agent: Yisouspider
+Allow: /
+
 # === 传统搜索引擎 ===
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
-Allow: /
-
-User-agent: Baiduspider
-Allow: /
-
-User-agent: Sogou web spider
 Allow: /
 
 User-agent: 360Spider
