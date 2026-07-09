@@ -5,6 +5,7 @@
 # 文件以无扩展名存储,_redirects将.html请求重写到无扩展名文件
 /googleacd9f7914a32bdff.html  /googleacd9f7914a32bdff  200
 /baidu_verify_codeva-J2OVio818i.html  /baidu_verify_codeva-J2OVio818i  200
+/ByteDanceVerify.html  /ByteDanceVerify  200
 
 # Sitemap 兼容: Google Search Console 默认找 /sitemap.xml
 /sitemap.xml  /sitemap-index.xml  301
