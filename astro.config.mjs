@@ -26,6 +26,7 @@ const pageLastmod = {
   '/blog/2026-phone-marking-removal-complete-guide/': '2026-07-08',
   '/blog/2026-recycled-number-false-marking-guide/': '2026-07-07',
   '/blog/2026-enterprise-400-number-marking-clear-guide/': '2026-07-09',
+  '/blog/2026-phone-attribution-accuracy-after-mnp/': '2026-07-10',
   '/tools/attribution/': '2026-07-08',
   '/tools/legal-number-verify/': '2026-07-06',
   '/tools/marking-check/': '2026-07-06',
