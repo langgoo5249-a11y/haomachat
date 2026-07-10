@@ -14,13 +14,13 @@
 https://*:pages.dev/*
   X-Robots-Tag: noindex, nofollow
 
-# HTML 页面: 浏览器短缓存 + CDN边缘缓存10分钟(stale-while-revalidate提升TTFB)
+# HTML 页面: CDN边缘缓存60秒 + 过期后异步刷新(提升TTFB,内容更新延迟最多1分钟)
 /*.html
-  Cache-Control: public, max-age=0, s-maxage=600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=60, stale-while-revalidate=86400
 /
-  Cache-Control: public, max-age=0, s-maxage=600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=60, stale-while-revalidate=86400
 /*/index.html
-  Cache-Control: public, max-age=0, s-maxage=600, stale-while-revalidate=86400
+  Cache-Control: public, max-age=60, stale-while-revalidate=86400
 
 # 静态资源长缓存
 /_astro/*
