@@ -13,6 +13,9 @@ export async function getStaticPaths() {
 const post = Astro.props;
 const { Content } = await render(post);
 
+const site = 'https://zangxixitech.cn';
+const heroImageUrl = post.data.heroImage ? `${site}${post.data.heroImage}` : `${site}/og-default.jpg`;
+
 const breadcrumbs = [
   { name: '首页', url: '/' },
   { name: '号码百科', url: '/blog' },
@@ -27,11 +30,12 @@ const articleSchema = {
   datePublished: post.data.pubDate.toISOString(),
   dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
   author: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: post.data.author,
+    '@id': post.data.author === 'langood'
+      ? 'https://zangxixitech.cn/#person-langood'
+      : 'https://zangxixitech.cn/#person-haomachatongcha',
     url: 'https://zangxixitech.cn/about',
-    description: '号码通查 - 电话号码标记查询与清除服务工具站,由脏兮兮科技运营',
-    knowsAbout: ['电话号码标记', '号码标记清除', '号码认证', '号码归属地查询', '法人号码核验'],
   },
   publisher: {
     '@type': 'Organization',
@@ -41,9 +45,10 @@ const articleSchema = {
   mainEntityOfPage: `https://zangxixitech.cn/blog/${post.id}/`,
   image: {
     '@type': 'ImageObject',
-    url: 'https://zangxixitech.cn/og-default.jpg',
+    url: heroImageUrl,
     width: 1200,
     height: 630,
+    caption: post.data.title,
   },
   keywords: post.data.tags.join(', '),
 };
@@ -57,8 +62,11 @@ const blogPostingSchema = {
   datePublished: post.data.pubDate.toISOString(),
   dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
   author: {
-    '@type': 'Organization',
+    '@type': 'Person',
     name: post.data.author,
+    '@id': post.data.author === 'langood'
+      ? 'https://zangxixitech.cn/#person-langood'
+      : 'https://zangxixitech.cn/#person-haomachatongcha',
     url: 'https://zangxixitech.cn/about',
   },
   publisher: {
@@ -69,9 +77,10 @@ const blogPostingSchema = {
   mainEntityOfPage: `https://zangxixitech.cn/blog/${post.id}/`,
   image: {
     '@type': 'ImageObject',
-    url: 'https://zangxixitech.cn/og-default.jpg',
+    url: heroImageUrl,
     width: 1200,
     height: 630,
+    caption: post.data.title,
   },
   keywords: post.data.tags.join(', '),
   wordCount: post.body?.length || 0,
@@ -84,13 +93,26 @@ const blogPostingSchema = {
   schema={[articleSchema, blogPostingSchema]}
   breadcrumbs={breadcrumbs}
   ogType="article"
+  ogImage={post.data.heroImage || undefined}
   publishedDate={post.data.pubDate.toISOString()}
   modifiedDate={(post.data.updatedDate || post.data.pubDate).toISOString()}
 >
   <article class="prose-content max-w-none">
     <div class="text-sm text-slate-400 mb-2">
-      {post.data.pubDate.toLocaleDateString('zh-CN')} · {post.data.author}
+      发布于 {post.data.pubDate.toLocaleDateString('zh-CN')} · 作者 {post.data.author} · 最后更新于 {(post.data.updatedDate || post.data.pubDate).toLocaleDateString('zh-CN')}
     </div>
+    {
+      post.data.heroImage && (
+        <img
+          src={post.data.heroImage}
+          alt={post.data.heroDescription || post.data.title}
+          class="w-full rounded-lg mb-4 object-cover aspect-[1200/630]"
+          width="1200"
+          height="630"
+          loading="eager"
+        />
+      )
+    }
     <h1 class="text-3xl font-bold text-slate-800 mb-4">{post.data.title}</h1>
     <p class="text-lg text-slate-600 mb-6">{post.data.description}</p>
     <Content />

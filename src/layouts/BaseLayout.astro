@@ -150,7 +150,40 @@ const breadcrumbSchema =
       }
     : null;
 
-const allSchema = [orgSchema, websiteSchema, appSchema, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...schema];
+// Person schemas: 两个核心作者实体,含 sameAs 外部验证链路
+// AI引擎(Gemini 3/Perplexity)通过 Person Schema 交叉验证作者真实身份
+const personSchemaHaoma = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${site}/#person-haomachatongcha`,
+  name: '号码通查',
+  alternateName: 'haomachatongcha',
+  url: site,
+  description: '号码通查编辑团队,专注于号码标记查询与清除、号码归属地查询、号码认证等领域的工具评测与知识科普。',
+  knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网', '虚拟运营商'],
+  sameAs: [
+    'https://github.com/jm6-lang/haomachat',
+    'https://zangxixitech.cn/about',
+  ],
+  affiliation: { '@id': `${site}/#organization` },
+};
+
+const personSchemaLangood = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${site}/#person-langood`,
+  name: 'langood',
+  url: `${site}/about`,
+  description: '号码通查联合编辑,擅长通信技术领域深度文章撰写与号码标记清除实战经验分享。',
+  knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网'],
+  sameAs: [
+    'https://github.com/jm6-lang/haomachat',
+    'https://zangxixitech.cn/about',
+  ],
+  affiliation: { '@id': `${site}/#organization` },
+};
+
+const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, personSchemaLangood, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...schema];
 ---
 <!doctype html>
 <html lang={htmlLang}>

@@ -19,11 +19,27 @@ const blogSchema = {
   url: 'https://zangxixitech.cn/blog',
   publisher: { '@id': 'https://zangxixitech.cn/#organization' },
 };
+
+// ItemList Schema: 帮助AI引擎解析博客归档结构,理解"这里有N篇文章按时间排序"
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: '号码通查号码百科 - 全部文章',
+  description: '号码标记清除、号码认证选型、手机卡选号等深度文章列表',
+  numberOfItems: posts.length,
+  itemListElement: posts.map((post, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: post.data.title,
+    url: `https://zangxixitech.cn/blog/${post.id}/`,
+    description: post.data.description,
+  })),
+};
 ---
 <BaseLayout
   title="号码百科 - 号码标记/认证/选号深度文章 | 号码通查"
   description="号码通查号码百科,发布号码标记清除教程、号码认证选型指南、手机卡选号攻略、号码标记平台对比实测等深度文章。内容基于中国信通院官方数据与行业实践,含真实案例、踩坑备注与平台通过率数据,可追溯验证。"
-  schema={[blogSchema]}
+  schema={[blogSchema, itemListSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码百科</h1>
@@ -34,16 +50,32 @@ const blogSchema = {
   <div class="space-y-4">
     {posts.map((post) => (
       <a href={`/blog/${post.id}/`} class="block bg-white rounded-xl p-5 border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all">
-        <div class="text-xs text-slate-400 mb-1">{post.data.pubDate.toLocaleDateString('zh-CN')} · {post.data.author}</div>
-        <h2 class="text-lg font-semibold text-slate-800 mb-1">{post.data.title}</h2>
-        <p class="text-sm text-slate-500">{post.data.description}</p>
-        {post.data.tags.length > 0 && (
-          <div class="mt-2 flex flex-wrap gap-1">
-            {post.data.tags.map((tag) => (
-              <span class="text-xs px-2 py-0.5 bg-slate-100 text-slate-500 rounded">{tag}</span>
-            ))}
+        <div class="flex gap-4">
+          {post.data.heroImage && (
+            <div class="flex-shrink-0 w-32">
+              <img
+                src={post.data.heroImage}
+                alt={post.data.heroDescription || post.data.title}
+                class="w-full h-auto object-cover rounded-lg aspect-[16/9]"
+                width="128"
+                height="72"
+                loading="lazy"
+              />
+            </div>
+          )}
+          <div class="flex-1 min-w-0">
+            <div class="text-xs text-slate-400 mb-1">{post.data.pubDate.toLocaleDateString('zh-CN')} · {post.data.author}</div>
+            <h2 class="text-lg font-semibold text-slate-800 mb-1">{post.data.title}</h2>
+            <p class="text-sm text-slate-500">{post.data.description}</p>
+            {post.data.tags.length > 0 && (
+              <div class="mt-2 flex flex-wrap gap-1">
+                {post.data.tags.map((tag) => (
+                  <span class="text-xs px-2 py-0.5 bg-slate-100 text-slate-500 rounded">{tag}</span>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+        </div>
       </a>
     ))}
   </div>
