@@ -205,32 +205,16 @@ const allSchema = [orgSchema, websiteSchema, appSchema, ...(breadcrumbSchema ? [
     <link rel="alternate" type="application/rss+xml" title="号码通查号码百科" href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    <!-- 资源预连接: 加速外部域名DNS/TLS握手 -->
+    <link rel="preconnect" href="https://hm.baidu.com" />
+    <link rel="preconnect" href="https://lf1-cdn-tos.bytegoofy.com" />
+    <link rel="dns-prefetch" href="https://hm.baidu.com" />
+    <link rel="dns-prefetch" href="https://lf1-cdn-tos.bytegoofy.com" />
+
     <!-- JSON-LD: 直接写入 HTML, 不用 JS 注入(GEO 关键) -->
     {allSchema.map((s) => (
       <script type="application/ld+json" set:html={JSON.stringify(s)} />
     ))}
-
-    <!-- 百度统计 (异步加载, PC+移动端通用) -->
-    <script is:inline>
-      var _hmt = _hmt || [];
-      (function() {
-        var hm = document.createElement("script");
-        hm.src = "https://hm.baidu.com/hm.js?2953c0c30dddfbf0e8910b7e8ba3bf17";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-      })();
-    </script>
-
-    <!-- 字节跳动自动推送 (用户浏览页面时自动推送URL给蜘蛛,加速收录) -->
-    <script is:inline>
-      (function(){
-        var el = document.createElement("script");
-        el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?2e69d9a815b6645e6fffd1cdb3318782dc1ed592db41b2d2ce0aff8cbac580a730632485602430134f60bc55ca391050b680e2741bf7233a8f1da9902314a3fa";
-        el.id = "ttzz";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(el, s);
-      })(window)
-    </script>
   </head>
   <body class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
     <Header lang={lang} />
@@ -251,5 +235,31 @@ const allSchema = [orgSchema, websiteSchema, appSchema, ...(breadcrumbSchema ? [
     </main>
     <Footer lang={lang} />
     <CustomerServiceFloat />
+
+    <!-- 第三方脚本延迟加载: 浏览器空闲时执行,不阻塞首屏渲染 -->
+    <script is:inline>
+      function loadAnalytics() {
+        // 百度统计
+        var _hmt = window._hmt || (window._hmt = []);
+        var hm = document.createElement("script");
+        hm.async = true;
+        hm.src = "https://hm.baidu.com/hm.js?2953c0c30dddfbf0e8910b7e8ba3bf17";
+        document.head.appendChild(hm);
+
+        // 字节跳动自动推送
+        var el = document.createElement("script");
+        el.async = true;
+        el.id = "ttzz";
+        el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?2e69d9a815b6645e6fffd1cdb3318782dc1ed592db41b2d2ce0aff8cbac580a730632485602430134f60bc55ca391050b680e2741bf7233a8f1da9902314a3fa";
+        document.head.appendChild(el);
+      }
+
+      // 优先使用 requestIdleCallback,降级到 setTimeout
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(loadAnalytics, { timeout: 3000 });
+      } else {
+        setTimeout(loadAnalytics, 1500);
+      }
+    </script>
   </body>
 </html>

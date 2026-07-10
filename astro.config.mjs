@@ -48,6 +48,7 @@ export default defineConfig({
   site: 'https://zangxixitech.cn',
   output: 'static',
   trailingSlash: 'ignore',
+  compressHTML: true,
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
