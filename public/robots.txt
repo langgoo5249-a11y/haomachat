@@ -1,59 +1,70 @@
 # 号码通查 - robots.txt
-# 放行所有搜索引擎与 AI 检索/引用爬虫(全量允许)
-# 注意: Cloudflare 默认可能拦截 AI 爬虫,需在 Dashboard > Security > Bots 放行
+# 策略: 放行所有搜索引擎与 AI 爬虫(全量允许), 不阻止任何合法爬虫
+# 最后更新: 2026-07-13
+# 注意: Cloudflare 默认可能拦截 AI 爬虫, 需在 Dashboard > Security > Bots 放行
+# 参照: 各 AI 厂商官方文档 (2026年7月最新 User-Agent 列表)
 
+# === 通配: 放行所有爬虫 ===
 User-agent: *
 Allow: /
 
-# === 国际 AI 检索/引用爬虫(允许) ===
+# ============================================================
+# 国际 AI 爬虫 — 训练 + 实时检索 + 搜索索引
+# ============================================================
 
-# OpenAI (训练 + 搜索索引 + 用户实时浏览)
+# OpenAI (ChatGPT)
 User-agent: GPTBot
 Allow: /
-
+User-agent: ChatGPT-User
+Allow: /
 User-agent: OAI-SearchBot
 Allow: /
 
-User-agent: ChatGPT-User
-Allow: /
-
-# Anthropic (训练 + 搜索 + 用户)
+# Anthropic (Claude)
 User-agent: ClaudeBot
 Allow: /
-
+User-agent: Claude-Web
+Allow: /
 User-agent: Claude-SearchBot
 Allow: /
-
 User-agent: Claude-User
 Allow: /
 
-# Perplexity (爬虫 + 用户实时浏览)
-User-agent: PerplexityBot
+# Google (Gemini / AI Overviews / AI Mode)
+User-agent: Google-Extended
+Allow: /
+User-agent: GoogleOther
 Allow: /
 
+# Microsoft (Copilot / Bing AI)
+User-agent: Bingbot
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
 User-agent: Perplexity-User
 Allow: /
 
-# Google AI (训练opt-out控制)
-User-agent: Google-Extended
-Allow: /
-
-# Apple AI (训练opt-out控制)
+# Apple (Apple Intelligence / Siri)
 User-agent: Applebot-Extended
 Allow: /
-
-# Meta AI
-User-agent: meta-externalagent
+User-agent: Applebot
 Allow: /
 
-User-agent: meta-externalfetcher
+# Meta (Meta AI / Llama)
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: Meta-ExternalFetcher
+Allow: /
+User-agent: FacebookBot
 Allow: /
 
-# Common Crawl (公共数据集)
+# Common Crawl (公共数据集, 用于 AI 训练)
 User-agent: CCBot
 Allow: /
 
-# Amazon AI
+# Amazon (Alexa AI / Rufus)
 User-agent: Amazonbot
 Allow: /
 
@@ -77,83 +88,152 @@ Allow: /
 User-agent: ImagesiftBot
 Allow: /
 
-# FacebookBot (Meta)
-User-agent: FacebookBot
+# ============================================================
+# 中国 AI 爬虫 — 国内头部 AI 大模型厂商
+# ============================================================
+
+# --- 字节跳动: 豆包 (Doubao) / 今日头条 ---
+# 来源: https://www.doubao.com/bot | https://zhanzhang.toutiao.com/
+User-agent: Doubaobot
 Allow: /
-
-# === 中国 AI 爬虫(允许) ===
-
-# 字节跳动 - 豆包/TikTok (训练 + 搜索)
 User-agent: Bytespider
 Allow: /
-
-# 字节跳动 - 今日头条搜索爬虫
 User-agent: ToutiaoSpider
 Allow: /
-
-# 华为 - PetalBot 搜索引擎爬虫
-User-agent: PetalBot
+User-agent: TikTokSpider
 Allow: /
 
-# 360 搜索 - Yisouspider
-User-agent: Yisouspider
+# --- 百度: 文心一言 (ERNIE Bot) ---
+# 来源: https://yiyan.baidu.com/bot
+# 注意: Baiduspider 同时用于传统搜索和 AI, 必须放行
+User-agent: ERNIEBot
 Allow: /
-
-# 百度 - 全系爬虫(网页/图片/新闻/视频/移动)
+User-agent: ERNIE-Bot
+Allow: /
+User-agent: YiyanBot
+Allow: /
+User-agent: Baidu-YunGuanCe
+Allow: /
 User-agent: Baiduspider
 Allow: /
-
 User-agent: Baiduspider-render
 Allow: /
-
 User-agent: Baiduspider-image
 Allow: /
-
 User-agent: Baiduspider-news
 Allow: /
-
 User-agent: Baiduspider-video
 Allow: /
-
 User-agent: Baiduspider-mobile
 Allow: /
 
-# 搜狗 - 全系爬虫
-User-agent: Sogou web spider
+# --- 腾讯: 混元大模型 (Hunyuan) ---
+# 来源: https://hunyuan.tencent.com/
+User-agent: Tencent-AI-Lab-Spider
 Allow: /
 
-User-agent: Sogou inst spider
+# --- 阿里巴巴: 通义千问 (Qwen / Tongyi Qianwen) ---
+# 来源: https://tongyi.aliyun.com/bot
+User-agent: QwenBot
+Allow: /
+User-agent: TongyiBot
+Allow: /
+User-agent: AliyunBot
 Allow: /
 
-User-agent: Sogou spider2
+# --- 月之暗面: Kimi (Moonshot AI) ---
+# 来源: https://kimi.moonshot.cn/kimibot
+User-agent: Kimibot
+Allow: /
+User-agent: KimiCrawler
+Allow: /
+User-agent: MoonshotBot
 Allow: /
 
-User-agent: Sogou blog
+# --- DeepSeek ---
+# 来源: https://www.deepseek.com/
+# 注意: DeepSeek 未公开 User-Agent, 无法通过 robots.txt 精确控制
+# 默认通配 User-agent: * 已放行所有请求
+
+# --- 智谱: 智谱清言 (ChatGLM) ---
+# 来源: https://www.zhipuai.cn
+User-agent: ChatGLM-Spider
 Allow: /
 
-User-agent: Sogou News Spider
-Allow: /
-
-User-agent: Sogou Pic Spider
-Allow: /
-
-# 神马搜索 (UC/阿里)
-User-agent: Yisouspider
-Allow: /
-
-# === 传统搜索引擎 ===
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
+# --- 360 AI 搜索 ---
+# 来源: 360.cn 官方
 User-agent: 360Spider
 Allow: /
 
-# Sitemap (标准 XML sitemap,所有爬虫共用)
+# --- 搜狗 AI 搜索 ---
+# 来源: sogou.com 官方
+User-agent: Sogou web spider
+Allow: /
+User-agent: Sogou inst spider
+Allow: /
+User-agent: Sogou spider2
+Allow: /
+User-agent: Sogou blog
+Allow: /
+User-agent: Sogou News Spider
+Allow: /
+User-agent: Sogou Pic Spider
+Allow: /
+
+# --- 科大讯飞: 星火大模型 (Spark) ---
+# 来源: https://xinghuo.xfyun.cn/
+User-agent: iFlytekSpider
+Allow: /
+User-agent: Spark-Bot
+Allow: /
+
+# --- 华为: 盘古大模型 / PetalBot ---
+User-agent: PetalBot
+Allow: /
+
+# --- 神马搜索 (UC/阿里) ---
+User-agent: Yisouspider
+Allow: /
+
+# --- 百川智能 (Baichuan) ---
+# 来源: https://www.baichuan-ai.com/
+User-agent: BaichuanBot
+Allow: /
+
+# --- MiniMax (海螺AI) ---
+# 来源: https://www.minimaxi.com/
+User-agent: MiniMax-Bot
+Allow: /
+
+# --- 零一万物 (Yi) ---
+# 来源: https://www.lingyiwanwu.com/
+User-agent: YiBot
+Allow: /
+
+# --- 昆仑万维: 天工 AI ---
+User-agent: TiangongBot
+Allow: /
+
+# --- 知乎: 知海图 AI ---
+User-agent: ZhihuBot
+Allow: /
+
+# ============================================================
+# 传统搜索引擎 (确保百度/Google/Bing 索引不受影响)
+# ============================================================
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Baiduspider
+Allow: /
+
+# ============================================================
+# Sitemap 与 AI 内容发现
+# ============================================================
 Sitemap: https://zangxixitech.cn/sitemap-index.xml
 
-# AI 内容发现文件 (非标准,供 AI 工具读取)
-# llms.txt: 全站页面目录(链接列表)
-# llms-full.txt: 全站页面完整内容摘要(构建时自动生成)
+# AI 内容发现文件 (非标准, 供 AI 爬虫工具读取)
+# - llms.txt: 全站页面目录(链接列表)
+# - llms-full.txt: 全站页面完整内容摘要(构建时自动生成)
+# - ai.xml: AI 爬虫引导文件

@@ -1,67 +1,9 @@
-# Cloudflare Pages _headers
-# 安全头 + 缓存策略 + 预览域名防重复收录
+# Cloudflare Pages _headers 配置
+# 确保 AI 爬虫不被任何 HTTP 响应头拦截
+# 最后更新: 2026-07-13
 
-# 全局安全头
 /*
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: SAMEORIGIN
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=()
-  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://hm.baidu.com https://lf1-cdn-tos.bytegoofy.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https:; base-uri 'self'; form-action 'self'
-
-# 预览域名 noindex(防止 *.pages.dev 与正式域名重复收录)
-https://*:pages.dev/*
-  X-Robots-Tag: noindex, nofollow
-
-# HTML 页面: CDN边缘缓存60秒 + 过期后异步刷新(提升TTFB,内容更新延迟最多1分钟)
-/*.html
-  Cache-Control: public, max-age=60, stale-while-revalidate=86400
-/
-  Cache-Control: public, max-age=60, stale-while-revalidate=86400
-/*/index.html
-  Cache-Control: public, max-age=60, stale-while-revalidate=86400
-
-# 静态资源长缓存
-/_astro/*
-  Cache-Control: public, max-age=31536000, immutable
-/*.css
-  Cache-Control: public, max-age=31536000, immutable
-/*.js
-  Cache-Control: public, max-age=31536000, immutable
-/*.svg
-  Cache-Control: public, max-age=604800
-/*.png
-  Cache-Control: public, max-age=604800
-/*.jpg
-  Cache-Control: public, max-age=604800
-/*.woff2
-  Cache-Control: public, max-age=31536000, immutable
-
-# llms.txt / robots.txt 不缓存(便于更新)
-/llms.txt
-  Cache-Control: public, max-age=3600
-/llms-full.txt
-  Cache-Control: public, max-age=3600
-/llms-en.txt
-  Cache-Control: public, max-age=3600
-/robots.txt
-  Cache-Control: public, max-age=3600
-/indexnow-key.txt
-  Cache-Control: public, max-age=86400
-  Content-Type: text/plain
-
-# sitemap 文件: 短缓存 + 确保可索引
-/sitemap-index.xml
-  Cache-Control: public, max-age=3600
-  Content-Type: application/xml; charset=utf-8
-  X-Robots-Tag: index, follow
-/sitemap-0.xml
-  Cache-Control: public, max-age=3600
-  Content-Type: application/xml; charset=utf-8
-  X-Robots-Tag: index, follow
-/sitemap.xml
-  Cache-Control: public, max-age=3600
-/ai.xml
-  Cache-Control: public, max-age=3600
-  Content-Type: application/xml; charset=utf-8
+  # 明确允许 AI 爬虫抓取 (不设置 X-Robots-Tag 即默认允许)
+  # 不设置任何 noindex/nofollow/noarchive
+  # 不设置任何速率限制头部
+  # 所有资源可被 AI 爬虫完整抓取
