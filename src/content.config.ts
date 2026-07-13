@@ -12,8 +12,16 @@ const blog = defineCollection({
     author: z.string().default('号码通查'),
     tags: z.array(z.string()).default([]),
     heroImage: z.string().optional(),
+    heroDescription: z.string().optional(),
     draft: z.boolean().default(false),
     category: z.string().optional(),
+    howToSteps: z.array(z.object({
+      name: z.string(),
+      text: z.string(),
+    })).optional(),
+    howToTotalTime: z.string().optional(),
+    howToCost: z.string().optional(),
+    howToMaterials: z.array(z.string()).optional(),
   }),
 });
 

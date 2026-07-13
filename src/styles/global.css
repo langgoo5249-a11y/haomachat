@@ -61,6 +61,10 @@ body {
 }
 .prose-content table {
   @apply w-full text-sm border-collapse my-6;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
 }
 .prose-content th {
   @apply bg-slate-100 text-slate-700 font-semibold p-3 text-left border border-slate-200;

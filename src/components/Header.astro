@@ -34,20 +34,20 @@ const navItems = isEn
     </a>
     <nav class="hidden md:flex items-center gap-5 text-sm">
       {navItems.map((item) => (
-        <a href={item.href} class="text-slate-600 hover:text-brand-600 transition-colors">{item.label}</a>
+        <a href={item.href} class="text-slate-600 hover:text-brand-600 transition-colors min-h-10 w-[44px] flex items-center justify-center">{item.label}</a>
       ))}
     </nav>
     <a
       href={isEn ? '/' : '/en'}
-      class="text-xs px-2 py-1 rounded border border-slate-300 text-slate-500 hover:border-brand-400 hover:text-brand-600"
+      class="text-sm px-2 py-1 rounded border border-slate-300 text-slate-500 hover:border-brand-400 hover:text-brand-600 min-h-10 flex items-center justify-center"
     >
       {isEn ? '中文' : 'EN'}
     </a>
   </div>
   <!-- 移动端导航 -->
-  <nav class="md:hidden flex overflow-x-auto gap-4 px-4 py-2 text-xs border-t border-slate-100">
+  <nav class="md:hidden flex overflow-x-auto gap-4 px-4 py-2 text-sm border-t border-slate-100">
     {navItems.map((item) => (
-      <a href={item.href} class="whitespace-nowrap text-slate-600">{item.label}</a>
+      <a href={item.href} class="whitespace-nowrap text-slate-600 min-h-10 w-[44px] flex items-center justify-center">{item.label}</a>
     ))}
   </nav>
 </header>
