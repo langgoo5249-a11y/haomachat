@@ -32,9 +32,9 @@ const navItems = isEn
       <img src="/favicon.svg" alt="号码通查" width="28" height="28" />
       <span>{isEn ? 'zangxixitech' : '号码通查'}</span>
     </a>
-    <nav class="hidden md:flex items-center gap-5 text-sm">
+    <nav class="hidden md:flex items-center gap-4 text-sm">
       {navItems.map((item) => (
-        <a href={item.href} class="text-slate-600 hover:text-brand-600 transition-colors min-h-10 w-[44px] flex items-center justify-center">{item.label}</a>
+        <a href={item.href} class="text-slate-600 hover:text-brand-600 transition-colors min-h-10 px-1 flex items-center">{item.label}</a>
       ))}
     </nav>
     <a
@@ -45,9 +45,9 @@ const navItems = isEn
     </a>
   </div>
   <!-- 移动端导航 -->
-  <nav class="md:hidden flex overflow-x-auto gap-4 px-4 py-2 text-sm border-t border-slate-100">
+  <nav class="md:hidden flex overflow-x-auto gap-3 px-4 py-2 text-sm border-t border-slate-100">
     {navItems.map((item) => (
-      <a href={item.href} class="whitespace-nowrap text-slate-600 min-h-10 w-[44px] flex items-center justify-center">{item.label}</a>
+      <a href={item.href} class="whitespace-nowrap text-slate-600 min-h-10 px-1 flex items-center">{item.label}</a>
     ))}
   </nav>
 </header>
