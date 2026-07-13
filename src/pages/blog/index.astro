@@ -47,34 +47,35 @@ const itemListSchema = {
     号码通查号码百科发布电话号码服务领域的深度文章,涵盖号码标记查询与清除教程、号码认证(一键登录/本机号码校验)选型指南、手机卡选号攻略等。所有内容基于中国信通院、各平台官方渠道与运营商公开资料,可追溯验证。
   </p>
 
-  <div class="space-y-4">
+  <div class="space-y-5 pb-20">
     {posts.map((post) => (
-      <a href={`/blog/${post.id}/`} class="block bg-white rounded-xl p-5 border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all">
-        <div class="flex gap-4">
-          {post.data.heroImage && (
-            <div class="flex-shrink-0 w-32">
-              <img
-                src={post.data.heroImage}
-                alt={post.data.heroDescription || post.data.title}
-                class="w-full h-auto object-cover rounded-lg aspect-[16/9]"
-                width="128"
-                height="72"
-                loading="lazy"
-              />
+      <a href={`/blog/${post.id}/`} class="block bg-white rounded-xl border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all overflow-hidden">
+        <!-- 配图: 移动端全宽在上, 桌面端保持整卡结构 -->
+        {post.data.heroImage ? (
+          <img
+            src={post.data.heroImage}
+            alt={post.data.heroDescription || post.data.title}
+            class="w-full aspect-[16/9] object-cover"
+            width="1200"
+            height="675"
+            loading="lazy"
+          />
+        ) : (
+          <div class="w-full aspect-[16/9] bg-slate-100 flex items-center justify-center">
+            <svg class="w-10 h-10 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          </div>
+        )}
+        <div class="p-4">
+          <div class="text-xs text-slate-400 mb-1">{post.data.pubDate.toLocaleDateString('zh-CN')} · {post.data.author}</div>
+          <h2 class="text-base font-semibold text-slate-800 mb-1.5 leading-snug">{post.data.title}</h2>
+          <p class="text-sm text-slate-500 leading-relaxed line-clamp-2">{post.data.description}</p>
+          {post.data.tags.length > 0 && (
+            <div class="mt-2.5 flex flex-wrap gap-1.5">
+              {post.data.tags.map((tag) => (
+                <span class="text-xs px-2 py-0.5 bg-slate-100 text-slate-500 rounded">{tag}</span>
+              ))}
             </div>
           )}
-          <div class="flex-1 min-w-0">
-            <div class="text-xs text-slate-400 mb-1">{post.data.pubDate.toLocaleDateString('zh-CN')} · {post.data.author}</div>
-            <h2 class="text-lg font-semibold text-slate-800 mb-1">{post.data.title}</h2>
-            <p class="text-sm text-slate-500">{post.data.description}</p>
-            {post.data.tags.length > 0 && (
-              <div class="mt-2 flex flex-wrap gap-1">
-                {post.data.tags.map((tag) => (
-                  <span class="text-xs px-2 py-0.5 bg-slate-100 text-slate-500 rounded">{tag}</span>
-                ))}
-              </div>
-            )}
-          </div>
         </div>
       </a>
     ))}

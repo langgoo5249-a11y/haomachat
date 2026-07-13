@@ -135,7 +135,7 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
   publishedDate={post.data.pubDate.toISOString()}
   modifiedDate={(post.data.updatedDate || post.data.pubDate).toISOString()}
 >
-  <article class="prose-content max-w-none">
+  <article class="prose-content max-w-none lg:max-w-[75ch]">
     <div class="text-sm text-slate-400 mb-2">
       发布于 {post.data.pubDate.toLocaleDateString('zh-CN')} · 作者 {post.data.author} · 最后更新于 {(post.data.updatedDate || post.data.pubDate).toLocaleDateString('zh-CN')}
     </div>
@@ -156,7 +156,7 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
     <Content />
   </article>
 
-  <div class="mt-8 pt-6 border-t border-slate-200">
+  <div class="mt-8 pt-6 pb-16 border-t border-slate-200">
     <a href="/blog" class="text-brand-600 hover:underline">← 返回号码百科</a>
   </div>
 </BaseLayout>
