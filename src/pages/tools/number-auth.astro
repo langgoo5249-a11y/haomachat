@@ -1,0 +1,242 @@
+---
+// 号码认证服务 - 企业号码认证绿标咨询入口
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '号码认证服务', url: '/tools/number-auth' },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  datePublished: '2026-07-13',
+  dateModified: '2026-07-13',
+  inLanguage: 'zh-CN',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '号码认证绿标是什么？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '号码认证绿标是指企业通过号码认证平台提交资质审核后，客户来电时手机屏幕显示企业名称和LOGO，而非"骚扰电话"等负面标签。认证后接通率可提升30%以上。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '号码认证需要哪些材料？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '需要准备：营业执照副本、法人身份证、号码归属证明（运营商话费账单或缴费凭证）、企业LOGO（PNG格式）。95/96号码需额外提供号码使用证书。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '号码认证多久能完成？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '腾讯号码公众平台、360号码认证、百度号码认证审核周期通常为1-3个工作日，泰迪熊移动和电话邦为2-4个工作日。认证数据同步到终端需额外1-3个工作日。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '号码认证多少钱？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '手机号认证约500-800元/年，座机约600-1000+元/年。腾讯企业号码通一次性收费800-1500元，长期有效。具体费用因平台和号码类型不同而有差异，请添加微信客服获取最新报价。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '哪些号码可以做认证？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '手机号、座机（固话）、400号码、95/96号码均可办理号码认证。个体工商户和公司均可办理，需提供对应类型的营业执照和号码归属证明。',
+      },
+    },
+  ],
+};
+---
+<BaseLayout
+  title="号码认证服务 - 企业号码认证绿标开通咨询 | 号码通查"
+  description="企业号码认证绿标开通服务，支持手机号、座机号、400号码、95/96号码认证。来电显示企业名称，接通率提升30%以上。添加微信客服获取认证方案与报价，免费咨询。"
+  schema={[faqSchema]}
+  breadcrumbs={breadcrumbs}
+  ogImage="/images/customer-service-qr.png"
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">号码认证服务 — 让来电显示企业名称</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    号码认证是指企业提交资质后，客户来电时手机屏幕显示<strong>企业名称和LOGO</strong>，覆盖"骚扰电话"等负面标签。支持<strong>手机号、座机号、400号码、95/96号码</strong>认证，认证后接通率可从19%提升至45%以上。需要办理号码认证？添加微信客服，免费获取认证方案与报价。
+  </p>
+
+  <!-- 核心咨询入口 -->
+  <section class="mb-8">
+    <div class="bg-white rounded-xl border border-slate-200 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+      <div class="flex-shrink-0">
+        <img
+          src="/images/customer-service-qr.png"
+          alt="微信客服二维码 - 号码认证服务咨询"
+          width="160"
+          height="160"
+          class="rounded-xl border border-slate-200 shadow-sm"
+          loading="eager"
+        />
+      </div>
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-xl font-bold text-slate-800 mb-2">添加微信客服，免费咨询</h2>
+        <p class="text-slate-600 mb-3">扫码或手动添加微信号，客服将为您提供一对一的号码认证方案咨询，包括认证平台推荐、材料准备指导、费用报价等。</p>
+        <div class="space-y-1 text-sm text-slate-500">
+          <p>微信号：<strong class="text-slate-700">SXLH-888</strong></p>
+          <p>邮箱：<strong class="text-slate-700">644428571@qq.com</strong></p>
+          <p>工作时间：工作日 9:00-18:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 认证服务介绍 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">我们提供的认证服务</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">全平台认证覆盖</h3>
+        <p class="text-sm text-slate-500">腾讯号码公众平台、360号码认证、百度号码认证、泰迪熊移动、电话邦五大平台同步提交，覆盖华为、小米、OPPO、vivo等主流手机终端。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">材料预审与指导</h3>
+        <p class="text-sm text-slate-500">专业客服预审您的认证材料，指出可能被驳回的问题并指导修改，大幅提高一次性通过率。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">审核进度跟进</h3>
+        <p class="text-sm text-slate-500">提交后持续跟进各平台审核进度，被退回第一时间补材料，缩短认证周期，通常1-3个工作日完成。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <div class="w-10 h-10 rounded-lg bg-brand-50 flex items-center justify-center mb-3">
+          <svg class="w-5 h-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+        </div>
+        <h3 class="font-semibold text-slate-800 mb-1">全号段支持</h3>
+        <p class="text-sm text-slate-500">手机号、座机（固话）、400号码、95/96短号码均可认证。个体工商户和公司均可办理，一对一定制方案。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 认证流程 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">认证办理流程</h2>
+    <div class="bg-white rounded-xl border border-slate-200 p-6">
+      <ol class="space-y-4">
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-bold flex items-center justify-center">1</span>
+          <div>
+            <h3 class="font-semibold text-slate-800">添加微信咨询</h3>
+            <p class="text-sm text-slate-500">扫码添加客服微信，告知您的号码类型和认证需求，客服将为您推荐最优认证方案和报价。</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-bold flex items-center justify-center">2</span>
+          <div>
+            <h3 class="font-semibold text-slate-800">准备材料</h3>
+            <p class="text-sm text-slate-500">按客服指导准备营业执照、法人身份证、号码归属证明、企业LOGO等材料，客服预审确保无误。</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-bold flex items-center justify-center">3</span>
+          <div>
+            <h3 class="font-semibold text-slate-800">提交审核</h3>
+            <p class="text-sm text-slate-500">客服在腾讯、360、百度、泰迪熊、电话邦等平台同步提交认证申请，跟进审核进度。</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-bold flex items-center justify-center">4</span>
+          <div>
+            <h3 class="font-semibold text-slate-800">上线验证</h3>
+            <p class="text-sm text-slate-500">审核通过后，用多品牌手机拨入测试，确认来电界面显示企业名称，认证完成。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 认证价值 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">为什么需要号码认证</h2>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="bg-slate-100">
+            <th class="text-left p-3 font-semibold">对比维度</th>
+            <th class="text-left p-3 font-semibold">未认证</th>
+            <th class="text-left p-3 font-semibold">认证后</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="border-b border-slate-100">
+            <td class="p-3 font-medium">来电显示</td>
+            <td class="p-3 text-red-600">骚扰电话 / 陌生号码</td>
+            <td class="p-3 text-green-600">企业名称 + LOGO</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-3 font-medium">接通率</td>
+            <td class="p-3">约 19%-25%</td>
+            <td class="p-3 text-green-600">45%-55%</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-3 font-medium">客户信任度</td>
+            <td class="p-3">低，易被拒接</td>
+            <td class="p-3 text-green-600">高，显示企业身份</td>
+          </tr>
+          <tr class="border-b border-slate-100">
+            <td class="p-3 font-medium">标记风险</td>
+            <td class="p-3 text-red-600">高，易被随手标记</td>
+            <td class="p-3 text-green-600">低，认证覆盖负面标签</td>
+          </tr>
+          <tr>
+            <td class="p-3 font-medium">品牌形象</td>
+            <td class="p-3">无品牌展示</td>
+            <td class="p-3 text-green-600">每次来电都是一次品牌曝光</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 了解更多 -->
+  <section class="mb-8 bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-3">了解更多号码认证知识</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-sm">
+      <a href="/guide/what-is-number-auth/" class="flex items-center gap-2 text-brand-600 hover:underline">
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        号码认证是什么？原理科普
+      </a>
+      <a href="/blog/2026-enterprise-number-auth-green-label-guide/" class="flex items-center gap-2 text-brand-600 hover:underline">
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        号码认证绿标怎么开通？全流程指南
+      </a>
+      <a href="/blog/2026-enterprise-number-marking-prevention-guide/" class="flex items-center gap-2 text-brand-600 hover:underline">
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        企业号码如何避免被标记？预防指南
+      </a>
+      <a href="/compare/auth-providers/" class="flex items-center gap-2 text-brand-600 hover:underline">
+        <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        号码认证服务商对比
+      </a>
+    </div>
+  </section>
+
+  <!-- 数据来源声明 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">服务说明</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      本页面提供号码认证服务咨询入口，认证服务由授权合作方提供。号码认证是指企业通过号码认证平台提交资质后，在客户来电时显示企业名称的服务。认证费用因平台和号码类型不同而有差异，请添加微信客服获取最新报价。本站不存储用户提交的任何号码信息，详见<a href="/privacy" class="text-brand-600 hover:underline">隐私政策</a>。
+    </p>
+  </section>
+</BaseLayout>
