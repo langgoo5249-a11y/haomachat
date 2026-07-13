@@ -186,3 +186,14 @@ tags: ["号码标记清除", "号码标记查询", "座机号码标记", "骚扰
 ---
 
 **数据来源声明**：本文数据来自[工业和信息化部](https://www.miit.gov.cn/){rel="nofollow noopener" target="_blank"}2024-2025年电信服务质量通告、[中国信通院码号服务推进组](https://www.opene164.org.cn/){rel="nofollow noopener" target="_blank"}公开数据、[12321举报中心](https://www.12321.cn/){rel="nofollow noopener" target="_blank"}统计、[艾媒咨询](https://www.iimedia.cn/){rel="nofollow noopener" target="_blank"}市场报告及权威媒体报道。引用的标准为[YD/T 4980-2024《电话号码标记应用技术要求》](https://www.spc.org.cn/online/e0da2e59848146b4b93f39f2b55b62fd.html){rel="nofollow noopener" target="_blank"}。数据截至2025年第三季度，部分数据为目前可查的最新官方公开数据。
+
+---
+
+## 参考来源
+
+1. 中国信通院码号服务推进组（opene164.org.cn）— 跨平台号码标记查询与清除，处理超145万件申请，成功率约71%
+2. 工信部（miit.gov.cn）— 2024-2025年电信服务质量通告，通信行业码号管理政策
+3. 信通院（caict.ac.cn）— YD/T 4980-2024《电话号码标记应用技术要求》行业标准
+4. 12321举报中心（12321.cn）— 骚扰电话举报数据统计
+5. 艾媒咨询（iimedia.cn）— 2025年中国手机安全市场研究报告
+6. 360/腾讯/百度/泰迪熊/电话邦/搜狗官方申诉平台 — 标记清除实测数据
