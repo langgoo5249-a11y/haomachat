@@ -45,7 +45,7 @@ const pageLastmod = {
   '/compare/marking-platforms/': '2026-07-06',
   '/compare/auth-providers/': '2026-07-06',
   '/compare/lookup-apis/': '2026-07-06',
-  '/en/': '2026-07-06',
+  '/en/': '2026-07-14',
 };
 
 export default defineConfig({
