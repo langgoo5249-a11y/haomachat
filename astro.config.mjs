@@ -30,6 +30,7 @@ const pageLastmod = {
   '/blog/2026-enterprise-95-96-number-marking-clear-guide/': '2026-07-11',
   '/blog/2026-enterprise-number-marking-prevention-guide/': '2026-07-12',
   '/blog/2026-enterprise-number-auth-green-label-guide/': '2026-07-13',
+  '/blog/2026-personal-number-marking-removal-guide/': '2026-07-14',
   '/tools/attribution/': '2026-07-08',
   '/tools/legal-number-verify/': '2026-07-06',
   '/tools/marking-check/': '2026-07-06',
