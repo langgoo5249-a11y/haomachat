@@ -58,10 +58,14 @@ const articlePublishedTime = publishedDate || defaultPublished;
 const articleModifiedTime = modifiedDate || defaultModified;
 
 // hreflang: 中英文 alternate
+// 关键: 只有 / 和 /en/ 存在真实的中英文版本对应关系
+// 其他页面仅存在中文版, 不应声明不存在的英文 alternate(会导致404, 降低Bing质量评分)
 const currentPath = Astro.url.pathname;
 const isEnPage = currentPath.startsWith('/en/');
+const isHomepage = currentPath === '/' || currentPath === '/en/';
 const zhUrl = isEnPage ? `${site}${currentPath.replace(/^\/en/, '')}` : canonicalUrl;
 const enUrl = isEnPage ? canonicalUrl : `${site}/en${currentPath === '/' ? '' : currentPath}`;
+const hasValidEnPage = currentPath === '/' || currentPath === '/en/';
 
 // 全站级 Organization schema(补全 contactPoint/sameAs 等)
 // sameAs 链接中文权威源: 信通院/工信部/百度百科/微信公众号/知乎
@@ -212,9 +216,10 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
     <link rel="alternate" type="application/xml" href="/ai.xml" title="AI Crawler Guide" />
 
     <!-- hreflang: 中英文 alternate -->
+    <!-- 只有 / 和 /en/ 有英文版本, 其他页面仅声明中文和x-default(避免404) -->
     <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
-    <link rel="alternate" hreflang="en" href={enUrl} />
-    <link rel="alternate" hreflang="x-default" href={site} />
+    {hasValidEnPage ? <link rel="alternate" hreflang="en" href={enUrl} /> : null}
+    <link rel="alternate" hreflang="x-default" href={zhUrl} />
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
