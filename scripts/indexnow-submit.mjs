@@ -8,7 +8,7 @@ import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
 const SITE = 'https://zangxixitech.cn';
-const KEY = 'ccedc595064b44739a755c334e11f295';
+const KEY = '0112b8e2b5e549f3bb0177d8fcd12';
 const KEY_LOCATION = `${SITE}/${KEY}.txt`;
 
 // 从 sitemap-0.xml 提取所有 URL
