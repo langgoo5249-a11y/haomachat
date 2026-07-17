@@ -10,7 +10,7 @@ import tailwind from '@astrojs/tailwind';
 // Google 自 2023 起主动使用 lastmod 做抓取调度,但必须是真实内容修改日期
 // 更新页面内容时同步修改此处日期
 const pageLastmod = {
-  '/': '2026-07-13',
+  '/': '2026-07-17',
   '/about/': '2026-07-06',
   '/contact/': '2026-07-06',
   '/faq/': '2026-07-08',
