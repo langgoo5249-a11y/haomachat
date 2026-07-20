@@ -53,7 +53,7 @@ const ogImageUrl = ogImage
 // 内容新鲜度: article:published_time / article:modified_time
 // 未传入时使用全站默认日期, 确保 AI 引擎在所有页面都能看到时效性信号
 const defaultPublished = '2026-07-06T00:00:00+08:00';
-const defaultModified = '2026-07-17T00:00:00+08:00';
+const defaultModified = '2026-07-20T00:00:00+08:00';
 const articlePublishedTime = publishedDate || defaultPublished;
 const articleModifiedTime = modifiedDate || defaultModified;
 
@@ -100,7 +100,7 @@ const orgSchema = {
   },
   foundingDate: '2026',
   datePublished: '2026-07-06',
-  dateModified: '2026-07-17',
+  dateModified: '2026-07-20',
 };
 
 // WebSite schema (含 SearchAction, 用于 Google 站点搜索框)
@@ -114,7 +114,7 @@ const websiteSchema = {
   description: '号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费',
   inLanguage: 'zh-CN',
   datePublished: '2026-07-06',
-  dateModified: '2026-07-17',
+  dateModified: '2026-07-20',
   publisher: { '@id': `${site}/#organization` },
   potentialAction: {
     '@type': 'SearchAction',
