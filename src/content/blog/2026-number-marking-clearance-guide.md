@@ -161,6 +161,12 @@ tags: ["号码标记", "标记清除", "骚扰电话", "号码认证", "信通�
 
 ---
 
+## 延伸阅读
+
+- [号码标记清除全攻略](/blog/2026-phone-marking-removal-complete-guide/) — 更详细的分步骤清除教程
+- [号码标记申诉被驳回怎么办？](/blog/2026-number-marking-appeal-rejected-solutions/) — 申诉失败后的二次申诉策略
+- [号码标记平台对比](/blog/2026-number-marking-platform-comparison/) — 六大平台清除效率对比，帮你选最优路径
+
 ## 参考来源
 
 1. 中国信通院码号服务推进组（opene164.org.cn）— 跨平台号码标记查询与清除，处理超145万件申请

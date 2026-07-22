@@ -117,6 +117,12 @@ tags: ["号码归属地查询", "携号转网", "号段分配", "号码归属地
 
 ---
 
+## 延伸阅读
+
+- [号码标记清除完整指南](/blog/2026-number-marking-clearance-guide/) — 携号转网后标记错误的清除方法
+- [号码标记平台对比](/blog/2026-number-marking-platform-comparison/) — 各平台对携号转网号码的归属地更新速度对比
+- [回收号码误标记处理指南](/blog/2026-recycled-number-false-marking-guide/) — 回收号码继承前机主标记的处理方案
+
 ## 参考来源
 
 1. 工信部（miit.gov.cn）— 全国电信网码号资源使用和调整审批系统（nac.miit.gov.cn），号段分配数据

@@ -7,6 +7,20 @@ const breadcrumbs = [
   { name: '号码认证服务', url: '/tools/number-auth' },
 ];
 
+const toolWebAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '企业号码认证工具',
+  description: '企业号码认证绿标申请入口，帮助企业在客户来电时显示企业名称和Logo，提升接听率。',
+  url: 'https://zangxixitech.cn/tools/number-auth/',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+  provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
+  featureList: '企业号码认证,绿标申请,号码标记预防,来电显示企业名,接听率提升',
+};
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -60,7 +74,7 @@ const faqSchema = {
 <BaseLayout
   title="号码认证服务 - 企业号码认证绿标开通咨询 | 号码通查"
   description="企业号码认证绿标开通服务，支持手机号、座机号、400号码、95/96号码认证。来电显示企业名称，接通率提升30%以上。添加微信客服获取认证方案与报价，免费咨询。"
-  schema={[faqSchema]}
+  schema={[faqSchema, toolWebAppSchema]}
   breadcrumbs={breadcrumbs}
   ogImage="/images/customer-service-qr.png"
 >
@@ -239,4 +253,18 @@ const faqSchema = {
       本页面提供号码认证服务咨询入口，认证服务由授权合作方提供。号码认证是指企业通过号码认证平台提交资质后，在客户来电时显示企业名称的服务。认证费用因平台和号码类型不同而有差异，请添加微信客服获取最新报价。本站不存储用户提交的任何号码信息，详见<a href="/privacy" class="text-brand-600 hover:underline">隐私政策</a>。
     </p>
   </section>
+
+  <!-- 相关工具交叉链接 -->
+  <nav class="mt-6 pt-6 border-t border-slate-200">
+    <h2 class="text-lg font-bold text-slate-800 mb-3">相关工具与指南</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="/tools/marking-check/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记自查</a>
+      <a href="/tools/marking-clear/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记清除</a>
+      <a href="/tools/legal-number-verify/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">法人号码核验</a>
+      <a href="/guide/what-is-number-auth/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码认证指南</a>
+      <a href="/blog/2026-enterprise-number-auth-green-label-guide/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">企业绿标认证</a>
+      <a href="/blog/2026-enterprise-number-marking-prevention-guide/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记预防指南</a>
+      <a href="/compare/auth-providers/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">认证服务商对比</a>
+    </div>
+  </nav>
 </BaseLayout>

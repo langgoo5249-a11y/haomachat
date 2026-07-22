@@ -7,6 +7,20 @@ const breadcrumbs = [
   { name: '手机卡选号比价', url: '/tools/sim-cards' },
 ];
 
+const toolWebAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '手机卡选号工具',
+  description: '移动、联通、电信三大运营商手机卡在线选号入口，支持靓号筛选与携号转网办理。',
+  url: 'https://zangxixitech.cn/tools/sim-cards/',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+  provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
+  featureList: '移动选号,联通选号,电信选号,靓号筛选,携号转网,套餐对比',
+};
+
 // 三大运营商选号渠道
 const channels = [
   {
@@ -114,7 +128,7 @@ const faqSchema = {
 <BaseLayout
   title="手机卡选号比价 - 移动/联通/电信套餐对比 | 号码通查"
   description="手机卡选号比价指南:三大运营商(移动10086/联通10010/电信10000)选号渠道对比、代表套餐对比表、靓号规则说明与携号转网流程。移动/联通/电信均提供官网在线选号,靓号需承诺最低消费。"
-  schema={[faqSchema]}
+  schema={[faqSchema, toolWebAppSchema]}
   breadcrumbs={breadcrumbs}
 >
   <!-- AI 摘要: 前150字结论前置(GEO 核心) -->
@@ -260,4 +274,17 @@ const faqSchema = {
       本页运营商客服号(移动10086、联通10010、电信10000)与选号渠道信息来自三大运营商官方渠道。携号转网流程依据工信部《携号转网服务管理规定》及运营商官方办理指南。套餐档位为运营商公开在售主流套餐概览,具体资费以移动 shop.10086.cn、联通 mall.10010.com、电信 shop.189.cn 官网实时公示为准。靓号规则参考各运营商公开的靓号协议条款。
     </p>
   </section>
+
+  <!-- 相关工具交叉链接 -->
+  <nav class="mt-6 pt-6 border-t border-slate-200">
+    <h2 class="text-lg font-bold text-slate-800 mb-3">相关工具与指南</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="/tools/attribution/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">归属地查询</a>
+      <a href="/tools/marking-check/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记自查</a>
+      <a href="/tools/marking-clear/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记清除</a>
+      <a href="/guide/sim-card-guide/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">手机卡指南</a>
+      <a href="/blog/2026-phone-attribution-accuracy-after-mnp/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">携号转网归属地</a>
+      <a href="/blog/2026-recycled-number-false-marking-guide/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">回收号码误标记</a>
+    </div>
+  </nav>
 </BaseLayout>

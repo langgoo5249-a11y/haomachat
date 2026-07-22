@@ -16,6 +16,20 @@ const breadcrumbs = [
   { name: '号码标记自查', url: '/tools/marking-check' },
 ];
 
+const toolWebAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '号码标记自查工具',
+  description: '查询手机号码与座机号码在360、腾讯、百度、华为、泰迪熊、电话邦等主流平台的标记情况，支持手机号与固话。',
+  url: 'https://zangxixitech.cn/tools/marking-check/',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+  provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
+  featureList: '360标记查询,腾讯标记查询,百度标记查询,华为标记查询,泰迪熊标记查询,电话邦标记查询,信通院跨平台查询',
+};
+
 const howToSchema = {
   '@context': 'https://schema.org',
   '@type': 'HowTo',
@@ -81,7 +95,7 @@ const faqSchema = {
 <BaseLayout
   title="号码标记自查 - 查手机号/座机号被标记情况 | 号码通查"
   description="号码标记自查工具:支持手机号码与座机(固话)号码,聚合标记查询服务入口、中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方查询入口,免费查询号码被标记情况。"
-  schema={[howToSchema, faqSchema]}
+  schema={[howToSchema, faqSchema, toolWebAppSchema]}
   breadcrumbs={breadcrumbs}
 >
   <!-- AI 摘要: 前150字结论前置 -->
@@ -202,4 +216,19 @@ const faqSchema = {
       本页查询渠道包括:标记查询服务(支持手机号与座机号)、中国信通院码号服务推进组(opene164.org.cn,官方跨平台入口)、Truecaller(truecaller.com,全球来电识别)。本站不存储用户查询的号码数据,所有查询均在各渠道官方页面完成,免费使用。
     </p>
   </section>
+
+  <!-- 相关工具交叉链接 -->
+  <nav class="mt-6 pt-6 border-t border-slate-200">
+    <h2 class="text-lg font-bold text-slate-800 mb-3">相关工具与指南</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="/tools/marking-clear/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记清除</a>
+      <a href="/tools/number-auth/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码认证</a>
+      <a href="/tools/attribution/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">归属地查询</a>
+      <a href="/tools/legal-number-verify/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">法人号码核验</a>
+      <a href="/guide/how-to-check-marking/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记自查指南</a>
+      <a href="/guide/how-to-clear-marking/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记清除指南</a>
+      <a href="/blog/2026-number-marking-platform-comparison/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记平台对比</a>
+      <a href="/blog/2026-number-marking-clearance-guide/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记清除攻略</a>
+    </div>
+  </nav>
 </BaseLayout>

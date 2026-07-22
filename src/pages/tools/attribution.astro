@@ -7,6 +7,20 @@ const breadcrumbs = [
   { name: '号码归属地查询', url: '/tools/attribution' },
 ];
 
+const toolWebAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '手机号归属地查询工具',
+  description: '查询手机号码归属地、运营商、号段信息，支持携号转网后归属地更新查询。',
+  url: 'https://zangxixitech.cn/tools/attribution/',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+  provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
+  featureList: '归属地查询,运营商查询,号段查询,携号转网查询,座机归属地查询',
+};
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -35,7 +49,7 @@ const howToSchema = {
 <BaseLayout
   title="号码归属地查询 - 免费查手机号归属地/运营商/号段 | 号码通查"
   description="免费号码归属地查询工具,输入手机号或固话即可查询归属省份、城市、运营商、号段信息。无需注册,不限次数,即查即用。"
-  schema={[faqSchema, howToSchema]}
+  schema={[faqSchema, howToSchema, toolWebAppSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码归属地查询</h1>
@@ -154,4 +168,17 @@ const howToSchema = {
     btn.addEventListener('click', lookup);
     input.addEventListener('keydown', (e) => { if (e.key === 'Enter') lookup(); });
   </script>
+
+  <!-- 相关工具交叉链接 -->
+  <nav class="mt-6 pt-6 border-t border-slate-200">
+    <h2 class="text-lg font-bold text-slate-800 mb-3">相关工具与指南</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="/tools/marking-check/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记自查</a>
+      <a href="/tools/marking-clear/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记清除</a>
+      <a href="/tools/sim-cards/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">手机卡选号</a>
+      <a href="/guide/sim-card-guide/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">手机卡指南</a>
+      <a href="/blog/2026-phone-attribution-accuracy-after-mnp/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">携号转网归属地</a>
+      <a href="/compare/lookup-apis/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">归属地API对比</a>
+    </div>
+  </nav>
 </BaseLayout>

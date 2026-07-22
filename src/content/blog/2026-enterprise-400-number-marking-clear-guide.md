@@ -125,6 +125,12 @@ tags: ["企业号码标记", "400号码标记清除", "骚扰电话标记", "号
 
 ---
 
+## 延伸阅读
+
+- [企业95/96号码标记清除指南](/blog/2026-enterprise-95-96-number-marking-clear-guide/) — 95/96号段号码的标记申诉流程与400号码有所不同，建议一并阅读
+- [企业号码标记预防指南](/blog/2026-enterprise-number-marking-prevention-guide/) — 清除标记后如何防止再次被标记，预防比修复更重要
+- [号码标记平台对比](/blog/2026-number-marking-platform-comparison/) — 六大标记平台的清除效率对比，帮你选择最优申诉路径
+
 ## 参考来源
 
 1. 中国信通院码号服务推进组（opene164.org.cn）— 国内唯一官方跨平台号码标记聚合查询与清除入口

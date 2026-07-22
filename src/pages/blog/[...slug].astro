@@ -16,6 +16,28 @@ const { Content } = await render(post);
 const site = 'https://zangxixitech.cn';
 const heroImageUrl = post.data.heroImage ? `${site}${post.data.heroImage}` : `${site}/og-default.jpg`;
 
+// 获取所有文章,按发布日期排序
+const allPosts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+// 找到当前文章的索引
+const currentIndex = allPosts.findIndex((p) => p.id === post.id);
+const prevPost = currentIndex > 0 ? allPosts[currentIndex - 1] : null;
+const nextPost = currentIndex < allPosts.length - 1 ? allPosts[currentIndex + 1] : null;
+
+// 基于tags匹配相关文章(排除当前文章)
+const postTags = post.data.tags || [];
+const relatedPosts = allPosts
+  .filter((p) => p.id !== post.id)
+  .map((p) => ({
+    post: p,
+    overlap: (p.data.tags || []).filter((t: string) => postTags.includes(t)).length,
+  }))
+  .sort((a, b) => b.overlap - a.overlap)
+  .slice(0, 3)
+  .map((item) => item.post);
+
 const breadcrumbs = [
   { name: '首页', url: '/' },
   { name: '号码百科', url: '/blog' },
@@ -37,10 +59,15 @@ const articleSchema = {
       : 'https://zangxixitech.cn/#person-haomachatongcha',
     url: 'https://zangxixitech.cn/about',
   },
+  reviewer: {
+    '@type': 'Person',
+    name: 'langood',
+    '@id': 'https://zangxixitech.cn/#person-langood',
+  },
   publisher: {
     '@type': 'Organization',
     name: '号码通查',
-    logo: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/favicon.svg' },
+    logo: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
   },
   mainEntityOfPage: `https://zangxixitech.cn/blog/${post.id}/`,
   image: {
@@ -51,6 +78,11 @@ const articleSchema = {
     caption: post.data.title,
   },
   keywords: post.data.tags.join(', '),
+  isPartOf: {
+    '@type': 'Blog',
+    '@id': 'https://zangxixitech.cn/blog/',
+    name: '号码通查号码百科',
+  },
 };
 
 // BlogPosting JSON-LD: BlogPosting 是 Article 的子类型,部分 AI 引擎(如 Perplexity)对 BlogPosting 解析更精准
@@ -72,7 +104,7 @@ const blogPostingSchema = {
   publisher: {
     '@type': 'Organization',
     name: '号码通查',
-    logo: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/favicon.svg' },
+    logo: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
   },
   mainEntityOfPage: `https://zangxixitech.cn/blog/${post.id}/`,
   image: {
@@ -156,7 +188,53 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
     <Content />
   </article>
 
-  <div class="mt-8 pt-6 pb-16 border-t border-slate-200">
+  <!-- 上一篇/下一篇导航 -->
+  <nav class="mt-8 pt-6 border-t border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+    {nextPost && (
+      <a href={`/blog/${nextPost.id}/`} class="group flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:border-brand-300 hover:bg-brand-50 transition-colors">
+        <span class="text-slate-400 text-sm whitespace-nowrap">← 上一篇</span>
+        <span class="text-sm text-slate-700 group-hover:text-brand-600 line-clamp-2">{nextPost.data.title}</span>
+      </a>
+    )}
+    {prevPost && (
+      <a href={`/blog/${prevPost.id}/`} class="group flex items-center gap-3 p-4 rounded-lg border border-slate-200 hover:border-brand-300 hover:bg-brand-50 transition-colors md:justify-end md:text-right">
+        <span class="text-sm text-slate-700 group-hover:text-brand-600 line-clamp-2 md:order-2">{prevPost.data.title}</span>
+        <span class="text-slate-400 text-sm whitespace-nowrap md:order-3">下一篇 →</span>
+      </a>
+    )}
+  </nav>
+
+  <!-- 相关文章推荐 -->
+  {relatedPosts.length > 0 && (
+    <section class="mt-8 pt-6 pb-4 border-t border-slate-200">
+      <h2 class="text-lg font-bold text-slate-800 mb-4">相关文章推荐</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {relatedPosts.map((rp) => (
+          <a href={`/blog/${rp.id}/`} class="group block p-4 rounded-lg border border-slate-200 hover:border-brand-300 hover:shadow-sm transition-all">
+            <h3 class="text-sm font-medium text-slate-700 group-hover:text-brand-600 line-clamp-2 mb-1">{rp.data.title}</h3>
+            <p class="text-xs text-slate-400">{rp.data.pubDate.toLocaleDateString('zh-CN')}</p>
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- 相关工具导航 -->
+  <section class="mt-6 pt-6 pb-8 border-t border-slate-200">
+    <h2 class="text-lg font-bold text-slate-800 mb-4">相关工具与指南</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="/tools/marking-check/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记自查</a>
+      <a href="/tools/marking-clear/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记清除</a>
+      <a href="/tools/number-auth/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码认证</a>
+      <a href="/tools/attribution/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">归属地查询</a>
+      <a href="/guide/how-to-clear-marking/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记清除指南</a>
+      <a href="/guide/what-is-number-marking/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">什么是号码标记</a>
+      <a href="/compare/marking-platforms/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记平台对比</a>
+      <a href="/faq/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">常见问题</a>
+    </div>
+  </section>
+
+  <div class="pb-16">
     <a href="/blog" class="text-brand-600 hover:underline">← 返回号码百科</a>
   </div>
 </BaseLayout>

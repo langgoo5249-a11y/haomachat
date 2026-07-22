@@ -144,6 +144,12 @@ opene164.org.cn 支持一站式清除，但目前主要面向联通手机号和 
 
 ---
 
+## 延伸阅读
+
+- [企业400号码标记清除指南](/blog/2026-enterprise-400-number-marking-clear-guide/) — 400号码的专项清除方案
+- [企业95/96号码标记清除指南](/blog/2026-enterprise-95-96-number-marking-clear-guide/) — 95/96号段的申诉流程
+- [企业号码认证绿标指南](/blog/2026-enterprise-number-auth-green-label-guide/) — 标记清除后申请认证防止回流
+
 ## 参考来源
 
 1. 中国信通院码号服务推进组（opene164.org.cn）— 企业号码跨平台标记查询与清除官方入口

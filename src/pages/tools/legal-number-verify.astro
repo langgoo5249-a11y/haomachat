@@ -9,6 +9,20 @@ const breadcrumbs = [
   { name: '法人号码核验', url: '/tools/legal-number-verify' },
 ];
 
+const toolWebAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '法人号码核验工具',
+  description: '通过三大运营商官方网关验证手机号码是否为法人实名登记号码，支持企业法人身份核验。',
+  url: 'https://zangxixitech.cn/tools/legal-number-verify/',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+  provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
+  featureList: '法人号码核验,运营商三网直连,实名认证,企业身份核验',
+};
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -85,7 +99,7 @@ const howToSchema = {
 <BaseLayout
   title="法人号码核验查询 - 企业法人手机号实名认证 | 号码通查"
   description="法人号码核验查询工具:通过运营商数据校验企业法人代表姓名、身份证号、手机号三要素一致性。用于企业实名认证、风控审核、反欺诈等场景。数据来自三大运营商官方网关,加密传输不存储。"
-  schema={[faqSchema, howToSchema]}
+  schema={[faqSchema, howToSchema, toolWebAppSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">法人号码核验查询</h1>
@@ -208,4 +222,16 @@ const howToSchema = {
       法人号码核验服务由授权合作方提供,核验数据来自中国移动、中国联通、中国电信三大运营商官方网关。核验数据通过加密通道传输,不在服务器存储。本站作为合作方服务的推荐入口,不对核验结果承担责任,但会持续关注服务质量并接受用户反馈。如有疑问请<a href="/contact">联系我们</a>。
     </p>
   </section>
+
+  <!-- 相关工具交叉链接 -->
+  <nav class="mt-6 pt-6 border-t border-slate-200">
+    <h2 class="text-lg font-bold text-slate-800 mb-3">相关工具与指南</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="/tools/number-auth/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码认证</a>
+      <a href="/tools/marking-check/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记自查</a>
+      <a href="/tools/attribution/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">归属地查询</a>
+      <a href="/guide/what-is-number-auth/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码认证指南</a>
+      <a href="/blog/2026-enterprise-number-auth-green-label-guide/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">企业绿标认证</a>
+    </div>
+  </nav>
 </BaseLayout>

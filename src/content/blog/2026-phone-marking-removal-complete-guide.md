@@ -189,6 +189,12 @@ tags: ["号码标记清除", "号码标记查询", "座机号码标记", "骚扰
 
 ---
 
+## 延伸阅读
+
+- [个人号码标记清除指南](/blog/2026-personal-number-marking-removal-guide/) — 个人手机号码被标记的专项清除方案
+- [号码标记申诉被驳回怎么办？](/blog/2026-number-marking-appeal-rejected-solutions/) — 申诉被驳回后的二次申诉技巧与成功案例
+- [号码标记清除完整指南](/blog/2026-number-marking-clearance-guide/) — 从自查到清除的完整流程，适合首次处理标记问题
+
 ## 参考来源
 
 1. 中国信通院码号服务推进组（opene164.org.cn）— 跨平台号码标记查询与清除，处理超145万件申请，成功率约71%

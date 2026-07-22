@@ -118,6 +118,12 @@ tags: ["号码标记", "平台对比", "360", "腾讯", "百度", "泰迪熊", "
 
 ---
 
+## 延伸阅读
+
+- [企业号码标记解决方案](/blog/2026-enterprise-number-marking-solution/) — 企业号码被多平台标记时的集中处理策略
+- [号码标记清除完整指南](/blog/2026-number-marking-clearance-guide/) — 每个平台的详细清除步骤
+- [企业号码认证绿标指南](/blog/2026-enterprise-number-auth-green-label-guide/) — 标记清除后如何申请认证防止回流
+
 ## 参考来源
 
 1. 中国信通院码号服务推进组（opene164.org.cn）— 跨平台标记聚合查询，对接7家主流标记平台
