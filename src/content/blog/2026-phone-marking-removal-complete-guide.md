@@ -1,8 +1,8 @@
 ---
 title: "号码标记清除终极指南：手机号和座机号被标记骚扰电话怎么办（2026最新数据）"
 description: "手机号码标记或座机号码标记怎么清除？本文基于工信部2025年最新数据和真实案例，详细拆解号码标记查询、号码标记清除全流程。覆盖信通院码号服务推进组、360、腾讯、华为等全平台申诉方法，附YD/T 4980-2024标准解读。"
-pubDate: 2026-07-08
-updatedDate: 2026-07-08
+pubDate: 2026-07-23
+updatedDate: 2026-07-23
 author: "号码通查"
 heroImage: "/images/blog-hero-phone-marking-removal.jpg"
 heroDescription: "号码标记清除终极指南：7个平台申诉入口+真实案例+YD/T 4980-2024标准解读，手机号和座机号均适用。"
