@@ -7,7 +7,7 @@
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
-const SITE = 'https://zangxixitech.cn';
+const SITE = 'https://example.com';
 const KEY = '8413a9f41d034daa94eef1027c6ca5c2';
 const KEY_LOCATION = `${SITE}/${KEY}.txt`;
 
@@ -30,7 +30,7 @@ async function submitToIndexNow(urls) {
   }
 
   const body = {
-    host: 'zangxixitech.cn',
+    host: 'example.com',
     key: KEY,
     keyLocation: KEY_LOCATION,
     urlList: urls,

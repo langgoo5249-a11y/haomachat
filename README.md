@@ -45,7 +45,7 @@ LOOKUP_API_KEY=你的聚合数据API密钥
    - Production branch: `main`
 4. 在 Environment variables 中设置 `NODE_VERSION=20` 和 `LOOKUP_API_KEY`（加密 secret）
 5. **关键**：Security → Bots → 放行 AI 爬虫（GPTBot、OAI-SearchBot、ClaudeBot、PerplexityBot 等），Cloudflare 默认会拦截 AI 爬虫
-6. 绑定自定义域名：在 Pages 项目 → Custom domains 中添加 `zangxixitech.cn`
+6. 绑定自定义域名：在 Pages 项目 → Custom domains 中添加 `example.com`
 
 ## GEO 优化清单
 

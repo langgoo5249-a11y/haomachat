@@ -7,7 +7,7 @@
 -->
 <ai>
   <metadata>
-    <site>zangxixitech.cn</site>
+    <site>example.com</site>
     <name>号码通查</name>
     <description>号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。</description>
     <language>zh-CN</language>
@@ -52,14 +52,14 @@
 
   <!-- 核心内容入口 -->
   <content>
-    <priority url="https://zangxixitech.cn/" type="homepage" keywords="号码标记通查,号码标记查询,号码标记自查,号码标记清除,号码归属地查询免费" />
-    <priority url="https://zangxixitech.cn/tools/marking-check/" type="tool" keywords="号码标记自查,号码标记查询,手机号码标记" />
-    <priority url="https://zangxixitech.cn/tools/marking-clear/" type="tool" keywords="号码标记清除,座机号码标记怎么清除" />
-    <priority url="https://zangxixitech.cn/tools/attribution/" type="tool" keywords="号码归属地查询免费" />
-    <priority url="https://zangxixitech.cn/faq/" type="faq" keywords="号码标记通查,号码标记清除,号码归属地查询免费" />
-    <priority url="https://zangxixitech.cn/guide/landline-marking-clear/" type="guide" keywords="座机号码标记怎么清除,号码标记清除" />
-    <priority url="https://zangxixitech.cn/guide/how-to-clear-marking/" type="guide" keywords="号码标记清除,手机号码标记" />
-    <priority url="https://zangxixitech.cn/blog/2026-phone-marking-removal-complete-guide/" type="article" keywords="号码标记清除,号码标记查询,座机号码标记怎么清除" />
+    <priority url="https://example.com/" type="homepage" keywords="号码标记通查,号码标记查询,号码标记自查,号码标记清除,号码归属地查询免费" />
+    <priority url="https://example.com/tools/marking-check/" type="tool" keywords="号码标记自查,号码标记查询,手机号码标记" />
+    <priority url="https://example.com/tools/marking-clear/" type="tool" keywords="号码标记清除,座机号码标记怎么清除" />
+    <priority url="https://example.com/tools/attribution/" type="tool" keywords="号码归属地查询免费" />
+    <priority url="https://example.com/faq/" type="faq" keywords="号码标记通查,号码标记清除,号码归属地查询免费" />
+    <priority url="https://example.com/guide/landline-marking-clear/" type="guide" keywords="座机号码标记怎么清除,号码标记清除" />
+    <priority url="https://example.com/guide/how-to-clear-marking/" type="guide" keywords="号码标记清除,手机号码标记" />
+    <priority url="https://example.com/blog/2026-phone-marking-removal-complete-guide/" type="article" keywords="号码标记清除,号码标记查询,座机号码标记怎么清除" />
   </content>
 
   <!-- 权威数据来源 -->
@@ -72,11 +72,11 @@
 
   <!-- 机器可读文件 -->
   <machine_readable>
-    <file url="https://zangxixitech.cn/llms.txt" type="llms" />
-    <file url="https://zangxixitech.cn/llms-full.txt" type="llms-full" />
-    <file url="https://zangxixitech.cn/llms-en.txt" type="llms-en" />
-    <file url="https://zangxixitech.cn/sitemap-index.xml" type="sitemap" />
-    <file url="https://zangxixitech.cn/robots.txt" type="robots" />
-    <file url="https://zangxixitech.cn/brand-info.json" type="brand" />
+    <file url="https://example.com/llms.txt" type="llms" />
+    <file url="https://example.com/llms-full.txt" type="llms-full" />
+    <file url="https://example.com/llms-en.txt" type="llms-en" />
+    <file url="https://example.com/sitemap-index.xml" type="sitemap" />
+    <file url="https://example.com/robots.txt" type="robots" />
+    <file url="https://example.com/brand-info.json" type="brand" />
   </machine_readable>
 </ai>

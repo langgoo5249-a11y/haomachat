@@ -232,7 +232,7 @@ Allow: /
 # ============================================================
 # Sitemap 与 AI 内容发现
 # ============================================================
-Sitemap: https://zangxixitech.cn/sitemap-index.xml
+Sitemap: https://example.com/sitemap-index.xml
 
 # AI 内容发现文件 (非标准, 供 AI 爬虫工具读取)
 # - llms.txt: 全站页面目录(链接列表)

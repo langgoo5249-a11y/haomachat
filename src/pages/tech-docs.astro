@@ -8,7 +8,7 @@ const breadcrumbs = [
   { name: '技术文档', url: '/tech-docs' },
 ];
 
-const site = 'https://zangxixitech.cn';
+const site = 'https://example.com';
 const lastUpdated = '2026-07-06';
 const publishedDate = '2026-07-06';
 
@@ -81,13 +81,13 @@ const archDiagram = `┌──────────────────�
         传统搜索引擎    AI 引擎爬虫    终端用户浏览器
        (Google/Bing)  (GPTBot/Claude)  (零 JS 渲染)`;
 
-const apiEndpoint = `GET https://zangxixitech.cn/api/attribution?phone={号码}`;
+const apiEndpoint = `GET https://example.com/api/attribution?phone={号码}`;
 
-const codeCurl = `curl -s "https://zangxixitech.cn/api/attribution?phone=13800138000"`;
+const codeCurl = `curl -s "https://example.com/api/attribution?phone=13800138000"`;
 
 const codeJs = `const phone = '13800138000';
 const res = await fetch(
-  \`https://zangxixitech.cn/api/attribution?phone=\${encodeURIComponent(phone)}\`
+  \`https://example.com/api/attribution?phone=\${encodeURIComponent(phone)}\`
 );
 const data = await res.json();
 console.log(data);
@@ -96,7 +96,7 @@ console.log(data);
 const codePython = `import requests
 
 res = requests.get(
-    'https://zangxixitech.cn/api/attribution',
+    'https://example.com/api/attribution',
     params={'phone': '13800138000'},
     timeout=5,
 )
@@ -174,14 +174,14 @@ const llmsTxtExample = `# 号码通查 (zangxixitech)
 > 号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。
 
 ## 首页
-- [号码通查首页](https://zangxixitech.cn/): 号码标记查询与清除服务首页
+- [号码通查首页](https://example.com/): 号码标记查询与清除服务首页
 
 ## 工具
-- [号码归属地查询](https://zangxixitech.cn/tools/attribution): 输入手机号或固话,免费查询归属地
-- [号码标记自查](https://zangxixitech.cn/tools/marking-check): 查询号码被标记情况
+- [号码归属地查询](https://example.com/tools/attribution): 输入手机号或固话,免费查询归属地
+- [号码标记自查](https://example.com/tools/marking-check): 查询号码被标记情况
 
 ## 指南
-- [如何清除号码标记](https://zangxixitech.cn/guide/how-to-clear-marking): 分渠道清除教程`;
+- [如何清除号码标记](https://example.com/guide/how-to-clear-marking): 分渠道清除教程`;
 
 const robotsExample = `# AI 检索/引用爬虫(允许)
 User-agent: GPTBot
@@ -203,11 +203,11 @@ User-agent: DuckAssistBot
 User-agent: YouBot
 Allow: /
 
-Sitemap: https://zangxixitech.cn/sitemap-index.xml`;
+Sitemap: https://example.com/sitemap-index.xml`;
 
 const astroConfigSnippet = `// astro.config.mjs(节选)
 export default defineConfig({
-  site: 'https://zangxixitech.cn',
+  site: 'https://example.com',
   output: 'static',
   build: { inlineStylesheets: 'auto' },
   integrations: [tailwind(), sitemap({ i18n: { defaultLocale: 'zh', locales: { zh: 'zh-CN', en: 'en' } } })],
@@ -234,7 +234,7 @@ export const collections = { blog };`;
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">技术文档</h1>
   <p class="text-slate-600 mb-4 leading-relaxed">
-    本文档面向开发者与技术评测人员,说明号码通查(zangxixitech.cn)的技术架构、归属地查询 API 接口、数据来源、GEO(Generative Engine Optimization,生成式引擎优化)实现规范与开源信息。本站采用 Astro 5 静态站点生成(SSG)部署于 Cloudflare Pages,以零运行时 JavaScript、JSON-LD 直写 HTML 的方式提升 AI 引擎与搜索引擎的可解析性。
+    本文档面向开发者与技术评测人员,说明号码通查(example.com)的技术架构、归属地查询 API 接口、数据来源、GEO(Generative Engine Optimization,生成式引擎优化)实现规范与开源信息。本站采用 Astro 5 静态站点生成(SSG)部署于 Cloudflare Pages,以零运行时 JavaScript、JSON-LD 直写 HTML 的方式提升 AI 引擎与搜索引擎的可解析性。
   </p>
   <p class="text-sm text-slate-400 mb-6">最后更新日期:{lastUpdated}</p>
 

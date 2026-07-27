@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const post = Astro.props;
 const { Content } = await render(post);
 
-const site = 'https://zangxixitech.cn';
+const site = 'https://example.com';
 const heroImageUrl = post.data.heroImage ? `${site}${post.data.heroImage}` : `${site}/og-default.jpg`;
 
 // 获取所有文章,按发布日期排序
@@ -55,21 +55,21 @@ const articleSchema = {
     '@type': 'Person',
     name: post.data.author,
     '@id': post.data.author === 'langood'
-      ? 'https://zangxixitech.cn/#person-langood'
-      : 'https://zangxixitech.cn/#person-haomachatongcha',
-    url: 'https://zangxixitech.cn/about',
+      ? 'https://example.com/#person-langood'
+      : 'https://example.com/#person-haomachatongcha',
+    url: 'https://example.com/about',
   },
   reviewer: {
     '@type': 'Person',
     name: 'langood',
-    '@id': 'https://zangxixitech.cn/#person-langood',
+    '@id': 'https://example.com/#person-langood',
   },
   publisher: {
     '@type': 'Organization',
     name: '号码通查',
-    logo: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
+    logo: { '@type': 'ImageObject', url: 'https://example.com/og-default.jpg', width: 1200, height: 630 },
   },
-  mainEntityOfPage: `https://zangxixitech.cn/blog/${post.id}/`,
+  mainEntityOfPage: `https://example.com/blog/${post.id}/`,
   image: {
     '@type': 'ImageObject',
     url: heroImageUrl,
@@ -80,7 +80,7 @@ const articleSchema = {
   keywords: post.data.tags.join(', '),
   isPartOf: {
     '@type': 'Blog',
-    '@id': 'https://zangxixitech.cn/blog/',
+    '@id': 'https://example.com/blog/',
     name: '号码通查号码百科',
   },
 };
@@ -97,16 +97,16 @@ const blogPostingSchema = {
     '@type': 'Person',
     name: post.data.author,
     '@id': post.data.author === 'langood'
-      ? 'https://zangxixitech.cn/#person-langood'
-      : 'https://zangxixitech.cn/#person-haomachatongcha',
-    url: 'https://zangxixitech.cn/about',
+      ? 'https://example.com/#person-langood'
+      : 'https://example.com/#person-haomachatongcha',
+    url: 'https://example.com/about',
   },
   publisher: {
     '@type': 'Organization',
     name: '号码通查',
-    logo: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
+    logo: { '@type': 'ImageObject', url: 'https://example.com/og-default.jpg', width: 1200, height: 630 },
   },
-  mainEntityOfPage: `https://zangxixitech.cn/blog/${post.id}/`,
+  mainEntityOfPage: `https://example.com/blog/${post.id}/`,
   image: {
     '@type': 'ImageObject',
     url: heroImageUrl,

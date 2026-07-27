@@ -5,7 +5,7 @@
 import { getCollection } from 'astro:content';
 
 export async function GET(context) {
-  const site = context.site?.toString().replace(/\/$/, '') || 'https://zangxixitech.cn';
+  const site = context.site?.toString().replace(/\/$/, '') || 'https://example.com';
 
   // 静态页面内容摘要(人工维护核心信息)
   const staticPages = [

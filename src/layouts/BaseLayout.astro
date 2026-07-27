@@ -41,7 +41,7 @@ const {
   modifiedDate,
 } = Astro.props;
 
-const site = Astro.site?.toString().replace(/\/$/, '') || 'https://zangxixitech.cn';
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://example.com';
 const canonicalUrl = canonical || new URL(Astro.url.pathname, site).toString();
 const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
 
@@ -86,7 +86,7 @@ const orgSchema = {
   description: '免费电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。',
   knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '法人号码核验', '手机卡选号'],
   sameAs: [
-    'https://github.com/jm6-lang/haomachat',
+    'https://github.com/langgoo5249-a11y/haomachat',
     'https://www.opene164.org.cn',
     'https://www.miit.gov.cn',
     'https://www.caict.ac.cn',
@@ -166,8 +166,8 @@ const personSchemaHaoma = {
   description: '号码通查编辑团队,专注于号码标记查询与清除、号码归属地查询、号码认证等领域的工具评测与知识科普。',
   knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网', '虚拟运营商'],
   sameAs: [
-    'https://github.com/jm6-lang/haomachat',
-    'https://zangxixitech.cn/about',
+    'https://github.com/langgoo5249-a11y/haomachat',
+    'https://example.com/about',
   ],
   affiliation: { '@id': `${site}/#organization` },
 };
@@ -181,8 +181,8 @@ const personSchemaLangood = {
   description: '号码通查联合编辑,擅长通信技术领域深度文章撰写与号码标记清除实战经验分享。',
   knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网'],
   sameAs: [
-    'https://github.com/jm6-lang/haomachat',
-    'https://zangxixitech.cn/about',
+    'https://github.com/langgoo5249-a11y/haomachat',
+    'https://example.com/about',
   ],
   affiliation: { '@id': `${site}/#organization` },
 };
