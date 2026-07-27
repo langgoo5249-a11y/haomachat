@@ -1,4 +1,4 @@
-# 号码通查 (zangxixitech)
+# 号码通查 (haomachat)
 
 > GEO(生成式引擎优化)导向的电话号码服务工具站，部署于 Cloudflare Pages。
 
@@ -62,7 +62,7 @@ LOOKUP_API_KEY=你的聚合数据API密钥
 ## 项目结构
 
 ```
-zangxixitech/
+haomachat/
 ├── astro.config.mjs
 ├── public/              # llms.txt, robots.txt, _headers, _redirects
 ├── functions/api/       # Pages Functions (归属地查询代理)

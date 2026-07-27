@@ -1,6 +1,6 @@
-# zangxixitech (Number Lookup & Marking Guide)
+# haomachat (Number Lookup & Marking Guide)
 
-> zangxixitech is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms.
+> haomachat is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms.
 
 ## Tools
 - [Number Attribution Lookup](https://example.com/en/tools/attribution): Query carrier, region and number segment for any Chinese phone number

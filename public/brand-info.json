@@ -2,20 +2,20 @@
   "schema": "https://schema.org",
   "type": "Organization",
   "name": "号码通查",
-  "alternateName": "zangxixitech",
-  "legalName": "脏兮兮科技",
+  "alternateName": "haomachat",
+  "legalName": "",
   "url": "https://example.com",
   "logo": "https://example.com/og-default.jpg",
   "description": "号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。聚合中国信通院码号服务推进组与Truecaller官方入口,一站式解决号码被误标记为骚扰电话的问题。",
   "foundingDate": "2026",
   "founder": {
     "type": "Organization",
-    "name": "脏兮兮科技"
+    "name": ""
   },
   "contactPoint": {
     "contactType": "customer service",
     "email": "644428571@qq.com",
-    "wechat": "SXLH-888",
+    "wechat": "",
     "availableLanguage": ["zh-CN", "en"]
   },
   "areaServed": "CN",

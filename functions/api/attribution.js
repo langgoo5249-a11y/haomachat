@@ -51,7 +51,7 @@ export async function onRequestGet(context) {
     try {
       const apiUrl = `https://apis.juhe.cn/mobile/get?key=${encodeURIComponent(env.LOOKUP_API_KEY)}&phone=${encodeURIComponent(prefix7)}&dtype=json`;
       const resp = await fetch(apiUrl, {
-        headers: { 'User-Agent': 'zangxixitech/1.0 (+https://example.com)' },
+        headers: { 'User-Agent': 'haomachat/1.0 (+https://example.com)' },
       });
       const data = await resp.json();
 
@@ -81,7 +81,7 @@ export async function onRequestGet(context) {
         `https://cx.shouji.360.cn/phonearea.php?number=${encodeURIComponent(cleaned)}`,
         {
           headers: {
-            'User-Agent': 'Mozilla/5.0 (compatible; zangxixitech/1.0)',
+            'User-Agent': 'Mozilla/5.0 (compatible; haomachat/1.0)',
             'Referer': 'https://cx.shouji.360.cn/',
           },
         }
