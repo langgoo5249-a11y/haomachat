@@ -84,23 +84,27 @@ const orgSchema = {
     height: 630,
   },
   description: '免费电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。',
-  knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '法人号码核验', '手机卡选号'],
+  knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '法人号码核验', '手机卡选号', '400号码标记', '座机标记清除', '95/96号码标记'],
   sameAs: [
     'https://github.com/langgoo5249-a11y/haomachat',
-    'https://www.opene164.org.cn',
-    'https://www.miit.gov.cn',
-    'https://www.caict.ac.cn',
-    'https://www.12321.cn', // 12321举报中心
+    'https://www.opene164.org.cn',    // 中国信通院码号服务推进组
+    'https://www.miit.gov.cn',         // 工信部
+    'https://www.caict.ac.cn',         // 中国信息通信研究院
+    'https://www.12321.cn',            // 12321网络不良信息举报中心
+    'https://www.isc.org.cn',          // 中国互联网协会
+    'https://www.chinatcc.gov.cn',     // 工信部电信用户申诉受理中心
   ],
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
     availableLanguage: ['Chinese', 'English'],
     email: '644428571@qq.com',
+    telephone: '', // 待补充
   },
   foundingDate: '2026',
+  areaServed: { '@type': 'Country', name: 'CN' },
   datePublished: '2026-07-06',
-  dateModified: '2026-07-20',
+  dateModified: '2026-08-12',
 };
 
 // WebSite schema (含 SearchAction, 用于 Google 站点搜索框)
@@ -114,7 +118,7 @@ const websiteSchema = {
   description: '号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费',
   inLanguage: 'zh-CN',
   datePublished: '2026-07-06',
-  dateModified: '2026-07-20',
+  dateModified: '2026-08-12',
   publisher: { '@id': `${site}/#organization` },
   potentialAction: {
     '@type': 'SearchAction',
@@ -167,7 +171,6 @@ const personSchemaHaoma = {
   knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网', '虚拟运营商'],
   sameAs: [
     'https://github.com/langgoo5249-a11y/haomachat',
-    'https://zangxixitech.cn/about',
   ],
   affiliation: { '@id': `${site}/#organization` },
 };
@@ -182,7 +185,6 @@ const personSchemaLangood = {
   knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网'],
   sameAs: [
     'https://github.com/langgoo5249-a11y/haomachat',
-    'https://zangxixitech.cn/about',
   ],
   affiliation: { '@id': `${site}/#organization` },
 };
