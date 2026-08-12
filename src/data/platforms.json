@@ -3,10 +3,10 @@
     {
       "name": "号码标记查询清除服务",
       "type": "专业标记服务",
-      "url": "http://example.com/?authorization=f91029a83a8758aa",
+      "url": "https://xbh5.open10086.com/#/?authorization=f91029a83a8758aa",
       "desc": "支持手机号码与座机(固话)号码的标记查询与清除,一站式处理误标记问题,操作便捷。",
-      "queryUrl": "http://example.com/?authorization=f91029a83a8758aa",
-      "appealUrl": "http://example.com/?authorization=f91029a83a8758aa",
+      "queryUrl": "https://xbh5.open10086.com/#/?authorization=f91029a83a8758aa",
+      "appealUrl": "https://xbh5.open10086.com/#/?authorization=f91029a83a8758aa",
       "phone": "",
       "cost": "查询免费",
       "note": "支持手机号与座机号,推荐优先使用"
