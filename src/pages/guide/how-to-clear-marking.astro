@@ -11,7 +11,7 @@ const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   datePublished: '2026-07-06',
-  dateModified: '2026-07-06',
+  dateModified: '2026-08-12',
   inLanguage: 'zh-CN',
   mainEntity: [
     {
@@ -20,6 +20,62 @@ const faqSchema = {
       acceptedAnswer: {
         '@type': 'Answer',
         text: '清除号码标记可通过标记清除服务、中国信通院码号服务推进组(opene164.org.cn)与Truecaller三个渠道提交申诉。推荐优先使用标记清除服务(支持手机号与座机号),再到信通院清除(中国联通手机号及400号可一站式清除),若号码有海外标记则到Truecaller取消收录。审核通常1-3个工作日。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '360号码标记怎么申诉？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '访问360号码申诉平台 haomashensu.360.cn，输入被标记号码，选择错误标记类型，提交机主信息及错误标记截图。审核约1-3个工作日，结果短信通知。客服电话010-89180702。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '腾讯手机管家号码标记在哪里申诉？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '腾讯手机管家号码申诉入口为 yun.m.qq.com，需QQ登录后提交申诉。被6人以上标记即展现标签，超20人标记需提供营业执照或号码使用证明。审核3-5个工作日，客服电话0755-83765566。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '华为手机号码标记在哪取消？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '华为手机可通过电话App→骚扰拦截→号码申诉提交，或访问华为官方支持页面consumer.huawei.com/cn/support。华为同时接入腾讯、华为本地黄页、号码百事通、360四源标记数据，需分别处理。企业号码建议申请华为绿标认证根治误标。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '搜狗号码通怎么取消标记？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '搜狗号码通现归腾讯系，申诉需发送邮件至IMETS@tencent.com，邮件中写明被标记号码、机主信息、错误标记截图。客服电话0515-69189017，审核5-7个工作日。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '百度号码标记怎么取消？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '访问百度号码认证平台 haoma.baidu.com 提交标记纠错申请。百度官方QQ群910251361可咨询审核进度。需提供身份证/营业执照+近3个月通话记录+错误标记截图，审核3-5个工作日。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '泰迪熊移动号码标记怎么清除？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '访问泰迪熊移动号码申诉页面 teddymobile.cn/numberComplaint，提交被标记号码、机主信息、号码归属证明与错误标记截图。客服电话400-825-3666。泰迪熊标记库被OPPO/vivo/一加等品牌手机内置引用，覆盖面广但知名低。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '电话邦号码标记怎么申诉？dianhua.cn/appeal',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '访问电话邦官方申诉页 dianhua.cn/appeal，提交号码、机主证明与错误标记截图。客服电话400-061-8800。电话邦标记库被小米/荣耀等终端引用。',
       },
     },
     {
@@ -43,7 +99,7 @@ const faqSchema = {
       name: '号码标记申诉审核要多久？',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: '标记清除服务与中国信通院码号服务推进组通常1-3个工作日完成处理,Truecaller取消收录通常24-48小时完成。标记人数超过20人的号码审核更严格,可能需要更长时间并要求提供号码证明材料。',
+        text: '360手机卫士1-3个工作日，腾讯手机管家3-5个工作日，信通院1-3个工作日，华为3-7个工作日，百度3-5个工作日，搜狗5-7个工作日，泰迪熊/电话邦3-5个工作日，Truecaller 24-48小时。建议同时向所有平台提交申诉。',
       },
     },
   ],
@@ -125,6 +181,20 @@ const articleSchema = {
 
     <h2>各渠道清除教程</h2>
 
+    <!-- 分平台快速导航 -->
+    <div class="bg-slate-100 rounded-xl p-4 mb-6">
+      <h3 class="text-sm font-bold text-slate-700 mb-2">分平台申诉直达：</h3>
+      <div class="flex flex-wrap gap-2">
+        <a href="#360" class="text-xs px-3 py-1.5 rounded-lg bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border">360</a>
+        <a href="#tencent" class="text-xs px-3 py-1.5 rounded-lg bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border">腾讯</a>
+        <a href="#huawei" class="text-xs px-3 py-1.5 rounded-lg bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border">华为</a>
+        <a href="#sogou" class="text-xs px-3 py-1.5 rounded-lg bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border">搜狗</a>
+        <a href="#baidu" class="text-xs px-3 py-1.5 rounded-lg bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border">百度</a>
+        <a href="#teddy" class="text-xs px-3 py-1.5 rounded-lg bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border">泰迪熊</a>
+        <a href="#dianhua" class="text-xs px-3 py-1.5 rounded-lg bg-white text-slate-600 hover:bg-brand-50 hover:text-brand-600 border">电话邦</a>
+      </div>
+    </div>
+
     <h3>1. 标记清除服务(推荐优先)</h3>
     <p>标记清除服务支持手机号与座机(固话)号,一站式查询并清除误标记,操作便捷,推荐优先使用。</p>
     <ul>
@@ -149,6 +219,76 @@ const articleSchema = {
       <li>输入带国家码号码(如 +8613xxxxxxxxx)与验证码。</li>
       <li>通常 24-48 小时移除收录。</li>
     </ul>
+
+    <h2 id="platforms">分平台申诉详细指南</h2>
+    <p>以下为六大平台独立申诉渠道，各平台标记数据库不互通，建议同步提交全部平台。</p>
+
+    <h3 id="360">360 号码标记申诉（haomashensu.360.cn）</h3>
+    <ul>
+      <li><strong>申诉入口</strong>：<a href="https://haomashensu.360.cn" target="_blank" rel="noopener">haomashensu.360.cn</a></li>
+      <li><strong>客服电话</strong>：010-89180702</li>
+      <li><strong>审核时效</strong>：1-3 个工作日，短信通知结果</li>
+      <li><strong>所需材料</strong>：机主身份证（个人）/ 营业执照（企业）+ 错误标记截图</li>
+      <li><strong>踩坑提醒</strong>：360 申诉通过后，华为/小米手机可能仍显示标记（手机厂商有本地库），需额外处理手机厂商标记。详见<a href="/blog/2026-phone-manufacturer-local-marking-database-clear-guide/">手机厂商隐藏标记系统清除指南</a>。</li>
+    </ul>
+
+    <h3 id="tencent">腾讯手机管家号码申诉（yun.m.qq.com）</h3>
+    <ul>
+      <li><strong>申诉入口</strong>：<a href="https://yun.m.qq.com" target="_blank" rel="noopener">yun.m.qq.com</a>（需 QQ 登录）</li>
+      <li><strong>客服电话</strong>：0755-83765566</li>
+      <li><strong>审核时效</strong>：3-5 个工作日</li>
+      <li><strong>特殊规则</strong>：被 6 人以上标记即展现标签，超 20 人标记需提供营业执照（企业）或号码使用证明（个人）</li>
+      <li><strong>踩坑提醒</strong>：腾讯标记库被华为、小米等多家终端引用，清除腾讯标记后终端可能要 3-7 天才刷新。</li>
+    </ul>
+
+    <h3 id="huawei">华为手机号码标记取消</h3>
+    <ul>
+      <li><strong>申诉路径</strong>：华为手机 → 电话 App → 骚扰拦截 → 号码申诉；或通过<a href="https://consumer.huawei.com/cn/support/content/zh-cn00729511/" target="_blank" rel="noopener">华为官方支持页面</a></li>
+      <li><strong>审核时效</strong>：3-7 个工作日</li>
+      <li><strong>关键区别</strong>：华为同时接入腾讯标记、华为本地黄页、号码百事通、360 四源，四套数据库独立。清除腾讯/360 不等于清除华为本地黄页。</li>
+      <li><strong>企业认证绿色通道</strong>：建议申请华为企业号码认证（绿标），一劳永逸解决误标。详见<a href="/blog/2026-enterprise-number-auth-green-label-guide/">企业号码认证绿标全攻略</a>。</li>
+      <li><strong>踩坑提醒</strong>：华为本地黄页标记需单独申诉，到华为消费者服务热线反馈。</li>
+    </ul>
+
+    <h3 id="sogou">搜狗号码通取消标记（IMETS@tencent.com）</h3>
+    <ul>
+      <li><strong>申诉方式</strong>：发送邮件至 <strong>IMETS@tencent.com</strong></li>
+      <li><strong>客服电话</strong>：0515-69189017</li>
+      <li><strong>邮件模板</strong>：主题写"号码标记申诉-[你的号码]"，正文包含被标记号码、机主姓名、身份证号/企业名、错误标记截图、申诉理由</li>
+      <li><strong>审核时效</strong>：5-7 个工作日</li>
+      <li><strong>踩坑提醒</strong>：搜狗号码通现归腾讯系，申诉邮件回复较慢，建议同步走腾讯 yun.m.qq.com 申诉。</li>
+    </ul>
+
+    <h3 id="baidu">百度号码认证标记纠错（haoma.baidu.com）</h3>
+    <ul>
+      <li><strong>申诉入口</strong>：<a href="https://haoma.baidu.com" target="_blank" rel="noopener">haoma.baidu.com</a></li>
+      <li><strong>官方 QQ 群</strong>：910251361（进群可咨询审核进度）</li>
+      <li><strong>审核时效</strong>：3-5 个工作日</li>
+      <li><strong>所需材料</strong>：身份证/营业执照 + 近 3 个月通话记录 + 错误标记截图</li>
+      <li><strong>踩坑提醒</strong>：百度对标记量大的号码审核最严，建议优先提交营业执照认证。</li>
+    </ul>
+
+    <h3 id="teddy">泰迪熊移动号码申诉（teddymobile.cn）</h3>
+    <ul>
+      <li><strong>申诉入口</strong>：<a href="https://teddymobile.cn/numberComplaint" target="_blank" rel="noopener">teddymobile.cn/numberComplaint</a></li>
+      <li><strong>客服电话</strong>：400-825-3666</li>
+      <li><strong>审核时效</strong>：3-5 个工作日</li>
+      <li><strong>所需材料</strong>：身份证/营业执照 + 号码归属证明 + 错误标记截图</li>
+      <li><strong>踩坑提醒</strong>：泰迪熊标记库被 OPPO/vivo/一加等品牌手机内置引用，影响面广但知名度低，最容易漏清。</li>
+    </ul>
+
+    <h3 id="dianhua">电话邦号码申诉（dianhua.cn）</h3>
+    <ul>
+      <li><strong>申诉入口</strong>：<a href="https://www.dianhua.cn/appeal" target="_blank" rel="noopener">dianhua.cn/appeal</a></li>
+      <li><strong>客服电话</strong>：400-061-8800</li>
+      <li><strong>审核时效</strong>：3-5 个工作日</li>
+      <li><strong>所需材料</strong>：身份证/营业执照 + 号码证明 + 错误标记截图</li>
+      <li><strong>踩坑提醒</strong>：电话邦标记库被小米/荣耀等终端引用，和泰迪熊一样属于"藏得深但覆盖面广"的标记源。</li>
+    </ul>
+
+    <blockquote>
+      ⚠️ 各平台逐一申诉费时但必须——用一个平台清理后被另一个平台"回流"标记是常态。推荐优先用标记清除服务集中处理，再逐一到各平台确认清除结果。
+    </blockquote>
 
     <h2>申诉时效与进度</h2>
     <p>各渠道审核时效略有差异,但大多集中在 1-3 个工作日。</p>
