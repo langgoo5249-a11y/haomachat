@@ -66,8 +66,8 @@ const articleModifiedTime = modifiedDate || defaultModified;
 const currentPath = Astro.url.pathname;
 const isEnPage = currentPath.startsWith('/en/');
 const isHomepage = currentPath === '/' || currentPath === '/en/';
-const zhUrl = isEnPage ? `${site}${currentPath.replace(/^\/en/, '')}` : canonicalUrl;
-const enUrl = isEnPage ? canonicalUrl : `${site}/en${currentPath === '/' ? '' : currentPath}`;
+const zhUrl = isEnPage ? `${site}${currentPath.replace(/^\/en\//, '/')}` : canonicalUrl;
+const enUrl = isEnPage ? canonicalUrl : currentPath === '/' ? `${site}/en/` : `${site}/en${currentPath}`;
 const hasValidEnPage = currentPath === '/' || currentPath === '/en/';
 
 // 全站级 Organization schema(补全 contactPoint/sameAs 等)
