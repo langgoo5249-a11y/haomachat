@@ -1,16 +1,14 @@
 #!/usr/bin/env node
 /**
- * IndexNow 提交脚本 - 构建后在 package.json scripts 中调用
+ * IndexNow 提交脚本 - 构建后手动调用
  * 向 Bing/Yandex/Naver 等搜索引擎通知 URL 变更,加速收录
- * 用法: node scripts/indexnow-submit.mjs
+ * 用法: npm run indexnow
  */
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
-
-const SITE = 'https://example.com';
+const SITE = 'https://zangxixitech.cn';
 const KEY = '8413a9f41d034daa94eef1027c6ca5c2';
 const KEY_LOCATION = `${SITE}/${KEY}.txt`;
-
 // 从 sitemap-0.xml 提取所有 URL
 function extractUrlsFromSitemap() {
   const sitemapPath = join(process.cwd(), 'dist', 'sitemap-0.xml');
@@ -22,22 +20,18 @@ function extractUrlsFromSitemap() {
   const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1]);
   return urls;
 }
-
 async function submitToIndexNow(urls) {
   if (urls.length === 0) {
     console.log('[IndexNow] No URLs to submit');
     return;
   }
-
   const body = {
-    host: 'example.com',
+    host: 'zangxixitech.cn',
     key: KEY,
     keyLocation: KEY_LOCATION,
     urlList: urls,
   };
-
   console.log(`[IndexNow] Submitting ${urls.length} URLs to IndexNow...`);
-
   // Bing IndexNow endpoint
   try {
     const res = await fetch('https://api.indexnow.org/indexnow', {
@@ -56,7 +50,6 @@ async function submitToIndexNow(urls) {
   } catch (err) {
     console.error(`[IndexNow] api.indexnow.org error: ${err.message}`);
   }
-
   // Also ping Bing's direct endpoint
   try {
     const res = await fetch('https://www.bing.com/indexnow', {
@@ -69,6 +62,5 @@ async function submitToIndexNow(urls) {
     console.error(`[IndexNow] bing.com error: ${err.message}`);
   }
 }
-
 const urls = extractUrlsFromSitemap();
 submitToIndexNow(urls);
