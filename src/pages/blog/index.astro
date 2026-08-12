@@ -16,8 +16,8 @@ const blogSchema = {
   '@type': 'Blog',
   name: '号码通查号码百科',
   description: '号码标记清除、号码认证选型、手机卡选号等深度文章',
-  url: 'https://example.com/blog',
-  publisher: { '@id': 'https://example.com/#organization' },
+  url: 'https://zangxixitech.cn/blog',
+  publisher: { '@id': 'https://zangxixitech.cn/#organization' },
 };
 
 // ItemList Schema: 帮助AI引擎解析博客归档结构,理解"这里有N篇文章按时间排序"
@@ -31,7 +31,7 @@ const itemListSchema = {
     '@type': 'ListItem',
     position: i + 1,
     name: post.data.title,
-    url: `https://example.com/blog/${post.id}/`,
+    url: `https://zangxixitech.cn/blog/${post.id}/`,
     description: post.data.description,
   })),
 };

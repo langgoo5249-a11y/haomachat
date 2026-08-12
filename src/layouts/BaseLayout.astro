@@ -41,7 +41,7 @@ const {
   modifiedDate,
 } = Astro.props;
 
-const site = Astro.site?.toString().replace(/\/$/, '') || 'https://example.com';
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://zangxixitech.cn';
 const canonicalUrl = canonical || new URL(Astro.url.pathname, site).toString();
 const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
 
@@ -167,7 +167,7 @@ const personSchemaHaoma = {
   knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网', '虚拟运营商'],
   sameAs: [
     'https://github.com/langgoo5249-a11y/haomachat',
-    'https://example.com/about',
+    'https://zangxixitech.cn/about',
   ],
   affiliation: { '@id': `${site}/#organization` },
 };
@@ -182,7 +182,7 @@ const personSchemaLangood = {
   knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网'],
   sameAs: [
     'https://github.com/langgoo5249-a11y/haomachat',
-    'https://example.com/about',
+    'https://zangxixitech.cn/about',
   ],
   affiliation: { '@id': `${site}/#organization` },
 };

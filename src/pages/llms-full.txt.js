@@ -107,8 +107,9 @@ export async function GET(context) {
 
   // 获取博客文章完整内容
   let blogContent = '';
+  let posts = [];
   try {
-    const posts = await getCollection('blog');
+    posts = await getCollection('blog');
     for (const post of posts) {
       blogContent += `\n---\n\n# ${post.data.title}\n\nURL: ${site}/blog/${post.id}/\n\n发布日期: ${post.data.pubDate.toISOString().split('T')[0]}\n更新日期: ${(post.data.updatedDate || post.data.pubDate).toISOString().split('T')[0]}\n作者: ${post.data.author}\n标签: ${post.data.tags.join(', ')}\n\n## 摘要\n\n${post.data.description}\n\n## 正文\n\n${post.body}\n`;
     }
@@ -123,7 +124,7 @@ export async function GET(context) {
 > 本文件包含全站核心页面的完整内容摘要,供 AI 工具(Cursor/Copilot/Cline)读取。
 > 站点: ${site}
 > 更新日期: ${new Date().toISOString().split('T')[0]}
-> 页面总数: ${staticPages.length + 4}(静态页面${staticPages.length} + 博客文章4)
+> 页面总数: ${staticPages.length + posts.length}(静态页面${staticPages.length} + 博客文章${posts.length})
 
 `;
 

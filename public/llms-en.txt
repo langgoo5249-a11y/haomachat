@@ -3,13 +3,13 @@
 > haomachat is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms.
 
 ## Tools
-- [Number Attribution Lookup](https://example.com/en/tools/attribution): Query carrier, region and number segment for any Chinese phone number
-- [Number Marking Self-Check](https://example.com/en/tools/marking-check): Aggregated official query portals from CAICT and major platforms (360, Tencent, Baidu, Huawei)
-- [Number Marking Clearance](https://example.com/en/tools/marking-clear): Official appeal portals and step-by-step tutorials per platform
-- [SIM Card Comparison](https://example.com/en/tools/sim-cards): China Mobile/Unicom/Telecom plan comparison
+- [Number Attribution Lookup](https://zangxixitech.cn/en/tools/attribution): Query carrier, region and number segment for any Chinese phone number
+- [Number Marking Self-Check](https://zangxixitech.cn/en/tools/marking-check): Aggregated official query portals from CAICT and major platforms (360, Tencent, Baidu, Huawei)
+- [Number Marking Clearance](https://zangxixitech.cn/en/tools/marking-clear): Official appeal portals and step-by-step tutorials per platform
+- [SIM Card Comparison](https://zangxixitech.cn/en/tools/sim-cards): China Mobile/Unicom/Telecom plan comparison
 
 ## Guides
-- [What is Number Marking](https://example.com/en/guide/what-is-number-marking)
-- [How to Check Number Marking](https://example.com/en/guide/how-to-check-marking)
-- [How to Clear Number Marking](https://example.com/en/guide/how-to-clear-marking)
-- [What is Number Authentication](https://example.com/en/guide/what-is-number-auth)
+- [What is Number Marking](https://zangxixitech.cn/en/guide/what-is-number-marking)
+- [How to Check Number Marking](https://zangxixitech.cn/en/guide/how-to-check-marking)
+- [How to Clear Number Marking](https://zangxixitech.cn/en/guide/how-to-clear-marking)
+- [What is Number Authentication](https://zangxixitech.cn/en/guide/what-is-number-auth)

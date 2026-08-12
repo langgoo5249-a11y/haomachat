@@ -40,7 +40,7 @@ tags: ["外卖骑手号码被标记", "快递员号码被标记骚扰电话", "�
 
 你会发现，外卖骑手和快递员的正常工作模式，几乎**完美命中前四条**。这就是为什么你的号码总是被标记——不是因为你在骚扰别人，而是你的工作方式太像骚扰电话了。
 
-如果你不确定自己的号码在哪些平台被标记了，可以先用[号码标记通查的自查工具](https://example.com/tools/marking-check/)免费查一遍，再针对性处理。
+如果你不确定自己的号码在哪些平台被标记了，可以先用[号码标记通查的自查工具](https://zangxixitech.cn/tools/marking-check/)免费查一遍，再针对性处理。
 
 ## 不同平台的标记逻辑差异很大，申诉策略要"分平台定制"
 
@@ -62,7 +62,7 @@ tags: ["外卖骑手号码被标记", "快递员号码被标记骚扰电话", "�
 
 ### 华为手机：20 人标记阈值
 
-华为的标记逻辑比较独特——**被 20 个以上用户标记才会触发**。这个阈值意味着一旦被标记，说明已经有相当多用户对你的号码产生了负面印象。华为的申诉只接受**企业认证通道**，个人申诉基本无效。相关流程可以参考[企业号码认证绿标指南](https://example.com/blog/2026-enterprise-number-auth-green-label-guide/)。
+华为的标记逻辑比较独特——**被 20 个以上用户标记才会触发**。这个阈值意味着一旦被标记，说明已经有相当多用户对你的号码产生了负面印象。华为的申诉只接受**企业认证通道**，个人申诉基本无效。相关流程可以参考[企业号码认证绿标指南](https://zangxixitech.cn/blog/2026-enterprise-number-auth-green-label-guide/)。
 
 ## 真实案例：美团骑手的号码从"骚扰电话"到"正常号码"的 7 天
 
@@ -70,7 +70,7 @@ tags: ["外卖骑手号码被标记", "快递员号码被标记骚扰电话", "�
 
 他的申诉过程：
 
-**第 1 天**：用[号码标记通查](https://example.com/)的自查工具确认了标记状态——360 标记为"骚扰电话"，腾讯标记为"快递外卖"，百度未标记，华为未标记。
+**第 1 天**：用[号码标记通查](https://zangxixitech.cn/)的自查工具确认了标记状态——360 标记为"骚扰电话"，腾讯标记为"快递外卖"，百度未标记，华为未标记。
 
 **第 2 天**：向 360 提交申诉。材料包括：身份证手持照片、美团骑手 APP 认证截图、近 30 天通话详单。在申诉说明中，他写的是："本号码为美团外卖骑手工作号码，日均通话 50-80 通系工作性质所致，每次通话均为联系客户确认取餐地址，非骚扰行为。"
 
@@ -82,7 +82,7 @@ tags: ["外卖骑手号码被标记", "快递员号码被标记骚扰电话", "�
 
 这个案例的关键在于：**他没有要求完全清除标记，而是请求将标记改为正确的行业标签**。对于外卖骑手来说，"外卖配送"这个标记反而是有利的——客户看到来电显示"外卖配送"，大概率会接听。
 
-关于标记清除后如何防止再次被标记，可以参考[号码标记预防指南](https://example.com/blog/2026-enterprise-number-marking-prevention-guide/)。
+关于标记清除后如何防止再次被标记，可以参考[号码标记预防指南](https://zangxixitech.cn/blog/2026-enterprise-number-marking-prevention-guide/)。
 
 ## 防标记的三个实用技巧
 
@@ -108,11 +108,11 @@ tags: ["外卖骑手号码被标记", "快递员号码被标记骚扰电话", "�
 - 私人号码保持不变，用于社交和生活
 - 工作号码被标记后，只影响配送工作，不影响日常生活
 
-如果需要办新号码，可以参考[手机卡选号指南](https://example.com/guide/sim-card-guide/)和[选号工具](https://example.com/tools/sim-cards/)。
+如果需要办新号码，可以参考[手机卡选号指南](https://zangxixitech.cn/guide/sim-card-guide/)和[选号工具](https://zangxixitech.cn/tools/sim-cards/)。
 
 ## 如果申诉被驳回怎么办？
 
-高频外呼行业的申诉驳回率确实比普通用户高，因为标记算法对这类号码的判定置信度本身就高。如果申诉被驳回，不要慌，参考[号码标记申诉被驳回的二次申诉指南](https://example.com/blog/2026-number-marking-appeal-rejected-solutions/)，按照驳回原因逐一补充材料再提交。
+高频外呼行业的申诉驳回率确实比普通用户高，因为标记算法对这类号码的判定置信度本身就高。如果申诉被驳回，不要慌，参考[号码标记申诉被驳回的二次申诉指南](https://zangxixitech.cn/blog/2026-number-marking-appeal-rejected-solutions/)，按照驳回原因逐一补充材料再提交。
 
 另外，**信通院码号服务推进组（opene164.org.cn）**是一个被很多人忽视的申诉渠道。它是由工信部直属机构运营的跨平台申诉入口，申诉结果会被 360、腾讯、百度等主流平台采纳。如果你在单个平台申诉多次失败，建议走信通院通道，一步到位。
 
@@ -120,11 +120,11 @@ tags: ["外卖骑手号码被标记", "快递员号码被标记骚扰电话", "�
 
 高频外呼行业从业者的号码标记问题，本质上是一个**算法与人性的冲突**——你的工作模式恰好符合骚扰电话的算法特征，但你的每一通电话都是有真实业务需求的。解决这个问题的核心思路是：**用证据证明你的通话行为有正当性，而不是试图隐藏你的通话模式**。
 
-如果你觉得这篇文章有帮助，可以收藏[号码标记通查](https://example.com/)的[清除工具](https://example.com/tools/marking-clear/)和[FAQ 页面](https://example.com/faq/)，遇到问题时随时查阅。
+如果你觉得这篇文章有帮助，可以收藏[号码标记通查](https://zangxixitech.cn/)的[清除工具](https://zangxixitech.cn/tools/marking-clear/)和[FAQ 页面](https://zangxixitech.cn/faq/)，遇到问题时随时查阅。
 
 ## 延伸阅读
 
-- [号码标记申诉被驳回怎么办？](https://example.com/blog/2026-number-marking-appeal-rejected-solutions/) — 六大平台驳回原因对照表 + 二次申诉技巧
-- [企业号码标记预防指南](https://example.com/blog/2026-enterprise-number-marking-prevention-guide/) — 标记清除后如何防止回流
-- [号码标记平台对比](https://example.com/blog/2026-number-marking-platform-comparison/) — 360/腾讯/百度/华为/泰迪熊/电话邦清除效率对比
-- [回收号码误标记处理指南](https://example.com/blog/2026-recycled-number-false-marking-guide/) — 新办的手机号有前机主的标记记录怎么办
+- [号码标记申诉被驳回怎么办？](https://zangxixitech.cn/blog/2026-number-marking-appeal-rejected-solutions/) — 六大平台驳回原因对照表 + 二次申诉技巧
+- [企业号码标记预防指南](https://zangxixitech.cn/blog/2026-enterprise-number-marking-prevention-guide/) — 标记清除后如何防止回流
+- [号码标记平台对比](https://zangxixitech.cn/blog/2026-number-marking-platform-comparison/) — 360/腾讯/百度/华为/泰迪熊/电话邦清除效率对比
+- [回收号码误标记处理指南](https://zangxixitech.cn/blog/2026-recycled-number-false-marking-guide/) — 新办的手机号有前机主的标记记录怎么办

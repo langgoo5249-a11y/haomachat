@@ -51,7 +51,7 @@ export async function onRequestGet(context) {
     try {
       const apiUrl = `https://apis.juhe.cn/mobile/get?key=${encodeURIComponent(env.LOOKUP_API_KEY)}&phone=${encodeURIComponent(prefix7)}&dtype=json`;
       const resp = await fetch(apiUrl, {
-        headers: { 'User-Agent': 'haomachat/1.0 (+https://example.com)' },
+        headers: { 'User-Agent': 'haomachat/1.0 (+https://zangxixitech.cn)' },
       });
       const data = await resp.json();
 
