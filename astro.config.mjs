@@ -19,7 +19,6 @@ const pageLastmod = {
   '/terms/': '2026-07-06',
   '/disclaimer/': '2026-07-06',
   '/cookie-policy/': '2026-07-06',
-  '/blog/': '2026-07-13',
   '/blog/2026-number-marking-clearance-guide/': '2026-07-13',
   '/blog/2026-enterprise-number-marking-solution/': '2026-07-13',
   '/blog/2026-number-marking-platform-comparison/': '2026-07-13',
@@ -33,6 +32,8 @@ const pageLastmod = {
   '/blog/2026-personal-number-marking-removal-guide/': '2026-07-14',
   '/blog/2026-number-marking-appeal-rejected-solutions/': '2026-07-21',
   '/blog/2026-high-frequency-outbound-number-marking-solution/': '2026-07-23',
+  '/blog/2026-phone-manufacturer-local-marking-database-clear-guide/': '2026-08-12',
+  '/blog/': '2026-08-12',
   '/tools/attribution/': '2026-07-08',
   '/tools/legal-number-verify/': '2026-07-06',
   '/tools/marking-check/': '2026-07-06',
@@ -52,7 +53,7 @@ const pageLastmod = {
 };
 
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://zangxixitech.cn',
   output: 'static',
   trailingSlash: 'ignore',
   compressHTML: true,
@@ -70,7 +71,7 @@ export default defineConfig({
       // 注入真实 lastmod(来自内容修改日期,非构建时间)
       // Google 会验证 lastmod 真实性,虚假日期会导致整站 lastmod 被忽略
       serialize(item) {
-        const path = item.url.replace('https://example.com', '');
+        const path = item.url.replace('https://zangxixitech.cn', '');
         const normalizedPath = path === '' ? '/' : path;
         // 尝试精确匹配,再尝试去掉末尾斜杠匹配
         const date = pageLastmod[normalizedPath] || pageLastmod[normalizedPath.replace(/\/$/, '') + '/'];
