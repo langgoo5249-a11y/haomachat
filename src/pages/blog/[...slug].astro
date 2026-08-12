@@ -166,6 +166,7 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
   ogImage={post.data.heroImage || undefined}
   publishedDate={post.data.pubDate.toISOString()}
   modifiedDate={(post.data.updatedDate || post.data.pubDate).toISOString()}
+  keywords={post.data.tags}
 >
   <article class="prose-content max-w-none lg:max-w-[75ch]">
     <div class="text-sm text-slate-400 mb-2">

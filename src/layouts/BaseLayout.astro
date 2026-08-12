@@ -25,6 +25,8 @@ export interface Props {
   publishedDate?: string;
   /** 文章更新时间(ISO 8601), 用于 article:modified_time */
   modifiedDate?: string;
+  /** SEO 关键词数组, 用于 meta keywords + 结构化数据 */
+  keywords?: string[];
 }
 
 const {
@@ -39,6 +41,7 @@ const {
   ogType = 'website',
   publishedDate,
   modifiedDate,
+  keywords = [],
 } = Astro.props;
 
 const site = Astro.site?.toString().replace(/\/$/, '') || 'https://zangxixitech.cn';
@@ -208,6 +211,7 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
     <link rel="manifest" href="/manifest.json" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {keywords.length > 0 && <meta name="keywords" content={keywords.join(',')} />}
     <link rel="canonical" href={canonicalUrl} />
     {noindex && <meta name="robots" content="noindex,nofollow" />}
 
@@ -239,6 +243,9 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
     <meta property="article:published_time" content={articlePublishedTime} />
     <meta property="article:modified_time" content={articleModifiedTime} />
     <meta property="article:author" content="号码通查" />
+    {ogType === 'article' && keywords.length > 0 && keywords.map((k) => (
+      <meta property="article:tag" content={k} />
+    ))}
 
     <!-- 字节跳动时间因子: 帮助头条/抖音搜索展示发布时间, 优化落地页体验 -->
     <meta property="bytedance:published_time" content={articlePublishedTime} />

@@ -96,11 +96,28 @@ const howToSchema = {
     },
   ],
 };
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: '法人号码核验服务',
+  description: '企业法人手机号实名认证,姓名+身份证号+手机号三要素一致性校验,用于企业实名认证、风控审核、反欺诈。',
+  url: 'https://zangxixitech.cn/tools/legal-number-verify/',
+  serviceType: '法人号码核验',
+  provider: { '@id': 'https://zangxixitech.cn/#organization' },
+  areaServed: { '@type': 'Country', name: 'CN' },
+  availableChannel: [
+    { '@type': 'ServiceChannel', serviceUrl: serviceUrl, name: '在线核验入口' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'CNY' },
+  category: '号码服务',
+  dateModified: '2026-08-12',
+};
 ---
 <BaseLayout
   title="法人号码核验查询 - 企业法人手机号实名认证 | 号码通查"
   description="法人号码核验查询工具:通过运营商数据校验企业法人代表姓名、身份证号、手机号三要素一致性。用于企业实名认证、风控审核、反欺诈等场景。数据来自三大运营商官方网关,加密传输不存储。"
-  schema={[faqSchema, howToSchema, toolWebAppSchema]}
+  schema={[faqSchema, howToSchema, toolWebAppSchema, serviceSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">法人号码核验查询</h1>

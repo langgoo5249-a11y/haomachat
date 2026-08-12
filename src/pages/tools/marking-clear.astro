@@ -63,6 +63,25 @@ const howToSchema = {
   ],
 };
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: '号码标记清除服务',
+  description: '支持手机号码与座机(固话)号码的标记查询与清除,一站式处理误标记为骚扰电话、推销电话的问题。',
+  url: 'https://zangxixitech.cn/tools/marking-clear/',
+  serviceType: '号码标记清除',
+  provider: { '@id': 'https://zangxixitech.cn/#organization' },
+  areaServed: { '@type': 'Country', name: 'CN' },
+  availableChannel: [
+    { '@type': 'ServiceChannel', serviceUrl: serviceUrl, name: '在线清除入口' },
+    { '@type': 'ServiceChannel', serviceUrl: 'http://www.opene164.org.cn', name: '中国信通院码号服务推进组' },
+    { '@type': 'ServiceChannel', serviceUrl: 'https://www.truecaller.com/unlisting', name: 'Truecaller取消列入' },
+  ],
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY', availability: 'https://schema.org/InStock' },
+  category: '号码服务',
+  dateModified: '2026-08-12',
+};
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -108,7 +127,7 @@ const faqSchema = {
 <BaseLayout
   title="号码标记清除 - 手机号/座机号误标记清除服务 | 号码通查"
   description="号码标记清除服务,手机号码与座机(固话)号码均支持。提供标记清除服务入口,聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方清除入口,一站式解决号码被误标记为骚扰电话的问题。"
-  schema={[howToSchema, faqSchema, toolWebAppSchema]}
+  schema={[howToSchema, faqSchema, toolWebAppSchema, serviceSchema]}
   breadcrumbs={breadcrumbs}
 >
   <!-- AI 摘要: 前150字结论前置 -->

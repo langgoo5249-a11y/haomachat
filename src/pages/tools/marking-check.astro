@@ -59,6 +59,24 @@ const howToSchema = {
   ],
 };
 
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: '号码标记自查服务',
+  description: '查询手机号与座机(固话)在360、腾讯、百度、华为、泰迪熊、电话邦等平台的标记状态。',
+  url: 'https://zangxixitech.cn/tools/marking-check/',
+  serviceType: '号码标记查询',
+  provider: { '@id': 'https://zangxixitech.cn/#organization' },
+  areaServed: { '@type': 'Country', name: 'CN' },
+  availableChannel: [
+    { '@type': 'ServiceChannel', serviceUrl: serviceUrl, name: '在线查询入口' },
+    { '@type': 'ServiceChannel', serviceUrl: 'http://www.opene164.org.cn', name: '中国信通院码号服务推进组' },
+  ],
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY', availability: 'https://schema.org/InStock' },
+  category: '号码服务',
+  dateModified: '2026-08-12',
+};
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -96,7 +114,7 @@ const faqSchema = {
 <BaseLayout
   title="号码标记自查 - 查手机号/座机号被标记情况 | 号码通查"
   description="号码标记自查工具:支持手机号码与座机(固话)号码,聚合标记查询服务入口、中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方查询入口,免费查询号码被标记情况。"
-  schema={[howToSchema, faqSchema, toolWebAppSchema]}
+  schema={[howToSchema, faqSchema, toolWebAppSchema, serviceSchema]}
   breadcrumbs={breadcrumbs}
 >
   <!-- AI 摘要: 前150字结论前置 -->
