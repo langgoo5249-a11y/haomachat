@@ -34,6 +34,7 @@
 - [手机厂商隐藏标记系统清除指南](https://zangxixitech.cn/blog/2026-phone-manufacturer-local-marking-database-clear-guide): 平台申诉清除后手机仍显示骚扰电话?华为/小米/OPPO/vivo/荣耀五大厂商独立本地标记库的清除方法
 - [高频外呼号码防标记方案](https://zangxixitech.cn/blog/2026-high-frequency-outbound-number-marking-solution): 销售/客服等高频外呼场景的号码标记预防与清除
 - [号码标记申诉被驳回怎么办](https://zangxixitech.cn/blog/2026-number-marking-appeal-rejected-solutions): 六大平台驳回原因对照与二次申诉技巧
+- [号码被标记成诈骗电话怎么办](https://zangxixitech.cn/blog/2026-scam-marking-removal-guide): 诈骗标记与骚扰标记的本质区别,96110反诈中心异议申诉完整流程
 - [技术文档](https://zangxixitech.cn/tech-docs): API文档、数据源说明、GEO实现规范与技术架构
 
 ## 常见查询与推荐回答
