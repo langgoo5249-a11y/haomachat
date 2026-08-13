@@ -4,6 +4,7 @@
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import CustomerServiceFloat from '@components/CustomerServiceFloat.astro';
+import WeChatPopup from '@components/WeChatPopup.astro';
 import '@styles/global.css';
 
 export interface Props {
@@ -296,6 +297,7 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
     </main>
     <Footer lang={lang} />
     <CustomerServiceFloat />
+    <WeChatPopup />
 
     <!-- 第三方脚本延迟加载: 浏览器空闲时执行,不阻塞首屏渲染 -->
     <script is:inline>

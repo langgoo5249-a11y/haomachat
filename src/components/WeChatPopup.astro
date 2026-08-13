@@ -1,0 +1,124 @@
+---
+/**
+ * WeChatPopup - 微信小程序二维码弹窗
+ * 行为：
+ *   - 新用户进站后 1.2 秒弹出
+ *   - 关闭后 24 小时内不再弹出
+ *   - 支持点击关闭按钮、点击遮罩、按 Esc 关闭
+ *   - localStorage key: haomachat_wechat_popup_last_shown
+ */
+---
+<div
+  id="wechat-popup"
+  class="wechat-popup hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/70 backdrop-blur-sm"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="wechat-popup-title"
+  aria-hidden="true"
+>
+  <div class="relative bg-white rounded-2xl shadow-2xl max-w-sm w-full p-6 md:p-7 transform transition-all">
+    <button
+      id="wechat-popup-close"
+      type="button"
+      aria-label="关闭弹窗"
+      class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+    >
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <div class="text-center">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs font-medium mb-3">
+        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M8.69 4C4.94 4 2 6.5 2 9.6c0 1.74.94 3.3 2.42 4.31l-.66 2.06 2.34-1.21c.66.16 1.36.24 2.08.24.21 0 .42-.01.63-.02-.13-.42-.2-.86-.2-1.32 0-2.86 2.85-5.18 6.37-5.18.24 0 .47.01.7.04C15.13 5.85 12.21 4 8.69 4zM6.5 8.5c.41 0 .75.34.75.75s-.34.75-.75.75-.75-.34-.75-.75.34-.75.75-.75zm4.5 0c.41 0 .75.34.75.75s-.34.75-.75.75-.75-.34-.75-.75.34-.75.75-.75z" />
+          <path d="M22 15.31c0-2.5-2.43-4.53-5.43-4.53-3 0-5.43 2.03-5.43 4.53 0 2.5 2.43 4.53 5.43 4.53.63 0 1.23-.08 1.79-.22l1.92 1.05-.5-1.7c1.38-.84 2.22-2.13 2.22-3.66zm-7.5-.81c.31 0 .56.25.56.56s-.25.56-.56.56-.56-.25-.56-.56.25-.56.56-.56zm4 0c.31 0 .56.25.56.56s-.25.56-.56.56-.56-.25-.56-.56.25-.56.56-.56z" />
+        </svg>
+        微信小程序
+      </div>
+      <h2 id="wechat-popup-title" class="text-xl md:text-2xl font-bold text-slate-800 mb-2">
+        扫码查看更多号码服务
+      </h2>
+      <p class="text-sm text-slate-500 mb-4 leading-relaxed">
+        长按或扫描下方二维码，在微信中打开<br />
+        <strong class="text-slate-700">号码通查</strong> 小程序
+      </p>
+
+      <div class="inline-block p-2 bg-white border-2 border-slate-100 rounded-xl shadow-sm">
+        <img
+          src="/images/wechat-miniprogram-qr.jpg"
+          alt="号码通查微信小程序二维码"
+          width="220"
+          height="220"
+          loading="eager"
+          decoding="async"
+          class="block w-[220px] h-[220px] rounded-lg"
+        />
+      </div>
+
+      <p class="mt-4 text-xs text-slate-400">
+        <svg class="inline-block w-3.5 h-3.5 mr-0.5 -mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        弹窗每 24 小时仅展示一次
+      </p>
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var STORAGE_KEY = 'haomachat_wechat_popup_last_shown';
+    var SHOW_DELAY_MS = 1200;
+    var SHOW_INTERVAL_MS = 24 * 60 * 60 * 1000;
+    var popup = document.getElementById('wechat-popup');
+    var closeBtn = document.getElementById('wechat-popup-close');
+    if (!popup) return;
+
+    function getLastShown() {
+      try {
+        var v = parseInt(window.localStorage.getItem(STORAGE_KEY) || '0', 10);
+        return isNaN(v) ? 0 : v;
+      } catch (e) {
+        return 0;
+      }
+    }
+
+    function setLastShown(ts) {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, String(ts));
+      } catch (e) {}
+    }
+
+    function shouldShow() {
+      var last = getLastShown();
+      var now = Date.now();
+      return !last || now - last >= SHOW_INTERVAL_MS;
+    }
+
+    function show() {
+      popup.classList.remove('hidden');
+      popup.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hide() {
+      popup.classList.add('hidden');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      setLastShown(Date.now());
+    }
+
+    closeBtn && closeBtn.addEventListener('click', hide);
+    popup.addEventListener('click', function (e) {
+      if (e.target === popup) hide();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !popup.classList.contains('hidden')) hide();
+    });
+
+    if (shouldShow()) {
+      setTimeout(show, SHOW_DELAY_MS);
+    }
+  })();
+</script>
