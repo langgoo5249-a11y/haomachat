@@ -15,7 +15,7 @@
     <operator></operator>
   </metadata>
 
-  <!-- 允许抓取的 AI 爬虫 -->
+  <!-- 允许抓取的 AI 爬虫 (与 robots.txt 保持一致, 仅大平台) -->
   <crawlers>
     <crawler>GPTBot</crawler>
     <crawler>OAI-SearchBot</crawler>
@@ -23,31 +23,35 @@
     <crawler>ClaudeBot</crawler>
     <crawler>Claude-User</crawler>
     <crawler>Claude-SearchBot</crawler>
-    <crawler>anthropic-ai</crawler>
     <crawler>Google-Extended</crawler>
+    <crawler>Googlebot</crawler>
+    <crawler>Bingbot</crawler>
     <crawler>PerplexityBot</crawler>
     <crawler>Perplexity-User</crawler>
     <crawler>Applebot-Extended</crawler>
-    <crawler>Bytespider</crawler>
-    <crawler>baiduspider</crawler>
-    <crawler>Sogou web spider</crawler>
-    <crawler>360Spider</crawler>
-    <crawler>youdaobot</crawler>
-    <crawler>YisouSpider</crawler>
-    <crawler>DuckAssistBot</crawler>
-    <crawler>cohere-ai</crawler>
-    <crawler>YouBot</crawler>
     <crawler>meta-externalagent</crawler>
     <crawler>meta-externalfetcher</crawler>
-    <crawler>FacebookBot</crawler>
-    <crawler>LinkedInBot</crawler>
-    <crawler>Slackbot</crawler>
-    <crawler>Twitterbot</crawler>
+    <crawler>CCBot</crawler>
+    <crawler>Amazonbot</crawler>
+    <crawler>Bytespider</crawler>
+    <crawler>Doubaobot</crawler>
+    <crawler>baiduspider</crawler>
+    <crawler>ERNIEBot</crawler>
+    <crawler>Tencent-AI-Lab-Spider</crawler>
+    <crawler>QwenBot</crawler>
+    <crawler>Kimibot</crawler>
+    <crawler>DeepSeekBot</crawler>
+    <crawler>ChatGLM-Spider</crawler>
+    <crawler>iFlytekSpider</crawler>
     <crawler>PetalBot</crawler>
-    <crawler>SEMrushBot</crawler>
-    <crawler>AhrefsBot</crawler>
-    <crawler>DotBot</crawler>
-    <crawler>MJ12bot</crawler>
+    <crawler>Sogou web spider</crawler>
+    <crawler>360Spider</crawler>
+    <crawler>YisouSpider</crawler>
+    <crawler>BaichuanBot</crawler>
+    <crawler>MiniMax-Bot</crawler>
+    <crawler>YiBot</crawler>
+    <crawler>TiangongBot</crawler>
+    <crawler>ZhihuBot</crawler>
   </crawlers>
 
   <!-- 核心内容入口 -->
