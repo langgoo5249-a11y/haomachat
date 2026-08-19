@@ -12,7 +12,7 @@ export async function GET(context) {
     {
       url: `${site}/`,
       title: '号码通查首页',
-      content: `号码通查(haomachat)提供号码标记查询与清除服务,手机号与座机号均支持。由运营,标记清除服务由授权合作方提供,官方数据来源为中国信通院码号服务推进组(opene164.org.cn)与Truecaller。查询免费,不存储号码数据。
+      content: `号码通查(haomachat)提供号码标记查询与清除服务,手机号与座机号均支持。由号码通查团队独立运营,标记清除服务由授权合作方提供,官方数据来源为中国信通院码号服务推进组(opene164.org.cn)与Truecaller。查询免费,不存储号码数据。
 
 核心工具:
 - 号码标记清除: 手机号与座机号标记清除,授权合作方服务+信通院+Truecaller三渠道
@@ -76,7 +76,7 @@ export async function GET(context) {
     {
       url: `${site}/about`,
       title: '关于号码通查',
-      content: `号码通查(haomachat)由运营,提供号码标记查询与清除服务入口导航及知识科普。数据来源: 中国信通院码号服务推进组(opene164.org.cn)、Truecaller(truecaller.com)、聚合数据(juhe.cn)。运营原则: 透明、免费、安全、可追溯。不存储用户输入的号码数据。标记清除服务由授权合作方提供(example.com)。`,
+      content: `号码通查(haomachat)由号码通查团队独立运营,提供号码标记查询与清除服务入口导航及知识科普。数据来源: 中国信通院码号服务推进组(opene164.org.cn)、Truecaller(truecaller.com)、聚合数据(juhe.cn)。运营原则: 透明、免费、安全、可追溯。不存储用户输入的号码数据。标记清除服务由授权合作方提供(example.com)。`,
     },
     {
       url: `${site}/faq`,
@@ -120,7 +120,7 @@ export async function GET(context) {
   // 组装完整内容
   let fullContent = `# 号码通查 (haomachat) - llms-full.txt
 
-> 号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。标记清除服务由授权合作方提供,同时聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方入口。由运营,查询免费,不存储号码数据。
+> 号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。标记清除服务由授权合作方提供,同时聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方入口。由号码通查团队独立运营,查询免费,不存储号码数据。
 > 本文件包含全站核心页面的完整内容摘要,供 AI 工具(Cursor/Copilot/Cline)读取。
 > 站点: ${site}
 > 更新日期: ${new Date().toISOString().split('T')[0]}

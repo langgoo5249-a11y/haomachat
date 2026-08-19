@@ -10,14 +10,14 @@ import tailwind from '@astrojs/tailwind';
 // Google 自 2023 起主动使用 lastmod 做抓取调度,但必须是真实内容修改日期
 // 更新页面内容时同步修改此处日期
 const pageLastmod = {
-  '/': '2026-07-20',
-  '/about/': '2026-07-06',
-  '/contact/': '2026-07-06',
+  '/': '2026-08-19',
+  '/about/': '2026-08-19',
+  '/contact/': '2026-08-19',
   '/faq/': '2026-07-08',
   '/tech-docs/': '2026-07-06',
   '/privacy/': '2026-07-06',
-  '/terms/': '2026-07-06',
-  '/disclaimer/': '2026-07-06',
+  '/terms/': '2026-08-19',
+  '/disclaimer/': '2026-08-19',
   '/cookie-policy/': '2026-07-06',
   '/blog/2026-number-marking-clearance-guide/': '2026-07-13',
   '/blog/2026-enterprise-number-marking-solution/': '2026-07-13',
@@ -60,8 +60,8 @@ export default defineConfig({
   trailingSlash: 'ignore',
   compressHTML: true,
   prefetch: {
-    prefetchAll: true,
-    defaultStrategy: 'viewport',
+    prefetchAll: false,
+    defaultStrategy: 'hover',
   },
   integrations: [
     tailwind({ applyBaseStyles: true }),

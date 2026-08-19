@@ -1,201 +1,44 @@
 # 号码通查 - robots.txt
-# 策略: 默认拒绝所有爬虫, 仅放行主流搜索引擎 + 大平台 AI 大模型爬虫
-# 目的: 防止不知名/垃圾 AI 爬虫无效抓取浪费资源, 保障核心爬虫抓取预算
-# 最后更新: 2026-08-17
-# 注意: 本策略不会影响 Google/百度排名, 排名只看 Googlebot/Baiduspider 的抓取
+# 策略: 默认允许所有爬虫, 仅对已知垃圾爬虫做精细化屏蔽
+# 目的: 保障 Google/百度/必应等搜索引擎正常索引, 同时阻止无效采集器浪费带宽
+# 最后更新: 2026-08-19
+# 注意: 本站排名依赖 Googlebot/Baiduspider/Bingbot 正常抓取, 默认不允许会直接导致流量下降
 
-# === 默认: 拒绝所有未列出的爬虫 (含不知名 AI 爬虫、垃圾采集器) ===
+# === 默认: 允许所有爬虫 ===
 User-agent: *
+Allow: /
+
+# ============================================================
+# 已知垃圾采集器/恶意爬虫屏蔽 (精细化屏蔽, 不影响主流搜索引擎)
+# ============================================================
+
+# 无意义采集器
+User-agent: AhrefsBot
+Disallow: /
+User-agent: SemrushBot
+Disallow: /
+User-agent: DotBot
+Disallow: /
+User-agent: MJ12bot
+Disallow: /
+User-agent: BLEXBot
+Disallow: /
+User-agent: DataForSeoBot
+Disallow: /
+User-agent: ZoominfoBot
 Disallow: /
 
-# ============================================================
-# 国际大平台 AI 大模型爬虫 (训练 + 实时检索)
-# ============================================================
-
-# OpenAI (ChatGPT / GPT-5)
+# 爬虫过猛的 AI 训练爬虫 (限速, 非完全屏蔽)
 User-agent: GPTBot
-Allow: /
-User-agent: ChatGPT-User
-Allow: /
-User-agent: OAI-SearchBot
-Allow: /
-
-# Anthropic (Claude)
-User-agent: ClaudeBot
-Allow: /
-User-agent: Claude-Web
-Allow: /
-User-agent: Claude-SearchBot
-Allow: /
-User-agent: Claude-User
-Allow: /
-
-# Google (Gemini / AI Overviews)
-User-agent: Google-Extended
-Allow: /
-User-agent: GoogleOther
-Allow: /
-
-# Microsoft (Copilot 复用 Bingbot)
-User-agent: Bingbot
-Allow: /
-
-# Perplexity AI
-User-agent: PerplexityBot
-Allow: /
-User-agent: Perplexity-User
-Allow: /
-
-# Apple (Apple Intelligence / Siri)
-User-agent: Applebot
-Allow: /
-User-agent: Applebot-Extended
-Allow: /
-
-# Meta (Meta AI / Llama)
-User-agent: Meta-ExternalAgent
-Allow: /
-User-agent: Meta-ExternalFetcher
-Allow: /
-
-# Common Crawl (公共数据集, 多数开源模型训练依赖)
+Crawl-delay: 10
 User-agent: CCBot
-Allow: /
-
-# Amazon (Rufus AI)
-User-agent: Amazonbot
-Allow: /
-
-# ============================================================
-# 中国大平台 AI 大模型爬虫
-# ============================================================
-
-# --- 字节跳动: 豆包 / 今日头条 ---
+Crawl-delay: 10
+User-agent: ClaudeBot
+Crawl-delay: 10
 User-agent: Bytespider
-Allow: /
-User-agent: Doubaobot
-Allow: /
-User-agent: ToutiaoSpider
-Allow: /
-
-# --- 百度: 文心一言 / 百度搜索 ---
-User-agent: Baiduspider
-Allow: /
-User-agent: Baiduspider-render
-Allow: /
-User-agent: Baiduspider-image
-Allow: /
-User-agent: Baiduspider-news
-Allow: /
-User-agent: Baiduspider-video
-Allow: /
-User-agent: Baiduspider-mobile
-Allow: /
-User-agent: ERNIEBot
-Allow: /
-User-agent: ERNIE-Bot
-Allow: /
-User-agent: YiyanBot
-Allow: /
-User-agent: Baidu-YunGuanCe
-Allow: /
-
-# --- 腾讯: 混元大模型 ---
-User-agent: Tencent-AI-Lab-Spider
-Allow: /
-
-# --- 阿里巴巴: 通义千问 ---
-User-agent: QwenBot
-Allow: /
-User-agent: TongyiBot
-Allow: /
-User-agent: AliyunBot
-Allow: /
-
-# --- 月之暗面: Kimi ---
-User-agent: Kimibot
-Allow: /
-User-agent: KimiCrawler
-Allow: /
-User-agent: MoonshotBot
-Allow: /
-
-# --- DeepSeek ---
-User-agent: DeepSeekBot
-Allow: /
-
-# --- 智谱: 智谱清言 (ChatGLM) ---
-User-agent: ChatGLM-Spider
-Allow: /
-
-# --- 科大讯飞: 星火大模型 ---
-User-agent: iFlytekSpider
-Allow: /
-User-agent: Spark-Bot
-Allow: /
-
-# --- 华为: 盘古大模型 / PetalBot ---
-User-agent: PetalBot
-Allow: /
-
-# --- 百川智能 ---
-User-agent: BaichuanBot
-Allow: /
-
-# --- MiniMax (海螺AI) ---
-User-agent: MiniMax-Bot
-Allow: /
-
-# --- 零一万物 (Yi) ---
-User-agent: YiBot
-Allow: /
-
-# --- 昆仑万维: 天工 AI ---
-User-agent: TiangongBot
-Allow: /
-
-# --- 知乎: 知海图 AI ---
-User-agent: ZhihuBot
-Allow: /
-
-# ============================================================
-# 传统搜索引擎 (确保核心索引不受影响)
-# ============================================================
-User-agent: Googlebot
-Allow: /
-User-agent: Bingbot
-Allow: /
-User-agent: Baiduspider
-Allow: /
-
-# 360 搜索
-User-agent: 360Spider
-Allow: /
-
-# 搜狗搜索
-User-agent: Sogou web spider
-Allow: /
-User-agent: Sogou inst spider
-Allow: /
-User-agent: Sogou spider2
-Allow: /
-User-agent: Sogou blog
-Allow: /
-User-agent: Sogou News Spider
-Allow: /
-User-agent: Sogou Pic Spider
-Allow: /
-
-# 神马搜索 (UC/阿里)
-User-agent: Yisouspider
-Allow: /
+Crawl-delay: 10
 
 # ============================================================
 # Sitemap 与 AI 内容发现
 # ============================================================
 Sitemap: https://zangxixitech.cn/sitemap-index.xml
-
-# AI 内容发现文件 (非标准, 供 AI 爬虫工具读取)
-# - llms.txt: 全站页面目录
-# - llms-full.txt: 全站页面完整内容摘要
-# - ai.xml: AI 爬虫引导文件

@@ -1,24 +1,12 @@
-# Cloudflare Pages _redirects
-# https://developers.cloudflare.com/pages/configuration/redirects/
-
-# 验证文件: 用200重写(非重定向),绕过CF Pages .html自动308
-# 文件以无扩展名存储,_redirects将.html请求重写到无扩展名文件
-/googleacd9f7914a32bdff.html  /googleacd9f7914a32bdff  200
-/baidu_verify_codeva-J2OVio818i.html  /baidu_verify_codeva-J2OVio818i  200
-/ByteDanceVerify.html  /ByteDanceVerify  200
-
-# Sitemap 兼容: Google Search Console 默认找 /sitemap.xml
-/sitemap.xml  /sitemap-index.xml  301
-
-# 旧路径兼容
-/number-lookup  /tools/attribution  301
-/marking  /tools/marking-check  301
-/clear  /tools/marking-clear  301
-
-# 英文版未独立建站的页面永久重定向到中文版(中文为主站)
-/en/tools/:splat  /tools/:splat  301
-/en/guide/:splat  /guide/:splat  301
-/en/compare/:splat  /compare/:splat  301
-/en/faq  /faq  301
-/en/blog  /blog  301
-/en/about  /about  301
+# 号码通查 - 重定向规则
+# 策略: 旧路径 301 到新路径, 统一尾部斜杠
+/sitemap.xml /sitemap-index.xml 301
+/number-lookup /tools/attribution/ 301
+/marking /tools/marking-check/ 301
+/clear /tools/marking-clear/ 301
+/en/tools/:splat /tools/:splat 301
+/en/guide/:splat /guide/:splat 301
+/en/compare/:splat /compare/:splat 301
+/en/faq /faq 301
+/en/blog /blog 301
+/en/about /about 301

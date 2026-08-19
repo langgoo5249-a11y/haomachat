@@ -1,9 +1,36 @@
-# Cloudflare Pages _headers 配置
-# 确保 AI 爬虫不被任何 HTTP 响应头拦截
-# 最后更新: 2026-07-13
+# 号码通查 - Cloudflare Pages _headers 配置
+# 策略: 静态资源强缓存 + HTML 短缓存 + 安全响应头
+# 最后更新: 2026-08-19
 
+# === 静态资源: 强缓存 1 年 (文件名含哈希, 可安全长缓存) ===
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+  X-Content-Type-Options: nosniff
+
+# === 图片/字体: 强缓存 30 天 ===
+/images/*
+  Cache-Control: public, max-age=2592000
+/fonts/*
+  Cache-Control: public, max-age=2592000
+
+# === 静态文件: 缓存 1 天 ===
+/favicon.svg
+  Cache-Control: public, max-age=86400
+/manifest.json
+  Cache-Control: public, max-age=86400
+/robots.txt
+  Cache-Control: public, max-age=86400
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600
+/sitemap-0.xml
+  Cache-Control: public, max-age=3600
+/rss.xml
+  Cache-Control: public, max-age=3600
+
+# === HTML 页面: 短缓存 1 小时 (Cloudflare CDN 边缘缓存, 减轻源站压力) ===
 /*
-  # 明确允许 AI 爬虫抓取 (不设置 X-Robots-Tag 即默认允许)
-  # 不设置任何 noindex/nofollow/noarchive
-  # 不设置任何速率限制头部
-  # 所有资源可被 AI 爬虫完整抓取
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  Cache-Control: public, max-age=0, s-maxage=3600
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
