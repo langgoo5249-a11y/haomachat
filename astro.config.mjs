@@ -40,6 +40,7 @@ const pageLastmod = {
   '/tools/legal-number-verify/': '2026-07-06',
   '/tools/marking-check/': '2026-07-06',
   '/tools/marking-clear/': '2026-07-06',
+  '/tools/registration-card/': '2026-08-20',
   '/tools/sim-cards/': '2026-07-06',
   '/tools/number-auth/': '2026-07-13',
   '/guide/what-is-number-marking/': '2026-07-09',

@@ -1,0 +1,415 @@
+---
+// 注册卡销售服务 - 0月租 APP注册专用卡 只能收短信验证码
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '注册卡', url: '/tools/registration-card' },
+];
+
+const toolWebAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: '注册卡购买服务',
+  description: '0月租注册卡销售，专门用于接收106短信验证码，注册各类APP账号。只能收短信，不能拨打电话，实名激活使用。适用于APP注册、账号矩阵管理、隐私保护等场景。',
+  url: 'https://zangxixitech.cn/tools/registration-card/',
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web',
+  browserRequirements: 'Requires JavaScript',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+  provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
+  featureList: '注册卡,0月租卡,APP注册卡,短信验证码卡,虚拟运营商卡,170号段,171号段,注册用手机卡',
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  datePublished: '2026-08-20',
+  dateModified: '2026-08-20',
+  inLanguage: 'zh-CN',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '注册卡是什么？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '注册卡是一种功能受限的虚拟运营商SIM卡，核心用途是接收106开头的短信验证码，用于各类APP和网站账号注册。特点是0月租、0最低消费，只能收短信不能打电话，必须实名激活使用。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '注册卡能打电话吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '不能。注册卡禁用通话功能，主动拨打或接听电话都可能触发风控导致封卡。注册卡只能接收106开头的平台短信验证码，不能拨打或接听电话，不能给私人手机号发送短信。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '注册卡需要实名认证吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '必须实名。根据工信部《电话用户真实身份信息登记规定》，所有手机卡入网必须实名登记。收到注册卡后需在7天内按说明书完成实名激活，超期未激活将无法使用且不退换。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '注册卡能上网吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '不建议。注册卡没有套餐流量，即使能上网，资费也极高（约256元/GB），建议关闭手机数据连接，仅用于接收短信验证码。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '注册卡可以注册哪些APP？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '可用于微信、QQ、淘宝、支付宝、抖音、快手、拼多多、京东、陌陌、探探、小红书、美团等主流APP的账号注册和验证。部分APP可能不支持虚拟运营商号段，请自行测试，卖家不保证所有APP均可用。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '注册卡有月租吗？能用多久？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '注册卡一般是0月租、0最低消费，不用不扣费。激活后如无违规使用，通常可用一年，到期可续费。卡内通常含少量余额（约0.5元），用于接收短信验证码。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '注册卡丢失了能补卡吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '不能。注册卡丢失无法补卡，请妥善保管。建议激活后记录卡号信息，以便后续续费或查询。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '注册卡会被封卡吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '会。违规使用（如打电话、发私人短信、用于诈骗或刷单等非法用途）会直接封卡且不售后。正常用于接收106验证码注册APP则不会被封。请务必遵守使用规范。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '注册卡支持苹果手机吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '部分注册卡仅支持国产安卓手机，苹果设备可能无法读取卡信息。购买前请咨询客服确认卡品是否支持您的手机型号。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '一个人能办几张注册卡？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '根据工信部"一证十户"政策，同一身份证在全国所有运营商（含虚拟运营商）实名登记的号码累计不得超过10个。请合理规划名下号码数量。',
+      },
+    },
+  ],
+};
+
+const serviceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: '注册卡销售服务',
+  description: '0月租注册卡销售，专门接收106短信验证码注册各类APP账号。只能收短信，不能拨打电话，必须实名激活。适用于APP注册、多账号管理、隐私保护等场景。',
+  url: 'https://zangxixitech.cn/tools/registration-card/',
+  serviceType: '注册卡销售',
+  provider: { '@id': 'https://zangxixitech.cn/#organization' },
+  areaServed: { '@type': 'Country', name: 'CN' },
+  availableChannel: [
+    { '@type': 'ServiceChannel', serviceUrl: 'https://zangxixitech.cn/tools/registration-card/', name: '在线咨询入口' },
+  ],
+  offers: { '@type': 'Offer', priceCurrency: 'CNY' },
+  category: '号码服务',
+  dateModified: '2026-08-20',
+};
+---
+<BaseLayout
+  title="注册卡 - 0月租APP注册卡/短信验证码卡销售 | 号码通查"
+  description="注册卡销售：0月租、只能收106短信验证码的虚拟运营商手机卡，专门用于APP注册、账号验证。不能打电话不能上网，必须实名激活。添加微信 SXLH-888 咨询购买，支持170/171/165号段。"
+  schema={[faqSchema, toolWebAppSchema, serviceSchema]}
+  breadcrumbs={breadcrumbs}
+  keywords={['注册卡', 'APP注册卡', '0月租卡', '免月租卡', '短信验证码卡', '注册用手机卡', '只能收短信的卡', '虚拟运营商卡', '170号段注册卡', '171号段注册卡', '注册卡销售', '注册卡批发', '注册卡办理', '注册卡购买', '注册卡怎么用']}
+  ogImage="/images/customer-service-qr.png"
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">注册卡 — 0月租、只收验证码的手机卡</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    注册卡是一种<strong>功能受限的虚拟运营商SIM卡</strong>，核心用途是<strong>接收106开头的短信验证码</strong>，用于注册微信、淘宝、抖音、支付宝等各类APP和网站账号。<strong>0月租、0最低消费</strong>，不用不扣费。只能收短信，不能打电话、不能上网，必须<strong>实名认证</strong>后才能使用。需要办理注册卡？添加微信客服咨询购买。
+  </p>
+
+  <!-- 核心咨询入口 -->
+  <section class="mb-8">
+    <div class="bg-white rounded-xl border border-slate-200 p-6 md:p-8 flex flex-col md:flex-row items-center gap-6">
+      <div class="flex-shrink-0">
+        <img
+          src="/images/customer-service-qr.png"
+          alt="微信客服二维码 - 注册卡购买咨询"
+          width="160"
+          height="160"
+          class="rounded-xl border border-slate-200 shadow-sm"
+          loading="eager"
+        />
+      </div>
+      <div class="flex-1 text-center md:text-left">
+        <h2 class="text-xl font-bold text-slate-800 mb-2">添加微信客服，咨询购买注册卡</h2>
+        <p class="text-slate-600 mb-3">扫码或手动添加微信号，客服将为您介绍注册卡类型、价格和办理流程。支持多种虚拟运营商号段，0月租，实名激活，全国包邮。</p>
+        <div class="space-y-1 text-sm text-slate-500">
+          <p>微信号：<strong class="text-slate-700">SXLH-888</strong></p>
+          <p>邮箱：<strong class="text-slate-700">644428571@qq.com</strong></p>
+          <p>工作时间：工作日 9:00-18:00</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 注册卡特点 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">注册卡的核心特点</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white rounded-xl p-5 border border-green-200 bg-green-50/30">
+        <h3 class="font-semibold text-green-700 mb-1">✅ 0月租0消费</h3>
+        <p class="text-sm text-slate-600">不用不扣费，卡内含少量余额，仅用于接收106短信验证码，无月租、无最低消费。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-green-200 bg-green-50/30">
+        <h3 class="font-semibold text-green-700 mb-1">✅ 只收106短信</h3>
+        <p class="text-sm text-slate-600">专门用于接收106开头的平台短信验证码，注册各类APP和网站账号，保护主号隐私。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-red-200 bg-red-50/30">
+        <h3 class="font-semibold text-red-700 mb-1">❌ 不能打电话</h3>
+        <p class="text-sm text-slate-600">禁用通话功能，拨打或接听电话可能触发风控直接封卡，请务必关闭通话功能。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-red-200 bg-red-50/30">
+        <h3 class="font-semibold text-red-700 mb-1">❌ 不能上网</h3>
+        <p class="text-sm text-slate-600">没有套餐流量，即使能上网资费也极高（约256元/GB），建议关闭手机数据连接。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 适用场景 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">注册卡能做什么</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="bg-white rounded-lg p-4 border border-slate-200">
+        <div class="text-2xl mb-2">📱</div>
+        <h3 class="font-semibold text-slate-800 mb-1">APP账号注册</h3>
+        <p class="text-sm text-slate-500">微信、QQ、淘宝、支付宝、抖音、快手、拼多多、京东、小红书、美团等主流APP注册</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 border border-slate-200">
+        <div class="text-2xl mb-2">🔐</div>
+        <h3 class="font-semibold text-slate-800 mb-1">账号解封/验证</h3>
+        <p class="text-sm text-slate-500">用于账号异常解封、二次验证、绑定手机号等需要短信验证码的场景</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 border border-slate-200">
+        <div class="text-2xl mb-2">🏢</div>
+        <h3 class="font-semibold text-slate-800 mb-1">工作室矩阵管理</h3>
+        <p class="text-sm text-slate-500">批量注册和管理多个平台账号，适用于电商运营、社交媒体营销等</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 border border-slate-200">
+        <div class="text-2xl mb-2">🛡️</div>
+        <h3 class="font-semibold text-slate-800 mb-1">保护主号隐私</h3>
+        <p class="text-sm text-slate-500">用副号注册各类平台，避免主号泄露，减少骚扰电话和垃圾短信</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 border border-slate-200">
+        <div class="text-2xl mb-2">🌐</div>
+        <h3 class="font-semibold text-slate-800 mb-1">网站平台绑定</h3>
+        <p class="text-sm text-slate-500">论坛、博客、社区等网站账号绑定手机号，接收验证码完成注册</p>
+      </div>
+      <div class="bg-white rounded-lg p-4 border border-slate-200">
+        <div class="text-2xl mb-2">💼</div>
+        <h3 class="font-semibold text-slate-800 mb-1">多账号运营</h3>
+        <p class="text-sm text-slate-500">电商多店铺、自媒体多账号运营，每号一卡，独立管理不关联</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 办理流程 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">注册卡办理流程</h2>
+    <div class="bg-white rounded-xl border border-slate-200 p-6">
+      <ol class="space-y-4">
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-bold flex items-center justify-center">1</span>
+          <div>
+            <h3 class="font-semibold text-slate-800">添加微信咨询</h3>
+            <p class="text-sm text-slate-500">扫码添加客服微信（SXLH-888），告知您需要的注册卡数量和用途，客服为您推荐合适的号段和卡品。</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-bold flex items-center justify-center">2</span>
+          <div>
+            <h3 class="font-semibold text-slate-800">下单发货</h3>
+            <p class="text-sm text-slate-500">确认订单后发货，全国包邮。收到注册卡后请尽快激活，<strong>超过7天未激活将无法使用且不退换</strong>。</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-bold flex items-center justify-center">3</span>
+          <div>
+            <h3 class="font-semibold text-slate-800">实名激活</h3>
+            <p class="text-sm text-slate-500">按说明书操作，使用本人身份证完成实名认证。根据工信部规定，所有手机卡入网必须实名登记，<strong>一证最多十户</strong>。</p>
+          </div>
+        </li>
+        <li class="flex gap-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-brand-600 text-white text-sm font-bold flex items-center justify-center">4</span>
+          <div>
+            <h3 class="font-semibold text-slate-800">开始使用</h3>
+            <p class="text-sm text-slate-500">实名激活后即可用于接收106短信验证码，注册各类APP账号。请关闭手机数据连接和通话功能，避免误操作导致封卡。</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">重要注意事项</h2>
+    <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-4">
+      <h3 class="font-semibold text-red-800 mb-2 flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+        使用禁忌（违反将直接封卡，不售后）
+      </h3>
+      <ul class="text-sm text-red-700 space-y-1 list-disc list-inside">
+        <li>严禁拨打电话或接听电话</li>
+        <li>严禁向私人手机号发送短信（只能收发106平台短信）</li>
+        <li>严禁用于诈骗、刷单、洗钱等非法用途</li>
+        <li>严禁使用流量上网</li>
+      </ul>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <h3 class="font-semibold text-slate-800 mb-1">⏰ 7天内必须激活</h3>
+        <p class="text-sm text-slate-500">收到卡后需在7天内完成实名激活，超期未激活将无法使用，且不退换。请收到卡后尽快操作。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <h3 class="font-semibold text-slate-800 mb-1">🪪 必须本人实名</h3>
+        <p class="text-sm text-slate-500">根据工信部"一证十户"政策，同一身份证所有运营商号码累计不超过10个，必须本人实名，不得冒用他人身份。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <h3 class="font-semibold text-slate-800 mb-1">📵 丢失无法补卡</h3>
+        <p class="text-sm text-slate-500">注册卡丢失后无法补办，请妥善保管。建议激活后记录卡号信息，以便后续续费或查询。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <h3 class="font-semibold text-slate-800 mb-1">🔄 随时可能停用</h3>
+        <p class="text-sm text-slate-500">注册卡可能随时被运营商停用，收到卡后请尽快激活使用，避免长时间闲置导致失效。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <h3 class="font-semibold text-slate-800 mb-1">📱 部分APP不支持</h3>
+        <p class="text-sm text-slate-500">注册卡为虚拟运营商号段（170/171/165/167等），部分APP可能不支持虚商卡注册，请自行测试，卖家不保证所有APP均可使用。</p>
+      </div>
+      <div class="bg-white rounded-xl p-5 border border-slate-200">
+        <h3 class="font-semibold text-slate-800 mb-1">🍎 苹果手机兼容性</h3>
+        <p class="text-sm text-slate-500">部分注册卡仅支持国产安卓手机，苹果设备可能无法读取卡信息。购买前请咨询客服确认兼容性。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 常见问题FAQ -->
+  <section class="mb-8">
+    <h2 class="text-xl font-bold text-slate-800 mb-4">注册卡常见问题</h2>
+    <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡是什么？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">注册卡是一种功能受限的虚拟运营商SIM卡，核心用途是接收106开头的短信验证码，用于各类APP和网站账号注册。特点是0月租、0最低消费，只能收短信不能打电话，必须实名激活使用。号段主要为170、171、165、167等虚拟运营商号段。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡和普通手机卡有什么区别？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">普通手机卡可以打电话、上网、发短信，功能齐全，但有月租和套餐费。注册卡功能受限：只能接收106短信验证码，不能打电话、不能上网、不能发私人短信，但0月租、不用不扣费，专门用于APP注册和账号验证。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡能打电话或上网吗？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">不能。注册卡禁用通话功能，拨打或接听电话可能触发风控直接封卡。也不能上网，没有套餐流量。请关闭手机数据连接和通话功能，仅用于接收106短信验证码。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡需要实名吗？怎么实名？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">必须实名。根据工信部规定，所有手机卡入网必须实名登记。收到注册卡后，按说明书操作使用本人身份证完成实名激活。一证最多十户（全国所有运营商号码累计不超过10个），7天内不激活将失效不退换。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡有月租吗？能使用多久？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">注册卡0月租、0最低消费，不用不扣费。激活后如无违规使用，通常可用一年，到期可续费。卡内通常含少量余额（约0.5元），用于接收106短信验证码。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡可以注册哪些APP？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">可用于注册微信、QQ、淘宝、支付宝、抖音、快手、拼多多、京东、陌陌、探探、小红书、美团等主流APP。部分APP可能不支持虚拟运营商号段（170/171/165/167等），请自行测试，卖家不保证所有APP均可用。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡丢失了能补卡吗？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">不能。注册卡丢失无法补卡，请妥善保管。建议激活后记录卡号等信息，以便后续续费或查询。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡支持苹果手机吗？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">部分注册卡仅支持国产安卓手机，苹果设备可能无法读取卡信息。购买前请咨询客服确认卡品是否支持您的手机型号。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          注册卡被封了怎么办？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">如果因违规使用（打电话、发私人短信、用于诈骗等非法用途）被封卡，无法解封且不售后。如果正常使用被封，请联系客服处理。为减少被封风险，请严格遵守使用规范：不打电话、不上网、不发私人短信。</p>
+      </details>
+      <details class="group p-4">
+        <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+          一个人能办几张注册卡？
+          <svg class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </summary>
+        <p class="text-sm text-slate-600 mt-2 leading-relaxed">根据工信部"一证十户"政策，同一身份证在全国所有运营商（含虚拟运营商）实名登记的号码累计不得超过10个。请合理规划名下号码数量。可通过"一证通查"小程序查询名下手机卡数量。</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 合规声明 -->
+  <section class="bg-slate-100 rounded-xl p-6 mb-8">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">合规声明</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      本页面提供注册卡销售咨询入口，注册卡由授权合作方提供，均为虚拟运营商（民营运营商）发行。所有注册卡严格按照工信部《电话用户真实身份信息登记规定》要求实名入网，同一身份证全国号码累计不超过10个（一证十户）。注册卡仅限合法用途，严禁用于诈骗、刷单、洗钱等非法活动。本站不存储用户提交的任何个人信息，详见<a href="/privacy" class="text-brand-600 hover:underline">隐私政策</a>。
+    </p>
+  </section>
+
+  <!-- 数据来源声明 -->
+  <section class="bg-slate-100 rounded-xl p-6">
+    <h2 class="text-lg font-bold text-slate-800 mb-2">服务说明</h2>
+    <p class="text-sm text-slate-600 leading-relaxed">
+      本页面提供注册卡购买咨询入口，注册卡由授权合作方提供，本站作为服务入口导航。注册卡功能受限：只能接收106平台短信验证码，不能打电话、不能上网、不能发私人短信。必须实名激活，7天内未激活不退换。丢失无法补卡。部分APP可能不支持虚拟运营商号段，请自行测试。如有疑问请<a href="/contact" class="text-brand-600 hover:underline">联系我们</a>或添加微信客服咨询。
+    </p>
+  </section>
+
+  <!-- 相关工具交叉链接 -->
+  <nav class="mt-6 pt-6 border-t border-slate-200">
+    <h2 class="text-lg font-bold text-slate-800 mb-3">相关工具与指南</h2>
+    <div class="flex flex-wrap gap-2">
+      <a href="/tools/number-auth/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码认证</a>
+      <a href="/tools/marking-check/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">号码标记自查</a>
+      <a href="/tools/attribution/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">归属地查询</a>
+      <a href="/tools/sim-cards/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">手机卡选号</a>
+      <a href="/guide/sim-card-guide/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">选号办卡指南</a>
+      <a href="/faq/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">常见问题</a>
+    </div>
+  </nav>
+</BaseLayout>
