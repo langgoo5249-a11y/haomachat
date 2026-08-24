@@ -3,7 +3,7 @@ import BaseLayout from '@layouts/BaseLayout.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '联系我们', url: '/contact' },
+  { name: '联系我们', url: '/contact/' },
 ];
 
 // ContactPage schema (GEO/AI 友好)
@@ -13,7 +13,7 @@ const contactSchema = {
   name: '联系我们 - 号码通查',
   description:
     '号码通查联系方式页面,提供微信、邮箱、在线反馈表单等多种联系方式,工作日24小时内回复。',
-  url: 'https://zangxixitech.cn/contact',
+  url: 'https://zangxixitech.cn/contact/',
 };
 
 // 提交后显示的提示 (纯前端, 无后端)
@@ -88,7 +88,7 @@ const feedbackSchema = {
     <h2 class="text-lg font-bold text-slate-800 mb-2">先看看常见问题?</h2>
     <p class="text-sm text-slate-600 leading-relaxed">
       很多问题(如号码被标记怎么清除、各平台如何申诉、号码认证是否安全等)在
-      <a href="/faq" class="text-brand-600 underline hover:text-brand-700"
+      <a href="/faq/" class="text-brand-600 underline hover:text-brand-700"
         >常见问题</a
       >
       页面已有详细解答。建议先查阅,可能无需等待即可找到答案。如常见问题未能解决您的问题,再通过下方表单或微信、邮箱联系我们。
@@ -167,8 +167,8 @@ const feedbackSchema = {
         如需了解本站服务定位与运营主体,请访问
         <a href="/about">关于我们</a> 页面。
       </li>
-      <li>隐私相关疑问请参阅 <a href="/privacy">隐私政策</a>。</li>
-      <li>使用本站服务即表示同意 <a href="/terms">服务条款</a>。</li>
+      <li>隐私相关疑问请参阅 <a href="/privacy/">隐私政策</a>。</li>
+      <li>使用本站服务即表示同意 <a href="/terms/">服务条款</a>。</li>
     </ul>
   </section>
 
