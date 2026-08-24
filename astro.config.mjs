@@ -53,6 +53,11 @@ const pageLastmod = {
   '/compare/marking-platforms/': '2026-07-06',
   '/compare/auth-providers/': '2026-07-06',
   '/compare/lookup-apis/': '2026-07-06',
+  '/tags/': '2026-08-24',
+  '/tags/号码标记/': '2026-08-24',
+  '/authors/': '2026-08-24',
+  '/authors/langood/': '2026-08-24',
+  '/authors/haomachat/': '2026-08-24',
   '/en/': '2026-07-14',
 };
 

@@ -9,7 +9,7 @@ const totalQuestions = groups.reduce((sum, g) => sum + g.items.length, 0);
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
-  { name: '常见问题', url: '/faq' },
+  { name: '常见问题', url: '/faq/' },
 ];
 
 // FAQPage schema: 覆盖全部问题(AI 易引用, GEO 核心)
@@ -19,7 +19,7 @@ const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   datePublished: '2026-07-06',
-  dateModified: '2026-08-19',
+  dateModified: '2026-08-24',
   inLanguage: 'zh-CN',
   mainEntity: allFaqItems.map((item) => ({
     '@type': 'Question',

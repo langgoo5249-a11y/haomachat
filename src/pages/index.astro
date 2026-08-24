@@ -3,17 +3,20 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import faqData from '@data/faq.json';
 
-const homeFaq = faqData.groups[0].items.slice(0, 10).map((item) => ({
-  '@type': 'Question',
-  name: item.q,
-  acceptedAnswer: { '@type': 'Answer', text: item.a },
-}));
+// 首页FAQPage包含全部25条FAQ(所有groups的所有items), 确保AI引擎能获取完整问题覆盖
+const homeFaq = faqData.groups.flatMap((group) =>
+  group.items.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  }))
+);
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   datePublished: '2026-07-06',
-  dateModified: '2026-08-19',
+  dateModified: '2026-08-24',
   inLanguage: 'zh-CN',
   mainEntity: homeFaq,
 };

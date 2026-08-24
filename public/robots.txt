@@ -1,18 +1,15 @@
 # 号码通查 - robots.txt
 # 策略: 默认允许所有爬虫, 仅对已知垃圾爬虫做精细化屏蔽
 # 目的: 保障 Google/百度/必应等搜索引擎正常索引, 同时阻止无效采集器浪费带宽
-# 最后更新: 2026-08-19
-# 注意: 本站排名依赖 Googlebot/Baiduspider/Bingbot 正常抓取, 默认不允许会直接导致流量下降
+# 最后更新: 2026-08-24
 
 # === 默认: 允许所有爬虫 ===
 User-agent: *
 Allow: /
 
 # ============================================================
-# 已知垃圾采集器/恶意爬虫屏蔽 (精细化屏蔽, 不影响主流搜索引擎)
+# 垃圾采集器/恶意爬虫屏蔽
 # ============================================================
-
-# 无意义采集器
 User-agent: AhrefsBot
 Disallow: /
 User-agent: SemrushBot
@@ -28,7 +25,10 @@ Disallow: /
 User-agent: ZoominfoBot
 Disallow: /
 
-# 爬虫过猛的 AI 训练爬虫 (限速, 非完全屏蔽)
+# ============================================================
+# AI 训练爬虫 — 限速策略 (Crawl-delay: 10秒)
+# 这些爬虫对带宽压力大, 限速而非屏蔽, 保留 Googlebot 对 AI 内容的引用机会
+# ============================================================
 User-agent: GPTBot
 Crawl-delay: 10
 User-agent: CCBot
@@ -37,6 +37,58 @@ User-agent: ClaudeBot
 Crawl-delay: 10
 User-agent: Bytespider
 Crawl-delay: 10
+User-agent: Google-Extended
+Crawl-delay: 10
+User-agent: PerplexityBot
+Crawl-delay: 10
+User-agent: anthropic-ai
+Crawl-delay: 10
+
+# ============================================================
+# 主流搜索引擎 — 完全放行
+# ============================================================
+User-agent: Googlebot
+Allow: /
+User-agent: Bingbot
+Allow: /
+User-agent: Slurp
+Allow: /
+User-agent: Baiduspider
+Allow: /
+User-agent: Baiduspider-render
+Allow: /
+User-agent: Sogou web spider
+Allow: /
+User-agent: Sogou inst
+Allow: /
+User-agent: 360Spider
+Allow: /
+User-agent: HaosouSpider
+Allow: /
+User-agent: YandexBot
+Allow: /
+User-agent: DuckDuckBot
+Allow: /
+User-agent: facebot
+Allow: /
+User-agent: facebookexternalhit
+Allow: /
+
+# ============================================================
+# AI 内容发现专用爬虫 — 完全放行 (GEO 核心)
+# ============================================================
+User-agent: KimiBot
+Allow: /
+User-agent: Qwantify
+Allow: /
+User-agent: YouBot
+Allow: /
+User-agent: PetalBot
+Allow: /
+User-agent: cohere
+Allow: /
+User-agent: cohere-training-dataFetcher
+Allow: /
 
 # ============================================================
 # Sitemap 与 AI 内容发现

@@ -1,0 +1,94 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import authorsData from '@data/authors.json';
+
+const site = 'https://zangxixitech.cn';
+
+const posts = await getCollection('blog');
+
+// 统计每位作者的文章数(匹配规则: frontmatter author === 作者数据的 name)
+const authors = Object.values(authorsData).map((author) => ({
+  ...author,
+  postCount: posts.filter((p) => p.data.author === author.name).length,
+}));
+
+const pageTitle = '作者团队 | 号码通查号码百科';
+const pageDescription = `号码通查号码百科作者团队，共 ${authors.length} 位作者。号码通查编辑部与内容主笔长期跟踪工信部与中国信通院的号码标记治理政策，输出号码标记查询、清除、认证与防复标的知识科普和工具指南，内容基于公开官方渠道可追溯验证。`;
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '号码百科', url: '/blog' },
+  { name: '作者', url: '/authors/' },
+];
+
+// CollectionPage + ItemList Schema: 声明作者目录页结构
+const collectionPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${site}/authors/#webpage`,
+  name: pageTitle,
+  description: pageDescription,
+  url: `${site}/authors/`,
+  inLanguage: 'zh-CN',
+  isPartOf: { '@id': `${site}/blog/` },
+  breadcrumb: { '@id': `${site}/authors/#breadcrumb` },
+  mainEntity: { '@id': `${site}/authors/#itemlist` },
+};
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${site}/authors/#itemlist`,
+  name: '号码通查号码百科 - 作者团队',
+  description: pageDescription,
+  numberOfItems: authors.length,
+  itemListElement: authors.map((author, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: author.displayName,
+    url: `${site}/authors/${author.slug}/`,
+  })),
+};
+---
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  schema={[collectionPageSchema, itemListSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">作者团队</h1>
+  <p class="text-slate-600 mb-8 leading-relaxed">
+    号码通查号码百科的内容由编辑部与内容主笔共同生产，文章数据均来自公开官方渠道与平台官方文档，重要结论附来源链接。
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pb-8">
+    {authors.map((author) => (
+      <article class="bg-white rounded-xl border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all p-6">
+        <div class="flex items-center gap-3 mb-3">
+          <div
+            class="w-12 h-12 rounded-full bg-brand-600 text-white flex items-center justify-center text-lg font-bold flex-shrink-0 select-none"
+            aria-hidden="true"
+          >
+            {author.displayName.charAt(0)}
+          </div>
+          <div class="min-w-0">
+            <h2 class="text-lg font-bold text-slate-800 leading-snug">
+              <a href={`/authors/${author.slug}/`} class="hover:text-brand-600 transition-colors">{author.displayName}</a>
+            </h2>
+            <p class="text-xs text-slate-400 mt-0.5">{author.role}</p>
+          </div>
+        </div>
+        <p class="text-sm text-slate-500 leading-relaxed line-clamp-4 mb-4">{author.bio}</p>
+        <div class="flex items-center justify-between">
+          <span class="text-xs px-2 py-0.5 bg-slate-100 text-slate-500 rounded">{author.postCount} 篇文章</span>
+          <a href={`/authors/${author.slug}/`} class="text-sm text-brand-600 hover:underline">查看全部文章 →</a>
+        </div>
+      </article>
+    ))}
+  </div>
+
+  <div class="pb-16">
+    <a href="/blog/" class="text-slate-500 hover:text-brand-600 transition-colors text-sm">← 返回号码百科</a>
+  </div>
+</BaseLayout>

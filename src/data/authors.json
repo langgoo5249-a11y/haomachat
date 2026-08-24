@@ -1,0 +1,20 @@
+{
+  "langood": {
+    "slug": "langood",
+    "name": "langood",
+    "displayName": "langood",
+    "role": "号码标记治理顾问 · 内容主笔",
+    "bio": "langood 是号码通查的内容主笔之一，长期跟踪工信部与中国信通院的号码标记治理政策，专注号码标记申诉流程、企业外呼合规与复标防控的一线实操整理。文章数据均来自公开官方渠道与平台官方文档，重要结论附来源链接。",
+    "expertise": ["号码标记申诉流程", "企业外呼合规", "号码标记复标防控", "运营商政策跟踪"],
+    "authorId": "https://zangxivitech.cn/#person-langood"
+  },
+  "haomachat": {
+    "slug": "haomachat",
+    "name": "号码通查",
+    "displayName": "号码通查编辑部",
+    "role": "号码通查编辑部 · 官方内容团队",
+    "bio": "号码通查编辑部负责 zangxixitech.cn 的内容生产与维护，聚合中国信通院码号服务推进组、工信部及主流标记平台的官方信息，输出号码标记查询、清除、认证与防复标的知识科普和工具指南。",
+    "expertise": ["号码标记知识科普", "官方政策解读", "工具使用指南", "平台规则整理"],
+    "authorId": "https://zangxixitech.cn/#person-haomachatongcha"
+  }
+}

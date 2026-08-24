@@ -3,19 +3,19 @@
   "type": "Organization",
   "name": "号码通查",
   "alternateName": "haomachat",
-  "legalName": "",
+  "legalName": "号码通查",
   "url": "https://zangxixitech.cn",
   "logo": "https://zangxixitech.cn/og-default.jpg",
   "description": "号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。聚合中国信通院码号服务推进组与Truecaller官方入口,一站式解决号码被误标记为骚扰电话的问题。",
   "foundingDate": "2026",
   "founder": {
-    "type": "Organization",
-    "name": ""
+    "type": "Person",
+    "name": "号码通查团队"
   },
   "contactPoint": {
     "contactType": "customer service",
-    "email": "644428571@qq.com",
-    "wechat": "",
+    "email": "noreply@zangxivitech.cn",
+    "wechat": "SXLH-888",
     "availableLanguage": ["zh-CN", "en"]
   },
   "areaServed": "CN",
@@ -34,7 +34,9 @@
   ],
   "sameAs": [
     "https://zangxixitech.cn",
-    "https://github.com/langgoo5249-a11y/haomachat"
+    "https://github.com/langgoo5249-a11y/haomachat",
+    "https://www.opene164.org.cn",
+    "https://www.miit.gov.cn"
   ],
   "services": [
     {
@@ -85,5 +87,5 @@
     "sourceTransparent": true,
     "authorizedPartner": true
   },
-  "lastUpdated": "2026-08-12"
+  "lastUpdated": "2026-08-24"
 }

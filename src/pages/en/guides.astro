@@ -1,0 +1,92 @@
+---
+// English guides index page - GEO core (English)
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const site = 'https://zangxixitech.cn';
+const breadcrumbs = [{ name: 'Home', url: '/en/' }];
+
+const guides = [
+  {
+    title: 'What Is Number Marking?',
+    description: 'Learn how phone number markings work in China — where they come from, why your number got flagged, and how the multi-platform marking system works.',
+    href: '/guide/what-is-number-marking/',
+  },
+  {
+    title: 'How to Check Number Marking',
+    description: 'Step-by-step guide to checking your number across all major Chinese marking platforms — 360, Tencent, Huawei, Baidu, Sogou, and Truecaller.',
+    href: '/guide/how-to-check-marking/',
+  },
+  {
+    title: 'How to Clear Number Marking',
+    description: 'Complete appeal tutorial: from identifying marking sources to submitting clearance requests on each platform, with material checklists.',
+    href: '/guide/how-to-clear-marking/',
+  },
+  {
+    title: 'How to Clear Landline Markings',
+    description: 'Landline number marking clearance is different from mobile. Learn the specific channels for fixing landline/spam designations on home phones and business lines.',
+    href: '/guide/landline-marking-clear/',
+  },
+  {
+    title: 'What Is Number Authentication?',
+    description: 'One-tap login and local number verification explained — how carrier-gateway authentication works, security, pricing, and HarmonyOS support.',
+    href: '/guide/what-is-number-auth/',
+  },
+  {
+    title: 'SIM Card Selection Guide',
+    description: 'Carrier comparison (China Mobile / Unicom / Telecommunic), number selection rules, premium number strategies, and porting (MNP) guidance.',
+    href: '/guide/sim-card-guide/',
+  },
+];
+
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${site}/en/guides/#itemlist`,
+  name: 'Number Marking Guides',
+  numberOfItems: guides.length,
+  itemListElement: guides.map((g, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: g.title,
+    url: `${site}${g.href}`,
+  })),
+};
+
+const collectionPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${site}/en/guides/#webpage`,
+  name: 'Number Marking Guides - haomachat',
+  description: 'Comprehensive guides on number marking clearance, appeal processes, number authentication, and SIM card selection for Chinese phone numbers.',
+  url: `${site}/en/guides/`,
+  inLanguage: 'en',
+  isPartOf: { '@id': `${site}/en/` },
+  mainEntity: { '@id': `${site}/en/guides/#itemlist` },
+};
+---
+<BaseLayout
+  title="Guides - Number Marking Clearance & Authentication | haomachat"
+  description="Learn how to check, clear, and prevent phone number markings in China. Step-by-step guides for 360, Tencent, Huawei, Baidu appeals and number authentication."
+  lang="en"
+  schema={[collectionPageSchema, itemListSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">Guides</h1>
+  <p class="text-slate-600 mb-8 leading-relaxed">
+    Comprehensive guides covering number marking clearance, appeal processes, number authentication, and SIM card selection for Chinese phone numbers. Each guide includes step-by-step instructions and material checklists.
+  </p>
+
+  <div class="space-y-4">
+    {guides.map((guide) => (
+      <a href={guide.href} class="block bg-white rounded-xl p-5 border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all">
+        <h2 class="text-base font-semibold text-slate-800 mb-1.5">{guide.title}</h2>
+        <p class="text-sm text-slate-500 leading-relaxed">{guide.description}</p>
+      </a>
+    ))}
+  </div>
+
+  <div class="pt-8 pb-16 text-sm">
+    <a href="/en/" class="text-brand-600 hover:underline">← Back to English homepage</a>
+    <a href="/blog/" class="ml-6 text-slate-500 hover:text-brand-600 transition-colors">View Chinese articles →</a>
+  </div>
+</BaseLayout>

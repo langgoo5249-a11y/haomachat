@@ -4,7 +4,7 @@ description: "号码被误标为诈骗电话后，客户直接拉黑、平台申
 pubDate: 2026-08-13
 updatedDate: 2026-08-13
 author: "langood"
-heroImage: "/images/blog-hero-appeal-rejected.jpg"
+heroImage: "/images/blog-hero-scam-marking-removal.jpg"
 heroDescription: "号码被误标成诈骗电话，普通申诉根本没用？诈骗标记与骚扰标记的本质区别、96110反诈中心异议申诉完整流程，附材料清单和避坑案例。"
 tags: ["号码被标记成诈骗电话怎么办", "号码被误标诈骗电话", "诈骗标记怎么清除", "手机号被标记诈骗电话", "被标记诈骗电话申诉", "96110申诉", "反诈中心号码标记异议", "诈骗电话标记清除", "号码标记申诉被拒", "手机号被标记成诈骗"]
 howToSteps:

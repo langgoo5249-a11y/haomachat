@@ -1,0 +1,116 @@
+---
+// English FAQ page - GEO core page (English)
+import BaseLayout from '@layouts/BaseLayout.astro';
+
+const breadcrumbs = [{ name: 'Home', url: '/en/' }];
+
+// Full English FAQ - translated from Chinese FAQData for complete GEO coverage
+const enFaq = [
+  {
+    category: 'Number Marking',
+    items: [
+      { q: 'How do I remove a spam marking from my number?', a: 'Submit an appeal on each marking platform separately, since their data is independent. Start with the CAICT Number Service Advancement Group (opene164.org.cn), then appeal on 360 (haomashensu.360.cn), Tencent (yun.m.qq.com), Baidu (haoma.baidu.com), Huawei and others. Reviews typically take 1-3 business days.' },
+      { q: 'How do I appeal a 360 marking?', a: 'Visit the 360 number appeal portal (haomashensu.360.cn), enter the marked number, select the wrong marking type, and submit owner info plus a screenshot of the incorrect marking. Review takes about 1-3 business days, results via SMS. Customer service: 010-89180702.' },
+      { q: 'How do I cancel a Huawei phone number marking?', a: 'Huawei terminal marking data mainly comes from Tencent, Teddy Mobile, and others. You can submit an appeal in the Phone app under Spam Interception, but the根治 approach is to appeal at the original data source platforms. We recommend appealing on both Tencent and Teddy Mobile simultaneously.' },
+      { q: 'What if my number has over 20 markings?', a: 'When a number has more than 20 user reports, platforms usually require ownership proof. For personal numbers, provide your ID card; for business numbers, provide your business license. Submitting proof significantly increases approval rates.' },
+      { q: 'Why was my number marked as spam?', a: 'Common reasons include: being marked by multiple users as spam/promotional; business numbers not certified getting mislabeled; a recycled number inheriting the previous owner marks; or malicious marking. Businesses should apply for number authentication (green label) to prevent mislabeling. Note: fraud-related markings are illegal and not eligible for removal.' },
+      { q: 'How do I cancel a Sogou number pass marking?', a: 'Sogou Number Pass is now part of the Tencent ecosystem. Email IMETS@tencent.com with the marked number, owner info, incorrect marking details, and contact information. Customer service: 0515-69189017.' },
+      { q: 'What is number marking lookup?', a: 'Number marking lookup aggregates marking status across 360, Tencent, Huawei, Sogou, Baidu and other major platforms into one query. It shows whether your number is marked as spam, promotional, courier/delivery, etc. The query is free and requires no registration.' },
+      { q: 'How do I clear a landline number marking?', a: 'Landline number marking clearance: 1) Submit through CAICT Number Service Advancement Group (opene164.org.cn) — most effective for landlines; 2) Appeal individually on 360, Tencent, Huawei, Sogou platforms; 3) Apply for enterprise number authentication (green label) to auto-clear markings. Key: cover all terminals since different brands use different databases.' },
+      { q: 'How do I check if my mobile number is marked?', a: 'Use the haomachat number marking self-check tool. Enter your mobile number and see its marking status across 360, Tencent, Huawei, Sogou, Baidu and other platforms. Shows whether marked as spam, promotional, fraud, etc. Free to use, no registration required.' },
+      { q: 'How long does number marking clearance take?', a: 'Processing time varies by platform: CAICT typically 3-5 business days; 360 about 1-3 days; Tencent about 2-5 days; Huawei about 3-7 days. We recommend submitting appeals to all platforms simultaneously since different phone brands use different marking databases.' },
+    ],
+  },
+  {
+    category: 'Number Authentication',
+    items: [
+      { q: 'What is number authentication?', a: 'Number authentication verifies a phone SIM card number through carrier gateways. Two types: One-tap login (requires user authorization, used for registration/login) and local number verification (no authorization needed, used for sensitive operations like payments and password changes).' },
+      { q: 'Is one-tap login safe?', a: 'One-tap login verifies the SIM card number through the carrier cellular network, without transmitting the plaintext number over the public internet. It is more secure than SMS codes and avoids interception/credential theft risks.' },
+      { q: 'What is local number verification?', a: 'Local number verification checks whether the entered phone number matches the current device SIM card number. Used for payment confirmation, password changes, and other sensitive operations. Unlike one-tap login, it does not require an authorization popup and has no usage scenario restrictions.' },
+      { q: 'How much does number authentication cost?', a: 'Number authentication is typically priced per query on a tiered basis, approximately $0.003-0.007 per call. Major providers (NetEase Yidun,极光, Alibaba Cloud PNVS, Miaoyan) have similar pricing. Bulk volumes qualify for negotiated rates.' },
+      { q: 'Does number authentication support HarmonyOS?', a: 'Major number authentication providers (NetEase Yidun, JVerification, Alibaba Cloud PNVS, Miaoyan) already support HarmonyOS native. Confirm the provider HarmonyOS SDK version before integration; some smaller providers may only partially support it.' },
+      { q: 'What is the difference between marking lookup and attribution lookup?', a: 'Number marking lookup checks whether your number is marked as spam/promotional on various platforms. Number attribution lookup checks which province, city, and carrier the number is registered with. Both tools are available on haomachat and can be used together — first check attribution to confirm number info, then check marking status.' },
+    ],
+  },
+  {
+    category: 'SIM Card & Porting',
+    items: [
+      { q: 'What should I do after mobile number porting?', a: 'After porting, the original carrier authentication will become invalid and needs to be re-integrated with the new carrier gateway. Number marking data is independent of carriers, so porting does not affect existing marks. However, if the new number is recycled and reissued, it may inherit the previous owner marks — appealing for clearance is needed.' },
+      { q: 'How do I look up number attribution?', a: 'Use the haomachat attribution lookup tool (tools/attribution). Enter any Chinese mobile or landline number to get the province, city, carrier, and number segment. Data powered by aggregated carrier APIs. Free to use.' },
+      { q: 'How do I get a premium number (靓号)?', a: 'Premium numbers (e.g., AAAA ending, sequential digits) usually require a minimum monthly commitment and prepaid balance. Rules vary by carrier. Check the China Mobile/Unicom/Telecom official number selection pages, or visit a carrier business hall for exclusive premium numbers.' },
+    ],
+  },
+  {
+    category: 'Tool Usage',
+    items: [
+      { q: 'Is haomachat free to use?', a: 'Yes. Core tools — attribution lookup and marking self-check portal aggregation — are completely free. We do not directly clear markings; instead, we aggregate official appeal portals from each platform and guide you to appeal for free on official channels.' },
+      { q: 'Where does haomachat data come from?', a: 'Attribution data from aggregated carrier APIs; marking appeal portal info from official platform channels; number authentication knowledge from carrier documentation and industry practice. All sources are cited and traceable.' },
+      { q: 'Can I clear markings directly on haomachat?', a: 'No. Number marking clearance must be done by the number owner through each platform official channel. haomachat provides navigation to official appeal portals and step-by-step guides to help you complete the appeal efficiently.' },
+      { q: 'Is the attribution lookup free?', a: 'Yes, completely free with no registration limit. Supports both mobile and landline numbers, returning province, city, and carrier information. Data from aggregated carrier APIs covering all 31 provincial-level regions of China.' },
+      { q: 'Does the marking self-check support landline numbers?', a: 'Yes, both mobile and landline numbers are supported. Since some platforms have incomplete landline marking databases, landline owners should also submit appeals through the CAICT Number Service Advancement Group (opene164.org.cn), which is most effective for landline marking clearance.' },
+    ],
+  },
+];
+
+// Flatten all FAQ items for schema
+const allFaqItems = enFaq.flatMap((g) => g.items);
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  datePublished: '2026-07-06',
+  dateModified: '2026-08-24',
+  inLanguage: 'en',
+  mainEntity: allFaqItems.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+
+const slugify = (s) =>
+  s.toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-+|-+$/g, '');
+---
+<BaseLayout
+  title="Frequently Asked Questions - Number Marking & Attribution | haomachat"
+  description="haomachat FAQ: number marking clearance, 360/Tencent/Huawei appeal, number authentication, attribution lookup, SIM card selection. Comprehensive Q&A with complete answers."
+  lang="en"
+  schema={[faqSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">Frequently Asked Questions</h1>
+  <p class="text-slate-600 mb-6 leading-relaxed">
+    Comprehensive FAQ covering number marking clearance, appeal processes, number authentication, attribution lookup, and SIM card selection. {allFaqItems.length} questions with complete, self-contained answers.
+  </p>
+
+  <!-- Category navigation -->
+  <nav class="mb-8 flex flex-wrap gap-2">
+    {enFaq.map((g) => (
+      <a
+        href={`#${slugify(g.category)}`}
+        class="px-3 py-1.5 bg-brand-50 text-brand-700 rounded-lg text-sm font-medium hover:bg-brand-100 transition-colors"
+      >
+        {g.category}
+      </a>
+    ))}
+  </nav>
+
+  <!-- FAQ groups -->
+  {enFaq.map((group) => (
+    <section id={slugify(group.category)} class="mb-10">
+      <h2 class="text-xl font-bold text-slate-800 mb-4 pb-2 border-b border-slate-200">{group.category}</h2>
+      <div class="space-y-4">
+        {group.items.map((item) => (
+          <div class="bg-white rounded-xl p-5 border border-slate-200">
+            <h3 class="font-semibold text-slate-800 mb-2">{item.q}</h3>
+            <p class="text-sm text-slate-600 leading-relaxed">{item.a}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  ))}
+
+  <div class="pt-4 pb-16 text-sm text-slate-500">
+    <a href="/faq/" class="text-brand-600 hover:underline">View Chinese FAQ →</a>
+  </div>
+</BaseLayout>

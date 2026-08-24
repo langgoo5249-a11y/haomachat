@@ -1,0 +1,139 @@
+---
+import BaseLayout from '@layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import authorsData from '@data/authors.json';
+import type { CollectionEntry } from 'astro:content';
+
+const site = 'https://zangxivitech.cn';
+
+type BlogPost = CollectionEntry<'blog'>;
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  // 基于 authors.json 的 slug 生成纯 ASCII 路由
+  // 匹配规则: 博客 frontmatter 的 author 字段值 === 作者数据的 name
+  // (langood 匹配 name "langood", "号码通查" 匹配 name "号码通查")
+  return Object.values(authorsData).map((author) => ({
+    params: { slug: author.slug },
+    props: {
+      author,
+      posts: posts
+        .filter((p) => p.data.author === author.name)
+        .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()),
+    },
+  }));
+}
+
+interface AuthorInfo {
+  slug: string;
+  name: string;
+  displayName: string;
+  role: string;
+  bio: string;
+  expertise: string[];
+  authorId: string;
+}
+
+interface Props {
+  author: AuthorInfo;
+  posts: BlogPost[];
+}
+
+const { author, posts } = Astro.props;
+
+const authorPageUrl = `${site}/authors/${author.slug}/`;
+const avatarChar = author.displayName.charAt(0);
+
+const pageTitle = `${author.displayName} - 作者 | 号码通查号码百科`;
+const pageDescription = `${author.role}。${author.bio} 目前在号码通查号码百科已发布 ${posts.length} 篇文章，按发布时间倒序排列。`;
+
+const breadcrumbs = [
+  { name: '首页', url: '/' },
+  { name: '号码百科', url: '/blog' },
+  { name: '作者', url: '/authors/' },
+  { name: author.displayName, url: `/authors/${author.slug}/` },
+];
+
+// Person Schema: @id 与 BaseLayout 全站 Person 实体一致, url 指向本作者页
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': author.authorId,
+  name: author.name,
+  alternateName: author.displayName,
+  url: authorPageUrl,
+  description: author.bio,
+  knowsAbout: author.expertise,
+  jobTitle: author.role,
+  affiliation: { '@id': `${site}/#organization` },
+};
+
+// ItemList Schema: 该作者全部文章列表
+const itemListSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  '@id': `${authorPageUrl}#itemlist`,
+  name: `${author.displayName}的全部文章`,
+  description: pageDescription,
+  numberOfItems: posts.length,
+  itemListElement: posts.map((post, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: post.data.title,
+    url: `${site}/blog/${post.id}/`,
+  })),
+};
+---
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  schema={[personSchema, itemListSchema]}
+  breadcrumbs={breadcrumbs}
+>
+  <!-- 作者信息头部: 头像占位 + 名称/角色/简介/专长 -->
+  <header class="bg-white rounded-xl border border-slate-200 p-6 mb-8">
+    <div class="flex items-start gap-4">
+      <div
+        class="w-14 h-14 rounded-full bg-brand-600 text-white flex items-center justify-center text-xl font-bold flex-shrink-0 select-none"
+        aria-hidden="true"
+      >
+        {avatarChar}
+      </div>
+      <div class="min-w-0">
+        <h1 class="text-2xl font-bold text-slate-800 mb-1">{author.displayName}</h1>
+        <p class="text-sm text-slate-500 mb-3">{author.role}</p>
+        <p class="text-sm text-slate-600 leading-relaxed mb-4">{author.bio}</p>
+        {author.expertise.length > 0 && (
+          <div class="flex flex-wrap gap-1.5">
+            {author.expertise.map((item) => (
+              <span class="text-xs px-2 py-0.5 bg-slate-100 text-slate-500 rounded">{item}</span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  </header>
+
+  <h2 class="text-lg font-bold text-slate-800 mb-4">全部文章（{posts.length} 篇）</h2>
+
+  <div class="space-y-4">
+    {posts.map((post) => (
+      <article class="bg-white rounded-xl border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all p-5">
+        <div class="text-xs text-slate-400 mb-1.5">{post.data.pubDate.toLocaleDateString('zh-CN')} · {post.data.author}</div>
+        <h3 class="text-base font-semibold text-slate-800 mb-1.5 leading-snug">
+          <a href={`/blog/${post.id}/`} class="hover:text-brand-600 transition-colors">{post.data.title}</a>
+        </h3>
+        <p class="text-sm text-slate-500 leading-relaxed line-clamp-2">{post.data.description}</p>
+      </article>
+    ))}
+  </div>
+
+  {posts.length === 0 && (
+    <p class="text-slate-500 text-center py-12">该作者暂无文章,敬请期待。</p>
+  )}
+
+  <div class="pt-8 pb-16 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm">
+    <a href="/authors/" class="text-brand-600 hover:underline">查看全部作者 →</a>
+    <a href="/blog/" class="text-slate-500 hover:text-brand-600 transition-colors">← 返回号码百科</a>
+  </div>
+</BaseLayout>

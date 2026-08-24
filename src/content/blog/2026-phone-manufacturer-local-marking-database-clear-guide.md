@@ -4,7 +4,7 @@ description: "号码标记清除后为什么客户手机还是显示骚扰电话
 pubDate: 2026-08-12
 updatedDate: 2026-08-12
 author: "langood"
-heroImage: "/images/blog-hero-phone-marking-removal.jpg"
+heroImage: "/images/blog-hero-phone-manufacturer-local-marking.jpg"
 heroDescription: "360、腾讯的标记都清了，客户手机还是显示'骚扰电话'？因为你忽略了手机厂商的'隐藏标记系统'——华为、小米、OPPO、vivo、荣耀各自独立的本地标记库清除全攻略。"
 tags: ["号码标记清除了为什么还显示", "华为手机号码标记怎么清除", "小米手机骚扰电话标记清除", "OPPO手机号码标记申诉", "vivo手机号码标记取消", "手机厂商本地标记库", "手机自带号码标记怎么清除", "号码标记清除后客户还是不接电话", "华为本地黄页标记清除", "手机厂商隐藏标记系统", "号码标记清除不彻底", "手机自带骚扰拦截标记"]
 ---

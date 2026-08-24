@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
+import authorsData from '@data/authors.json';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -15,6 +16,13 @@ const { Content } = await render(post);
 
 const site = 'https://zangxixitech.cn';
 const heroImageUrl = post.data.heroImage ? `${site}${post.data.heroImage}` : `${site}/og-default.jpg`;
+
+// 作者信息: 从 authors.json 匹配(规则: frontmatter author 值 === 作者数据的 name)
+// langood -> /authors/langood/, "号码通查" -> /authors/haomachat/
+const authorInfo =
+  Object.values(authorsData).find((a) => a.name === post.data.author) ??
+  authorsData.haomachat;
+const authorPageUrl = `https://zangxixitech.cn/authors/${authorInfo.slug}/`;
 
 // 获取所有文章,按发布日期排序
 const allPosts = (await getCollection('blog')).sort(
@@ -57,12 +65,13 @@ const articleSchema = {
     '@id': post.data.author === 'langood'
       ? 'https://zangxixitech.cn/#person-langood'
       : 'https://zangxixitech.cn/#person-haomachatongcha',
-    url: 'https://zangxixitech.cn/about',
+    url: authorPageUrl,
   },
   reviewer: {
     '@type': 'Person',
     name: 'langood',
     '@id': 'https://zangxixitech.cn/#person-langood',
+    url: 'https://zangxixitech.cn/authors/langood/',
   },
   publisher: {
     '@type': 'Organization',
@@ -99,7 +108,7 @@ const blogPostingSchema = {
     '@id': post.data.author === 'langood'
       ? 'https://zangxixitech.cn/#person-langood'
       : 'https://zangxixitech.cn/#person-haomachatongcha',
-    url: 'https://zangxixitech.cn/about',
+    url: authorPageUrl,
   },
   publisher: {
     '@type': 'Organization',
@@ -170,7 +179,7 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
 >
   <article class="prose-content max-w-none lg:max-w-[75ch]">
     <div class="text-sm text-slate-400 mb-2">
-      发布于 {post.data.pubDate.toLocaleDateString('zh-CN')} · 作者 {post.data.author} · 最后更新于 {(post.data.updatedDate || post.data.pubDate).toLocaleDateString('zh-CN')}
+      发布于 {post.data.pubDate.toLocaleDateString('zh-CN')} · 作者 <a href={`/authors/${authorInfo.slug}/`} class="text-brand-600 hover:underline">{post.data.author}</a> · 最后更新于 {(post.data.updatedDate || post.data.pubDate).toLocaleDateString('zh-CN')}
     </div>
     {
       post.data.heroImage && (
@@ -188,6 +197,18 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
     <p class="text-lg text-slate-600 mb-6">{post.data.description}</p>
     <Content />
   </article>
+
+  <!-- 话题标签: 正文结束后引导读者进入标签聚合页 -->
+  {post.data.tags.length > 0 && (
+    <section class="mt-8 pt-6 border-t border-slate-200">
+      <h2 class="text-lg font-bold text-slate-800 mb-3">话题标签</h2>
+      <div class="flex flex-wrap gap-2">
+        {post.data.tags.map((tag) => (
+          <a href={`/tags/${encodeURIComponent(tag)}/`} class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">{tag}</a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <!-- 上一篇/下一篇导航 -->
   <nav class="mt-8 pt-6 border-t border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -232,6 +253,24 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
       <a href="/guide/what-is-number-marking/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">什么是号码标记</a>
       <a href="/compare/marking-platforms/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">标记平台对比</a>
       <a href="/faq/" class="text-sm px-3 py-1.5 rounded-lg bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">常见问题</a>
+    </div>
+  </section>
+
+  <!-- 作者信息卡: 建立作者实体与文章的关联 -->
+  <section class="mt-6 pt-6 pb-8 border-t border-slate-200">
+    <div class="flex items-start gap-4 bg-white rounded-xl border border-slate-200 p-5">
+      <div
+        class="w-14 h-14 rounded-full bg-brand-600 text-white flex items-center justify-center text-xl font-bold flex-shrink-0 select-none"
+        aria-hidden="true"
+      >
+        {authorInfo.displayName.charAt(0)}
+      </div>
+      <div class="min-w-0">
+        <a href={`/authors/${authorInfo.slug}/`} class="text-base font-bold text-slate-800 hover:text-brand-600 transition-colors">{authorInfo.displayName}</a>
+        <p class="text-xs text-slate-400 mt-0.5 mb-2">{authorInfo.role}</p>
+        <p class="text-sm text-slate-500 leading-relaxed mb-3">{authorInfo.bio}</p>
+        <a href={`/authors/${authorInfo.slug}/`} class="text-sm text-brand-600 hover:underline">查看该作者全部文章 →</a>
+      </div>
     </div>
   </section>
 
