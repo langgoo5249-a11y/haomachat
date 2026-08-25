@@ -31,6 +31,7 @@
 - [AI Marking Algorithm Rules](https://zangxivitech.cn/blog/2026-ai-marking-algorithm-rules-guide/) — Why numbers get auto-marked by AI in 2026
 - [Scam Marking Removal Guide](https://zangxivitech.cn/blog/2026-scam-marking-removal-guide/) — Fraud marking vs spam marking, 96110 appeal process
 - [Marking Recurrence After Clearance](https://zangxivitech.cn/blog/2026-phone-marking-recurrence-after-clearance/) — 80% recurrence in 3 time windows, prevention strategies
+- [Carrier Network-Side Interception](https://zangxivitech.cn/blog/2026-carrier-network-interception-guide/) — Why calls still fail after all marks cleared: China Mobile/Telecom/Unicom network-side interception
 - [Personal Number Marking Removal](https://zangxivitech.cn/blog/2026-personal-number-marking-removal-guide/) — Individual user appeal process, 85% success rate
 - [Enterprise Marking Prevention](https://zangxivitech.cn/blog/2026-enterprise-number-marking-prevention-guide/) — Business number protection and green label certification
 - [Enterprise 400 Number Clearing](https://zangxivitech.cn/blog/2026-enterprise-400-number-marking-clear-guide/) — 400 toll-free number marking clearance
