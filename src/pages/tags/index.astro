@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { tagToSlug } from '@/utils/tag-slug';
 
 const site = 'https://zangxixitech.cn';
 
@@ -56,7 +57,7 @@ const itemListSchema = {
     '@type': 'ListItem',
     position: i + 1,
     name: item.tag,
-    url: `${site}/tags/${encodeURIComponent(item.tag)}/`,
+    url: `${site}/tags/${encodeURIComponent(tagToSlug(item.tag))}/`,
   })),
 };
 ---
@@ -74,7 +75,7 @@ const itemListSchema = {
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 pb-8">
     {tags.map(({ tag, count }) => (
       <a
-        href={`/tags/${encodeURIComponent(tag)}/`}
+        href={`/tags/${encodeURIComponent(tagToSlug(tag))}/`}
         class="group flex items-center justify-between bg-white rounded-xl border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all px-4 py-3"
       >
         <span class="text-sm font-medium text-slate-700 group-hover:text-brand-600 transition-colors truncate">{tag}</span>

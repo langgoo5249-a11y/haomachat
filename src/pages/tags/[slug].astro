@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { tagToSlug } from '@/utils/tag-slug';
 
 const site = 'https://zangxixitech.cn';
 
@@ -9,7 +10,8 @@ type BlogPost = CollectionEntry<'blog'>;
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  // 使用 encodeURIComponent 编码中文标签作为 URL 参数
+  // slug 用 tagToSlug: 中文原样写入磁盘目录, 仅替换斜杠/空格等路径不安全字符。
+  // 这样请求 /tags/<编码后的中文>/ 时, Cloudflare Pages 解码后能匹配到目录。
   const tagMap = new Map<string, BlogPost[]>();
   for (const post of posts) {
     for (const tag of post.data.tags) {
@@ -19,7 +21,7 @@ export async function getStaticPaths() {
     }
   }
   return Array.from(tagMap.entries()).map(([tag, tagPosts]) => ({
-    params: { slug: encodeURIComponent(tag) },
+    params: { slug: tagToSlug(tag) },
     props: {
       tag,
       posts: [...tagPosts].sort(
@@ -36,19 +38,16 @@ interface Props {
 
 const { tag, posts } = Astro.props;
 
-// 解码 slug 获取原始标签
-const decodedTag = decodeURIComponent(Astro.params.slug);
+const tagPageUrl = `${site}/tags/${encodeURIComponent(tagToSlug(tag))}/`;
 
-const tagPageUrl = `${site}/tags/${encodeURIComponent(decodedTag)}/`;
-
-const pageTitle = `${decodedTag}相关文章合集（${posts.length}篇） | 号码通查号码百科`;
-const pageDescription = `号码通查号码百科中关于「${decodedTag}」的全部 ${posts.length} 篇文章合集，按发布时间倒序排列，涵盖号码标记查询、清除、申诉、号码认证等实操指南，内容基于中国信通院与各标记平台官方公开渠道，可追溯验证。`;
+const pageTitle = `${tag}相关文章合集（${posts.length}篇） | 号码通查号码百科`;
+const pageDescription = `号码通查号码百科中关于「${tag}」的全部 ${posts.length} 篇文章合集，按发布时间倒序排列，涵盖号码标记查询、清除、申诉、号码认证等实操指南，内容基于中国信通院与各标记平台官方公开渠道，可追溯验证。`;
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
   { name: '号码百科', url: '/blog' },
   { name: '标签', url: '/tags/' },
-  { name: decodedTag, url: `/tags/${encodeURIComponent(decodedTag)}/` },
+  { name: tag, url: `/tags/${encodeURIComponent(tagToSlug(tag))}/` },
 ];
 
 // CollectionPage Schema: 声明这是一个标签聚合落地页(GEO 信号)
@@ -70,7 +69,7 @@ const itemListSchema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   '@id': `${tagPageUrl}#itemlist`,
-  name: `「${decodedTag}」标签下的全部文章`,
+  name: `「${tag}」标签下的全部文章`,
   description: pageDescription,
   numberOfItems: posts.length,
   itemListElement: posts.map((post, i) => ({
@@ -87,9 +86,9 @@ const itemListSchema = {
   schema={[collectionPageSchema, itemListSchema]}
   breadcrumbs={breadcrumbs}
 >
-  <h1 class="text-3xl font-bold text-slate-800 mb-3">{decodedTag}</h1>
+  <h1 class="text-3xl font-bold text-slate-800 mb-3">{tag}</h1>
   <p class="text-slate-600 mb-8 leading-relaxed">
-    号码通查号码百科中关于「{decodedTag}」的全部 {posts.length} 篇文章，按发布时间倒序排列。
+    号码通查号码百科中关于「{tag}」的全部 {posts.length} 篇文章，按发布时间倒序排列。
   </p>
 
   <div class="space-y-4">
@@ -104,8 +103,8 @@ const itemListSchema = {
           <div class="flex flex-wrap gap-1.5">
             {post.data.tags.map((t) => (
               <a
-                href={`/tags/${encodeURIComponent(t)}/`}
-                class={`text-xs px-2 py-0.5 rounded transition-colors ${t === decodedTag ? 'bg-brand-50 text-brand-600' : 'bg-slate-100 text-slate-500 hover:bg-brand-50 hover:text-brand-600'}`}
+                href={`/tags/${encodeURIComponent(tagToSlug(t))}/`}
+                class={`text-xs px-2 py-0.5 rounded transition-colors ${t === tag ? 'bg-brand-50 text-brand-600' : 'bg-slate-100 text-slate-500 hover:bg-brand-50 hover:text-brand-600'}`}
               >{t}</a>
             ))}
           </div>

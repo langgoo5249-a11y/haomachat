@@ -2,6 +2,7 @@
 import BaseLayout from '@layouts/BaseLayout.astro';
 import { getCollection, render } from 'astro:content';
 import authorsData from '@data/authors.json';
+import { tagToSlug } from '@/utils/tag-slug';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
@@ -204,7 +205,7 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
       <h2 class="text-lg font-bold text-slate-800 mb-3">话题标签</h2>
       <div class="flex flex-wrap gap-2">
         {post.data.tags.map((tag) => (
-          <a href={`/tags/${encodeURIComponent(tag)}/`} class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">{tag}</a>
+          <a href={`/tags/${encodeURIComponent(tagToSlug(tag))}/`} class="text-xs px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 hover:bg-brand-50 hover:text-brand-600 transition-colors">{tag}</a>
         ))}
       </div>
     </section>
