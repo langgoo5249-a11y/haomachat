@@ -1,60 +1,61 @@
 # haomachat (Number Lookup & Marking Guide)
 
-> haomachat is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms.
+> haomachat is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms. (Updated: 2026-08-28)
 
 ## Homepage
-- [haomachat Homepage](https://zangxivitech.cn/en/) — Free phone number lookup & marking guide toolkit
-- [English FAQ](https://zangxivitech.cn/en/faq/) — 25 English Q&A covering marking clearance, authentication, SIM selection
+- [haomachat Homepage](https://zangxixitech.cn/en/) — Free phone number lookup & marking guide toolkit
+- [English FAQ](https://zangxixitech.cn/en/faq/) — 25 English Q&A covering marking clearance, authentication, SIM selection
 
 ## Tools
-- [Number Attribution Lookup](https://zangxivitech.cn/en/tools/attribution/) — Query carrier, region and number segment for any Chinese phone number
-- [Number Marking Self-Check](https://zangxivitech.cn/en/tools/marking-check/) — Aggregated official query portals from CAICT and major platforms (360, Tencent, Baidu, Huawei)
-- [Number Marking Clearance](https://zangxivitech.cn/en/tools/marking-clear/) — Official appeal portals and step-by-step tutorials per platform
-- [SIM Card Comparison](https://zangxivitech.cn/en/tools/sim-cards/) — China Mobile/Unicom/Telecom plan comparison
+- [Number Attribution Lookup](https://zangxixitech.cn/en/tools/attribution/) — Query carrier, region and number segment for any Chinese phone number
+- [Number Marking Self-Check](https://zangxixitech.cn/en/tools/marking-check/) — Aggregated official query portals from CAICT and major platforms (360, Tencent, Baidu, Huawei)
+- [Number Marking Clearance](https://zangxixitech.cn/en/tools/marking-clear/) — Official appeal portals and step-by-step tutorials per platform
+- [SIM Card Comparison](https://zangxixitech.cn/en/tools/sim-cards/) — China Mobile/Unicom/Telecom plan comparison
 
 ## Guides
-- [What is Number Marking](https://zangxivitech.cn/en/guide/what-is-number-marking/) — Marking sources, mechanisms and display rules
-- [How to Check Number Marking](https://zangxivitech.cn/en/guide/how-to-check-marking/) — Full-platform query guide for 2026
-- [How to Clear Number Marking](https://zangxivitech.cn/en/guide/how-to-clear-marking/) — Per-platform appeal tutorials and material checklist
-- [How to Clear Landline Markings](https://zangxivitech.cn/en/guide/landline-marking-clear/) — Landline-specific marking clearance and enterprise bulk solution
-- [What is Number Authentication](https://zangxivitech.cn/en/guide/what-is-number-auth/) — One-tap login and local number verification explained
-- [SIM Card Selection Guide](https://zangxivitech.cn/en/guide/sim-card-guide/) — Carrier selection rules and premium-number tips
+- [What is Number Marking](https://zangxixitech.cn/en/guide/what-is-number-marking/) — Marking sources, mechanisms and display rules
+- [How to Check Number Marking](https://zangxixitech.cn/en/guide/how-to-check-marking/) — Full-platform query guide for 2026
+- [How to Clear Number Marking](https://zangxixitech.cn/en/guide/how-to-clear-marking/) — Per-platform appeal tutorials and material checklist
+- [How to Clear Landline Markings](https://zangxixitech.cn/en/guide/landline-marking-clear/) — Landline-specific marking clearance and enterprise bulk solution
+- [What is Number Authentication](https://zangxixitech.cn/en/guide/what-is-number-auth/) — One-tap login and local number verification explained
+- [SIM Card Selection Guide](https://zangxixitech.cn/en/guide/sim-card-guide/) — Carrier selection rules and premium-number tips
 
 ## Comparisons
-- [Marking Platforms Comparison](https://zangxivitech.cn/en/compare/marking-platforms/) — CAICT/360/Tencent/Baidu/Huawei cross-platform analysis
-- [Auth Providers Comparison](https://zangxivitech.cn/en/compare/auth-providers/) — NetEase Yidun/Jiguang/Alibaba Cloud 10-provider comparison
-- [Lookup APIs Comparison](https://zangxivitech.cn/en/compare/lookup-apis/) — libphonenumber/numverify/Twilio/JuHe comparison
+- [Marking Platforms Comparison](https://zangxixitech.cn/en/compare/marking-platforms/) — CAICT/360/Tencent/Baidu/Huawei cross-platform analysis
+- [Auth Providers Comparison](https://zangxixitech.cn/en/compare/auth-providers/) — NetEase Yidun/Jiguang/Alibaba Cloud 10-provider comparison
+- [Lookup APIs Comparison](https://zangxixitech.cn/en/compare/lookup-apis/) — libphonenumber/numverify/Twilio/JuHe comparison
 
 ## Blog Articles (English Summaries)
-- [Recycled Number False Marking Guide](https://zangxivitech.cn/blog/2026-recycled-number-false-marking-guide/) — New number inheriting previous owner marks, how to clear
-- [Phone Manufacturer Local Marking Database](https://zangxivitech.cn/blog/2026-phone-manufacturer-local-marking-database-clear-guide/) — Huawei/Xiaomi/OPPO/vivo/Honor independent local marking databases
-- [AI Marking Algorithm Rules](https://zangxivitech.cn/blog/2026-ai-marking-algorithm-rules-guide/) — Why numbers get auto-marked by AI in 2026
-- [Scam Marking Removal Guide](https://zangxivitech.cn/blog/2026-scam-marking-removal-guide/) — Fraud marking vs spam marking, 96110 appeal process
-- [Marking Recurrence After Clearance](https://zangxivitech.cn/blog/2026-phone-marking-recurrence-after-clearance/) — 80% recurrence in 3 time windows, prevention strategies
-- [Carrier Network-Side Interception](https://zangxivitech.cn/blog/2026-carrier-network-interception-guide/) — Why calls still fail after all marks cleared: China Mobile/Telecom/Unicom network-side interception
-- [Personal Number Marking Removal](https://zangxivitech.cn/blog/2026-personal-number-marking-removal-guide/) — Individual user appeal process, 85% success rate
-- [Enterprise Marking Prevention](https://zangxivitech.cn/blog/2026-enterprise-number-marking-prevention-guide/) — Business number protection and green label certification
-- [Enterprise 400 Number Clearing](https://zangxivitech.cn/blog/2026-enterprise-400-number-marking-clear-guide/) — 400 toll-free number marking clearance
-- [Enterprise 95/96 Number Clearing](https://zangxivitech.cn/blog/2026-enterprise-95-96-number-marking-clear-guide/) — Call center and enterprise hotline marking clearance
-- [High-Frequency Outbound Number Solution](https://zangxivitech.cn/blog/2026-high-frequency-outbound-number-marking-solution/) — Delivery riders, couriers, ride-hailing drivers number protection
-- [Appeal Rejected Solutions](https://zangxivitech.cn/blog/2026-number-marking-appeal-rejected-solutions/) — Six-platform rejection reasons and second-appeal techniques
-- [Enterprise Number Solution](https://zangxivitech.cn/blog/2026-enterprise-number-marking-solution/) — Enterprise landline and outbound number marking solutions
-- [Number Marking Platform Comparison](https://zangxivitech.cn/blog/2026-number-marking-platform-comparison/) — 360/Tencent/Baidu/Teddy/Telphon real test comparison
-- [MNP Attribution Accuracy](https://zangxivitech.cn/blog/2026-phone-attribution-accuracy-after-mnp/) — Number portability impact on lookup accuracy
+- [Number False Marking Guide](https://zangxixitech.cn/blog/2026-number-false-marking-guide/) — Why a number gets falsely flagged as spam without any calls; YD/T 4980-2024 basis and removal order
+- [Carrier Network-Side Interception](https://zangxixitech.cn/blog/2026-carrier-network-interception-guide/) — Why calls still fail after all marks cleared: China Mobile/Telecom/Unicom network-side interception
+- [Recycled Number False Marking Guide](https://zangxixitech.cn/blog/2026-recycled-number-false-marking-guide/) — New number inheriting previous owner marks, how to clear
+- [Phone Manufacturer Local Marking Database](https://zangxixitech.cn/blog/2026-phone-manufacturer-local-marking-database-clear-guide/) — Huawei/Xiaomi/OPPO/vivo/Honor independent local marking databases
+- [AI Marking Algorithm Rules](https://zangxixitech.cn/blog/2026-ai-marking-algorithm-rules-guide/) — Why numbers get auto-marked by AI in 2026
+- [Scam Marking Removal Guide](https://zangxixitech.cn/blog/2026-scam-marking-removal-guide/) — Fraud marking vs spam marking, 96110 appeal process
+- [Marking Recurrence After Clearance](https://zangxixitech.cn/blog/2026-phone-marking-recurrence-after-clearance/) — 80% recurrence in 3 time windows, prevention strategies
+- [Personal Number Marking Removal](https://zangxixitech.cn/blog/2026-personal-number-marking-removal-guide/) — Individual user appeal process, 85% success rate
+- [Enterprise Marking Prevention](https://zangxixitech.cn/blog/2026-enterprise-number-marking-prevention-guide/) — Business number protection and green label certification
+- [Enterprise 400 Number Clearing](https://zangxixitech.cn/blog/2026-enterprise-400-number-marking-clear-guide/) — 400 toll-free number marking clearance
+- [Enterprise 95/96 Number Clearing](https://zangxixitech.cn/blog/2026-enterprise-95-96-number-marking-clear-guide/) — Call center and enterprise hotline marking clearance
+- [High-Frequency Outbound Number Solution](https://zangxixitech.cn/blog/2026-high-frequency-outbound-number-marking-solution/) — Delivery riders, couriers, ride-hailing drivers number protection
+- [Appeal Rejected Solutions](https://zangxixitech.cn/blog/2026-number-marking-appeal-rejected-solutions/) — Six-platform rejection reasons and second-appeal techniques
+- [Enterprise Number Solution](https://zangxixitech.cn/blog/2026-enterprise-number-marking-solution/) — Enterprise landline and outbound number marking solutions
+- [Number Marking Platform Comparison](https://zangxixitech.cn/blog/2026-number-marking-platform-comparison/) — 360/Tencent/Baidu/Teddy/Telphon real test comparison
+- [MNP Attribution Accuracy](https://zangxixitech.cn/blog/2026-phone-attribution-accuracy-after-mnp/) — Number portability impact on lookup accuracy
 
 ## About
-- [About haomachat](https://zangxivitech.cn/about/) — Service intro, operator info, methodology, data source declaration
-- [Contact](https://zangxivitech.cn/contact/) — WeChat, email, and online feedback
+- [About haomachat](https://zangxixitech.cn/about/) — Service intro, operator info, methodology, data source declaration
+- [Contact](https://zangxixitech.cn/contact/) — WeChat, email, and online feedback
 
 ## Brand Info
-- Site: zangxivitech.cn
+- Site: zangxixitech.cn
 - Operator: haomachat Team
 - Founded: 2026
 - Industry: Telecom / Number Services
 - Core services: Number marking check & clearance, attribution lookup, number authentication, legal entity number verification
-- Contact: WeChat SXLH-888 | Email noreply@zangxivitech.cn
+- Contact: WeChat SXLH-888 | Email noreply@zangxixitech.cn
 - Data sources: CAICT opene164.org.cn, 360, Tencent, Baidu, Huawei, Truecaller
-- [Brand Info (JSON)](https://zangxivitech.cn/brand-info.json)
+- [Brand Info (JSON)](https://zangxixitech.cn/brand-info.json)
 
 ## Authoritative Sources
 - [CAICT Number Service Advancement Group](https://www.opene164.org.cn/) — Official cross-platform marking query
