@@ -38,6 +38,10 @@ interface Props {
 
 const { tag, posts } = Astro.props;
 
+// 薄标签页安全网: 文章数不足3篇的标签页不参与索引竞争(内链权重照常传递)
+// 目的: 防止未来新增低频标签时再次产生索引膨胀稀释抓取预算
+const isThinTag = posts.length < 3;
+
 const tagPageUrl = `${site}/tags/${encodeURIComponent(tagToSlug(tag))}/`;
 
 const pageTitle = `${tag}相关文章合集（${posts.length}篇） | 号码通查号码百科`;
@@ -85,6 +89,7 @@ const itemListSchema = {
   description={pageDescription}
   schema={[collectionPageSchema, itemListSchema]}
   breadcrumbs={breadcrumbs}
+  noindex={isThinTag}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">{tag}</h1>
   <p class="text-slate-600 mb-8 leading-relaxed">

@@ -1,7 +1,7 @@
 # 号码通查 - robots.txt
 # 策略: 默认允许所有爬虫, 仅对已知垃圾爬虫做精细化屏蔽
 # 目的: 保障 Google/百度/必应等搜索引擎正常索引, 同时阻止无效采集器浪费带宽
-# 最后更新: 2026-08-24
+# 最后更新: 2026-08-31
 
 # === 默认: 允许所有爬虫 ===
 User-agent: *
@@ -77,6 +77,68 @@ Allow: /
 # ============================================================
 # AI 内容发现专用爬虫 — 完全放行 (GEO 核心)
 # ============================================================
+
+# --- ChatGPT 搜索/浏览入口 (OpenAI 官方爬虫) ---
+# OAI-SearchBot: ChatGPT 搜索答案引用来源的抓取爬虫
+# ChatGPT-User: 用户让 ChatGPT 实时打开网页时使用
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# --- 国内 AI 搜索 ---
+# YisouSpider: 夸克 AI 搜索(阿里), 国内 AI 产品月活前三
+User-agent: YisouSpider
+Allow: /
+
+# --- 其他国际 AI 引擎 ---
+# Applebot-Extended: Apple Intelligence / Siri 的 AI 答案数据抓取
+# Meta-ExternalAgent: Meta AI 的检索代理
+# DuckAssistBot: DuckDuckGo AI 答案生成
+User-agent: Applebot-Extended
+Allow: /
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: DuckAssistBot
+Allow: /
+
+# --- 国内 AI 搜索/大模型爬虫 (与 ai.xml 清单保持一致) ---
+# 豆包(字节)、文心一言(百度)、通义千问(阿里)、DeepSeek、智谱清言、讯飞星火、
+# 百川、MiniMax、零一万物、天工、腾讯AI Lab
+User-agent: Doubaobot
+Allow: /
+User-agent: ERNIEBot
+Allow: /
+User-agent: QwenBot
+Allow: /
+User-agent: DeepSeekBot
+Allow: /
+User-agent: ChatGLM-Spider
+Allow: /
+User-agent: iFlytekSpider
+Allow: /
+User-agent: BaichuanBot
+Allow: /
+User-agent: MiniMax-Bot
+Allow: /
+User-agent: YiBot
+Allow: /
+User-agent: TiangongBot
+Allow: /
+User-agent: Tencent-AI-Lab-Spider
+Allow: /
+User-agent: Amazonbot
+Allow: /
+
+# --- Anthropic / Perplexity 的搜索与用户代理 (与训练爬虫区分) ---
+User-agent: Claude-User
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+
+# --- 既有放行清单 ---
 User-agent: KimiBot
 Allow: /
 User-agent: Qwantify

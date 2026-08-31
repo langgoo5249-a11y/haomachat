@@ -1,6 +1,6 @@
 # 号码通查 - Cloudflare Pages _headers 配置
 # 策略: 静态资源强缓存 + HTML 短缓存 + 安全响应头
-# 最后更新: 2026-08-19
+# 最后更新: 2026-08-31
 
 # === 静态资源: 强缓存 1 年 (文件名含哈希, 可安全长缓存) ===
 /_astro/*
@@ -34,3 +34,5 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://hm.baidu.com https://lf1-cdn-tos.bytegoofy.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://hm.baidu.com https://lf1-cdn-tos.bytegoofy.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'

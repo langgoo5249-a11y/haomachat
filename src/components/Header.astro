@@ -30,7 +30,7 @@ const navItems = isEn
 ---
 <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-slate-200">
   <div class="max-w-5xl mx-auto px-4 h-14 flex items-center justify-between">
-    <a href={isEn ? '/en' : '/'} class="flex items-center gap-2 font-bold text-lg text-brand-700">
+    <a href={isEn ? '/en/' : '/'} class="flex items-center gap-2 font-bold text-lg text-brand-700">
       <img src="/favicon.svg" alt="号码通查" width="28" height="28" />
       <span>{isEn ? 'haomachat' : '号码通查'}</span>
     </a>
@@ -40,7 +40,7 @@ const navItems = isEn
       ))}
     </nav>
     <a
-      href={isEn ? '/' : '/en'}
+      href={isEn ? '/' : '/en/'}
       class="text-sm px-2 py-1 rounded border border-slate-300 text-slate-500 hover:border-brand-400 hover:text-brand-600 min-h-10 flex items-center justify-center"
     >
       {isEn ? '中文' : 'EN'}

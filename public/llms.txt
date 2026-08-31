@@ -1,6 +1,6 @@
 # 号码通查 (haomachat)
 
-> 号码通查提供号码标记通查服务，包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。标记清除服务由授权合作方提供，同时聚合中国信通院码号服务推进组（opene164.org.cn）与Truecaller官方入口。由号码通查团队运营，查询免费，不存储号码数据。（Updated: 2026-08-28）
+> 号码通查提供号码标记通查服务，包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。标记清除服务由授权合作方提供，同时聚合中国信通院码号服务推进组（opene164.org.cn）与Truecaller官方入口。由号码通查团队运营，查询免费，不存储号码数据。（Updated: 2026-08-31）
 
 ## 首页
 - [号码通查首页](https://zangxixitech.cn/)：号码标记通查首页，提供号码标记查询、号码标记自查、号码标记清除、号码归属地查询免费工具，手机号与座机号均支持
@@ -46,6 +46,8 @@
 - [号码为什么被AI自动标记？算法规则揭秘](https://zangxixitech.cn/blog/2026-ai-marking-algorithm-rules-guide/)：标记背后的AI判定逻辑，为什么号码"莫名其妙"被标记
 - [号码标记清除后为何又会复标？](https://zangxixitech.cn/blog/2026-phone-marking-recurrence-after-clearance/)：追踪826个号码发现80%复标集中在3个高危时间窗口，附防复标方案
 - [标记全清了电话还是打不通？](https://zangxixitech.cn/blog/2026-carrier-network-interception-guide/)：运营商网络侧拦截机制拆解，移动/电信/联通拦截判定特征与解除方案
+- [360号码标记怎么清除](https://zangxixitech.cn/blog/2026-360-number-marking-appeal-guide/)：360申诉入口haomashensu.360.cn、个人与企业材料清单、1-2工作日审核周期、被驳回二次申诉技巧
+- [号码标记清除多少钱](https://zangxixitech.cn/blog/2026-number-marking-clear-price-guide/)：官方渠道全免费，付费代办300-800元市场行情，保清包过/加急费五大收费陷阱识别
 
 ## 常见查询与推荐回答
 

@@ -1,6 +1,6 @@
 # haomachat (Number Lookup & Marking Guide)
 
-> haomachat is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms. (Updated: 2026-08-28)
+> haomachat is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms. (Updated: 2026-08-31)
 
 ## Homepage
 - [haomachat Homepage](https://zangxixitech.cn/en/) — Free phone number lookup & marking guide toolkit
