@@ -45,6 +45,7 @@
 - [360 Number Marking Appeal Guide](https://zangxixitech.cn/blog/2026-360-number-marking-appeal-guide/) — 360 appeal portal, materials checklist, 1-2 day review cycle
 - [Number Marking Clearance Price Guide](https://zangxixitech.cn/blog/2026-number-marking-clear-price-guide/) — All official channels free, paid agent market price comparison
 - [Virtual Operator Number Marking Clear Guide](https://zangxixitech.cn/blog/2026-virtual-operator-number-marking-clear-guide/) — 170/171/162/165/167 number clearing: ownership proof from MVNO customer service, platform-by-platform appeal guide
+- [Tencent Phone Manager Marking Appeal Guide](https://zangxixitech.cn/blog/2026-tencent-phone-manager-marking-appeal-guide/) — yun.m.qq.com appeal portal, two personal channels (spam label removal vs name display cancellation), enterprise materials, 2-3 day review cycle
 
 ## About
 - [About haomachat](https://zangxixitech.cn/about/) — Service intro, operator info, methodology, data source declaration

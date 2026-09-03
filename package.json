@@ -5,7 +5,7 @@
   "description": "号码通查 - 电话号码标记查询清除 / 号码认证 / 手机卡选号 GEO 工具站",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node scripts/validate-redirects.mjs && astro build",
     "indexnow": "node scripts/indexnow-submit.mjs",
     "preview": "astro preview",
     "astro": "astro"
