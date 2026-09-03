@@ -69,7 +69,11 @@
 <script is:inline>
   (function () {
     var STORAGE_KEY = 'haomachat_wechat_popup_last_shown';
-    var SHOW_DELAY_MS = 1200;
+    // 移动端延迟 6 秒弹出: 避免落地即全屏遮挡触发谷歌"侵入式插页"页面体验惩罚
+    // (谷歌政策: 移动端从搜索结果落地后立即出现的全屏弹窗影响排名, 延迟展示可豁免)
+    // 桌面端保持 1.2 秒, 桌面不受该信号约束
+    var isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
+    var SHOW_DELAY_MS = isMobile ? 6000 : 1200;
     var SHOW_INTERVAL_MS = 24 * 60 * 60 * 1000;
     var popup = document.getElementById('wechat-popup');
     var closeBtn = document.getElementById('wechat-popup-close');
