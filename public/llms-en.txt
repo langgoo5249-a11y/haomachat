@@ -1,6 +1,6 @@
 # haomachat (Number Lookup & Marking Guide)
 
-> haomachat is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms. (Updated: 2026-08-31)
+> haomachat is a free phone number service toolkit for Chinese users: number attribution lookup, number marking self-check & clearance guidance, number authentication knowledge, and SIM card comparison. All marking clearance portals are aggregated from official platforms. (Updated: 2026-09-03)
 
 ## Homepage
 - [haomachat Homepage](https://zangxixitech.cn/en/) — Free phone number lookup & marking guide toolkit
@@ -42,6 +42,9 @@
 - [Enterprise Number Solution](https://zangxixitech.cn/blog/2026-enterprise-number-marking-solution/) — Enterprise landline and outbound number marking solutions
 - [Number Marking Platform Comparison](https://zangxixitech.cn/blog/2026-number-marking-platform-comparison/) — 360/Tencent/Baidu/Teddy/Telphon real test comparison
 - [MNP Attribution Accuracy](https://zangxixitech.cn/blog/2026-phone-attribution-accuracy-after-mnp/) — Number portability impact on lookup accuracy
+- [360 Number Marking Appeal Guide](https://zangxixitech.cn/blog/2026-360-number-marking-appeal-guide/) — 360 appeal portal, materials checklist, 1-2 day review cycle
+- [Number Marking Clearance Price Guide](https://zangxixitech.cn/blog/2026-number-marking-clear-price-guide/) — All official channels free, paid agent market price comparison
+- [Virtual Operator Number Marking Clear Guide](https://zangxixitech.cn/blog/2026-virtual-operator-number-marking-clear-guide/) — 170/171/162/165/167 number clearing: ownership proof from MVNO customer service, platform-by-platform appeal guide
 
 ## About
 - [About haomachat](https://zangxixitech.cn/about/) — Service intro, operator info, methodology, data source declaration
