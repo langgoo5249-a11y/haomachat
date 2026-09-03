@@ -9,6 +9,15 @@
 # 分区结构: [静态规则区 上限2000条] -> [旧标签301区] -> [动态规则区 上限100条, 永远放最后]
 
 # ===== 静态规则区 (原有路径迁移规则) =====
+
+# --- 搜索引擎站长验证文件: 200重写绕过CF Pages clean URL 308 (.html->无扩展名) ---
+# ⚠️ 这三条是域名所有权验证凭证, 任何重构都不得删除!
+# 历史教训: 曾在重构中被误删, 导致 Google 验证URL 404 近两个月 (2026-07~09),
+# 字节验证URL 308 (字节爬虫不跟随重定向)。public/ 下同时保留 .html 实体文件作双保险。
+/googleacd9f7914a32bdff.html  /googleacd9f7914a32bdff  200
+/baidu_verify_codeva-J2OVio818i.html  /baidu_verify_codeva-J2OVio818i  200
+/ByteDanceVerify.html  /ByteDanceVerify  200
+
 /sitemap.xml /sitemap-index.xml 301
 /number-lookup /tools/attribution/ 301
 /marking /tools/marking-check/ 301
