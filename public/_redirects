@@ -163,7 +163,14 @@
 /tags/%E9%AB%98%E9%A2%91%E5%A4%96%E5%91%BC%E5%8F%B7%E7%A0%81%E6%A0%87%E8%AE%B0/ /tags/%E9%AB%98%E9%A2%91%E5%A4%96%E5%91%BC/ 301
 /tags/%E9%AB%98%E9%A2%91%E9%AA%9A%E6%89%B0%E7%94%B5%E8%AF%9D%E9%98%B2%E6%8A%A4%E6%80%8E%E4%B9%88%E5%85%B3%E9%97%AD/ /blog/2026-carrier-network-interception-guide/ 301
 
-# ===== 动态规则区 (:splat 通配, 上限100条, 必须置于文件末尾) =====
-/en/tools/:splat /tools/:splat 301
-/en/guide/:splat /guide/:splat 301
-/en/compare/:splat /compare/:splat 301
+# ===== 动态规则区 (* 通配, 上限100条, 必须置于文件末尾) =====
+# 语法注意: 源路径必须用 * 通配符而非 :splat 占位符 —— Cloudflare 文档明确
+# 占位符不匹配斜杠(分隔符即 /), 旧 :splat 写法导致 /en/tools/xxx/ 带尾斜杠的
+# 历史URL 404; * 可贪婪匹配任意字符(含斜杠)。目标路径用 :splat 引用匹配值。
+# 真实英文页仅 /en/ /en/faq/ /en/guides/ 三页, 以下五条路径均无冲突
+# (注意 /en/guide/* 不会误伤 /en/guides/, 前缀要求第10字符为斜杠)。
+/en/tools/* /tools/:splat 301
+/en/guide/* /guide/:splat 301
+/en/compare/* /compare/:splat 301
+/en/blog/* /blog/:splat 301
+/en/about/* /about/:splat 301
