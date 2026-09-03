@@ -1,3 +1,16 @@
+# 号码通查 - 重定向规则
+# 策略: 旧路径 301 到新路径, 统一尾部斜杠
+/sitemap.xml /sitemap-index.xml 301
+/number-lookup /tools/attribution/ 301
+/marking /tools/marking-check/ 301
+/clear /tools/marking-clear/ 301
+/en/tools/:splat /tools/:splat 301
+/en/guide/:splat /guide/:splat 301
+/en/compare/:splat /compare/:splat 301
+/en/faq /faq 301
+/en/blog /blog 301
+/en/about /about 301
+
 # 旧标签页 301 重定向 (2026-08-31 标签收敛 150->14 后的流量恢复措施)
 # 源: git 历史 708970a 中存在、现已下线的旧标签页 URL
 # 目标: 按语义就近导向现存核心标签hub或专题文章
