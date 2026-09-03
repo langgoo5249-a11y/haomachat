@@ -1,12 +1,18 @@
 # 号码通查 - 重定向规则
 # 策略: 旧路径 301 到新路径, 统一尾部斜杠
+#
+# ⚠️ 顺序铁律 (Cloudflare _redirects 解析器限制, 详见 workers-sdk#14694):
+# 解析器遇到第一条动态规则(含 * 或 :placeholder)后, 不再产生静态规则,
+# 之后的所有规则(含纯静态路径)都占用 100 条动态规则预算, 超出即静默丢弃剩余整段文件。
+# 因此: 静态规则必须全部排在动态规则之前! 新增规则请放入对应分区, 勿在动态区后再加静态规则。
+#
+# 分区结构: [静态规则区 上限2000条] -> [旧标签301区] -> [动态规则区 上限100条, 永远放最后]
+
+# ===== 静态规则区 (原有路径迁移规则) =====
 /sitemap.xml /sitemap-index.xml 301
 /number-lookup /tools/attribution/ 301
 /marking /tools/marking-check/ 301
 /clear /tools/marking-clear/ 301
-/en/tools/:splat /tools/:splat 301
-/en/guide/:splat /guide/:splat 301
-/en/compare/:splat /compare/:splat 301
 /en/faq /faq 301
 /en/blog /blog 301
 /en/about /about 301
@@ -14,7 +20,6 @@
 # 旧标签页 301 重定向 (2026-08-31 标签收敛 150->14 后的流量恢复措施)
 # 源: git 历史 708970a 中存在、现已下线的旧标签页 URL
 # 目标: 按语义就近导向现存核心标签hub或专题文章
-
 /tags/12300%E7%94%B5%E4%BF%A1%E7%94%B3%E8%AF%89/ /tags/%E5%8F%B7%E7%A0%81%E6%A0%87%E8%AE%B0%E7%94%B3%E8%AF%89/ 301
 /tags/360/ /tags/%E6%A0%87%E8%AE%B0%E5%B9%B3%E5%8F%B0/ 301
 /tags/360%E6%89%8B%E6%9C%BA%E5%8D%AB%E5%A3%ABAI%E6%A0%87%E8%AE%B0/ /tags/%E6%A0%87%E8%AE%B0%E5%B9%B3%E5%8F%B0/ 301
@@ -157,3 +162,8 @@
 /tags/%E9%AA%9A%E6%89%B0%E7%94%B5%E8%AF%9D%E8%87%AA%E5%8A%A8%E6%A0%87%E8%AE%B0/ /blog/2026-ai-marking-algorithm-rules-guide/ 301
 /tags/%E9%AB%98%E9%A2%91%E5%A4%96%E5%91%BC%E5%8F%B7%E7%A0%81%E6%A0%87%E8%AE%B0/ /tags/%E9%AB%98%E9%A2%91%E5%A4%96%E5%91%BC/ 301
 /tags/%E9%AB%98%E9%A2%91%E9%AA%9A%E6%89%B0%E7%94%B5%E8%AF%9D%E9%98%B2%E6%8A%A4%E6%80%8E%E4%B9%88%E5%85%B3%E9%97%AD/ /blog/2026-carrier-network-interception-guide/ 301
+
+# ===== 动态规则区 (:splat 通配, 上限100条, 必须置于文件末尾) =====
+/en/tools/:splat /tools/:splat 301
+/en/guide/:splat /guide/:splat 301
+/en/compare/:splat /compare/:splat 301
