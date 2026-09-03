@@ -81,6 +81,7 @@ const pageLastmod = {
   '/blog/2026-number-false-marking-guide/': '2026-08-28',
   '/blog/2026-360-number-marking-appeal-guide/': '2026-08-31',
   '/blog/2026-number-marking-clear-price-guide/': '2026-08-31',
+  '/blog/2026-virtual-operator-number-marking-clear-guide/': '2026-09-03',
   '/blog/': '2026-08-31',
   '/tools/attribution/': '2026-07-08',
   '/tools/legal-number-verify/': '2026-07-06',
