@@ -103,7 +103,7 @@ howToMaterials:
 
 ### 1. 其他平台要同步申诉
 
-前面说过，360只是五大标记平台之一。信通院查询结果里如果显示腾讯、百度、泰迪熊、电话邦也有标记，需要**分别到各家入口提交申诉**（腾讯：yun.m.qq.com；百度：haoma.baidu.com；泰迪熊：teddymobile.cn/numberComplaint；电话邦：dianhua.cn/appeal）。各家流程与360大同小异，材料可以复用，具体差异见[五大平台对比实测](/blog/2026-number-marking-platform-comparison/)。
+前面说过，360只是五大标记平台之一。信通院查询结果里如果显示腾讯、百度、泰迪熊、电话邦也有标记，需要**分别到各家入口提交申诉**（腾讯：yun.m.qq.com；百度：haoma.baidu.com；泰迪熊：teddymobile.cn/numberComplain；电话邦：dianhua.cn/appeal）。各家流程与360大同小异，材料可以复用，具体差异见[五大平台对比实测](/blog/2026-number-marking-platform-comparison/)。
 
 ### 2. 用号码认证防复标
 

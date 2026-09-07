@@ -94,7 +94,7 @@ tags: ["号码标记清除", "号码标记申诉", "号码标记查询", "号码
 | 360手机卫士 | haomashensu.360.cn | 1–2 个工作日 | 约 70% | 010-89180702 |
 | 腾讯手机管家 | yun.m.qq.com | 2–3 个工作日 | 约 65% | 0755-83765566 |
 | 百度号码认证 | haoma.baidu.com | 1–3 个工作日 | 约 75% | QQ群 910251361 |
-| 泰迪熊移动 | teddymobile.cn/numberComplaint | 2–4 个工作日 | 约 60% | 400-825-3666 |
+| 泰迪熊移动 | teddymobile.cn/numberComplain | 2–4 个工作日 | 约 60% | 400-825-3666 |
 | 电话邦 | dianhua.cn/appeal | 2–4 个工作日 | 约 65% | 400-061-8800 |
 | 搜狗号码通 | 邮件 IMETS@tencent.com | 3–5 个工作日 | 约 55% | — |
 | Truecaller | truecaller.com/unlisting | 24–48 小时 | 约 80%（海外标记） | — |
@@ -107,7 +107,7 @@ tags: ["号码标记清除", "号码标记申诉", "号码标记查询", "号码
 
 **华为**：在电话 App → 骚扰拦截 → 号码申诉提交。注意华为数据多来自腾讯/泰迪熊/电话邦，**需到源头申诉**，仅在华为端申诉往往清不干净。
 
-**泰迪熊移动**：访问 teddymobile.cn/numberComplaint 提交申诉。
+**泰迪熊移动**：访问 teddymobile.cn/numberComplain 提交申诉。
 
 **电话邦**：访问 dianhua.cn/appeal 提交申诉。
 

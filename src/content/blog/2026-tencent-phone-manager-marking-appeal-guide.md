@@ -123,7 +123,7 @@ howToMaterials:
 
 腾讯清完，只完成了五分之一。按顺序做三件事：
 
-**1. 其他平台同步申诉**。信通院查询结果里若显示 360、百度、泰迪熊、电话邦也有标记，分别到各家入口提交（360：haomashensu.360.cn；百度：haoma.baidu.com；泰迪熊：teddymobile.cn/numberComplaint；电话邦：dianhua.cn/appeal），材料可以复用。360 那家的专项流程见[360号码标记怎么清除](/blog/2026-360-number-marking-appeal-guide/)。
+**1. 其他平台同步申诉**。信通院查询结果里若显示 360、百度、泰迪熊、电话邦也有标记，分别到各家入口提交（360：haomashensu.360.cn；百度：haoma.baidu.com；泰迪熊：teddymobile.cn/numberComplain；电话邦：dianhua.cn/appeal），材料可以复用。360 那家的专项流程见[360号码标记怎么清除](/blog/2026-360-number-marking-appeal-guide/)。
 
 **2. 多终端复测**。申诉通过 7 天后，用 2–3 部不同品牌的手机实测拨入——至少一部华为或荣耀（腾讯数据主力终端）+ 一部装了其他安全软件的安卓机。**只看后台"已解除"状态不够**，数据同步有延迟，部分机型还有厂商本地缓存标记，见[手机厂商隐藏标记系统清除指南](/blog/2026-phone-manufacturer-local-marking-database-clear-guide/)。
 

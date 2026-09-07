@@ -11,7 +11,7 @@ howToSteps:
   - name: "先用免费官方渠道自查全部标记"
     text: "通过信通院码号服务推进组（opene164.org.cn）或号码标记自查工具，一次性查清号码被哪些平台标记。这一步完全免费，且决定了后续要不要花钱——只被一家平台标记的话，自己申诉几分钟就能搞定。"
   - name: "逐平台提交免费申诉"
-    text: "360（haomashensu.360.cn）、腾讯（yun.m.qq.com）、百度（haoma.baidu.com）、泰迪熊（teddymobile.cn/numberComplaint）、电话邦（dianhua.cn/appeal）的申诉入口全部免费，个人凭身份证+归属证明提交，1-4个工作日反馈。材料齐全的情况下，自己跑完全流程成本为零。"
+    text: "360（haomashensu.360.cn）、腾讯（yun.m.qq.com）、百度（haoma.baidu.com）、泰迪熊（teddymobile.cn/numberComplain）、电话邦（dianhua.cn/appeal）的申诉入口全部免费，个人凭身份证+归属证明提交，1-4个工作日反馈。材料齐全的情况下，自己跑完全流程成本为零。"
   - name: "评估是否需要付费服务"
     text: "满足以下任一条件再考虑付费：号码在3个以上平台有标记且材料复杂；企业有10个以上号码需要批量处理；申诉被驳回两次以上；没有时间跟进各家平台。付费买的不是'官方关系'，而是省时省力和批量处理能力。"
   - name: "签约前核实服务商资质与收费结构"
@@ -50,7 +50,7 @@ howToMaterials:
 
 **查询免费**。中国信通院码号服务推进组（opene164.org.cn）提供跨平台标记聚合查询，一次看清号码在360、腾讯、百度、泰迪熊、电话邦等平台的标记状态。这是工信部体系的官方服务，完全免费。本站[号码标记自查工具](/tools/marking-check/)聚合的也是这类官方数据源。
 
-**申诉免费**。五家主流标记平台的官方申诉入口：360（haomashensu.360.cn）、腾讯手机管家（yun.m.qq.com）、百度号码认证（haoma.baidu.com）、泰迪熊移动（teddymobile.cn/numberComplaint）、电话邦（dianhua.cn/appeal）。全部免费提交，全部统一审核队列。360最快1-2个工作日，其他平台2-4个工作日。各平台的详细流程差异，见[号码标记清除完全指南](/blog/2026-number-marking-clearance-guide/)。
+**申诉免费**。五家主流标记平台的官方申诉入口：360（haomashensu.360.cn）、腾讯手机管家（yun.m.qq.com）、百度号码认证（haoma.baidu.com）、泰迪熊移动（teddymobile.cn/numberComplain）、电话邦（dianhua.cn/appeal）。全部免费提交，全部统一审核队列。360最快1-2个工作日，其他平台2-4个工作日。各平台的详细流程差异，见[号码标记清除完全指南](/blog/2026-number-marking-clearance-guide/)。
 
 **运营商拦截解除免费**。如果问题是"标记清了电话还是打不通"，那是运营商网络侧拦截（高频骚扰电话防护），拨打本机运营商客服（移动10086/电信10000/联通10010）申请关闭高频防护即可，同样免费。机制详见[运营商网络侧拦截指南](/blog/2026-carrier-network-interception-guide/)。
 

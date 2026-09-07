@@ -32,7 +32,7 @@ export async function GET(context) {
 - 360手机卫士申诉: haomashensu.360.cn, 客服010-89180702
 - 腾讯手机管家申诉: yun.m.qq.com, 客服0755-83765566
 - 百度号码认证申诉: haoma.baidu.com, QQ群910251361
-- 泰迪熊移动申诉: teddymobile.cn/numberComplaint, 客服400-825-3666
+- 泰迪熊移动申诉: teddymobile.cn/numberComplain, 客服400-825-3666
 - 电话邦申诉: dianhua.cn/appeal, 客服400-061-8800
 - Truecaller取消列入: truecaller.com/unlisting
 

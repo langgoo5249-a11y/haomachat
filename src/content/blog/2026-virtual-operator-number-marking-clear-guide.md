@@ -13,7 +13,7 @@ howToSteps:
   - name: "联系虚商客服开具号码归属证明"
     text: "虚商号码的归属证明不能找移动/联通/电信开，需要联系号码所属虚商的客服：小米移动打400-100-5678走人工，京东通信打400-616-1000，阿里通信通过淘宝App联系客服。提交申诉时注明'虚拟运营商号码'并提供入网时的实名信息，一般1-3个工作日开出。"
   - name: "逐平台提交免费申诉"
-    text: "带身份证和归属证明逐平台提交：360（haomashensu.360.cn，1-2个工作日）、腾讯（yun.m.qq.com，3-5个工作日）、百度（haoma.baidu.com）、泰迪熊（teddymobile.cn/numberComplaint）、电话邦（dianhua.cn/appeal）。全部免费，材料齐全的情况下自己就能跑完。"
+    text: "带身份证和归属证明逐平台提交：360（haomashensu.360.cn，1-2个工作日）、腾讯（yun.m.qq.com，3-5个工作日）、百度（haoma.baidu.com）、泰迪熊（teddymobile.cn/numberComplain）、电话邦（dianhua.cn/appeal）。全部免费，材料齐全的情况下自己就能跑完。"
   - name: "被驳回后针对性补材料二次申诉"
     text: "虚商号码最常见的驳回原因是归属证明不被认可，补交虚商App内的实名认证截图和最近缴费记录可以显著提高通过率。其他驳回原因和二次申诉技巧，参考号码标记申诉被驳回的完整解决方案。"
   - name: "清除后办号码认证防复标"
@@ -95,7 +95,7 @@ howToMaterials:
 
 **百度（haoma.baidu.com）**：适合个人申诉，材料要求与360基本一致。
 
-**泰迪熊（teddymobile.cn/numberComplaint）**：泰迪熊主要给华为、OPPO等手机厂商供数据，清完它，新出的国产手机上才不显示。泰迪熊的申诉周期2-4个工作日。
+**泰迪熊（teddymobile.cn/numberComplain）**：泰迪熊主要给华为、OPPO等手机厂商供数据，清完它，新出的国产手机上才不显示。泰迪熊的申诉周期2-4个工作日。
 
 **电话邦（dianhua.cn/appeal）**：电话邦的数据被小米、vivo等厂商采用。注意电话邦的企业申诉需要营业执照，个人申诉需要身份证+归属证明。
 

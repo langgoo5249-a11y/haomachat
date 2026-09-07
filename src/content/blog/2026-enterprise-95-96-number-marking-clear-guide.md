@@ -74,7 +74,7 @@ howToMaterials:
 | 360手机卫士 | haomashensu.360.cn | 1-3个工作日 | 市场份额第一，优先清 |
 | 腾讯手机管家 | yun.m.qq.com | 2-5个工作日 | 覆盖华为/荣耀终端最多 |
 | 百度号码认证 | haoma.baidu.com | 1-3个工作日 | 企业认证优先展示 |
-| 泰迪熊移动 | teddymobile.cn/numberComplaint | 2-4个工作日 | 覆盖小米/OPPO/vivo |
+| 泰迪熊移动 | teddymobile.cn/numberComplain | 2-4个工作日 | 覆盖小米/OPPO/vivo |
 | 电话邦 | dianhua.cn/appeal | 2-4个工作日 | 部分安卓终端使用 |
 
 > ⚠️ **踩坑提醒**：95号码申诉时必须注明号码是工信部核配的跨省短号码，附上号码使用证书。很多企业在申诉材料里只放了营业执照，没放号码使用证书，导致平台无法核实号码归属，申诉被退回。如果想一步拿到所有平台入口，可以用我们的[号码标记清除工具](/tools/marking-clear/)。
