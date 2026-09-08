@@ -157,7 +157,7 @@ const advantages = [
         号码通查提供<strong>号码标记通查</strong>服务,包括<strong>号码标记查询</strong>、<strong>号码标记自查</strong>、<strong>号码标记清除</strong>和<strong>号码归属地查询免费</strong>工具。手机号码标记与座机号码标记均支持,聚合中国信通院码号服务推进组与Truecaller官方入口。座机号码标记怎么清除？本站提供分平台图文教程与官方申诉入口导航。
       </p>
       <div class="flex flex-wrap justify-center gap-3 mb-8">
-        <a href={serviceUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors shadow-sm">
+        <a href={serviceUrl} target="_blank" rel="noopener" onclick="event.preventDefault(); window.open(this.href, '_blank', 'noopener');" class="inline-flex items-center gap-2 px-7 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 transition-colors shadow-sm">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.clear}/></svg>
           立即清除标记
         </a>
@@ -382,7 +382,7 @@ const advantages = [
     <h2 class="text-2xl font-bold mb-3">还在为号码被标记烦恼?</h2>
     <p class="text-brand-100 mb-6 max-w-2xl mx-auto">立即使用标记清除服务,手机号与座机号均支持,1-3个工作日恢复正常来电显示</p>
     <div class="flex flex-wrap justify-center gap-3">
-      <a href={serviceUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-7 py-3 bg-white text-brand-700 rounded-lg font-medium hover:bg-brand-50 transition-colors shadow-sm">
+      <a href={serviceUrl} target="_blank" rel="noopener" onclick="event.preventDefault(); window.open(this.href, '_blank', 'noopener');" class="inline-flex items-center gap-2 px-7 py-3 bg-white text-brand-700 rounded-lg font-medium hover:bg-brand-50 transition-colors shadow-sm">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={icons.clear}/></svg>
         立即清除标记
       </a>

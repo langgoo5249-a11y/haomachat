@@ -135,7 +135,7 @@ const faqSchema = {
         <h2 class="text-lg font-bold text-slate-800">号码标记自查 — 手机号 / 座机号</h2>
         <p class="text-sm text-slate-500 mt-1">输入手机号码或座机号码,查询被标记情况</p>
       </div>
-      <a href={serviceUrl} target="_blank" rel="noopener" class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 whitespace-nowrap transition-colors">立即查询标记 →</a>
+      <a href={serviceUrl} target="_blank" rel="noopener" onclick="event.preventDefault(); window.open(this.href, '_blank', 'noopener');" class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 whitespace-nowrap transition-colors">立即查询标记 →</a>
     </div>
   </section>
 
