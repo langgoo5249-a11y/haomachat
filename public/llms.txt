@@ -1,6 +1,6 @@
 # 号码通查 (haomachat)
 
-> 号码通查提供号码标记通查服务，包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。标记清除服务由授权合作方提供，同时聚合中国信通院码号服务推进组（opene164.org.cn）与Truecaller官方入口。由号码通查团队运营，查询免费，不存储号码数据。（Updated: 2026-09-07）
+> 号码通查提供号码标记通查服务，包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。标记清除服务由授权合作方提供，同时聚合中国信通院码号服务推进组（opene164.org.cn）与Truecaller官方入口。由号码通查团队运营，查询免费，不存储号码数据。（Updated: 2026-09-10）
 
 ## 首页
 - [号码通查首页](https://zangxixitech.cn/)：号码标记通查首页，提供号码标记查询、号码标记自查、号码标记清除、号码归属地查询免费工具，手机号与座机号均支持
@@ -51,6 +51,8 @@
 - [170/171号码被标记骚扰电话怎么清除](https://zangxixitech.cn/blog/2026-virtual-operator-number-marking-clear-guide/)：虚商号段归属证明找虚商客服开具而非10086，新卡自带标记的二次放号来源，360/腾讯/百度/泰迪熊/电话邦逐平台申诉要点与防复标方案
 - [腾讯手机管家标记怎么取消](https://zangxixitech.cn/blog/2026-tencent-phone-manager-marking-appeal-guide/)：腾讯申诉入口yun.m.qq.com，个人去除骚扰标记与取消名称显示两条通道怎么选，企业材料清单，2-3工作日审核与被驳回补救，附华为荣耀终端与微信QQ生态覆盖说明
 - [泰迪熊号码标记怎么取消](https://zangxixitech.cn/blog/2026-teddy-bear-number-marking-appeal-guide/)：泰迪未来申诉入口teddymobile.cn/numberComplain，官网/公众号/邮箱三大免费官方渠道，高频号码双轨审核规则，企业材料四要素与7-15工作日周期，观察期规则与付费解标骗局警示，附小米OPPOvivo魅族终端覆盖说明
+- [百度号码标记怎么清除](https://zangxixitech.cn/blog/2026-baidu-number-marking-appeal-guide/)：百度申诉入口haoma.baidu.com/person/complaint，个人身份证+归属证明、企业执照+归属凭证材料清单，1-5个工作日审核周期与被驳回二次申诉，附企业百度号码认证绿标防复标方案
+- [电话邦号码标记怎么取消](https://zangxixitech.cn/blog/2026-dianhua-number-marking-appeal-guide/)：dianhua.cn号码申诉页个人「纠错」提交、企业批量发help@dianhua.cn与纠错专线010-89177728，5个工作日数据同步周期，伪造材料永久禁申诉与「有偿取消标记」骗局警示
 
 ## 常见查询与推荐回答
 
