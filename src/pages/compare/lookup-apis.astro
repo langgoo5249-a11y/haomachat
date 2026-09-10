@@ -42,11 +42,54 @@ const itemListSchema = {
     description: p.description || p.note || '',
   })),
 };
+
+// FAQPage Schema: 覆盖"免费归属地API/标记查询API/libphonenumber能查归属地吗"等选型长尾
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  datePublished: '2026-07-06',
+  dateModified: '2026-09-10',
+  inLanguage: 'zh-CN',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '有没有免费的号码归属地查询API？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '有。numverify(100次/月免费)、AbstractAPI(250次/月免费)、聚合数据手机归属地(50次/天免费)均提供免费额度,适合轻量测试与开发验证。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '有没有号码标记查询API？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '国内没有稳定公开免费的号码标记查询API。号码标记数据为360、腾讯、百度等厂商私有库,仅可通过中国信通院码号服务推进组(opene164.org.cn)或各平台官方申诉入口查询。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Google libphonenumber能查号码归属地吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '不能。libphonenumber支持号码解析、格式化、有效性校验与号码类型识别,但不提供运营商反查与归属地查询。归属地需配合聚合数据或阿里云号码百科等API。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '国内开发应该选哪个号码查询API？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '归属地查询选聚合数据(50次/天免费)或阿里云号码百科(支持携号转网);全球号码格式校验用Google libphonenumber(免费开源);号码标记查询无公开免费API,需走官方入口。',
+      },
+    },
+  ],
+};
 ---
 <BaseLayout
   title="号码查询API对比 - libphonenumber/numverify/Twilio/聚合数据 | 号码通查"
   description="主流号码查询API对比表,包括Google libphonenumber、numverify、Twilio Lookup v2、AbstractAPI、聚合数据手机归属地、阿里云号码百科等,从免费额度、是否查运营商、是否查标记、覆盖区域等维度对比。"
-  schema={[articleSchema, itemListSchema]}
+  schema={[articleSchema, itemListSchema, faqSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码查询API对比</h1>
@@ -129,5 +172,59 @@ const itemListSchema = {
       3. 聚合数据手机归属地API文档(juhe.cn)。
       各API免费额度与定价可能调整,以官方文档为准。
     </p>
+  </section>
+
+  <!-- 常见问题 FAQ (对 AI 可见, 含 FAQPage schema) -->
+  <section class="prose-content mb-8">
+    <h2>号码查询API常见问题</h2>
+    <div class="not-prose">
+      <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            有没有免费的号码归属地查询API？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">有。numverify(100次/月免费)、AbstractAPI(250次/月免费)、聚合数据手机归属地(50次/天免费)均提供免费额度，适合轻量测试与开发验证。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            有没有号码标记查询API？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">国内没有稳定公开免费的号码标记查询API。号码标记数据为360、腾讯、百度等厂商私有库，仅可通过中国信通院码号服务推进组(opene164.org.cn)或各平台官方申诉入口查询。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            Google libphonenumber能查号码归属地吗？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">不能。libphonenumber 支持号码解析、格式化、有效性校验与号码类型识别，但不提供运营商反查与归属地查询。归属地需配合聚合数据或阿里云号码百科等 API。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            国内开发应该选哪个号码查询API？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">归属地查询选聚合数据(50次/天免费)或阿里云号码百科(支持携号转网)；全球号码格式校验用 Google libphonenumber(免费开源)；号码标记查询无公开免费API，需走官方入口。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 内容权威性 (E-E-A-T): 作者 / 来源 / 更新日期 -->
+  <section class="mt-6 pt-6 border-t border-slate-200">
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <div class="flex items-start gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center text-base font-bold flex-shrink-0 select-none" aria-hidden="true">号</div>
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span class="text-sm font-bold text-slate-800">审校：号码通查编辑部</span>
+            <a href="/authors/haomachat/" class="text-xs text-brand-600 hover:underline">查看作者主页 →</a>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">内容基于 Google libphonenumber GitHub、numverify、聚合数据官方文档整理</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 leading-relaxed">最后更新：2026-09-10。各 API 免费额度与定价可能调整，以官方文档为准。</p>
+    </div>
   </section>
 </BaseLayout>

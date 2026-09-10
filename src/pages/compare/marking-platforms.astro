@@ -40,11 +40,54 @@ const itemListSchema = {
     description: p.desc || p.note || '',
   })),
 };
+
+// FAQPage Schema: 覆盖"号码标记清除收费吗/要多久/座机能清吗"等 PAA 长尾
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  datePublished: '2026-07-06',
+  dateModified: '2026-09-10',
+  inLanguage: 'zh-CN',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '号码标记清除收费吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '免费。标记清除服务、中国信通院码号服务推进组(opene164.org.cn)、Truecaller三个渠道的标记查询与取消收录均免费,无需付费。本站提供的是官方入口导航,不收取任何费用。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '座机(固话)号码可以清除标记吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '可以。标记清除服务与中国信通院码号服务推进组均支持座机(固话)号码的标记清除,输入带区号的座机号码即可操作。三个渠道对手机号与座机号均支持。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '号码标记清除需要多长时间？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '标记清除服务与信通院通常1-3个工作日完成处理,Truecaller提交取消收录后24-48小时移除。多渠道配合使用,一般1周内可彻底清除。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '三个清除渠道有什么区别？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '标记清除服务支持手机号与座机号,操作便捷,推荐优先使用;中国信通院码号服务推进组是国内唯一官方跨平台入口,中国联通手机号可一站式清除;Truecaller专门处理海外标记。三渠道配合可彻底清除。',
+      },
+    },
+  ],
+};
 ---
 <BaseLayout
   title="号码标记清除渠道对比 - 标记服务/信通院/Truecaller | 号码通查"
   description="号码标记查询与清除渠道对比表,包括标记清除服务(支持手机号与座机号)、中国信通院码号服务推进组(官方跨平台入口)、Truecaller(全球来电识别),从类型、支持号码、费用、特点等维度对比,帮助用户选择正确的清除渠道。"
-  schema={[articleSchema, itemListSchema]}
+  schema={[articleSchema, itemListSchema, faqSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码标记清除渠道对比</h1>
@@ -127,5 +170,59 @@ const itemListSchema = {
     <p class="text-sm text-slate-600 leading-relaxed">
       本页对比 3 个号码标记查询与清除渠道:标记清除服务(支持手机号与座机号)、中国信通院码号服务推进组(opene164.org.cn,官方跨平台入口)、Truecaller(truecaller.com,全球来电识别)。三个渠道查询均免费,手机号码与座机号码均支持。以上信息可能随各渠道更新而变化,以各渠道官方页面为准。
     </p>
+  </section>
+
+  <!-- 常见问题 FAQ (对 AI 可见, 含 FAQPage schema) -->
+  <section class="prose-content mb-8">
+    <h2>号码标记清除渠道常见问题</h2>
+    <div class="not-prose">
+      <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            号码标记清除收费吗？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">免费。标记清除服务、中国信通院码号服务推进组(opene164.org.cn)、Truecaller 三个渠道的标记查询与取消收录均免费，无需付费。本站提供的是官方入口导航，不收取任何费用。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            座机(固话)号码可以清除标记吗？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">可以。标记清除服务与中国信通院码号服务推进组均支持座机(固话)号码的标记清除，输入带区号的座机号码即可操作。三个渠道对手机号与座机号均支持。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            号码标记清除需要多长时间？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">标记清除服务与信通院通常 1-3 个工作日完成处理，Truecaller 提交取消收录后 24-48 小时移除。多渠道配合使用，一般 1 周内可彻底清除。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            三个清除渠道有什么区别？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">标记清除服务支持手机号与座机号，操作便捷，推荐优先使用；中国信通院码号服务推进组是国内唯一官方跨平台入口，中国联通手机号可一站式清除；Truecaller 专门处理海外标记。三渠道配合可彻底清除。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 内容权威性 (E-E-A-T): 作者 / 来源 / 更新日期 -->
+  <section class="mt-6 pt-6 border-t border-slate-200">
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <div class="flex items-start gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center text-base font-bold flex-shrink-0 select-none" aria-hidden="true">号</div>
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span class="text-sm font-bold text-slate-800">审校：号码通查编辑部</span>
+            <a href="/authors/haomachat/" class="text-xs text-brand-600 hover:underline">查看作者主页 →</a>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">号码标记治理顾问 langood 参与校对 · 内容基于各渠道官方公开信息</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 leading-relaxed">最后更新：2026-09-10。以上渠道入口与审核时效可能随各平台调整，以各渠道官方页面为准；诈骗类标记不在清除范围。</p>
+    </div>
   </section>
 </BaseLayout>

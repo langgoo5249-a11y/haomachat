@@ -42,11 +42,62 @@ const itemListSchema = {
     description: p.highlight + '。' + (typeof p.features === 'string' ? p.features : p.features?.join('；')),
   })),
 };
+
+// FAQPage Schema: 覆盖"号码认证哪家好/多少钱/支持鸿蒙吗"等选型长尾
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  datePublished: '2026-07-06',
+  dateModified: '2026-09-10',
+  inLanguage: 'zh-CN',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: '号码认证服务商哪家好？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '没有绝对最优,需按场景选型。网易易盾、极光JVerification、阿里云PNVS、秒验均完整支持鸿蒙且提供成熟的短信降级;友盟U-Verify适合阿里系生态;极光适合做推送联动。建议从鸿蒙适配、降级机制、生态协同、接入成本四维度评估。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '号码认证多少钱？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '号码认证服务通常按量阶梯计费,单次校验约0.02-0.05元。各服务商(网易易盾、极光、阿里云PNVS、秒验等)价格相近,预取号与一键登录价格略有差异,大批量可议价。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '号码认证支持鸿蒙吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '主流服务商(网易易盾、极光JVerification、阿里云PNVS、秒验、闪验)已支持鸿蒙原生。接入前需确认服务商的鸿蒙SDK版本,个推、百度云、容联云为部分支持。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '一键登录和本机号码校验有什么区别？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '一键登录用于App注册登录,需用户在授权弹窗点击同意,2-4秒完成;本机号码校验用于支付确认等敏感操作的二次验证,校验用户输入号码与设备SIM卡是否一致,不需要授权弹窗。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '怎么选择号码认证服务商？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '从四个维度评估:鸿蒙适配(需要支持鸿蒙则选已完整支持的)、降级机制(网关不可用时能否自动切换短信)、生态协同(是否与已有统计分析/推送体系互补)、接入成本(SDK体积与集成难度)。',
+      },
+    },
+  ],
+};
 ---
 <BaseLayout
   title="号码认证服务商对比 - 网易易盾/极光/阿里云等10家对比 | 号码通查"
   description="国内主流号码认证(一键登录/本机号码校验)服务商对比表,包括网易易盾、MobTech秒验、极光JVerification、个推、友盟U-Verify、阿里云PNVS、百度云、闪验、容联云、聚合数据共10家,从三网覆盖、核心特点、计费方式、功能支持、鸿蒙适配等维度对比。"
-  schema={[articleSchema, itemListSchema]}
+  schema={[articleSchema, itemListSchema, faqSchema]}
   breadcrumbs={breadcrumbs}
 >
   <h1 class="text-3xl font-bold text-slate-800 mb-3">号码认证服务商对比</h1>
@@ -130,5 +181,66 @@ const itemListSchema = {
       3. 极光JVerification官方文档(docs.jiguang.cn)。
       各服务商功能与定价可能随版本更新调整,以官方文档为准。
     </p>
+  </section>
+
+  <!-- 常见问题 FAQ (对 AI 可见, 含 FAQPage schema) -->
+  <section class="prose-content mb-8">
+    <h2>号码认证服务商常见问题</h2>
+    <div class="not-prose">
+      <div class="bg-white rounded-xl border border-slate-200 divide-y divide-slate-100">
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            号码认证服务商哪家好？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">没有绝对最优，需按场景选型。网易易盾、极光JVerification、阿里云PNVS、秒验均完整支持鸿蒙且提供成熟的短信降级；友盟U-Verify适合阿里系生态；极光适合做推送联动。建议从鸿蒙适配、降级机制、生态协同、接入成本四维度评估。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            号码认证多少钱？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">号码认证服务通常按量阶梯计费，单次校验约 0.02-0.05 元。各服务商(网易易盾、极光、阿里云PNVS、秒验等)价格相近，预取号与一键登录价格略有差异，大批量可议价。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            号码认证支持鸿蒙吗？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">主流服务商(网易易盾、极光JVerification、阿里云PNVS、秒验、闪验)已支持鸿蒙原生。接入前需确认服务商的鸿蒙SDK版本，个推、百度云、容联云为部分支持。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            一键登录和本机号码校验有什么区别？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">一键登录用于 App 注册登录，需用户在授权弹窗点击同意，2-4 秒完成；本机号码校验用于支付确认等敏感操作的二次验证，校验用户输入号码与设备 SIM 卡是否一致，不需要授权弹窗。</p>
+        </details>
+        <details class="group p-4">
+          <summary class="font-medium text-slate-800 cursor-pointer list-none flex items-center justify-between">
+            怎么选择号码认证服务商？
+            <svg class="w-6 h-5 text-slate-400 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <p class="text-sm text-slate-600 mt-2 leading-relaxed">从四个维度评估：鸿蒙适配(需支持鸿蒙则选已完整支持的)、降级机制(网关不可用时能否自动切换短信)、生态协同(是否与已有统计分析/推送体系互补)、接入成本(SDK 体积与集成难度)。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- 内容权威性 (E-E-A-T): 作者 / 来源 / 更新日期 -->
+  <section class="mt-6 pt-6 border-t border-slate-200">
+    <div class="bg-white rounded-xl border border-slate-200 p-5">
+      <div class="flex items-start gap-3 mb-3">
+        <div class="w-10 h-10 rounded-full bg-brand-600 text-white flex items-center justify-center text-base font-bold flex-shrink-0 select-none" aria-hidden="true">号</div>
+        <div class="min-w-0">
+          <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span class="text-sm font-bold text-slate-800">审校：号码通查编辑部</span>
+            <a href="/authors/haomachat/" class="text-xs text-brand-600 hover:underline">查看作者主页 →</a>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5">内容基于网易易盾、阿里云号码认证PNVS、极光JVerification官方文档整理</p>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 leading-relaxed">最后更新：2026-09-10。各服务商功能与定价可能随版本更新调整，以官方文档为准。</p>
+    </div>
   </section>
 </BaseLayout>
