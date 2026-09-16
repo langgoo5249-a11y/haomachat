@@ -9,12 +9,18 @@
  * 问题在 Bing 侧验证爬虫被 Cloudflare 机器人防护拦截, 或 key 在 Bing
  * 系统内失效(需到 Bing Webmaster Tools 重新生成 key 并替换本文件)。
  * 教训来自 dev.to/samtj: 1) 提交前先自检 key 文件 2) 必须读响应体而非只看状态码
+ *
+ * 排障记录 (2026-09-16): 经 Cloudflare GraphQL 防火墙日志确认 bingbot 抓取
+ * key 文件已被 skip 放行(非拦截), 旧 key 8413a9f4... 仍 403 → 判定为 Bing 侧
+ * 负缓存(旧 key 验证失败状态被长期缓存)。处置: 轮换新 key 505d00e4..., 并在
+ * Cloudflare 新增 "Allow IndexNow key files" 规则(精确匹配两个 key 文件路径,
+ * skip 托管规则+SBFM+浏览器完整性检查+安全级别)。旧 key 文件保留观察。
  */
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 
 const SITE = 'https://zangxixitech.cn';
-const KEY = '8413a9f41d034daa94eef1027c6ca5c2';
+const KEY = '505d00e42f759e5c536b2ecd36c03d63';
 const KEY_LOCATION = `${SITE}/${KEY}.txt`;
 
 // 从 sitemap-0.xml 提取所有 URL
