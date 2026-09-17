@@ -26,23 +26,37 @@ User-agent: ZoominfoBot
 Disallow: /
 
 # ============================================================
-# AI 训练爬虫 — 限速策略 (Crawl-delay: 10秒)
-# 这些爬虫对带宽压力大, 限速而非屏蔽, 保留 Googlebot 对 AI 内容的引用机会
+# AI 训练型爬虫 — 限速抓取 + 屏蔽后台/接口
+# 策略: 开放抓取网页(可被引用), 但 Crawl-delay 降频减速,
+#       并禁止访问 /api/ 等后台接口(不白嫖训练)
 # ============================================================
 User-agent: GPTBot
 Crawl-delay: 10
+Disallow: /api/
 User-agent: CCBot
 Crawl-delay: 10
+Disallow: /api/
 User-agent: ClaudeBot
 Crawl-delay: 10
+Disallow: /api/
 User-agent: Bytespider
 Crawl-delay: 10
+Disallow: /api/
 User-agent: Google-Extended
 Crawl-delay: 10
+Disallow: /api/
 User-agent: PerplexityBot
 Crawl-delay: 10
+Disallow: /api/
 User-agent: anthropic-ai
 Crawl-delay: 10
+Disallow: /api/
+User-agent: cohere-training-dataFetcher
+Crawl-delay: 10
+Disallow: /api/
+User-agent: Amazonbot
+Crawl-delay: 10
+Disallow: /api/
 
 # ============================================================
 # 主流搜索引擎 — 完全放行

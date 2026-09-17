@@ -1,6 +1,12 @@
 # 号码通查 - Cloudflare Pages _headers 配置
-# 策略: 静态资源强缓存 + HTML 短缓存 + 安全响应头
-# 最后更新: 2026-08-31
+# 策略: 静态资源强缓存 + HTML 短缓存 + 安全响应头 + 后台/接口屏蔽
+# 最后更新: 2026-09-17
+
+# === 后台/接口: 对搜索引擎和AI爬虫语义化屏蔽 (noindex) ===
+# 配合 WAF 规则(训练型AI爬虫返回403) + robots.txt Disallow 三重保障
+/api/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: public, max-age=0, s-maxage=3600
 
 # === 静态资源: 强缓存 1 年 (文件名含哈希, 可安全长缓存) ===
 /_astro/*
