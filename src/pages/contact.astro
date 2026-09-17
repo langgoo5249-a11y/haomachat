@@ -14,6 +14,11 @@ const contactSchema = {
   description:
     '号码通查联系方式页面,提供微信、邮箱、在线反馈表单等多种联系方式,工作日24小时内回复。',
   url: 'https://zangxixitech.cn/contact/',
+  mainEntity: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    name: '吕经理',
+  },
 };
 
 // 提交后显示的提示 (纯前端, 无后端)
