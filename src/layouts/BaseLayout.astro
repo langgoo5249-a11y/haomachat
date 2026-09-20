@@ -79,7 +79,7 @@ const orgSchema = {
   '@type': 'Organization',
   '@id': `${site}/#organization`,
   name: '号码通查',
-  alternateName: 'haomachat',
+  alternateName: ['号通查', 'haomachat'],
   url: site,
   logo: {
     '@type': 'ImageObject',
@@ -90,6 +90,7 @@ const orgSchema = {
   description: '免费电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。',
   knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '法人号码核验', '手机卡选号', '400号码标记', '座机标记清除', '95/96号码标记'],
   sameAs: [
+    'https://github.com/langgoo5249-a11y',        // 共同身份锚（三站共有）
     'https://github.com/langgoo5249-a11y/haomachat',
     'https://www.opene164.org.cn',    // 中国信通院码号服务推进组
     'https://www.miit.gov.cn',         // 工信部
@@ -97,6 +98,7 @@ const orgSchema = {
     'https://www.12321.cn',            // 12321网络不良信息举报中心
     'https://www.isc.org.cn',          // 中国互联网协会
     'https://www.chinatcc.gov.cn',     // 工信部电信用户申诉受理中心
+    'https://www.524900.xyz/#organization',
   ],
   contactPoint: {
     '@type': 'ContactPoint',
@@ -118,7 +120,7 @@ const websiteSchema = {
   '@id': `${site}/#website`,
   url: site,
   name: '号码通查',
-  alternateName: 'haomachat',
+  alternateName: ['号通查', 'haomachat'],
   description: '号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费',
   inLanguage: 'zh-CN',
   datePublished: '2026-07-06',
