@@ -1,15 +1,9 @@
 # Cloudflare Pages _headers 配置
-# 确保 AI 爬虫不被任何 HTTP 响应头拦截
-# 最后更新: 2026-07-13
+# 确保 AI 爬虫不被任何 HTTP 响应头拦截,同时下发基础安全头
+# 最后更新: 2026-09-21
 
 /*
-  # 明确允许 AI 爬虫抓取 (不设置 X-Robots-Tag 即默认允许)
-  # 不设置任何 noindex/nofollow/noarchive
-  # 不设置任何速率限制头部
-  # 所有资源可被 AI 爬虫完整抓取
-
-# Service Worker: 必须禁止长缓存(否则更新无法生效), 并放开全站 scope
-/sw.js
-  Content-Type: application/javascript
-  Service-Worker-Allowed: /
-  Cache-Control: no-cache, max-age=0, must-revalidate
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
