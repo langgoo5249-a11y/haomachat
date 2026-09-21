@@ -295,6 +295,17 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
     <CustomerServiceFloat />
     <WeChatPopup />
 
+    <!-- 清理已废弃的第三方 Service Worker,防止旧 sw.js 继续拦截请求 -->
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          registrations.forEach(function(registration) {
+            registration.unregister();
+          });
+        });
+      }
+    </script>
+
     <!-- 第三方脚本延迟加载: 浏览器空闲时执行,不阻塞首屏渲染 -->
     <script is:inline>
       function loadAnalytics() {
