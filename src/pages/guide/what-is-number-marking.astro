@@ -44,7 +44,7 @@ const articleSchema = {
   headline: '号码标记是什么？号码被标记的原因与机制详解',
   description: '详解号码标记的来源、众包标记机制、企业认证标记与第三方号码库,以及来电显示规则',
   datePublished: '2026-07-06',
-  dateModified: '2026-07-06',
+  dateModified: '2026-09-21',
   author: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
   publisher: {
     '@type': 'Organization',
@@ -62,7 +62,7 @@ const howToSchema = {
   name: '如何查询自己的号码是否被标记',
   description: '通过中国信通院码号服务推进组和号码通查工具,一站式查询手机号/座机号在各平台的标记状态。',
   datePublished: '2026-07-06',
-  dateModified: '2026-07-06',
+  dateModified: '2026-09-21',
   totalTime: 'PT5M',
   supply: [],
   tool: [
@@ -194,5 +194,24 @@ const howToSchema = {
       <li>清除: 详见 <a href="/guide/how-to-clear-marking">如何清除号码标记</a> 清除教程。</li>
       <li>认证: 企业可注册腾讯号码公众平台、百度号码认证,建立"已认证"正向标记。</li>
     </ul>
+
+    <h2>下一步,按你的情况选处理路径</h2>
+    <p>根据你当前的具体问题,选择对应的专项指南或工具,避免在通用流程里反复摸索:</p>
+    <table>
+      <thead>
+        <tr><th>你遇到的情况</th><th>推荐路径</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>不知道号码是否被标记</td><td><a href="/tools/marking-check/">标记自查工具</a></td><td>聚合展示 360/腾讯/泰迪熊/电话邦等主流平台标记状态</td></tr>
+        <tr><td>已确认被误标,需要清除</td><td><a href="/tools/marking-clear/">标记清除服务</a></td><td>支持手机号与座机号,一站式提交申诉</td></tr>
+        <tr><td>被恶意标注成骚扰电话</td><td><a href="/blog/2026-malicious-number-marking-guide/">恶意标记应对指南</a></td><td>人民日报/新华网/湖北省公安厅公开案例,识别三种恶意标记动机与代消标记黑产收费套路,附 12321 举报与名誉权维权材料清单</td></tr>
+        <tr><td>企业号码需要防标记</td><td><a href="/blog/2026-enterprise-number-marking-prevention-guide/">企业防标记方案</a></td><td>号码认证绿标 + 外呼频次治理 + 防回流机制</td></tr>
+        <tr><td>二次放号新号码被误标</td><td><a href="/blog/2026-recycled-number-false-marking-guide/">二次放号清除指南</a></td><td>运营商销号记录作为核心证据,申诉通过率更高</td></tr>
+      </tbody>
+    </table>
+
+    <p class="text-sm text-slate-500">
+      相关专题: <a href="/guide/how-to-check-marking/">号码标记自查方法</a> · <a href="/guide/what-is-number-auth/">号码认证绿标指南</a> · <a href="/compare/marking-platforms/">主流标记清除平台对比</a> · <a href="/faq/">常见问题 FAQ</a>
+    </p>
   </section>
 </BaseLayout>

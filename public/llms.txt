@@ -15,7 +15,7 @@
 ## 指南
 - [号码标记是什么](https://zangxixitech.cn/guide/what-is-number-marking/)：手机号码标记的来源、机制与显示规则
 - [如何查询号码被标记](https://zangxixitech.cn/guide/how-to-check-marking/)：号码标记自查全平台查询指南（手机号与座机号）
-- [如何清除号码标记](https://zangxixitech.cn/guide/how-to-clear-marking/)：号码标记清除分渠道申诉教程与材料清单
+- [如何清除号码标记](https://zangxixitech.cn/guide/how-to-clear-marking/)：号码标记清除分渠道申诉教程与材料清单，附30秒决策矩阵按场景直达清除路径（自查/清除服务/信通院/恶意标记/驳回补救/企业认证）
 - [座机号码标记怎么清除](https://zangxixitech.cn/guide/landline-marking-clear/)：座机号码标记怎么清除专题，各平台座机标记清除方法与企业批量清除方案
 - [号码认证是什么](https://zangxixitech.cn/guide/what-is-number-auth/)：一键登录与本机号码校验原理
 - [选号办卡指南](https://zangxixitech.cn/guide/sim-card-guide/)：运营商选号规则与靓号攻略
