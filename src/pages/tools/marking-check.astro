@@ -10,7 +10,7 @@ const isUrl = (s: string) => /^https?:\/\//.test(s);
 
 // 公司服务链接
 // ⛔ 死规定：此链接为合作方真实服务地址，永远不得修改、替换或移除。
-const serviceUrl = 'https://xbh5.open10086.com/?authorization=f91029a83a8758aa';
+const serviceUrl = 'https://xbh5.open10086.com/#/?authorization=f91029a83a8758aa';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
@@ -74,14 +74,14 @@ const serviceSchema = {
   ],
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY', availability: 'https://schema.org/InStock' },
   category: '号码服务',
-  dateModified: '2026-09-10',
+  dateModified: '2026-08-12',
 };
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   datePublished: '2026-07-06',
-  dateModified: '2026-09-10',
+  dateModified: '2026-07-06',
   inLanguage: 'zh-CN',
   mainEntity: [
     {
@@ -112,8 +112,8 @@ const faqSchema = {
 };
 ---
 <BaseLayout
-  title="号码标记自查 - 查手机号/座机号被标记情况 | 号码通查"
-  description="号码标记自查工具:支持手机号码与座机(固话)号码,聚合标记查询服务入口、中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方查询入口,免费查询号码被标记情况。"
+  title="怎么查自己号码被标记了？360/腾讯/百度等6平台免费自查 | 号码通查"
+  description="想知道手机号/座机被哪些平台标记？号码通查汇总360、腾讯、百度、华为、泰迪熊、电话邦及信通院官方查询入口，免费自查标记情况，手机与座机均支持。"
   schema={[howToSchema, faqSchema, toolWebAppSchema, serviceSchema]}
   breadcrumbs={breadcrumbs}
 >
@@ -135,7 +135,7 @@ const faqSchema = {
         <h2 class="text-lg font-bold text-slate-800">号码标记自查 — 手机号 / 座机号</h2>
         <p class="text-sm text-slate-500 mt-1">输入手机号码或座机号码,查询被标记情况</p>
       </div>
-      <a href={serviceUrl} target="_blank" rel="noopener" onclick="event.preventDefault(); window.open(this.href, '_blank', 'noopener');" class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 whitespace-nowrap transition-colors">立即查询标记 →</a>
+      <a href={serviceUrl} target="_blank" rel="noopener" class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 whitespace-nowrap transition-colors">立即查询标记 →</a>
     </div>
   </section>
 

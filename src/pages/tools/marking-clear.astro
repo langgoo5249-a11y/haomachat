@@ -9,7 +9,7 @@ const isUrl = (s: string) => /^https?:\/\//.test(s);
 
 // 公司服务链接
 // ⛔ 死规定：此链接为合作方真实服务地址，永远不得修改、替换或移除。
-const serviceUrl = 'https://xbh5.open10086.com/?authorization=f91029a83a8758aa';
+const serviceUrl = 'https://xbh5.open10086.com/#/?authorization=f91029a83a8758aa';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
@@ -79,14 +79,14 @@ const serviceSchema = {
   ],
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY', availability: 'https://schema.org/InStock' },
   category: '号码服务',
-  dateModified: '2026-09-10',
+  dateModified: '2026-08-12',
 };
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   datePublished: '2026-07-06',
-  dateModified: '2026-09-10',
+  dateModified: '2026-07-06',
   inLanguage: 'zh-CN',
   mainEntity: [
     {
@@ -125,8 +125,8 @@ const faqSchema = {
 };
 ---
 <BaseLayout
-  title="号码标记清除 - 手机号/座机号误标记清除服务 | 号码通查"
-  description="号码标记清除服务,手机号码与座机(固话)号码均支持。提供标记清除服务入口,聚合中国信通院码号服务推进组(opene164.org.cn)与Truecaller官方清除入口,一站式解决号码被误标记为骚扰电话的问题。"
+  title="号码标记怎么清除？手机/座机误标记免费申诉教程 | 号码通查"
+  description="手机号/座机被误标骚扰、推销、诈骗？号码通查聚合信通院与Truecaller官方清除入口，提供分步申诉教程，1-3个工作日清除误标记，查询免费，不存储号码。"
   schema={[howToSchema, faqSchema, toolWebAppSchema, serviceSchema]}
   breadcrumbs={breadcrumbs}
 >
@@ -148,7 +148,7 @@ const faqSchema = {
         <h2 class="text-lg font-bold text-slate-800">号码标记清除 — 手机号 / 座机号</h2>
         <p class="text-sm text-slate-500 mt-1">输入手机号码或座机号码,查询并清除误标记</p>
       </div>
-      <a href={serviceUrl} target="_blank" rel="noopener" onclick="event.preventDefault(); window.open(this.href, '_blank', 'noopener');" class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 whitespace-nowrap transition-colors">立即清除标记 →</a>
+      <a href={serviceUrl} target="_blank" rel="noopener" class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 whitespace-nowrap transition-colors">立即清除标记 →</a>
     </div>
   </section>
 
@@ -167,7 +167,7 @@ const faqSchema = {
         <svg class="w-6 h-6 text-brand-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
         <div>
           <h3 class="font-semibold text-slate-700 text-sm">不存储您的号码</h3>
-          <p class="text-xs text-slate-500 mt-1">本站不存储您输入的号码,查询与清除在合作方服务页面完成。<a href="/privacy/" class="text-brand-600 hover:underline">隐私政策</a></p>
+          <p class="text-xs text-slate-500 mt-1">本站不存储您输入的号码,查询与清除在合作方服务页面完成。<a href="/privacy" class="text-brand-600 hover:underline">隐私政策</a></p>
         </div>
       </div>
       <div class="flex items-start gap-3">
@@ -186,8 +186,8 @@ const faqSchema = {
       </div>
     </div>
     <div class="mt-4 pt-4 border-t border-slate-100 flex items-center justify-between text-sm">
-      <span class="text-slate-500">遇到问题? <a href="/contact/" class="text-brand-600 hover:underline">联系我们</a></span>
-      <span class="text-slate-500">查看 <a href="/faq/" class="text-brand-600 hover:underline">常见问题</a></span>
+      <span class="text-slate-500">遇到问题? <a href="/contact" class="text-brand-600 hover:underline">联系我们</a></span>
+      <span class="text-slate-500">查看 <a href="/faq" class="text-brand-600 hover:underline">常见问题</a></span>
     </div>
   </section>
 
