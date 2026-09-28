@@ -1,6 +1,7 @@
 ---
 // 座机号码标记怎么清除 - GEO 长尾专题页
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
@@ -109,6 +110,9 @@ const faqSchema = {
     },
   ],
 };
+
+// 可见 FAQ 与 FAQPage 结构化数据同源, 确保结构化数据的内容在页面对用户可见
+const faqs = faqSchema.mainEntity.map((q) => ({ q: q.name, a: q.acceptedAnswer.text }));
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -258,16 +262,6 @@ const articleSchema = {
     <blockquote>⚠️ <strong>清了一个平台不代表全清。</strong>360、华为、腾讯、搜狗各平台数据独立,只清一个渠道,其他终端照样显示"骚扰"。必须信通院 + 号码标记清除服务 + 分平台多渠道配合,才能清干净。</blockquote>
     <blockquote>⚠️ <strong>企业座机批量清要先认证。</strong>企业座机如果只清不认证,清完很快又被陌生用户标回来。批量清除前务必先在号码公众平台完成企业认证,建立正向标记,这才是治本。</blockquote>
 
-    <h2>常见问题</h2>
-    <p><strong>座机号码标记怎么清除最快？</strong></p>
-    <p>最快是先用本站号码标记清除服务(支持座机)提交,同步到信通院 opene164 跨平台清,1-3 个工作日出结果,再对仍显示的终端分平台补清。</p>
-    <p><strong>信通院码号服务推进组支持座机号清除吗？</strong></p>
-    <p>支持。opene164.org.cn 支持手机号与座机(固话)号码查询与申诉;联通手机号及 400 号可一站式清除,座机号提交申诉后由信通院协调各平台处理,完全免费。</p>
-    <p><strong>企业座机号码能批量清除吗？</strong></p>
-    <p>可以。先批量号码标记查询做台账,再集中通过信通院 + 号码标记清除服务提交,材料一次备齐;同时完成企业认证治本。详见上文企业批量清除方案。</p>
-    <p><strong>座机号码标记清除收费吗？</strong></p>
-    <p>官方渠道均免费。本站号码标记清除服务查询免费,信通院 opene164 与各平台官方申诉均免费,遇到收费"代清""加急"需警惕。</p>
-
     <blockquote>
       据工信部《电信网码号资源管理办法》及信通院码号服务推进组公开说明,码号资源由工信部统一管理,座机号码标记申诉应通过各平台官方渠道进行。号码通查仅聚合官方申诉入口,所有清除均免费,遇到要求付费"代清"的服务需警惕诈骗。
     </blockquote>
@@ -279,4 +273,6 @@ const articleSchema = {
       <li>想直接清座机标记:<a href="/tools/marking-clear">号码标记清除</a></li>
     </ul>
   </section>
+
+  <ToolFaq faqs={faqs} heading="座机号码标记清除常见问题" />
 </BaseLayout>

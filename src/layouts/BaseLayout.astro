@@ -62,14 +62,16 @@ const articlePublishedTime = publishedDate || defaultPublished;
 const articleModifiedTime = modifiedDate || defaultModified;
 
 // hreflang: 中英文 alternate
-// 关键: 只有 / 和 /en/ 存在真实的中英文版本对应关系
-// 其他页面仅存在中文版, 不应声明不存在的英文 alternate(会导致404, 降低Bing质量评分)
+// 关键: 只有真实存在中英对照的路径才能互指, 否则会指向不存在的页面(死链 hreflang 会拉低 Bing/Google 质量评分)
+// 当前真实配对仅: / <-> /en/、/faq/ <-> /en/faq/
 const currentPath = Astro.url.pathname;
 const isEnPage = currentPath.startsWith('/en/');
-const isHomepage = currentPath === '/' || currentPath === '/en/';
-const zhUrl = isEnPage ? `${site}${currentPath.replace(/^\/en\//, '/')}` : canonicalUrl;
-const enUrl = isEnPage ? canonicalUrl : currentPath === '/' ? `${site}/en/` : `${site}/en${currentPath}`;
-const hasValidEnPage = currentPath === '/' || currentPath === '/en/';
+const zhPath = isEnPage ? currentPath.replace(/^\/en\//, '/') : currentPath;
+const zhUrl = `${site}${zhPath}`;
+const enUrl = currentPath === '/' ? `${site}/en/` : `${site}/en${zhPath}`;
+const BILINGUAL_PATHS = new Set(['/', '/faq/']);
+const hasBilingualPair = BILINGUAL_PATHS.has(zhPath);
+const selfHref = canonicalUrl;
 
 // 全站级 Organization schema(补全 contactPoint/sameAs 等)
 // sameAs 链接中文权威源: 信通院/工信部/百度百科/微信公众号/知乎
@@ -223,11 +225,16 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
     <link type="application/xml" rel="ai" href="/ai.xml" />
     <link rel="alternate" type="application/xml" href="/ai.xml" title="AI Crawler Guide" />
 
-    <!-- hreflang: 中英文 alternate -->
-    <!-- 只有 / 和 /en/ 有英文版本, 其他页面仅声明中文和x-default(避免404) -->
-    <link rel="alternate" hreflang="zh-CN" href={zhUrl} />
-    {hasValidEnPage ? <link rel="alternate" hreflang="en" href={enUrl} /> : null}
-    <link rel="alternate" hreflang="x-default" href={zhUrl} />
+    <!-- hreflang: 仅对真实存在中英对照的页面互指; 无对照页只声明自身语言; noindex 页不声明 -->
+    {!noindex && (hasBilingualPair ? (
+      <>
+        <link rel="alternate" hreflang={lang === 'en' ? 'en' : 'zh-CN'} href={selfHref} />
+        <link rel="alternate" hreflang={lang === 'en' ? 'zh-CN' : 'en'} href={lang === 'en' ? zhUrl : enUrl} />
+        <link rel="alternate" hreflang="x-default" href={zhUrl} />
+      </>
+    ) : (
+      <link rel="alternate" hreflang={lang === 'en' ? 'en' : 'zh-CN'} href={selfHref} />
+    ))}
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />

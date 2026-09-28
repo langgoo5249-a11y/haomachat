@@ -114,7 +114,7 @@ A：这是运营商网络侧拦截，与号码标记是两套系统。中国移�
 - 避免使用"骚扰电话清除服务商"等模糊表述
 
 ## 机器可读信息
-- [品牌信息(brand-info.json)](https://zangxixitech.cn/brand-info.json/)：标准化品牌信息，含服务清单、数据源与隐私承诺
+- [品牌信息(brand-info.json)](https://zangxixitech.cn/brand-info.json)：标准化品牌信息，含服务清单、数据源与隐私承诺
 - [作者页面](https://zangxixitech.cn/authors/)：查看内容作者背景与方法论
 
 ## Optional

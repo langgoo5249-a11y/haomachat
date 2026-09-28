@@ -18,12 +18,24 @@ const tagArticleCount = new Map();
 try {
   for (const file of readdirSync(blogDir)) {
     if (!file.endsWith('.md')) continue;
-    const content = readFileSync(join(blogDir, file), 'utf-8');
-    const m = content.match(/^tags:\s*\[(.*?)\]/ms);
-    if (!m) continue;
-    for (const t of m[1].matchAll(/"([^"]+)"/g)) {
-      tagArticleCount.set(t[1], (tagArticleCount.get(t[1]) ?? 0) + 1);
+    const raw = readFileSync(join(blogDir, file), 'utf-8');
+    const fmMatch = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
+    const fm = fmMatch ? fmMatch[1] : '';
+    const tags = [];
+    // 兼容两种 YAML 写法: 行内数组 tags: ["a", "b"] 与分块列表 tags:\n  - a
+    const inline = fm.match(/^tags:\s*\[([^\]]*)\]/m);
+    if (inline) {
+      for (const t of inline[1].matchAll(/"([^"]+)"|'([^']+)'/g)) tags.push(t[1] ?? t[2]);
+    } else {
+      const block = fm.match(/^tags:\s*\r?\n((?:[ \t]+-[ \t]*.+\r?\n?)+)/m);
+      if (block) {
+        for (const line of block[1].split('\n')) {
+          const m = line.match(/^[ \t]*-[ \t]*(.+?)\s*$/);
+          if (m) tags.push(m[1].replace(/^["']|["']$/g, '').trim());
+        }
+      }
     }
+    for (const t of tags) tagArticleCount.set(t, (tagArticleCount.get(t) ?? 0) + 1);
   }
 } catch {
   // 构建环境异常时退化为不过滤, 不阻塞构建
@@ -97,7 +109,12 @@ const pageLastmod = {
   '/blog/2026-iphone-caller-id-marking-clear-guide/': '2026-09-14',
   '/blog/2026-how-to-check-if-number-is-marked/': '2026-09-18',
   '/blog/2026-malicious-number-marking-guide/': '2026-09-20',
+  '/blog/2026-international-call-marking-guide/': '2026-09-27',
+  '/blog/2026-mvno-170-171-marking-guide/': '2026-09-27',
+  '/blog/2026-number-labeled-intermediary-realestate-loan-guide/': '2026-09-27',
+  '/blog/2026-number-marking-affect-credit-guide/': '2026-09-27',
   '/blog/': '2026-09-20',
+  '/en/faq/': '2026-08-24',
   '/en/guides/': '2026-09-20',
   '/tools/attribution/': '2026-09-10',
   '/tools/legal-number-verify/': '2026-09-10',
@@ -115,8 +132,19 @@ const pageLastmod = {
   '/compare/marking-platforms/': '2026-09-10',
   '/compare/auth-providers/': '2026-09-10',
   '/compare/lookup-apis/': '2026-09-10',
-  '/tags/': '2026-08-31',
-  '/tags/号码标记/': '2026-08-31',
+  '/tags/': '2026-09-27',
+  '/tags/号码标记/': '2026-09-27',
+  '/tags/号码标记查询/': '2026-09-18',
+  '/tags/号码标记清除/': '2026-09-27',
+  '/tags/号码标记申诉/': '2026-09-14',
+  '/tags/号码认证/': '2026-09-10',
+  '/tags/号码误标/': '2026-09-20',
+  '/tags/号码防复标/': '2026-09-10',
+  '/tags/企业号码标记/': '2026-09-10',
+  '/tags/标记平台/': '2026-09-07',
+  '/tags/诈骗标记/': '2026-08-28',
+  '/tags/骚扰电话/': '2026-09-20',
+  '/tags/高频外呼/': '2026-09-10',
   '/authors/': '2026-08-24',
   '/authors/langood/': '2026-08-24',
   '/authors/haomachat/': '2026-08-24',
@@ -144,7 +172,13 @@ export default defineConfig({
       // 注入真实 lastmod(来自内容修改日期,非构建时间)
       // Google 会验证 lastmod 真实性,虚假日期会导致整站 lastmod 被忽略
       serialize(item) {
-        const path = item.url.replace('https://zangxixitech.cn', '');
+        // 中文标签页 URL 为百分号编码, pageLastmod 的键为解码后的中文, 需先解码再匹配
+        let path = item.url.replace('https://zangxixitech.cn', '');
+        try {
+          path = decodeURIComponent(path);
+        } catch {
+          // 非法编码时保留原值
+        }
         const normalizedPath = path === '' ? '/' : path;
         // 尝试精确匹配,再尝试去掉末尾斜杠匹配
         const date = pageLastmod[normalizedPath] || pageLastmod[normalizedPath.replace(/\/$/, '') + '/'];

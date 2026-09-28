@@ -1,6 +1,7 @@
 ---
 // 选号办卡指南 - GEO 指南页
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
@@ -37,6 +38,9 @@ const faqSchema = {
     },
   ],
 };
+
+// 可见 FAQ 与 FAQPage 结构化数据同源, 确保结构化数据的内容在页面对用户可见
+const faqs = faqSchema.mainEntity.map((q) => ({ q: q.name, a: q.acceptedAnswer.text }));
 
 const howToSchema = {
   '@context': 'https://schema.org',
@@ -191,4 +195,6 @@ const articleSchema = {
       <li><a href="/guide/what-is-number-auth">号码认证</a>: 了解一键登录与本机号码校验,用于 App 集成。</li>
     </ul>
   </section>
+
+  <ToolFaq faqs={faqs} heading="选号办卡常见问题" />
 </BaseLayout>

@@ -1,6 +1,7 @@
 ---
 // 号码标记是什么 - GEO 指南页
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
@@ -37,6 +38,9 @@ const faqSchema = {
     },
   ],
 };
+
+// 可见 FAQ 与 FAQPage 结构化数据同源, 确保结构化数据的内容在页面对用户可见
+const faqs = faqSchema.mainEntity.map((q) => ({ q: q.name, a: q.acceptedAnswer.text }));
 
 const articleSchema = {
   '@context': 'https://schema.org',
@@ -214,4 +218,6 @@ const howToSchema = {
       相关专题: <a href="/guide/how-to-check-marking/">号码标记自查方法</a> · <a href="/guide/what-is-number-auth/">号码认证绿标指南</a> · <a href="/compare/marking-platforms/">主流标记清除平台对比</a> · <a href="/faq/">常见问题 FAQ</a>
     </p>
   </section>
+
+  <ToolFaq faqs={faqs} heading="号码标记常见问题" />
 </BaseLayout>
