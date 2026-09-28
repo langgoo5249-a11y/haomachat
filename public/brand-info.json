@@ -42,32 +42,32 @@
     {
       "name": "号码标记清除",
       "description": "手机号与座机号标记清除,授权合作方服务+信通院+Truecaller三渠道",
-      "url": "https://zangxixitech.cn/tools/marking-clear",
+      "url": "https://zangxixitech.cn/tools/marking-clear/",
       "free": true
     },
     {
       "name": "法人号码核验",
       "description": "企业法人手机号实名认证,姓名+身份证+手机号三要素一致性校验",
-      "url": "https://zangxixitech.cn/tools/legal-number-verify",
+      "url": "https://zangxixitech.cn/tools/legal-number-verify/",
       "free": false
     },
     {
       "name": "号码标记自查",
       "description": "查询手机号/座机号被标记情况,支持多平台",
-      "url": "https://zangxixitech.cn/tools/marking-check",
+      "url": "https://zangxixitech.cn/tools/marking-check/",
       "free": true
     },
     {
       "name": "号码归属地查询",
       "description": "输入手机号或固话,免费查询归属地、运营商、号段信息",
-      "url": "https://zangxixitech.cn/tools/attribution",
+      "url": "https://zangxixitech.cn/tools/attribution/",
       "free": true
     }
   ],
   "dataSources": [
     {
       "name": "中国信息通信研究院码号服务推进组",
-      "url": "http://www.opene164.org.cn",
+      "url": "https://www.opene164.org.cn",
       "type": "official"
     },
     {

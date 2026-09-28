@@ -75,7 +75,7 @@ faq:
 
 ### 1. 查询：先搞清被谁标了
 
-清除前必须先查清被哪几家平台标了，否则盲目申诉既浪费时间又清不全。查询方法详见[如何查询号码被标记](/guide/how-to-check-marking)，核心是优先用<a href="http://www.opene164.org.cn" target="_blank" rel="noopener">中国信通院码号服务推进组</a>（opene164.org.cn，由<a href="https://www.miit.gov.cn" target="_blank" rel="noopener">工信部</a>直属的<a href="https://www.caict.ac.cn" target="_blank" rel="noopener">中国信通院</a>运营）做跨平台聚合查询，再逐平台确认。
+清除前必须先查清被哪几家平台标了，否则盲目申诉既浪费时间又清不全。查询方法详见[如何查询号码被标记](/guide/how-to-check-marking)，核心是优先用<a href="https://www.opene164.org.cn" target="_blank" rel="noopener">中国信通院码号服务推进组</a>（opene164.org.cn，由<a href="https://www.miit.gov.cn" target="_blank" rel="noopener">工信部</a>直属的<a href="https://www.caict.ac.cn" target="_blank" rel="noopener">中国信通院</a>运营）做跨平台聚合查询，再逐平台确认。
 
 > 📷 **截图位置**: 信通院 opene164.org.cn 查询结果页，红框标注被测号码，下方表格分别列出 360（骚扰电话，标记 28 人）、腾讯（推销，标记 17 人）、泰迪熊（骚扰电话，标记 22 人）三个平台有标记，百度与电话邦显示"无标记"。这张图直接决定了后续要在哪三个平台申诉。
 

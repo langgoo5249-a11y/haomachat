@@ -49,6 +49,14 @@ const site = Astro.site?.toString().replace(/\/$/, '') || 'https://zangxixitech.
 const canonicalUrl = canonical || new URL(Astro.url.pathname, site).toString();
 const htmlLang = lang === 'en' ? 'en' : 'zh-CN';
 
+// 站内链接统一补尾斜杠: 全站 canonical 与 sitemap 均为带尾斜杠的目录形式,
+// 面包屑等若指向 /blog 会在 Cloudflare Pages 触发 308 跳转, 统一在此归一化。
+const withSlash = (u: string) => {
+  if (!u || u.startsWith('http') || u.startsWith('#') || u.includes('?') || u.endsWith('/')) return u;
+  if (/\.[a-z0-9]{2,5}$/i.test(u)) return u; // 静态资源(.json/.txt/.xml/.svg 等)不补斜杠
+  return `${u}/`;
+};
+
 // OG 图片: 页面级优先, 否则用全站默认图
 const ogImageUrl = ogImage
   ? (ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`)
@@ -107,7 +115,6 @@ const orgSchema = {
     contactType: 'customer service',
     availableLanguage: ['Chinese', 'English'],
     email: '644428571@qq.com',
-    telephone: '', // 待补充
   },
   foundingDate: '2026',
   areaServed: { '@type': 'Country', name: 'CN' },
@@ -132,7 +139,7 @@ const websiteSchema = {
     '@type': 'SearchAction',
     target: {
       '@type': 'EntryPoint',
-      urlTemplate: `${site}/faq?q={search_term_string}`,
+      urlTemplate: `${site}/faq/?q={search_term_string}`,
     },
     'query-input': 'required name=search_term_string',
   },
@@ -161,7 +168,7 @@ const breadcrumbSchema =
           '@type': 'ListItem',
           position: i + 1,
           name: b.name,
-          item: b.url.startsWith('http') ? b.url : `${site}${b.url}`,
+          item: b.url.startsWith('http') ? b.url : `${site}${withSlash(b.url)}`,
         })),
       }
     : null;
@@ -290,7 +297,7 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
             {breadcrumbs.map((b, i) => (
               <span>
                 {i > 0 && ' / '}
-                <a href={b.url} class="hover:text-brand-600">{b.name}</a>
+                <a href={withSlash(b.url)} class="hover:text-brand-600">{b.name}</a>
               </span>
             ))}
           </nav>
@@ -299,8 +306,8 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
       <slot />
     </main>
     <Footer lang={lang} />
-    <CustomerServiceFloat />
-    <WeChatPopup />
+    <CustomerServiceFloat lang={lang} />
+    <WeChatPopup lang={lang} />
 
     <!-- 清理已废弃的第三方 Service Worker,防止旧 sw.js 继续拦截请求 -->
     <script is:inline>

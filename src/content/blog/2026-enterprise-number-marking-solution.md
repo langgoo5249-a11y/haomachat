@@ -58,7 +58,7 @@ faq:
 
 企业座机的排查思路和个人号一致，先做跨平台聚合查询，再逐平台确认。
 
-**第一步：信通院跨平台查询。** 访问<a href="http://www.opene164.org.cn" target="_blank" rel="noopener">中国信息通信研究院码号服务推进组</a>官网 opene164.org.cn（国内唯一官方跨平台号码标记查询入口，由<a href="https://www.miit.gov.cn" target="_blank" rel="noopener">工信部</a>直属的<a href="https://www.caict.ac.cn" target="_blank" rel="noopener">中国信通院</a>运营，免费），输入座机号码查询。注意座机**必须带区号**。
+**第一步：信通院跨平台查询。** 访问<a href="https://www.opene164.org.cn" target="_blank" rel="noopener">中国信息通信研究院码号服务推进组</a>官网 opene164.org.cn（国内唯一官方跨平台号码标记查询入口，由<a href="https://www.miit.gov.cn" target="_blank" rel="noopener">工信部</a>直属的<a href="https://www.caict.ac.cn" target="_blank" rel="noopener">中国信通院</a>运营，免费），输入座机号码查询。注意座机**必须带区号**。
 
 > 📷 **截图位置**: 信通院 opene164.org.cn 查询结果页，红框标注查询的座机号码"0571-86xxxxxx"，下方表格列出各平台标记情况——360 显示"骚扰电话（标记 32 人）"、腾讯显示"推销（标记 18 人）"、泰迪熊显示"骚扰电话（标记 25 人）"、百度与电话邦显示"无标记"。
 

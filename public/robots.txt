@@ -141,8 +141,6 @@ User-agent: TiangongBot
 Allow: /
 User-agent: Tencent-AI-Lab-Spider
 Allow: /
-User-agent: Amazonbot
-Allow: /
 
 # --- Anthropic / Perplexity 的搜索与用户代理 (与训练爬虫区分) ---
 User-agent: Claude-User
@@ -162,8 +160,6 @@ Allow: /
 User-agent: PetalBot
 Allow: /
 User-agent: cohere
-Allow: /
-User-agent: cohere-training-dataFetcher
 Allow: /
 
 # ============================================================

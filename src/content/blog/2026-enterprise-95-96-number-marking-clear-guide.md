@@ -68,7 +68,7 @@ faq:
 
 先搞清楚被哪些平台标记了，盲目申诉浪费时间。推荐两个查询渠道：
 
-**信通院一站式查询。** 访问<a href="http://www.opene164.org.cn" target="_blank" rel="noopener">中国信通院码号服务推进组</a>（opene164.org.cn），输入95号码查询全平台标记状态。该平台由<a href="https://www.miit.gov.cn" target="_blank" rel="noopener">工信部</a>直属<a href="https://www.caict.ac.cn" target="_blank" rel="noopener">中国信通院</a>运营，对接7家主流标记平台，是目前唯一官方跨平台查询入口。
+**信通院一站式查询。** 访问<a href="https://www.opene164.org.cn" target="_blank" rel="noopener">中国信通院码号服务推进组</a>（opene164.org.cn），输入95号码查询全平台标记状态。该平台由<a href="https://www.miit.gov.cn" target="_blank" rel="noopener">工信部</a>直属<a href="https://www.caict.ac.cn" target="_blank" rel="noopener">中国信通院</a>运营，对接7家主流标记平台，是目前唯一官方跨平台查询入口。
 
 **本站号码标记自查工具。** 使用我们的[号码标记自查工具](/tools/marking-check/)，输入95号码一键检测各平台标记情况，包括标记类型（骚扰电话/推销/广告）和标记人数。
 

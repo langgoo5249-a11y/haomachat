@@ -1,11 +1,13 @@
 ---
-// CustomerServiceFloat - 全局右下角客服悬浮按钮
-// 点击弹出客服面板: 微信二维码 + 联系方式 + 快捷入口
+// CustomerServiceFloat - 全局右下角客服悬浮按钮 (支持中英双语)
+export interface Props { lang?: 'zh' | 'en'; }
+const { lang = 'zh' } = Astro.props;
+const isEn = lang === 'en';
 ---
 <!-- 悬浮客服按钮 -->
 <button
   id="cs-fab"
-  aria-label="联系客服"
+  aria-label={isEn ? 'Contact support' : '联系客服'}
   class="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-brand-600 text-white shadow-lg hover:bg-brand-700 flex items-center justify-center transition-all hover:scale-110"
 >
   <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -22,19 +24,19 @@
   <!-- 头部 -->
   <div class="bg-brand-600 text-white px-5 py-4 flex items-center justify-between">
     <div>
-      <h3 class="font-bold text-base">在线客服</h3>
-      <p class="text-xs text-brand-100">工作日 9:00-18:00 在线</p>
+      <h3 class="font-bold text-base">{isEn ? 'Online Support' : '在线客服'}</h3>
+      <p class="text-xs text-brand-100">{isEn ? 'Mon–Fri 9:00–18:00 (CST)' : '工作日 9:00-18:00 在线'}</p>
     </div>
-    <button id="cs-close" aria-label="关闭" class="text-brand-100 hover:text-white">
+    <button id="cs-close" aria-label={isEn ? 'Close' : '关闭'} class="text-brand-100 hover:text-white">
       <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
   </div>
 
   <!-- 微信二维码 -->
   <div class="px-5 py-4 text-center border-b border-slate-100">
-    <img src="/images/customer-service-qr.png" alt="微信客服二维码 - 号码认证服务咨询" width="140" height="140" class="mx-auto rounded-lg border border-slate-200" loading="lazy" />
-    <p class="text-sm text-slate-600 mt-2">微信扫码添加客服</p>
-    <p class="text-xs text-slate-400">微信号: SXLH-888</p>
+    <img src="/images/customer-service-qr.png" alt={isEn ? 'WeChat support QR code - number authentication consultation' : '微信客服二维码 - 号码认证服务咨询'} width="140" height="140" class="mx-auto rounded-lg border border-slate-200" loading="lazy" />
+    <p class="text-sm text-slate-600 mt-2">{isEn ? 'Scan to add us on WeChat' : '微信扫码添加客服'}</p>
+    <p class="text-xs text-slate-400">{isEn ? 'WeChat ID: SXLH-888' : '微信号: SXLH-888'}</p>
   </div>
 
   <!-- 联系方式 -->
@@ -45,14 +47,14 @@
     </a>
     <a href="/contact/" class="flex items-center gap-2 text-sm text-slate-600 hover:text-brand-600">
       <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"/></svg>
-      在线反馈表单
+      {isEn ? 'Online feedback form' : '在线反馈表单'}
     </a>
   </div>
 
   <!-- 快捷入口 -->
   <div class="px-5 py-3 grid grid-cols-2 gap-2">
-    <a href="/tools/marking-clear/" class="text-center text-xs py-2 bg-brand-50 text-brand-700 rounded-lg hover:bg-brand-100">标记清除</a>
-    <a href="/tools/legal-number-verify/" class="text-center text-xs py-2 bg-brand-50 text-brand-700 rounded-lg hover:bg-brand-100">法人核验</a>
+    <a href="/tools/marking-clear/" class="text-center text-xs py-2 bg-brand-50 text-brand-700 rounded-lg hover:bg-brand-100">{isEn ? 'Clear Marking' : '标记清除'}</a>
+    <a href="/tools/legal-number-verify/" class="text-center text-xs py-2 bg-brand-50 text-brand-700 rounded-lg hover:bg-brand-100">{isEn ? 'Legal Verify' : '法人核验'}</a>
   </div>
 </div>
 

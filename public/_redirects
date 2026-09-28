@@ -22,7 +22,7 @@
 /number-lookup /tools/attribution/ 301
 /marking /tools/marking-check/ 301
 /clear /tools/marking-clear/ 301
-/en/faq /faq 301
+# 注意: 不 redirect /en/faq -> /faq, 因 /en/faq/ 是真实英文页(与 /faq/ 构成 hreflang 对照)
 /en/blog /blog 301
 /en/about /about 301
 
