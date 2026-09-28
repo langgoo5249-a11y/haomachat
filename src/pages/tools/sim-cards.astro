@@ -1,6 +1,12 @@
 ---
 // 手机卡选号比价 - 移动/联通/电信套餐对比
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
+import ToolScenarios from '@components/ToolScenarios.astro';
+import ToolComparison from '@components/ToolComparison.astro';
+import ToolFacts from '@components/ToolFacts.astro';
+
+const pageUpdated = '2026-09-28';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
@@ -77,14 +83,11 @@ const plans = [
   },
 ];
 
-// FAQPage 结构化数据
-const faqSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: '手机卡选号有哪些渠道？',
+// FAQ 单一数据源: mainEntity 与页面可见 FAQ 同源, 保证两者一致
+const faqMainEntity = [
+  {
+    '@type': 'Question',
+    name: '手机卡选号有哪些渠道？',
       acceptedAnswer: {
         '@type': 'Answer',
         text: '手机卡选号主要有三个渠道:一是运营商官网选号页(移动 shop.10086.cn、联通 mall.10010.com、电信 shop.189.cn),可在线筛选号段与靓号;二是线下营业厅,可现场选号办卡激活,部分稀缺靓号仅限营业厅;三是电商平台(京东、天猫)的运营商官方旗舰店,常有互联网优惠套餐。三大运营商客服号分别为移动10086、联通10010、电信10000。',
@@ -122,8 +125,60 @@ const faqSchema = {
         text: '建议选择京东、天猫上的运营商官方旗舰店,号卡正规且常有优惠。购买前确认是否为运营商官方店铺,避免购买到物联卡或非实名号卡。所有手机卡均需实名认证,办卡时需提供身份证信息。',
       },
     },
-  ],
+    {
+      '@type': 'Question',
+      name: '手机卡选号要花钱吗？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '通过运营商官网、线下营业厅或官方旗舰店办理手机卡本身不收取选号费，只需按所选套餐充值或预存话费；靓号可能需预存话费并承诺最低消费。所谓"选号费"多由非正规渠道收取，建议避开。',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: '携号转网要满足什么条件？',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: '需满足：号码已实名登记、无欠费与在网协议（或协议已到期）、距上次转网满120天、非靓号协议期内、号码状态正常。用本机发送 CXXZ#姓名#身份证号 到当前运营商客服号（移动10086、联通10010、电信10000）即可查询是否符合条件。',
+      },
+    },
+];
+
+const faqs = faqMainEntity.map((x) => ({ q: x.name, a: x.acceptedAnswer.text }));
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  dateModified: pageUpdated,
+  inLanguage: 'zh-CN',
+  mainEntity: faqMainEntity,
 };
+
+// 可核验数据(仅陈述可验证事实)
+const facts = [
+  { num: '3', unit: '大运营商', desc: '移动 10086 / 联通 10010 / 电信 10000' },
+  { num: '3', unit: '种选号渠道', desc: '官网 / 营业厅 / 电商旗舰店' },
+  { num: '120', unit: '天转网间隔', desc: '两次携号转网需间隔 120 天' },
+  { num: '2-3', unit: '年靓号协议期', desc: '靓号通常需承诺低消与协议期' },
+];
+
+// 场景卡矩阵: 每卡对应一个可搜索的长尾场景
+const scenarios = [
+  { title: '在线选号办卡', desc: '官网筛选号段、尾号、靓号在线下单', href: '/tools/sim-cards/' },
+  { title: '靓号怎么选', desc: '了解靓号低消、预存与协议期规则', href: '/tools/sim-cards/' },
+  { title: '携号转网办理', desc: '不换号换运营商，先查转网资格', href: '/blog/2026-phone-attribution-accuracy-after-mnp/' },
+  { title: '新办卡查是否被标记', desc: '回收号可能继承旧标记，办卡后先自查', href: '/tools/marking-check/' },
+  { title: '查号码归属地运营商', desc: '选号前查号段的归属地与运营商', href: '/tools/attribution/' },
+  { title: '只要收验证码的卡', desc: '仅注册账号用，选 0 月租注册卡', href: '/tools/registration-card/' },
+];
+
+const comparisonRows = [
+  { dim: '选号渠道', old: '只跑线下营业厅，选择有限', ours: '官网 / 营业厅 / 电商多渠道对比' },
+  { dim: '套餐对比', old: '各家套餐分散，难横向比较', ours: '三大运营商代表套餐一览' },
+  { dim: '靓号规则', old: '不清楚低消与协议期，易踩坑', ours: '提前讲清靓号低消与协议期' },
+  { dim: '携号转网', old: '不知自己是否符合转网条件', ours: '给出查询指令与受限原因清单' },
+  { dim: '办卡后风险', old: '新号被误标记却不知情', ours: '引导办卡后做号码标记自查' },
+  { dim: '费用', old: '部分渠道收取选号费', ours: '本页仅提供渠道与信息，不收费' },
+];
 ---
 <BaseLayout
   title="2026手机卡选号怎么选？移动/联通/电信套餐对比+靓号避坑（附携转流程）| 号码通查"
@@ -136,6 +191,9 @@ const faqSchema = {
   <p class="text-slate-600 mb-6 leading-relaxed">
     手机卡选号可通过运营商官网选号页、线下营业厅或电商平台旗舰店办理。移动/联通/电信均提供在线选号,靓号需承诺最低消费。携号转网可发CXXZ到运营商客服号查询资格。本页提供三大运营商套餐对比与选号指南,涵盖选号渠道对比(移动 shop.10086.cn、联通 mall.10010.com、电信 shop.189.cn)、代表套餐参数对比、靓号办理规则与携号转网完整流程,助你选到合适的号码与套餐。
   </p>
+
+  <!-- 可核验数据 -->
+  <ToolFacts facts={facts} />
 
   <!-- 选号渠道对比 -->
   <section class="prose-content mb-8">
@@ -266,6 +324,29 @@ const faqSchema = {
       <li><strong>办卡后查标记:</strong>新办的号码(尤其回收号)可能被误标记,建议办卡后前往<a href="/tools/marking-check">号码标记自查</a>页面查询,发现误标及时清除。</li>
     </ul>
   </section>
+
+  <!-- 场景卡矩阵 -->
+  <ToolScenarios
+    title="按场景选号办卡"
+    intro="不同需求选号重点不同，找到最接近你情况的一项。"
+    scenarios={scenarios}
+  />
+
+  <!-- 方案对比 -->
+  <ToolComparison
+    title="方案对比: 盲目跑营业厅 vs 多渠道比选"
+    intro="套餐分散、靓号规则不透明、转网条件不清，是选号最容易踩的三个坑。"
+    oldLabel="盲目到店办理"
+    oursLabel="号码通查多渠道比选"
+    rows={comparisonRows}
+  />
+
+  <!-- 常见问题 -->
+  <ToolFaq
+    faqs={faqs}
+    heading="手机卡选号常见问题"
+    intro="以下问题覆盖选号渠道、靓号规则、携号转网条件与标记问题。"
+  />
 
   <!-- 数据来源声明 -->
   <section class="bg-slate-100 rounded-xl p-6">

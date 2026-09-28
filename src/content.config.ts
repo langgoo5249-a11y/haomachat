@@ -22,6 +22,11 @@ const blog = defineCollection({
     howToTotalTime: z.string().optional(),
     howToCost: z.string().optional(),
     howToMaterials: z.array(z.string()).optional(),
+    // GEO: 常见问答, 同时用于页面可见 FAQ 与 FAQPage 结构化数据
+    faq: z.array(z.object({
+      q: z.string(),
+      a: z.string(),
+    })).optional(),
   }),
 });
 

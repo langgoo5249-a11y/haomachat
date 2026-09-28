@@ -1,11 +1,17 @@
 ---
 // 号码归属地查询工具页 - 真实可用, 含交互
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
+import ToolScenarios from '@components/ToolScenarios.astro';
+import ToolComparison from '@components/ToolComparison.astro';
+import ToolFacts from '@components/ToolFacts.astro';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
   { name: '号码归属地查询', url: '/tools/attribution' },
 ];
+
+const pageUpdated = '2026-09-28';
 
 const toolWebAppSchema = {
   '@context': 'https://schema.org',
@@ -21,18 +27,73 @@ const toolWebAppSchema = {
   featureList: '归属地查询,运营商查询,号段查询,携号转网查询,座机归属地查询',
 };
 
+// FAQ 单一数据源: 同时用于可见区块与 FAQPage 结构化数据, 保证两者一致
+const faqs = [
+  {
+    q: '如何查询手机号归属地？',
+    a: '在上方输入框输入 11 位手机号码，点击"查询"即可获取归属省份、城市、运营商、号段等信息。数据来自 360 手机号码归属地接口，免费使用，无需注册。',
+  },
+  {
+    q: '号码归属地查询收费吗？',
+    a: '号码通查的归属地查询工具完全免费，无需注册，不限查询次数。号码通查本身不存储您输入的号码，查询在服务端完成。',
+  },
+  {
+    q: '能查询固话归属地吗？',
+    a: '支持。输入"区号+号码"（如 010-12345678）即可查询固定电话归属地，固话数据覆盖全国主要城市。',
+  },
+  {
+    q: '携号转网后归属地会变吗？',
+    a: '携号转网只改变运营商，不改变号码归属地。归属地由号码注册时的号段决定，转网后省份城市保持不变；但部分工具返回的"运营商"字段可能仍显示转网前信息，需以运营商官方为准。',
+  },
+  {
+    q: '为什么查出的归属地和号码实际所在地不一样？',
+    a: '归属地指号码注册时由号段决定的地域，不等于号码当前的实时所在地。异地使用、长期漫游的号码，归属地仍是注册地，这是正常现象，并非查询出错。',
+  },
+  {
+    q: '查询结果准确吗？数据来自哪里？',
+    a: '归属地数据来自 360 手机号码归属地接口，依据工信部分配的号段判断，准确率约 99%，覆盖全国 31 个省级行政区。个别新放号段可能存在短暂滞后，最终以运营商官方信息为准。',
+  },
+];
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   datePublished: '2026-07-23',
-  dateModified: '2026-07-23',
+  dateModified: pageUpdated,
   inLanguage: 'zh-CN',
-  mainEntity: [
-    { '@type': 'Question', name: '如何查询手机号归属地？', acceptedAnswer: { '@type': 'Answer', text: '在上方输入框输入11位手机号码,点击查询即可获取归属省份、城市、运营商、号段等信息。数据来自聚合数据API,免费使用。' } },
-    { '@type': 'Question', name: '号码归属地查询收费吗？', acceptedAnswer: { '@type': 'Answer', text: '号码通查的归属地查询工具完全免费,无需注册。数据来自360手机号码归属地接口,不限查询次数。' } },
-    { '@type': 'Question', name: '能查询固话归属地吗？', acceptedAnswer: { '@type': 'Answer', text: '支持查询固定电话归属地,输入区号+号码即可。固话归属地数据覆盖全国主要城市。' } },
-  ],
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
 };
+
+// 可核验数据(仅陈述可验证事实)
+const facts = [
+  { num: '31', unit: '省级行政区', desc: '覆盖全国手机号段与主要城市固话' },
+  { num: '7', unit: '位号段判断', desc: '凭手机号前 7 位判断注册地运营商' },
+  { num: '≈99%', unit: '数据准确率', desc: '数据来自 360 号码归属地接口' },
+  { num: '0', unit: '存储 / 费用', desc: '不存储查询号码，查询免费' },
+];
+
+// 场景卡矩阵: 每卡对应一个可搜索的长尾场景
+const scenarios = [
+  { title: '陌生来电查归属地', desc: '查陌生号码的省份、城市与运营商', href: '/tools/attribution/' },
+  { title: '归属地正常却被标记骚扰', desc: '归属地查完发现是骚扰号，转号码标记自查', href: '/tools/marking-check/' },
+  { title: '携号转网后归属地是否变化', desc: '转网只换运营商，归属地不变，运营商字段可能滞后', href: '/blog/2026-phone-attribution-accuracy-after-mnp/' },
+  { title: '企业客户号码核验', desc: '核验法人号码是否实名登记，走三要素核验', href: '/tools/legal-number-verify/' },
+  { title: '归属地查询 API 对比', desc: '开发选型：各家归属地接口的能力与差异', href: '/compare/lookup-apis/' },
+  { title: '查到误标记要清除', desc: '号码被错误标记后如何发起申诉清除', href: '/tools/marking-clear/' },
+];
+
+const comparisonRows = [
+  { dim: '查询方式', old: '在搜索引擎里翻号段对照表', ours: '输入号码，一次返回省份/城市/运营商' },
+  { dim: '号段覆盖', old: '老对照表常年不更新，新号段查不到', ours: '覆盖移动/联通/电信及虚拟运营商号段' },
+  { dim: '固话支持', old: '多数在线工具不支持固话', ours: '手机号与带区号固话均可查' },
+  { dim: '结果维度', old: '只有运营商，没有城市', ours: '省份、城市、运营商、区号、邮编' },
+  { dim: '费用', old: '部分工具按次收费或弹窗引导', ours: '免费、无需注册、不限次数' },
+  { dim: '隐私', old: '号码可能被留存在第三方', ours: '本站不存储查询号码' },
+];
 
 const howToSchema = {
   '@context': 'https://schema.org',
@@ -47,7 +108,7 @@ const howToSchema = {
 };
 ---
 <BaseLayout
-  title="手机号归属地查询免费版：3秒查运营商/城市/号段（含携号转网）| 号码通查"
+  title="手机号归属地查询免费版（2026）：3秒查运营商/城市/号段（含携号转网）| 号码通查"
   description="免费手机号归属地查询：输入11位号码3秒查出省份、城市、运营商、号段，支持携号转网后归属地更新。无需注册、不限次数，陌生号码一查便知。"
   schema={[faqSchema, howToSchema, toolWebAppSchema]}
   breadcrumbs={breadcrumbs}
@@ -56,6 +117,9 @@ const howToSchema = {
   <p class="text-slate-600 mb-6 leading-relaxed">
     免费查询手机号码或固定电话的归属地信息,包括归属省份、城市、运营商、号段等。数据来自360手机号码归属地接口,覆盖全国移动/联通/电信手机号及主要城市固话。输入号码即可查询,无需注册,不限次数。
   </p>
+
+  <!-- 可核验数据 -->
+  <ToolFacts facts={facts} />
 
   <!-- 查询表单 (Island 交互, 使用原生 JS 最小化) -->
   <div class="bg-white rounded-xl p-6 border border-slate-200 shadow-sm mb-8">
@@ -111,6 +175,29 @@ const howToSchema = {
       </tbody>
     </table>
   </section>
+
+  <!-- 场景卡矩阵 -->
+  <ToolScenarios
+    title="按场景使用归属地查询"
+    intro="不同场景查询重点不同，找到最接近你情况的一项。"
+    scenarios={scenarios}
+  />
+
+  <!-- 方案对比 -->
+  <ToolComparison
+    title="方案对比: 翻号段对照表 vs 一站式查询"
+    intro="自己对照号段表容易查到过期数据，尤其是新号段和虚拟运营商号段。"
+    oldLabel="自己翻号段对照表"
+    oursLabel="号码通查一站式查询"
+    rows={comparisonRows}
+  />
+
+  <!-- 常见问题 -->
+  <ToolFaq
+    faqs={faqs}
+    heading="号码归属地查询常见问题"
+    intro="以下问题覆盖固话查询、携号转网、归属地与所在地不一致等情况。"
+  />
 
   <p class="text-sm text-slate-500 mb-4">
     <a href="/tools/marking-check" class="text-brand-600 hover:underline">需要查询号码是否被标记? → 号码标记自查</a>

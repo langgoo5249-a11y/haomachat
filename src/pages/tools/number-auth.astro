@@ -1,6 +1,12 @@
 ---
 // 号码认证服务 - 企业号码认证绿标咨询入口
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
+import ToolScenarios from '@components/ToolScenarios.astro';
+import ToolComparison from '@components/ToolComparison.astro';
+import ToolFacts from '@components/ToolFacts.astro';
+
+const pageUpdated = '2026-09-28';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
@@ -21,55 +27,77 @@ const toolWebAppSchema = {
   featureList: '企业号码认证,绿标申请,号码标记预防,来电显示企业名,接听率提升',
 };
 
+// FAQ 单一数据源: 同时用于可见区块与 FAQPage 结构化数据, 保证两者一致
+const faqs = [
+  {
+    q: '号码认证绿标是什么？',
+    a: '号码认证绿标是指企业通过号码认证平台提交资质审核后，客户来电时手机屏幕显示企业名称和LOGO，而非"骚扰电话"等负面标签。认证后接通率可从约 19%-25% 提升至 45%-55%。',
+  },
+  {
+    q: '号码认证需要哪些材料？',
+    a: '需要准备：营业执照副本、法人身份证、号码归属证明（运营商话费账单或缴费凭证）、企业LOGO（PNG格式）。95/96号码需额外提供号码使用证书。',
+  },
+  {
+    q: '号码认证多久能完成？',
+    a: '腾讯号码公众平台、360号码认证、百度号码认证审核周期通常为1-3个工作日，泰迪熊移动和电话邦为2-4个工作日。认证数据同步到终端需额外1-3个工作日。',
+  },
+  {
+    q: '号码认证多少钱？',
+    a: '手机号认证约500-800元/年，座机约600-1000+元/年。腾讯企业号码通一次性收费800-1500元，长期有效。具体费用因平台和号码类型不同而有差异，请添加微信客服获取最新报价。',
+  },
+  {
+    q: '哪些号码可以做认证？',
+    a: '手机号、座机（固话）、400号码、95/96号码均可办理号码认证。个体工商户和公司均可办理，需提供对应类型的营业执照和号码归属证明。',
+  },
+  {
+    q: '号码认证和号码标记清除有什么区别？',
+    a: '号码标记清除是把已存在的"骚扰/推销"等负面标签申诉删除；号码认证是主动提交企业资质，让来电界面显示企业名称与LOGO。已带负面标记的号码建议先清除标记再做认证，认证后的企业名称会覆盖部分负面展示。',
+  },
+  {
+    q: '认证后号码还会被标记吗？',
+    a: '认证能显著降低被标记的概率，企业名称展示也会覆盖部分负面标签，但无法 100% 杜绝被标记。建议认证后保持规范外呼，并定期做号码标记自查。',
+  },
+];
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   datePublished: '2026-07-13',
-  dateModified: '2026-07-13',
+  dateModified: pageUpdated,
   inLanguage: 'zh-CN',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: '号码认证绿标是什么？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '号码认证绿标是指企业通过号码认证平台提交资质审核后，客户来电时手机屏幕显示企业名称和LOGO，而非"骚扰电话"等负面标签。认证后接通率可提升30%以上。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '号码认证需要哪些材料？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '需要准备：营业执照副本、法人身份证、号码归属证明（运营商话费账单或缴费凭证）、企业LOGO（PNG格式）。95/96号码需额外提供号码使用证书。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '号码认证多久能完成？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '腾讯号码公众平台、360号码认证、百度号码认证审核周期通常为1-3个工作日，泰迪熊移动和电话邦为2-4个工作日。认证数据同步到终端需额外1-3个工作日。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '号码认证多少钱？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '手机号认证约500-800元/年，座机约600-1000+元/年。腾讯企业号码通一次性收费800-1500元，长期有效。具体费用因平台和号码类型不同而有差异，请添加微信客服获取最新报价。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '哪些号码可以做认证？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '手机号、座机（固话）、400号码、95/96号码均可办理号码认证。个体工商户和公司均可办理，需提供对应类型的营业执照和号码归属证明。',
-      },
-    },
-  ],
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
 };
+
+// 可核验数据(仅陈述可验证事实)
+const facts = [
+  { num: '5', unit: '大认证平台', desc: '腾讯/360/百度/泰迪熊/电话邦' },
+  { num: '4', unit: '类号码可认证', desc: '手机号 / 座机 / 400 / 95·96' },
+  { num: '1-3', unit: '个工作日过审', desc: '多数平台审核周期' },
+  { num: '45%-55%', unit: '认证后接通率', desc: '未认证时约 19%-25%' },
+];
+
+// 场景卡矩阵: 每卡对应一个可搜索的长尾场景
+const scenarios = [
+  { title: '手机号认证绿标', desc: '企业外呼手机号来电显示公司名', href: '/tools/number-auth/' },
+  { title: '座机 / 固话认证', desc: '公司总机固话来电显示企业名', href: '/tools/number-auth/' },
+  { title: '400 号码认证', desc: '400 客服号认证，避免来电显示骚扰', href: '/blog/2026-enterprise-400-number-marking-clear-guide/' },
+  { title: '95/96 号码认证', desc: '短号客服号码的企业认证', href: '/blog/2026-enterprise-95-96-number-marking-clear-guide/' },
+  { title: '已带标记先清除', desc: '号码已有负面标记，先申诉清除再认证', href: '/tools/marking-clear/' },
+  { title: '认证服务商对比', desc: '各认证平台的服务能力与费用对比', href: '/compare/auth-providers/' },
+];
+
+const comparisonRows = [
+  { dim: '办理方式', old: '自己逐个平台注册提交', ours: '一个客服对接，五平台同步提交' },
+  { dim: '材料准备', old: '不清楚要求，反复被驳回', ours: '客服预审材料，提高一次性通过率' },
+  { dim: '审核跟进', old: '自己盯进度，退回复工慢', ours: '全程跟进，被退回及时补件' },
+  { dim: '号段支持', old: '不清楚哪些号码能认证', ours: '手机号 / 座机 / 400 / 95·96 均可' },
+  { dim: '费用', old: '各平台单独报价，难比较', ours: '一次给到全平台方案与报价' },
+  { dim: '上线验证', old: '认证后不知是否生效', ours: '指导多品牌手机拨测验证' },
+];
 ---
 <BaseLayout
   title="企业号码认证绿标怎么开通？5大平台费用+1-3天过审（2026）| 号码通查"
@@ -82,6 +110,9 @@ const faqSchema = {
   <p class="text-slate-600 mb-6 leading-relaxed">
     号码认证是指企业提交资质后，客户来电时手机屏幕显示<strong>企业名称和LOGO</strong>，覆盖"骚扰电话"等负面标签。支持<strong>手机号、座机号、400号码、95/96号码</strong>认证，认证后接通率可从19%提升至45%以上。需要办理号码认证？添加微信客服，免费获取认证方案与报价。
   </p>
+
+  <!-- 可核验数据 -->
+  <ToolFacts facts={facts} />
 
   <!-- 核心咨询入口 -->
   <section class="mb-8">
@@ -222,6 +253,29 @@ const faqSchema = {
       </table>
     </div>
   </section>
+
+  <!-- 场景卡矩阵 -->
+  <ToolScenarios
+    title="按场景办理号码认证"
+    intro="不同号码类型与业务场景，认证方案不同。找到最接近你情况的一项。"
+    scenarios={scenarios}
+  />
+
+  <!-- 方案对比 -->
+  <ToolComparison
+    title="方案对比: 自己跑平台 vs 一站式代办"
+    intro="自己逐个平台提交，材料要求各异、退回复工慢，容易拖长周期。"
+    oldLabel="自己逐个平台办"
+    oursLabel="号码通查一站式代办"
+    rows={comparisonRows}
+  />
+
+  <!-- 常见问题 -->
+  <ToolFaq
+    faqs={faqs}
+    heading="号码认证常见问题"
+    intro="以下问题覆盖所需材料、费用、审核周期、可认证号段与标记的关系。"
+  />
 
   <!-- 了解更多 -->
   <section class="mb-8 bg-slate-100 rounded-xl p-6">

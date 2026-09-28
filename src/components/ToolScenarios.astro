@@ -1,0 +1,30 @@
+---
+// 工具页场景卡矩阵
+// 每张卡 = 一个可被搜索的长尾场景词, 卡内一句话展开。9-12 张最佳。
+export interface ScenarioItem {
+  title: string;
+  desc: string;
+  href?: string;
+}
+
+interface Props {
+  title?: string;
+  intro?: string;
+  scenarios: ScenarioItem[];
+}
+
+const { title = '按场景解决', intro = '', scenarios } = Astro.props;
+---
+
+<section class="mb-8">
+  <h2 class="text-xl font-bold text-slate-800 mb-2">{title}</h2>
+  {intro && <p class="text-sm text-slate-500 mb-5">{intro}</p>}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    {scenarios.map((s) => (
+      <a href={s.href || '#'} class="card p-4 block">
+        <h3 class="font-semibold text-slate-800 text-sm mb-1">{s.title}</h3>
+        <p class="text-xs text-slate-500 leading-relaxed">{s.desc}</p>
+      </a>
+    ))}
+  </div>
+</section>

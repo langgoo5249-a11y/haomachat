@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
 import { getCollection, render } from 'astro:content';
 import authorsData from '@data/authors.json';
 import { tagToSlug } from '@/utils/tag-slug';
@@ -165,7 +166,23 @@ const howToSchema = post.data.howToSteps ? {
   })),
 } : null;
 
-const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSchema] : [])];
+// FAQPage Schema: 文章 frontmatter 含 faq 字段时自动生成(与页面可见 FAQ 同源)
+const faqSchema = post.data.faq && post.data.faq.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: post.data.faq.map((f: { q: string; a: string }) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+} : null;
+
+const allSchema = [
+  articleSchema,
+  blogPostingSchema,
+  ...(howToSchema ? [howToSchema] : []),
+  ...(faqSchema ? [faqSchema] : []),
+];
 ---
 <BaseLayout
   title={`${post.data.title} | 号码通查号码百科`}
@@ -197,6 +214,10 @@ const allSchema = [articleSchema, blogPostingSchema, ...(howToSchema ? [howToSch
     <h1 class="text-3xl font-bold text-slate-800 mb-4">{post.data.title}</h1>
     <p class="text-lg text-slate-600 mb-6">{post.data.description}</p>
     <Content />
+
+    {post.data.faq && post.data.faq.length > 0 && (
+      <ToolFaq faqs={post.data.faq} heading="常见问题" />
+    )}
   </article>
 
   <!-- 话题标签: 正文结束后引导读者进入标签聚合页 -->

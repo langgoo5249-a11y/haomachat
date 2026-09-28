@@ -1,6 +1,11 @@
 ---
 // 注册卡销售服务 - 0月租 APP注册专用卡 只能收短信验证码
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolScenarios from '@components/ToolScenarios.astro';
+import ToolComparison from '@components/ToolComparison.astro';
+import ToolFacts from '@components/ToolFacts.astro';
+
+const pageUpdated = '2026-09-28';
 
 const breadcrumbs = [
   { name: '首页', url: '/' },
@@ -125,11 +130,38 @@ const serviceSchema = {
   ],
   offers: { '@type': 'Offer', priceCurrency: 'CNY' },
   category: '号码服务',
-  dateModified: '2026-08-20',
+  dateModified: pageUpdated,
 };
+
+// 可核验数据(仅陈述可验证事实)
+const facts = [
+  { num: '0', unit: '月租', desc: '不用不扣费，0 最低消费' },
+  { num: '106', unit: '专属短信', desc: '仅接收 106 开头的平台验证码' },
+  { num: '10', unit: '张/证上限', desc: '一证十户，全国号码累计' },
+  { num: '7', unit: '天内激活', desc: '收到卡后须实名激活，超期失效' },
+];
+
+// 场景卡矩阵: 每卡对应一个可搜索的长尾场景
+const scenarios = [
+  { title: 'APP 注册用卡', desc: '注册微信、淘宝、抖音等账号接收验证码', href: '/tools/registration-card/' },
+  { title: '账号解封 / 二次验证', desc: '账号异常需短信验证时使用', href: '/tools/registration-card/' },
+  { title: '工作室多账号运营', desc: '电商多店、自媒体多号各用一卡', href: '/tools/registration-card/' },
+  { title: '保护主号隐私', desc: '用副号注册平台，减少主号骚扰', href: '/tools/registration-card/' },
+  { title: '需要打电话上网的卡', desc: '要正常通话上网，走手机卡选号比价', href: '/tools/sim-cards/' },
+  { title: '号码被误标骚扰', desc: '号段被标记后如何自查标记情况', href: '/tools/marking-check/' },
+];
+
+const comparisonRows = [
+  { dim: '用途定位', old: '普通卡必须通话上网，月租偏高', ours: '注册卡只收验证码，0 月租' },
+  { dim: '月租成本', old: '每月固定月租，闲置也扣费', ours: '0 月租，不用不扣费' },
+  { dim: '主号隐私', old: '注册各平台都用主号，易泄露', ours: '副号注册，主号不外泄' },
+  { dim: '多账号管理', old: '一个号注册多平台易被关联', ours: '一平台一卡，互相独立' },
+  { dim: '合规', old: '非正规渠道可能买到未实名卡', ours: '必须实名，符合工信部一证十户' },
+  { dim: '购买方式', old: '需到营业厅排队办理', ours: '微信咨询下单，全国包邮' },
+];
 ---
 <BaseLayout
-  title="注册卡 - 0月租APP注册卡/短信验证码卡销售 | 号码通查"
+  title="注册卡 - 0月租APP注册卡/短信验证码卡销售（2026）| 号码通查"
   description="注册卡销售：0月租、只能收106短信验证码的虚拟运营商手机卡，专门用于APP注册、账号验证。不能打电话不能上网，必须实名激活。添加微信 SXLH-888 咨询购买，支持170/171/165号段。"
   schema={[faqSchema, toolWebAppSchema, serviceSchema]}
   breadcrumbs={breadcrumbs}
@@ -140,6 +172,9 @@ const serviceSchema = {
   <p class="text-slate-600 mb-6 leading-relaxed">
     注册卡是一种<strong>功能受限的虚拟运营商SIM卡</strong>，核心用途是<strong>接收106开头的短信验证码</strong>，用于注册微信、淘宝、抖音、支付宝等各类APP和网站账号。<strong>0月租、0最低消费</strong>，不用不扣费。只能收短信，不能打电话、不能上网，必须<strong>实名认证</strong>后才能使用。需要办理注册卡？添加微信客服咨询购买。
   </p>
+
+  <!-- 可核验数据 -->
+  <ToolFacts facts={facts} />
 
   <!-- 核心咨询入口 -->
   <section class="mb-8">
@@ -306,6 +341,22 @@ const serviceSchema = {
       </div>
     </div>
   </section>
+
+  <!-- 场景卡矩阵 -->
+  <ToolScenarios
+    title="按场景使用注册卡"
+    intro="注册卡功能受限，不同用途的用法不同。找到最接近你情况的一项。"
+    scenarios={scenarios}
+  />
+
+  <!-- 方案对比 -->
+  <ToolComparison
+    title="方案对比: 普通手机卡 vs 注册卡"
+    intro="如果只是用来收验证码注册账号，普通手机卡的成本和隐私风险都更高。"
+    oldLabel="普通手机卡"
+    oursLabel="号码通查注册卡"
+    rows={comparisonRows}
+  />
 
   <!-- 常见问题FAQ -->
   <section class="mb-8">

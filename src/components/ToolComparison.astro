@@ -1,0 +1,50 @@
+---
+// 工具页方案对比区: 传统做法 vs 号码通查一站式
+// 用于回答"为什么要用这个方案", 覆盖 GEO 检索中的"XX 怎么做更省事"类查询。
+export interface ComparisonRow {
+  dim: string;
+  old: string;
+  ours: string;
+}
+
+interface Props {
+  title?: string;
+  intro?: string;
+  oldLabel?: string;
+  oursLabel?: string;
+  rows: ComparisonRow[];
+}
+
+const {
+  title = '方案对比: 自己逐个处理 vs 一站式',
+  intro = '',
+  oldLabel = '自己逐个平台处理',
+  oursLabel = '号码通查一站式入口',
+  rows,
+} = Astro.props;
+---
+
+<section class="mb-8">
+  <h2 class="text-xl font-bold text-slate-800 mb-2">{title}</h2>
+  {intro && <p class="text-sm text-slate-500 mb-4">{intro}</p>}
+  <div class="overflow-x-auto">
+    <table class="w-full text-sm border-collapse">
+      <thead>
+        <tr>
+          <th class="bg-slate-100 text-slate-700 font-semibold p-3 text-left border border-slate-200">对比维度</th>
+          <th class="bg-slate-100 text-slate-700 font-semibold p-3 text-left border border-slate-200">{oldLabel}</th>
+          <th class="bg-brand-50 text-brand-800 font-semibold p-3 text-left border border-slate-200">{oursLabel}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr>
+            <td class="p-3 border border-slate-200 text-slate-700 font-medium">{row.dim}</td>
+            <td class="p-3 border border-slate-200 text-slate-500">{row.old}</td>
+            <td class="p-3 border border-slate-200 text-slate-600">{row.ours}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>

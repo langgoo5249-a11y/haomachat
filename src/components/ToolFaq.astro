@@ -1,0 +1,35 @@
+---
+// 工具页可见 FAQ 区块
+// 重要: FAQPage 结构化数据必须对应页面可见内容, 因此可见区块与 JSON-LD 必须同源。
+// 用法: 页面内定义 const faqs = [{ q, a }], 同时用于 faqSchema 与本组件。
+export interface FaqItem {
+  q: string;
+  a: string;
+}
+
+interface Props {
+  faqs: FaqItem[];
+  heading?: string;
+  intro?: string;
+}
+
+const { faqs, heading = '常见问题', intro = '' } = Astro.props;
+---
+
+<section class="mb-8">
+  <h2 class="text-xl font-bold text-slate-800 mb-2">{heading}</h2>
+  {intro && <p class="text-sm text-slate-500 mb-4">{intro}</p>}
+  <div class="space-y-2">
+    {faqs.map((faq) => (
+      <details class="card group">
+        <summary class="flex items-center justify-between cursor-pointer p-4 list-none select-none">
+          <h3 class="font-semibold text-slate-800 text-sm pr-4">{faq.q}</h3>
+          <svg class="w-5 h-5 text-slate-400 flex-shrink-0 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </summary>
+        <div class="px-4 pb-4 text-sm text-slate-500 leading-relaxed border-t border-slate-100 pt-3" set:html={faq.a} />
+      </details>
+    ))}
+  </div>
+</section>

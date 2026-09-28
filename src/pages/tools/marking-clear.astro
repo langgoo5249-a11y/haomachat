@@ -1,6 +1,10 @@
 ---
 // 号码标记清除 - 标记清除服务入口与官方平台
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
+import ToolScenarios from '@components/ToolScenarios.astro';
+import ToolComparison from '@components/ToolComparison.astro';
+import ToolFacts from '@components/ToolFacts.astro';
 import platformsData from '@data/platforms.json';
 
 const platforms = platformsData.platforms;
@@ -15,6 +19,8 @@ const breadcrumbs = [
   { name: '首页', url: '/' },
   { name: '号码标记清除', url: '/tools/marking-clear' },
 ];
+
+const pageUpdated = '2026-09-28';
 
 const toolWebAppSchema = {
   '@context': 'https://schema.org',
@@ -79,53 +85,86 @@ const serviceSchema = {
   ],
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY', availability: 'https://schema.org/InStock' },
   category: '号码服务',
-  dateModified: '2026-08-12',
+  dateModified: pageUpdated,
 };
+
+// FAQ 单一数据源: 同时用于可见区块与 FAQPage 结构化数据, 保证两者一致
+const faqs = [
+  {
+    q: '座机号码能清除标记吗？',
+    a: '可以。号码通查的标记清除服务与中国信通院码号服务推进组均支持座机(固话)号码的标记清除,输入带区号的座机号码即可操作。企业总机、400 客服号被标记也适用同一流程。',
+  },
+  {
+    q: '号码标记清除要多久？',
+    a: '分渠道不同。合作方标记清除服务与中国信通院码号服务推进组通常 1-3 个工作日完成处理;Truecaller 提交取消收录后 24-48 小时移除。若号码同时被多个平台标记,建议多渠道配合,整体一般 1 周内可以清干净。',
+  },
+  {
+    q: '号码被标记骚扰电话怎么解除？',
+    a: '一共三步。第一步先用本站标记清除入口提交申诉,支持手机号与座机号;第二步到中国信通院码号服务推进组(opene164.org.cn)做官方跨平台申诉,中国联通手机号可一站式清除;第三步,若号码有海外标记,再到 Truecaller 取消收录。三部完成后回到标记自查页复查确认。',
+  },
+  {
+    q: '号码标记清除收费吗？需要提交什么材料？',
+    a: '查询与官方渠道申诉均免费。材料方面,一般只需要号码本身;通过中国信通院申诉时会要求填写机主信息用于比对,不需要额外上传证件照片。号码通查本身不存储您提交的号码,信通院渠道的信息由其按官方流程留存,我们不经手。',
+  },
+  {
+    q: '哪些标记是清除不了的？',
+    a: '诈骗类标记不在清除范围内。诈骗标记属于违法号码标记,由运营商与公安机关管理,不能通过申诉清除。此外,如果标记只存在于手机厂商的本地拦截库(部分机型自带的识别库),跨平台申诉入口可能不生效,需要在手机端单独处理。',
+  },
+  {
+    q: '清除后会反弹吗？怎么防止再被标记？',
+    a: '会反弹,高频外呼号码尤其明显。清除只是删除了当前的标记数据,如果号码继续被大量用户标记或拦截,平台会重新打标。防反弹通常做三件事:控制外呼频次与时段,给企业号码办理号码认证(来电显示公司名与绿标),以及定期自查标记状态。',
+  },
+  {
+    q: '清除后怎么确认已经清干净了？',
+    a: '两个动作。一是回到号码标记自查页面重新查询,确认各平台的标记已经消失;二是用另一台手机拨打自己的号码,看来电界面是否还显示"骚扰""推销"等标签。两个结果都正常,才算清除彻底。',
+  },
+];
 
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
   datePublished: '2026-07-06',
-  dateModified: '2026-07-06',
+  dateModified: pageUpdated,
   inLanguage: 'zh-CN',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: '座机号码能清除标记吗？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '可以。本站标记清除服务与中国信通院码号服务推进组均支持座机(固话)号码的标记清除。输入带区号的座机号码即可操作。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '号码标记清除要多久？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '标记清除服务与中国信通院码号服务推进组通常1-3个工作日完成处理,Truecaller提交取消收录后24-48小时移除。整体清除通过多个渠道配合,一般1周内可彻底清除。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '号码被标记骚扰电话怎么解除？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '号码被标记为骚扰电话后,可通过本站标记清除服务入口操作,支持手机号与座机号;同时到中国信通院码号服务推进组(opene164.org.cn)清除;若号码有海外标记,再到Truecaller取消收录。多渠道配合可彻底清除。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '号码标记清除收费吗？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '本站标记清除服务查询免费,中国信通院码号服务推进组与Truecaller的查询和取消收录也均为免费。',
-      },
-    },
-  ],
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
 };
+
+// 可核验数据(替代用户证言, 仅陈述可验证事实)
+const facts = [
+  { num: '6', unit: '大平台可申诉', desc: '360/腾讯/百度/华为/泰迪熊/电话邦' },
+  { num: '3', unit: '大清除渠道', desc: '清除服务+信通院+Truecaller' },
+  { num: '1-3', unit: '个工作日', desc: '官方渠道处理周期' },
+  { num: '24-48', unit: '小时', desc: 'Truecaller 取消收录时效' },
+];
+
+// 场景卡矩阵: 每卡对应一个可搜索的长尾场景
+const scenarios = [
+  { title: '手机号被误标骚扰/推销', desc: '个人号码被标后影响日常通话,判断与申诉路径', href: '/blog/2026-personal-number-marking-removal-guide/' },
+  { title: '座机/固话被标记', desc: '企业总机被标,客户拨打时显示骚扰标签', href: '/guide/landline-marking-clear/' },
+  { title: '企业 400 号码被标记', desc: '400 客服号被标,客户接听率下降', href: '/blog/2026-enterprise-400-number-marking-clear-guide/' },
+  { title: '95/96 号码被标记', desc: '企业客服号段被标记的分渠道处置', href: '/blog/2026-enterprise-95-96-number-marking-clear-guide/' },
+  { title: '二次放号带旧标记', desc: '新办号码继承前机主标记,申诉清除流程', href: '/blog/2026-recycled-number-false-marking-guide/' },
+  { title: '被标成"中介""贷款"', desc: '细分标签的申诉材料与话术', href: '/blog/2026-number-labeled-intermediary-realestate-loan-guide/' },
+  { title: '申诉被驳回了', desc: '六大平台驳回原因对照与二次申诉', href: '/blog/2026-number-marking-appeal-rejected-solutions/' },
+  { title: '标记清了又反弹', desc: '防回流机制与定期自查节奏', href: '/blog/2026-phone-marking-recurrence-after-clearance/' },
+  { title: '销售外呼号反复被标', desc: '高频外呼场景的防标记与清除组合方案', href: '/blog/2026-high-frequency-outbound-number-marking-solution/' },
+];
+
+const comparisonRows = [
+  { dim: '需要几个申诉入口', old: '360/腾讯/百度/华为等 6+ 平台逐个申诉', ours: '1 个入口 + 信通院官方跨平台申诉' },
+  { dim: '材料准备', old: '各平台要求不同,同一套材料反复提交', ours: '按清单一次备齐,后续复用' },
+  { dim: '处理周期', old: '逐个平台排队,整体周期更长', ours: '官方渠道 1-3 个工作日' },
+  { dim: '被驳回之后', old: '需自己判断原因再试一次', ours: '提供六大平台驳回原因对照与二次申诉指引' },
+  { dim: '座机号支持', old: '部分平台不开放固话申诉', ours: '手机号与座机号均支持' },
+  { dim: '海外标记', old: '一般不在处理范围内', ours: '附 Truecaller 取消收录入口' },
+];
 ---
 <BaseLayout
-  title="号码标记怎么清除？手机/座机误标记免费申诉教程 | 号码通查"
+  title="2026最新号码标记清除：手机/座机误标记免费申诉教程 | 号码通查"
   description="手机号/座机被误标骚扰、推销、诈骗？号码通查聚合信通院与Truecaller官方清除入口，提供分步申诉教程，1-3个工作日清除误标记，查询免费，不存储号码。"
   schema={[howToSchema, faqSchema, toolWebAppSchema, serviceSchema]}
   breadcrumbs={breadcrumbs}
@@ -151,6 +190,9 @@ const faqSchema = {
       <a href={serviceUrl} target="_blank" rel="noopener" class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 whitespace-nowrap transition-colors">立即清除标记 →</a>
     </div>
   </section>
+
+  <!-- 可核验数据 -->
+  <ToolFacts facts={facts} />
 
   <!-- 服务保障 -->
   <section class="mb-8 bg-white rounded-xl p-6 border border-slate-200">
@@ -249,6 +291,22 @@ const faqSchema = {
     </p>
   </section>
 
+  <!-- 场景卡矩阵 -->
+  <ToolScenarios
+    title="按场景找到你的清除路径"
+    intro="不同类型号码的申诉渠道与材料不同。找到最接近你情况的一项,直接看对应流程。"
+    scenarios={scenarios}
+  />
+
+  <!-- 方案对比 -->
+  <ToolComparison
+    title="方案对比: 逐个平台申诉 vs 一站式清除"
+    intro="号码同时被多个平台标记时,逐个申诉要重复提交材料,还容易漏掉渠道。"
+    oldLabel="自己逐个平台申诉"
+    oursLabel="号码通查一站式清除"
+    rows={comparisonRows}
+  />
+
   <!-- 清除通用要点 -->
   <section class="prose-content mb-8">
     <h2>清除通用要点</h2>
@@ -283,6 +341,13 @@ const faqSchema = {
       提示:若不确定号码被哪些平台标记,可先前往<a href="/tools/marking-check">号码标记自查</a>页面查询标记情况,再有针对性地清除。
     </blockquote>
   </section>
+
+  <!-- 常见问题 -->
+  <ToolFaq
+    faqs={faqs}
+    heading="号码标记清除常见问题"
+    intro="以下问题覆盖处理周期、材料与隐私、清除边界、反弹防范与复查方式。"
+  />
 
   <!-- 数据来源声明 -->
   <section class="bg-slate-100 rounded-xl p-6">

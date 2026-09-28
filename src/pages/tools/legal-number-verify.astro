@@ -1,6 +1,12 @@
 ---
 // 法人号码核验查询工具页
 import BaseLayout from '@layouts/BaseLayout.astro';
+import ToolFaq from '@components/ToolFaq.astro';
+import ToolScenarios from '@components/ToolScenarios.astro';
+import ToolComparison from '@components/ToolComparison.astro';
+import ToolFacts from '@components/ToolFacts.astro';
+
+const pageUpdated = '2026-09-28';
 
 // ⛔ 死规定：此链接为合作方真实服务地址，永远不得修改、替换或移除。
 const serviceUrl = 'https://xbh5.open10086.com/factor/#/pages/index/index?authorization=f91029a83a8758aa';
@@ -24,44 +30,76 @@ const toolWebAppSchema = {
   featureList: '法人号码核验,运营商三网直连,实名认证,企业身份核验',
 };
 
+// FAQ 单一数据源: 同时用于可见区块与 FAQPage 结构化数据, 保证两者一致
+const faqs = [
+  {
+    q: '法人号码核验是什么？',
+    a: '法人号码核验是通过运营商数据校验企业法人代表手机号码真实性的服务。输入企业法人的姓名、身份证号与手机号，系统通过运营商网关校验三者是否一致，用于企业实名认证、风控审核、反欺诈等场景。',
+  },
+  {
+    q: '法人号码核验支持哪些校验？',
+    a: '法人号码核验支持：手机号实名认证（校验姓名+身份证号+手机号三要素是否一致）、号码状态查询（是否在网/停机）、运营商归属查询。数据来自三大运营商（移动/联通/电信）官方网关。',
+  },
+  {
+    q: '法人号码核验有什么用？',
+    a: '法人号码核验常用于：企业开户实名认证、金融风控审核、合同签署身份验证、反欺诈与反洗钱合规、电商平台商家入驻审核等场景，确保企业法人联系方式真实有效。',
+  },
+  {
+    q: '法人号码核验需要什么信息？',
+    a: '通常需要提供：法人代表姓名、法人身份证号码、法人手机号码。系统将这三要素提交至运营商网关进行一致性校验，返回核验结果。所有数据通过加密传输，不存储。',
+  },
+  {
+    q: '核验合法吗？会不会侵犯隐私？',
+    a: '核验基于用户主动提交的三要素，通过运营商官方网关进行一致性比对，属于常见的实名认证手段，需取得被核验人授权。号码通查提供入口导航，核验服务由授权合作方提供，数据加密传输、不留存。',
+  },
+  {
+    q: '核验不通过（不一致）是什么原因？',
+    a: '常见原因有：姓名或身份证号录入有误、该号码并非此身份证实名登记、号码已销户或停机、近期刚办理过户或实名变更导致数据同步延迟。建议核对信息后重试，仍不一致则以该号码实际的实名登记人为准。',
+  },
+  {
+    q: '个体工商户可以用吗？',
+    a: '可以。核验对象是实名登记的自然人，个体工商户经营者本人、企业法定代表人、股东等均可作为被核验人，只需提供其姓名、身份证号与本人实名手机号。',
+  },
+];
+
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  mainEntity: [
-    {
-      '@type': 'Question',
-      name: '法人号码核验是什么？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '法人号码核验是通过运营商数据校验企业法人代表手机号码真实性的服务。输入企业法人的姓名、身份证号与手机号,系统通过运营商网关校验三者是否一致,用于企业实名认证、风控审核、反欺诈等场景。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '法人号码核验支持哪些校验？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '法人号码核验支持:手机号实名认证(校验姓名+身份证号+手机号三要素是否一致)、号码状态查询(是否在网/停机)、运营商归属查询。数据来自三大运营商(移动/联通/电信)官方网关。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '法人号码核验有什么用？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '法人号码核验常用于:企业开户实名认证、金融风控审核、合同签署身份验证、反欺诈与反洗钱合规、电商平台商家入驻审核等场景,确保企业法人联系方式真实有效。',
-      },
-    },
-    {
-      '@type': 'Question',
-      name: '法人号码核验需要什么信息？',
-      acceptedAnswer: {
-        '@type': 'Answer',
-        text: '通常需要提供:法人代表姓名、法人身份证号码、法人手机号码。系统将这三要素提交至运营商网关进行一致性校验,返回核验结果。所有数据通过加密传输,不存储。',
-      },
-    },
-  ],
+  dateModified: pageUpdated,
+  inLanguage: 'zh-CN',
+  mainEntity: faqs.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
 };
+
+// 可核验数据(仅陈述可验证事实)
+const facts = [
+  { num: '3', unit: '大运营商网关', desc: '移动 / 联通 / 电信官方数据源' },
+  { num: '3', unit: '要素一致性校验', desc: '姓名 + 身份证号 + 手机号' },
+  { num: '秒级', unit: '返回结果', desc: '运营商网关实时校验' },
+  { num: '0', unit: '存储', desc: '核验数据加密传输，不留存' },
+];
+
+// 场景卡矩阵: 每卡对应一个可搜索的长尾场景
+const scenarios = [
+  { title: '企业开户法人认证', desc: '银行、支付账户注册时的法人实名核验', href: '/tools/legal-number-verify/' },
+  { title: '金融风控身份核验', desc: '贷款审批、信用评估中的法人身份校验', href: '/tools/legal-number-verify/' },
+  { title: '电子合同签署验证', desc: '签约前确认法人身份与手机号一致', href: '/tools/legal-number-verify/' },
+  { title: '电商商家入驻审核', desc: '平台商家入驻时的法人资质核验', href: '/tools/legal-number-verify/' },
+  { title: '核验后做号码认证', desc: '核验通过后申请企业绿标，来电显示企业名', href: '/tools/number-auth/' },
+  { title: '号码被误标记骚扰', desc: '企业号码被标记后如何自查与清除', href: '/tools/marking-check/' },
+];
+
+const comparisonRows = [
+  { dim: '操作方式', old: '人工比对企业台账与身份证照片', ours: '输入三要素，运营商网关实时比对' },
+  { dim: '数据来源', old: '自建库或来路不明的第三方数据', ours: '移动/联通/电信官方网关' },
+  { dim: '时效性', old: '数据批量更新，存在滞后', ours: '实时校验，秒级返回结果' },
+  { dim: '一致性判断', old: '人工核对，容易出错', ours: '系统判定三要素是否一致' },
+  { dim: '隐私', old: '身份证与号码可能被留存', ours: '加密传输，核验后不留存' },
+  { dim: '接入成本', old: '自建需逐家对接运营商', ours: '一个入口，统一对接三网' },
+];
 
 const howToSchema = {
   '@context': 'https://schema.org',
@@ -111,11 +149,11 @@ const serviceSchema = {
   ],
   offers: { '@type': 'Offer', priceCurrency: 'CNY' },
   category: '号码服务',
-  dateModified: '2026-08-12',
+  dateModified: pageUpdated,
 };
 ---
 <BaseLayout
-  title="法人号码核验怎么操作？姓名+身份证+手机号三要素秒级验证 | 号码通查"
+  title="法人号码核验怎么操作？（2026）姓名+身份证+手机号三要素秒级验证 | 号码通查"
   description="企业法人号码核验：通过移动/联通/电信官方网关校验法人姓名、身份证号、手机号三要素一致性，用于企业实名认证、风控审核、反欺诈。加密传输，数据不存储。"
   schema={[faqSchema, howToSchema, toolWebAppSchema, serviceSchema]}
   breadcrumbs={breadcrumbs}
@@ -124,6 +162,9 @@ const serviceSchema = {
   <p class="text-slate-600 mb-6 leading-relaxed">
     法人号码核验是通过运营商数据校验企业法人代表手机号码真实性的服务。输入法人姓名、身份证号与手机号,系统通过三大运营商(移动/联通/电信)官方网关实时校验三要素一致性,用于企业实名认证、金融风控、反欺诈等场景。核验过程加密传输,数据不存储。
   </p>
+
+  <!-- 可核验数据 -->
+  <ToolFacts facts={facts} />
 
   <!-- 核验入口 -->
   <section class="mb-8">
@@ -213,6 +254,29 @@ const serviceSchema = {
       <li><strong>查看结果:</strong>返回核验结果(一致/不一致/号码异常),数据加密传输不存储。</li>
     </ol>
   </section>
+
+  <!-- 场景卡矩阵 -->
+  <ToolScenarios
+    title="按场景使用法人号码核验"
+    intro="不同业务场景对核验的要求不同，找到最接近你情况的一项。"
+    scenarios={scenarios}
+  />
+
+  <!-- 方案对比 -->
+  <ToolComparison
+    title="方案对比: 人工核对 vs 运营商网关核验"
+    intro="人工比对身份证照片与台账既慢又容易出错，数据时效也难保证。"
+    oldLabel="人工逐条核对"
+    oursLabel="号码通查运营商核验"
+    rows={comparisonRows}
+  />
+
+  <!-- 常见问题 -->
+  <ToolFaq
+    faqs={faqs}
+    heading="法人号码核验常见问题"
+    intro="以下问题覆盖核验用途、所需资料、合规性与核验不通过的原因。"
+  />
 
   <!-- 相关工具 -->
   <section class="mb-8">
