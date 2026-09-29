@@ -33,3 +33,7 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: f613aea61669133c77d8364ac2e50b66
           command: pages deploy dist --project-name=haomachat --branch=main
+
+      - name: Notify IndexNow (incremental)
+        run: npm run indexnow
+        continue-on-error: true

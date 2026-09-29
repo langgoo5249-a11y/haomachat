@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 /**
- * IndexNow 提交脚本 - 构建后手动调用
- * 向 Bing/Yandex/Naver 等搜索引擎通知 URL 变更,加速收录
- * 用法: npm run indexnow
+ * IndexNow 提交脚本 - 构建后自动调用 / 每日定时调用
+ * 向 Bing/Yandex/Naver 等搜索引擎通知 URL 变更, 告知"内容有更新", 提升抓取与推荐意愿
+ * 用法:
+ *   npm run indexnow          增量模式: 只提交 lastmod >= 昨日的 URL (无变化则跳过)
+ *   npm run indexnow -- --all 全量模式: 提交 sitemap 中所有 URL
  *
  * 排障记录 (2026-09-03): 曾持续收到 403 UserForbiddedToAccessSite,
  * 即便 key 文件线上 200/内容精确/任意UA可访问。结论: 客户端一切正常,
@@ -15,6 +17,10 @@
  * 负缓存(旧 key 验证失败状态被长期缓存)。处置: 轮换新 key 505d00e4..., 并在
  * Cloudflare 新增 "Allow IndexNow key files" 规则(精确匹配两个 key 文件路径,
  * skip 托管规则+SBFM+浏览器完整性检查+安全级别)。旧 key 文件保留观察。
+ *
+ * 2026-09-29: 默认改为增量模式。全量重复提交 86 条 URL 无新鲜度价值, 搜索引擎
+ * 只关注"近期更新过的"。增量以 sitemap lastmod 为判据: 有 URL 的 lastmod >= 北京时间
+ * 今日 00:00 就提交这批; 否则打印提示并跳过, 避免无意义请求。
  */
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
@@ -23,7 +29,13 @@ const SITE = 'https://zangxixitech.cn';
 const KEY = '505d00e42f759e5c536b2ecd36c03d63';
 const KEY_LOCATION = `${SITE}/${KEY}.txt`;
 
-// 从 sitemap-0.xml 提取所有 URL
+const FULL_MODE = process.argv.includes('--all');
+// 增量阈值: 北京时间今日 00:00 (UTC+8)。
+// 推导: now(+8h)=北京时间今日时刻 → now(-8h)=今日 00:00 的 UTC 表达
+const THRESHOLD = new Date(Date.now() - 8 * 3600000);
+THRESHOLD.setUTCHours(0, 0, 0, 0);
+
+// 从 sitemap-0.xml 提取 { url, lastmod } (lastmod 可能缺失, 缺失视为未更新)
 function extractUrlsFromSitemap() {
   const sitemapPath = join(process.cwd(), 'dist', 'sitemap-0.xml');
   if (!existsSync(sitemapPath)) {
@@ -31,8 +43,16 @@ function extractUrlsFromSitemap() {
     return [];
   }
   const xml = readFileSync(sitemapPath, 'utf-8');
-  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+  const urls = [...xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>[\s\S]*?<\/url>/g)].map((m) => {
+    const loc = m[1];
+    const lm = m[0].match(/<lastmod>([^<]+)<\/lastmod>/);
+    return { url: loc, lastmod: lm ? lm[1] : null };
+  });
   return urls;
+}
+
+function filterRecent(entries) {
+  return entries.filter((e) => e.lastmod && new Date(e.lastmod) >= THRESHOLD);
 }
 
 // 提交前自检 key 文件: 状态码 200 且内容与 KEY 完全一致(容忍首尾空白)
@@ -100,8 +120,31 @@ async function submitToIndexNow(urls) {
   return allOk;
 }
 
-(async () => {
-  const urls = extractUrlsFromSitemap();
+async function main() {
+  const all = extractUrlsFromSitemap();
+  if (all.length === 0) process.exit(1);
+
+  let urls;
+  if (FULL_MODE) {
+    urls = all.map((e) => e.url);
+    console.log(`[IndexNow] 全量模式: 提交全部 ${urls.length} 条 URL`);
+  } else {
+    const recent = filterRecent(all);
+    if (recent.length === 0) {
+      console.log('[IndexNow] 增量模式: 无 lastmod >= 北京今日 00:00 的 URL, 跳过提交 (无内容变化, 属正常)');
+      process.exit(0);
+    }
+    urls = recent.map((e) => e.url);
+    console.log(`[IndexNow] 增量模式: 提交 ${urls.length}/${all.length} 条 (lastmod >= ${THRESHOLD.toISOString()})`);
+  }
+
   if (!(await verifyKeyFile())) process.exit(1);
-  await submitToIndexNow(urls);
-})();
+  const ok = await submitToIndexNow(urls);
+  if (!ok) process.exit(1);
+}
+
+main().catch((err) => {
+  console.error('[IndexNow] fatal:', err.message);
+  process.exit(1);
+});
+
