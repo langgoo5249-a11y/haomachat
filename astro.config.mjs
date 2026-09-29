@@ -1,8 +1,9 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
-import { readFileSync, readdirSync } from 'node:fs';
+import { readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 // 号码通查 - GEO 优化静态站点
 // 部署目标: Cloudflare Pages (Git 自动部署)
@@ -151,6 +152,64 @@ const pageLastmod = {
   '/en/': '2026-08-24',
 };
 
+// 内链尾斜杠归一化 (构建后处理)
+// Cloudflare Pages 对目录页 /path 会 308 跳转到 /path/, 站内链接若不带尾斜杠
+// 会白白损失一次重定向(浪费抓取预算、稀释链接权重、拖慢点击)。
+// 源文件里的手写内链(尤其博客 Markdown)难以逐条保证, 故在构建完成后统一扫描
+// dist 内的 <a href>, 凡指向真实目录页(/path/index.html 存在)且无扩展名的链接,
+// 一律补上尾斜杠, 与 canonical / sitemap 保持一致。
+const normalizeInternalLinks = () => ({
+  name: 'normalize-internal-links',
+  hooks: {
+    'astro:build:done': ({ dir }) => {
+      const distDir = fileURLToPath(dir);
+      // 1. 收集站内所有目录页路径(解码后, 以 / 结尾)
+      const dirPages = new Set();
+      const collect = (d) => {
+        for (const e of readdirSync(d, { withFileTypes: true })) {
+          const p = join(d, e.name);
+          if (e.isDirectory()) collect(p);
+          else if (e.name === 'index.html') {
+            let rel = p.slice(distDir.length).replace(/\\/g, '/').replace(/index\.html$/, '');
+            if (!rel.startsWith('/')) rel = '/' + rel;
+            dirPages.add(rel.endsWith('/') ? rel : rel + '/');
+          }
+        }
+      };
+      collect(distDir);
+      // 2. 扫描 HTML, 归一化指向目录页的内链
+      let changed = 0;
+      const walkHtml = (d) => {
+        for (const e of readdirSync(d, { withFileTypes: true })) {
+          const p = join(d, e.name);
+          if (e.isDirectory()) walkHtml(p);
+          else if (e.name.endsWith('.html')) {
+            const raw = readFileSync(p, 'utf-8');
+            const out = raw.replace(/(href=")(\/[^"?#]*)(?=["?#])/g, (m, pre, path) => {
+              if (path.startsWith('//') || path.endsWith('/')) return m;
+              if (/\.[a-z0-9]{2,5}$/i.test(path)) return m; // 静态资源不补斜杠
+              let key = path;
+              try {
+                key = decodeURIComponent(path);
+              } catch {
+                /* 非法编码保留原值 */
+              }
+              const target = key.endsWith('/') ? key : key + '/';
+              return dirPages.has(target) ? pre + path + '/' : m;
+            });
+            if (out !== raw) {
+              writeFileSync(p, out);
+              changed++;
+            }
+          }
+        }
+      };
+      walkHtml(distDir);
+      console.log(`[internal-links] 尾斜杠归一化完成: ${changed} 个页面已修正`);
+    },
+  },
+});
+
 export default defineConfig({
   site: 'https://zangxixitech.cn',
   output: 'static',
@@ -162,6 +221,7 @@ export default defineConfig({
   },
   integrations: [
     tailwind({ applyBaseStyles: true }),
+    normalizeInternalLinks(),
     sitemap({
       i18n: {
         defaultLocale: 'zh',
