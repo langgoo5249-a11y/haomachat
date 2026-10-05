@@ -22,6 +22,8 @@
 /number-lookup /tools/attribution/ 301
 /marking /tools/marking-check/ 301
 /clear /tools/marking-clear/ 301
+# 同质内容合并(2026-10-05): 虚商170/171两篇内容高度重叠, 合并为一篇权威长文
+/blog/2026-virtual-operator-number-marking-clear-guide /blog/2026-mvno-170-171-marking-guide/ 301
 # 注意: 不 redirect /en/faq -> /faq, 因 /en/faq/ 是真实英文页(与 /faq/ 构成 hreflang 对照)
 /en/blog /blog 301
 /en/about /about 301
@@ -153,7 +155,7 @@
 /tags/%E8%85%BE%E8%AE%AF/ /tags/%E6%A0%87%E8%AE%B0%E5%B9%B3%E5%8F%B0/ 301
 /tags/%E8%85%BE%E8%AE%AF%E5%8F%B7%E7%A0%81%E5%85%AC%E4%BC%97%E5%B9%B3%E5%8F%B0/ /tags/%E6%A0%87%E8%AE%B0%E5%B9%B3%E5%8F%B0/ 301
 /tags/%E8%85%BE%E8%AE%AF%E6%89%8B%E6%9C%BA%E7%AE%A1%E5%AE%B6%E6%A0%87%E8%AE%B0%E7%AE%97%E6%B3%95/ /tags/%E6%A0%87%E8%AE%B0%E5%B9%B3%E5%8F%B0/ 301
-/tags/%E8%99%9A%E5%95%86%E5%8F%B7%E7%A0%81/ /blog/2026-virtual-operator-number-marking-clear-guide/ 301
+/tags/%E8%99%9A%E5%95%86%E5%8F%B7%E7%A0%81/ /blog/2026-mvno-170-171-marking-guide/ 301
 /tags/%E8%A2%AB%E6%A0%87%E8%AE%B0%E8%AF%88%E9%AA%97%E7%94%B5%E8%AF%9D%E7%94%B3%E8%AF%89/ /tags/%E8%AF%88%E9%AA%97%E6%A0%87%E8%AE%B0/ 301
 /tags/%E8%AF%88%E9%AA%97%E6%A0%87%E8%AE%B0%E6%80%8E%E4%B9%88%E6%B8%85%E9%99%A4/ /tags/%E8%AF%88%E9%AA%97%E6%A0%87%E8%AE%B0/ 301
 /tags/%E8%AF%88%E9%AA%97%E7%94%B5%E8%AF%9D%E6%A0%87%E8%AE%B0%E6%B8%85%E9%99%A4/ /tags/%E8%AF%88%E9%AA%97%E6%A0%87%E8%AE%B0/ 301

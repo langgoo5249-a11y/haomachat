@@ -3,14 +3,14 @@
   "type": "Organization",
   "name": "号码通查",
   "alternateName": "haomachat",
-  "legalName": "号码通查",
+  "legalName": "脏兮兮科技",
   "url": "https://zangxixitech.cn",
   "logo": "https://zangxixitech.cn/og-default.jpg",
   "description": "号码通查提供号码标记查询与清除服务,手机号码与座机(固话)号码均支持。聚合中国信通院码号服务推进组与Truecaller官方入口,一站式解决号码被误标记为骚扰电话的问题。",
   "foundingDate": "2026",
   "founder": {
-    "type": "Person",
-    "name": "号码通查团队"
+    "type": "Organization",
+    "name": "脏兮兮科技"
   },
   "contactPoint": {
     "contactType": "customer service",

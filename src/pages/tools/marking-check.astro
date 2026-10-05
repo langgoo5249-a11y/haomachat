@@ -5,6 +5,7 @@ import ToolFaq from '@components/ToolFaq.astro';
 import ToolScenarios from '@components/ToolScenarios.astro';
 import ToolComparison from '@components/ToolComparison.astro';
 import ToolFacts from '@components/ToolFacts.astro';
+import NumberDiagnose from '@components/NumberDiagnose.astro';
 import platformsData from '@data/platforms.json';
 
 const platforms = platformsData.platforms;
@@ -185,6 +186,9 @@ const comparisonRows = [
       <a href={serviceUrl} target="_blank" rel="noopener" class="px-6 py-3 bg-brand-600 text-white rounded-lg font-medium hover:bg-brand-700 whitespace-nowrap transition-colors">立即查询标记 →</a>
     </div>
   </section>
+
+  <!-- 号码识别向导: 真实前端交互, 输入即识别号码类型并给出对应渠道 -->
+  <NumberDiagnose mode="check" serviceUrl={serviceUrl} />
 
   <!-- 可核验数据 -->
   <ToolFacts facts={facts} />

@@ -40,14 +40,14 @@
         扫码使用号码标记查询与清除
       </h2>
       <p class="text-sm text-slate-500 mb-4 leading-relaxed">
-        长按或扫描下方二维码，关注 <strong class="text-slate-700">朗汇通讯</strong> 服务号<br />
+        长按或扫描下方二维码，关注 <strong class="text-slate-700">号码通查</strong> 服务号（账号名：朗汇通讯）<br />
         即可直接使用号码标记查询、标记清除等服务
       </p>
 
       <div class="inline-block p-2 bg-white border-2 border-slate-100 rounded-xl shadow-sm">
         <img
           src="/images/wechat-service-account-qr.jpg"
-          alt="朗汇通讯微信服务号二维码，扫码使用号码标记查询与清除服务"
+          alt="号码通查服务号（朗汇通讯）二维码，扫码使用号码标记查询与清除服务"
           width="220"
           height="220"
           loading="eager"
@@ -69,11 +69,11 @@
 <script is:inline>
   (function () {
     var STORAGE_KEY = 'haomachat_wechat_popup_last_shown';
-    // 移动端延迟 6 秒弹出: 避免落地即全屏遮挡触发谷歌"侵入式插页"页面体验惩罚
-    // (谷歌政策: 移动端从搜索结果落地后立即出现的全屏弹窗影响排名, 延迟展示可豁免)
-    // 桌面端保持 1.2 秒, 桌面不受该信号约束
+    // 移动端不再自动弹出: 谷歌"侵入式插页"政策对移动端全屏弹窗(即使用户延迟数秒后出现)
+    // 仍可能判定影响页面体验排名, 百度移动体验同样降权。移动端仅保留右下角客服悬浮入口,
+    // 由用户主动点击触发; 桌面端不受该信号约束, 8 秒后弹出。
     var isMobile = window.matchMedia && window.matchMedia('(max-width: 768px)').matches;
-    var SHOW_DELAY_MS = isMobile ? 6000 : 1200;
+    var SHOW_DELAY_MS = 8000;
     var SHOW_INTERVAL_MS = 24 * 60 * 60 * 1000;
     var popup = document.getElementById('wechat-popup');
     var closeBtn = document.getElementById('wechat-popup-close');
@@ -121,7 +121,7 @@
       if (e.key === 'Escape' && !popup.classList.contains('hidden')) hide();
     });
 
-    if (shouldShow()) {
+    if (!isMobile && shouldShow()) {
       setTimeout(show, SHOW_DELAY_MS);
     }
   })();
