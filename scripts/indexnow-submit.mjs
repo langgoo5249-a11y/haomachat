@@ -21,6 +21,11 @@
  * 2026-09-29: 默认改为增量模式。全量重复提交 86 条 URL 无新鲜度价值, 搜索引擎
  * 只关注"近期更新过的"。增量以 sitemap lastmod 为判据: 有 URL 的 lastmod >= 北京时间
  * 今日 00:00 就提交这批; 否则打印提示并跳过, 避免无意义请求。
+ *
+ * 2026-10-09: 新增百度搜索资源平台"主动推送"(data.zz.baidu.com)。百度不参与
+ * IndexNow, 是本站自然流量主渠道, 必须单独推送。token 由百度搜索资源平台 →
+ * 普通收录 → 主动推送 获取, 通过环境变量 BAIDU_PUSH_TOKEN 注入(GitHub Secrets),
+ * 未配置时优雅跳过, 不影响 IndexNow 提交。
  */
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
@@ -120,6 +125,51 @@ async function submitToIndexNow(urls) {
   return allOk;
 }
 
+// 百度搜索资源平台"主动推送": 与 IndexNow 完全独立的一套接口。
+// 特点: 表单 text/plain, body 为换行分隔的 URL 列表; 配额有限(普通站点约 10 条/天,
+// 权限较高站点更多), 失败会返回 error/message, 必须读响应体判定。
+async function submitToBaidu(urls) {
+  const token = process.env.BAIDU_PUSH_TOKEN;
+  if (!token) {
+    console.log('[Baidu] 未配置 BAIDU_PUSH_TOKEN, 跳过主动推送 (在 GitHub Secrets 配置后自动启用)');
+    return true;
+  }
+  const ep = `https://data.zz.baidu.com/urls?site=${encodeURIComponent(SITE)}&token=${encodeURIComponent(token)}`;
+  console.log(`[Baidu] 主动推送 ${urls.length} 条 URL...`);
+  try {
+    const res = await fetch(ep, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: urls.join('\n'),
+    });
+    const text = (await res.text().catch(() => '')).slice(0, 300);
+    console.log(`[Baidu] ${ep} -> HTTP ${res.status} ${text}`);
+    let json = null;
+    try {
+      json = JSON.parse(text);
+    } catch {
+      /* 非 JSON 响应(如 HTML 错误页) */
+    }
+    if (!json || json.error) {
+      console.error('[Baidu] ✗ 主动推送失败:', json ? `${json.error} ${json.message || ''}` : text);
+      if (json && (json.error === 401 || json.error === 600)) {
+        console.error('    → token 无效或站点未验证: 到 百度搜索资源平台 → 普通收录 → 主动推送 核对 token 与 site');
+      }
+      if (json && json.error === 403) {
+        console.error('    → 配额已用尽或站点被限: 明日再试, 或改用 sitemap 提交');
+      }
+      return false;
+    }
+    console.log(`[Baidu] ✓ 成功 ${json.success ?? 0} 条, 剩余配额 ${json.remain ?? '未知'}`);
+    if (json.not_same_site?.length) console.error(`[Baidu] 非本站 URL 被拒 ${json.not_same_site.length} 条`);
+    if (json.not_valid?.length) console.error(`[Baidu] 非法 URL ${json.not_valid.length} 条`);
+    return true;
+  } catch (err) {
+    console.error(`[Baidu] 请求异常: ${err.message}`);
+    return false;
+  }
+}
+
 async function main() {
   const all = extractUrlsFromSitemap();
   if (all.length === 0) process.exit(1);
@@ -138,9 +188,11 @@ async function main() {
     console.log(`[IndexNow] 增量模式: 提交 ${urls.length}/${all.length} 条 (lastmod >= ${THRESHOLD.toISOString()})`);
   }
 
-  if (!(await verifyKeyFile())) process.exit(1);
-  const ok = await submitToIndexNow(urls);
-  if (!ok) process.exit(1);
+  // IndexNow 与百度主动推送互相独立: 任一渠道失败不影响另一个的执行
+  const baiduPromise = submitToBaidu(urls);
+  const indexOk = (await verifyKeyFile()) ? await submitToIndexNow(urls) : false;
+  const baiduOk = await baiduPromise;
+  if (!indexOk || !baiduOk) process.exit(1);
 }
 
 main().catch((err) => {

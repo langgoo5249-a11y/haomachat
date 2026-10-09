@@ -34,6 +34,9 @@ jobs:
           accountId: f613aea61669133c77d8364ac2e50b66
           command: pages deploy dist --project-name=haomachat --branch=main
 
-      - name: Notify IndexNow (incremental)
+      - name: Notify IndexNow + Baidu (incremental)
         run: npm run indexnow
+        env:
+          # 百度搜索资源平台 → 普通收录 → 主动推送 的 token。未配置则自动跳过百度推送
+          BAIDU_PUSH_TOKEN: ${{ secrets.BAIDU_PUSH_TOKEN }}
         continue-on-error: true

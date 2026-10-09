@@ -278,9 +278,7 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
 
     <!-- 资源预连接: 加速外部域名DNS/TLS握手 -->
     <link rel="preconnect" href="https://hm.baidu.com" />
-    <link rel="preconnect" href="https://lf1-cdn-tos.bytegoofy.com" />
     <link rel="dns-prefetch" href="https://hm.baidu.com" />
-    <link rel="dns-prefetch" href="https://lf1-cdn-tos.bytegoofy.com" />
 
     <!-- JSON-LD: 直接写入 HTML, 不用 JS 注入(GEO 关键) -->
     {allSchema.map((s) => (
@@ -320,23 +318,17 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
     </script>
 
     <!-- 第三方脚本延迟加载: 浏览器空闲时执行,不阻塞首屏渲染 -->
+    <!-- 仅保留百度统计(hm.baidu.com)。2026-10-09 移除字节跳动 ttzz/push.js:
+         该脚本由 bytegoofy.com 提供、带不透明哈希, 与本站在 2026-09 遭遇的第三方
+         Service Worker 劫持同源生态; 站点以百度为主, 头条推送价值有限, 故清除,
+         减少外部依赖与百度对"不明第三方脚本"的降权风险。 -->
     <script is:inline>
       function loadAnalytics() {
-        // 百度统计
         var _hmt = window._hmt || (window._hmt = []);
         var hm = document.createElement("script");
         hm.async = true;
         hm.src = "https://hm.baidu.com/hm.js?2953c0c30dddfbf0e8910b7e8ba3bf17";
         document.head.appendChild(hm);
-
-        // 字节跳动自动推送 (仅加载一次, 避免重复)
-        if (!document.getElementById('ttzz')) {
-          var el = document.createElement("script");
-          el.async = true;
-          el.id = "ttzz";
-          el.src = "https://lf1-cdn-tos.bytegoofy.com/goofy/ttzz/push.js?2e69d9a815b6645e6fffd1cdb3318782dc1ed592db41b2d2ce0aff8cbac580a730632485602430134f60bc55ca391050b680e2741bf7233a8f1da9902314a3fa";
-          document.head.appendChild(el);
-        }
       }
 
       // 优先使用 requestIdleCallback,降级到 setTimeout
