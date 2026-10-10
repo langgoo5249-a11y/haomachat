@@ -1,0 +1,76 @@
+# =====================================================================
+# 阿里云国内服务器部署 (迁移后就绪时启用)
+#
+# 现状: 站点仍由 deploy.yml 部署到 Cloudflare Pages。
+# 本工作流仅 workflow_dispatch 手动触发, 避免服务器尚未就绪时误跑导致失败。
+# 备案通过 + DNS 切换 + 服务器配好后, 再把下面 on.push 打开并移除 deploy.yml。
+#
+# 需要在仓库 Settings → Secrets 配置:
+#   ALIYUN_HOST     服务器公网 IP
+#   ALIYUN_USER     部署用户 (建议非 root, 见 deploy 目录说明)
+#   ALIYUN_SSH_KEY  部署用私钥 (ed25519, 公钥已加到服务器 authorized_keys)
+#   ALIYUN_PORT     SSH 端口 (可选, 默认 22)
+# =====================================================================
+name: Deploy to Aliyun
+
+on:
+  # push:
+  #   branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup SSH
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.ALIYUN_SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          echo "SSH_PORT=${{ secrets.ALIYUN_PORT || '22' }}" >> "$GITHUB_ENV"
+
+      - name: Rsync 静态站点
+        run: |
+          rsync -avz --delete \
+            -e "ssh -p $SSH_PORT -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new" \
+            dist/ "${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }}:/var/www/zangxixitech.cn/"
+
+      - name: Rsync API 服务
+        run: |
+          rsync -avz \
+            -e "ssh -p $SSH_PORT -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new" \
+            functions/api/attribution.js deploy/server/server.mjs deploy/server/ecosystem.config.cjs \
+            "${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }}:/opt/haomachat/api/"
+
+      - name: 重载 API 进程 (pm2)
+        run: |
+          ssh -p $SSH_PORT -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new \
+            "${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }}" \
+            "cd /opt/haomachat/api && (pm2 reload ecosystem.config.cjs --update-env || pm2 start ecosystem.config.cjs)"
+
+      - name: 冒烟测试
+        run: |
+          sleep 3
+          ssh -p $SSH_PORT -i ~/.ssh/deploy_key -o StrictHostKeyChecking=accept-new \
+            "${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }}" \
+            "curl -sS -o /dev/null -w 'home=%{http_code}\n' http://127.0.0.1/ ; curl -sS -o /dev/null -w 'api=%{http_code}\n' 'http://127.0.0.1/api/attribution?phone=13800138000'"
+
+      - name: Notify IndexNow + Baidu
+        run: npm run indexnow
+        env:
+          BAIDU_PUSH_TOKEN: ${{ secrets.BAIDU_PUSH_TOKEN }}
+        continue-on-error: true
