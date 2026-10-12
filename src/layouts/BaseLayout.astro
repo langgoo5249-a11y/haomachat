@@ -63,11 +63,10 @@ const ogImageUrl = ogImage
   : `${site}/og-default.jpg`;
 
 // 内容新鲜度: article:published_time / article:modified_time
-// 未传入时使用全站默认日期, 确保 AI 引擎在所有页面都能看到时效性信号
-const defaultPublished = '2026-07-06T00:00:00+08:00';
-const defaultModified = '2026-08-19T00:00:00+08:00';
-const articlePublishedTime = publishedDate || defaultPublished;
-const articleModifiedTime = modifiedDate || defaultModified;
+// 仅文章页(ogType=article)输出; 非文章页不带 article:* / bytedance:* 时间因子,
+// 避免 og:type=website 却携带文章时间戳的矛盾信号
+const articlePublishedTime = publishedDate;
+const articleModifiedTime = modifiedDate;
 
 // hreflang: 中英文 alternate
 // 关键: 只有真实存在中英对照的路径才能互指, 否则会指向不存在的页面(死链 hreflang 会拉低 Bing/Google 质量评分)
@@ -99,15 +98,12 @@ const orgSchema = {
   },
   description: '免费电话号码服务工具站,提供号码归属地查询、号码标记自查与清除指引、号码认证知识科普、手机卡选号比价。',
   knowsAbout: ['电话号码标记', '号码认证', '号码归属地查询', '号码标记清除', '法人号码核验', '手机卡选号', '400号码标记', '座机标记清除', '95/96号码标记'],
+  // sameAs 语义是"同一实体的其他主页", 只放真实拥有的账号。
+  // 政府机构官网(miit/12321/caict等)不属于本实体, 放入会干扰 AI 实体消歧;
+  // 这些权威源改为在文章正文中以引用链接出现(已完成)。
   sameAs: [
     'https://github.com/langgoo5249-a11y',        // 共同身份锚（三站共有）
     'https://github.com/langgoo5249-a11y/haomachat',
-    'https://www.opene164.org.cn',    // 中国信通院码号服务推进组
-    'https://www.miit.gov.cn',         // 工信部
-    'https://www.caict.ac.cn',         // 中国信息通信研究院
-    'https://www.12321.cn',            // 12321网络不良信息举报中心
-    'https://www.isc.org.cn',          // 中国互联网协会
-    'https://yhssglxt.miit.gov.cn/web/',     // 工信部电信用户申诉受理系统（原 chinatcc.gov.cn 域名已不可解析）
   ],
   contactPoint: {
     '@type': 'ContactPoint',
@@ -121,7 +117,9 @@ const orgSchema = {
   dateModified: '2026-08-19',
 };
 
-// WebSite schema (含 SearchAction, 用于 Google 站点搜索框)
+// WebSite schema
+// 注: 不放 SearchAction —— /faq/ 未实现 ?q= 查询参数, 虚假 SearchAction
+// 会导致富结果校验失败; 且 Google 已于 2024 年下线 Sitelinks Search Box
 const websiteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
@@ -134,14 +132,6 @@ const websiteSchema = {
   datePublished: '2026-07-06',
   dateModified: '2026-08-19',
   publisher: { '@id': `${site}/#organization` },
-  potentialAction: {
-    '@type': 'SearchAction',
-    target: {
-      '@type': 'EntryPoint',
-      urlTemplate: `${site}/faq/?q={search_term_string}`,
-    },
-    'query-input': 'required name=search_term_string',
-  },
 };
 
 // WebApplication schema
@@ -254,18 +244,26 @@ const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, perso
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="号码通查 - 号码标记查询与清除服务" />
 
-    <!-- Article 新鲜度标记: AI 引擎依赖此信号判断内容时效性 -->
-    <meta property="article:published_time" content={articlePublishedTime} />
-    <meta property="article:modified_time" content={articleModifiedTime} />
-    <meta property="article:author" content="号码通查" />
-    {ogType === 'article' && keywords.length > 0 && keywords.map((k) => (
-      <meta property="article:tag" content={k} />
-    ))}
+    <!-- Article 新鲜度标记: 仅文章页输出, 避免 website 页携带文章时间戳的矛盾信号 -->
+    {ogType === 'article' && (
+      <>
+        <meta property="article:published_time" content={articlePublishedTime} />
+        <meta property="article:modified_time" content={articleModifiedTime} />
+        <meta property="article:author" content="号码通查" />
+        {keywords.length > 0 && keywords.map((k) => (
+          <meta property="article:tag" content={k} />
+        ))}
+      </>
+    )}
 
-    <!-- 字节跳动时间因子: 帮助头条/抖音搜索展示发布时间, 优化落地页体验 -->
-    <meta property="bytedance:published_time" content={articlePublishedTime} />
-    <meta property="bytedance:lrDate_time" content={articleModifiedTime} />
-    <meta property="bytedance:updated_time" content={articleModifiedTime} />
+    <!-- 字节跳动时间因子: 仅文章页输出, 帮助头条/抖音搜索展示发布时间 -->
+    {ogType === 'article' && (
+      <>
+        <meta property="bytedance:published_time" content={articlePublishedTime} />
+        <meta property="bytedance:lrDate_time" content={articleModifiedTime} />
+        <meta property="bytedance:updated_time" content={articleModifiedTime} />
+      </>
+    )}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

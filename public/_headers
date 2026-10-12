@@ -1,9 +1,40 @@
 # Cloudflare Pages _headers 配置
 # 确保 AI 爬虫不被任何 HTTP 响应头拦截,同时下发基础安全头
-# 最后更新: 2026-09-21
+# 最后更新: 2026-10-12
 
 /*
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   X-Frame-Options: DENY
+
+# HTML: 允许 Cloudflare 边缘缓存 1 天 + stale-while-revalidate,
+#       浏览器端 max-age=0 must-revalidate 保证内容发布后立即可见
+/*
+  Cache-Control: public, s-maxage=86400, max-age=0, must-revalidate
+
+# 带内容哈希的构建产物(Astro /_astro/*): 永久缓存
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 图片/字体等静态资源: 长缓存(内容更新即换文件, 未带哈希故给 30 天)
+/images/*
+  Cache-Control: public, max-age=2592000
+/fonts/*
+  Cache-Control: public, max-age=2592000
+/favicon.svg
+  Cache-Control: public, max-age=604800
+/og-default.jpg
+  Cache-Control: public, max-age=2592000
+
+# GEO/爬虫发现文件: 短缓存, 便于 AI 引擎及时拿到最新内容目录
+/llms.txt
+  Cache-Control: public, max-age=3600
+/llms-full.txt
+  Cache-Control: public, max-age=3600
+/llms-en.txt
+  Cache-Control: public, max-age=3600
+/ai.xml
+  Cache-Control: public, max-age=3600
+/robots.txt
+  Cache-Control: public, max-age=3600

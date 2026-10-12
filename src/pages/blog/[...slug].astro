@@ -54,9 +54,14 @@ const breadcrumbs = [
   { name: post.data.title, url: `/blog/${post.id}/` },
 ];
 
-const articleSchema = {
+// 注: 只输出 BlogPosting 一种文章 schema(见下方 blogPostingSchema 定义)。
+// BlogPosting 是 Article 的子类型, 同页重复输出 Article + BlogPosting 属冗余信号;
+// Perplexity 等 AI 引擎对 BlogPosting 解析更精准, 保留它即可。
+
+// BlogPosting JSON-LD:
+const blogPostingSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Article',
+  '@type': 'BlogPosting',
   headline: post.data.title,
   description: post.data.description,
   datePublished: post.data.pubDate.toISOString(),
@@ -89,45 +94,13 @@ const articleSchema = {
     caption: post.data.title,
   },
   keywords: post.data.tags.join(', '),
+  wordCount: post.body?.length || 0,
+  articleSection: '号码百科',
   isPartOf: {
     '@type': 'Blog',
     '@id': 'https://zangxixitech.cn/blog/',
     name: '号码通查号码百科',
   },
-};
-
-// BlogPosting JSON-LD: BlogPosting 是 Article 的子类型,部分 AI 引擎(如 Perplexity)对 BlogPosting 解析更精准
-const blogPostingSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'BlogPosting',
-  headline: post.data.title,
-  description: post.data.description,
-  datePublished: post.data.pubDate.toISOString(),
-  dateModified: (post.data.updatedDate || post.data.pubDate).toISOString(),
-  author: {
-    '@type': 'Person',
-    name: post.data.author,
-    '@id': post.data.author === 'langood'
-      ? 'https://zangxixitech.cn/#person-langood'
-      : 'https://zangxixitech.cn/#person-haomachatongcha',
-    url: authorPageUrl,
-  },
-  publisher: {
-    '@type': 'Organization',
-    name: '号码通查',
-    logo: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
-  },
-  mainEntityOfPage: `https://zangxixitech.cn/blog/${post.id}/`,
-  image: {
-    '@type': 'ImageObject',
-    url: heroImageUrl,
-    width: 1200,
-    height: 630,
-    caption: post.data.title,
-  },
-  keywords: post.data.tags.join(', '),
-  wordCount: post.body?.length || 0,
-  articleSection: '号码百科',
 };
 
 // HowTo Schema: 操作指南类文章添加 HowTo 结构化数据
@@ -178,7 +151,6 @@ const faqSchema = post.data.faq && post.data.faq.length > 0 ? {
 } : null;
 
 const allSchema = [
-  articleSchema,
   blogPostingSchema,
   ...(howToSchema ? [howToSchema] : []),
   ...(faqSchema ? [faqSchema] : []),

@@ -1,33 +1,26 @@
 import rss from '@astrojs/rss';
 import { getCollection } from 'astro:content';
-import MarkdownIt from 'markdown-it';
 
-const md = new MarkdownIt({ html: true });
 const SITE_URL = 'https://zangxixitech.cn';
-
-// 把 markdown 正文渲染为 HTML,并把站内相对链接(href="/、src="/)转为绝对链接
-function renderPostContent(body) {
-  if (!body) return '';
-  const html = md.render(body);
-  return html
-    .replace(/href="\//g, `href="${SITE_URL}/`)
-    .replace(/src="\//g, `src="${SITE_URL}/`);
-}
 
 export async function GET(context) {
   // 注意: 如果没有blog collection,返回空items的RSS
   let items = [];
   try {
     const posts = await getCollection('blog');
-    items = posts.map((post) => ({
-      title: post.data.title,
-      description: post.data.description,
-      pubDate: post.data.pubDate,
-      link: `/blog/${post.id}/`,
-      categories: post.data.tags,
-      author: post.data.author,
-      content: renderPostContent(post.body),
-    }));
+    // 仅输出最新 20 篇 + 摘要(description), 不输出全文:
+    // 全文 feed 曾达 650KB+, 拖慢爬虫抓取、稀释新鲜度信号且浪费带宽
+    items = posts
+      .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+      .slice(0, 20)
+      .map((post) => ({
+        title: post.data.title,
+        description: post.data.description,
+        pubDate: post.data.pubDate,
+        link: `/blog/${post.id}/`,
+        categories: post.data.tags,
+        author: post.data.author,
+      }));
   } catch (e) {
     // blog collection 不存在时返回空
   }
