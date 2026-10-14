@@ -69,8 +69,6 @@ jobs:
             "${{ secrets.ALIYUN_USER }}@${{ secrets.ALIYUN_HOST }}" \
             "curl -sS -o /dev/null -w 'home=%{http_code}\n' http://127.0.0.1/ ; curl -sS -o /dev/null -w 'api=%{http_code}\n' 'http://127.0.0.1/api/attribution?phone=13800138000'"
 
-      - name: Notify IndexNow + Baidu
+      - name: Notify IndexNow (incremental: added + modified + removed)
         run: npm run indexnow
-        env:
-          BAIDU_PUSH_TOKEN: ${{ secrets.BAIDU_PUSH_TOKEN }}
         continue-on-error: true

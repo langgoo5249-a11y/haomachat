@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# IndexNow 增量 diff 基线: 由 CI artifact 在每次部署间传递, 不进仓库
+scripts/.indexnow-snapshot/
+
 # dependencies
 node_modules/
 
