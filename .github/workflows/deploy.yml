@@ -25,8 +25,8 @@ jobs:
         run: npm ci
 
       # ── 恢复上一版 sitemap, 作为本次增量 diff 的基线 ──
-      # 首次部署时该 artifact 不存在, 此步允许失败: 脚本会把首次判定为
-      # 「无基线」并退化为全量提交, 属预期行为。
+      # 首次部署时该 artifact 不存在, 此步允许失败: 脚本会判定「无基线」
+      # 并退化为全量提交(符合 IndexNow 官方建议: 刚接入时可全量)。
       - name: Restore previous IndexNow baseline
         continue-on-error: true
         uses: actions/download-artifact@v4
@@ -45,27 +45,26 @@ jobs:
           command: pages deploy dist --project-name=haomachat --branch=main
 
       # ── 通知搜索引擎: 本次发布的 URL 新增 / 修改 / 删除 ──
-      # 优先级高于 sitemap: sitemap 只告诉搜索引擎「URL 存在」,
-      # IndexNow 才告诉它「这个 URL 刚刚变了, 优先来抓」。
-      # 失败不阻断部署(部署已成功, 收录失败可下次补)。
+      # 优先级高于 sitemap: sitemap 只说明「URL 存在」, IndexNow 才说明
+      # 「这个 URL 刚刚变了, 优先来抓」。失败不阻断部署。
       - name: Notify IndexNow (incremental: added + modified + removed)
         run: npm run indexnow
         continue-on-error: true
 
       # ── 把本次产物存成下一版的基线 ──
-      # 必须放在 indexnow 之后、upload 之前: 先拿旧基线算差, 再更新基线。
-      # 只存 sitemap, 不存 dist 全量, artifact 始终只有几十 KB。
+      # 顺序: 先用旧基线算差 → 再更新基线 → 再上传。
+      # 只存 sitemap(几十 KB), 不存 dist 全量。
       - name: Save sitemap as next-run baseline
         if: ${{ always() }}
         run: |
           mkdir -p scripts/.indexnow-snapshot
-          cp -f dist/sitemap-0.xml scripts/.indexnow-snapshot/sitemap-0.xml
+          cp -f dist/sitemap-0.xml scripts/.indexnow-snapshot/snapshot.xml
 
       - name: Upload IndexNow baseline artifact
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
         with:
           name: indexnow-snapshot
-          path: scripts/.indexnow-snapshot/sitemap-0.xml
+          path: scripts/.indexnow-snapshot/snapshot.xml
           retention-days: 30
           if-no-files-found: warn
