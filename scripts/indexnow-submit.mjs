@@ -232,9 +232,35 @@ async function fetchBaseline() {
       return null;
     }
     const xml = await res.text();
-    const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
+    // 兼容 sitemapindex: 若拉到的是索引文件(只含 <sitemap><loc>, 无 <url><loc>),
+    // 递归抓取其中每个子 sitemap 再合并。否则会把索引本身当成 URL 列表,
+    // 只拿到 1 条, 于是每次都误判"全站新增"而全量轰炸。
+    let urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
+    const isIndex = /<sitemapindex[\s>]/.test(xml) || (urls.length > 0 && !/<url>[\s\S]*?<loc>/.test(xml));
+    if (isIndex) {
+      const subs = [...xml.matchAll(/<sitemap>\s*<loc>([^<]+)<\/loc>/g)].map((m) => m[1].trim());
+      console.log(`[IndexNow] 线上基线是 sitemapindex(${subs.length} 个子 sitemap), 递归抓取...`);
+      const merged = new Set();
+      for (const sub of subs.slice(0, 50)) {
+        try {
+          const sr = await fetch(sub, { redirect: 'follow' });
+          if (sr.status !== 200) continue;
+          const sxml = await sr.text();
+          for (const m of sxml.matchAll(/<loc>([^<]+)<\/loc>/g)) merged.add(m[1].trim());
+        } catch {
+          /* 单个子 sitemap 失败不阻塞其余 */
+        }
+      }
+      urls = [...merged];
+    }
     console.log(`[IndexNow] 基线来源: 线上 sitemap(${urls.length} 个 URL)`);
-    return urls.length ? urls : null;
+    // 基线过小(比如只拿到 1 条)时宁可不作为基线: 否则会把全部页面
+    // 误判成"新增", 既浪费提交又稀释信号。
+    if (urls.length < 2) {
+      console.log(`[IndexNow] 线上基线仅 ${urls.length} 条, 不足以作基线, 忽略`);
+      return null;
+    }
+    return urls;
   } catch (err) {
     console.log(`[IndexNow] 线上基线不可用: ${err.message}`);
     return null;

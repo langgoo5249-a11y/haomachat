@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # 需要完整历史: 便于必要时回溯 URL 变更
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -25,14 +28,42 @@ jobs:
         run: npm ci
 
       # ── 恢复上一版 sitemap, 作为本次增量 diff 的基线 ──
-      # 首次部署时该 artifact 不存在, 此步允许失败: 脚本会判定「无基线」
-      # 并退化为全量提交(符合 IndexNow 官方建议: 刚接入时可全量)。
+      #
+      # 2026-10-15 修正: 原写法用 actions/download-artifact@v4 但不带 run-id,
+      # 它只会在「当前这次 run」里找 artifact — 而 artifact 是在本 run 末尾才
+      # 上传的, 所以必然找不到(日志: Artifact not found), 且 continue-on-error
+      # 把失败显示成 success, 问题被完全掩盖。
+      #
+      # 现在改为显式从上一次成功的 run 取, 并用 shell 检查文件是否真的落盘。
+      # 找不到时脚本会退化到「线上 sitemap」作基线, 仍可正确增量。
+      - name: Resolve previous run id
+        id: prev
+        continue-on-error: true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runs = await github.paginate(
+              'GET /repos/{owner}/{repo}/actions/workflows/{workflow_id}/runs',
+              { owner: context.repo.owner, repo: context.repo.repo,
+                workflow_id: 'deploy.yml', status: 'success', per_page: 5 }
+            );
+            const prev = runs.find(r => r.head_sha !== context.sha);
+            if (prev) {
+              core.info(`previous successful run: ${prev.id}`);
+              core.setOutput('run-id', String(prev.id));
+            } else {
+              core.info('no previous successful run (first deployment)');
+            }
+
       - name: Restore previous IndexNow baseline
+        if: steps.prev.outputs.run-id != ''
         continue-on-error: true
         uses: actions/download-artifact@v4
         with:
           name: indexnow-snapshot
           path: scripts/.indexnow-snapshot
+          run-id: ${{ steps.prev.outputs.run-id }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build
         run: npm run build
@@ -60,6 +91,8 @@ jobs:
           mkdir -p scripts/.indexnow-snapshot
           cp -f dist/sitemap-0.xml scripts/.indexnow-snapshot/snapshot.xml
 
+      # overwrite: true 关键 — 同名 artifact 已存在时默认会上传失败
+      # (Artifact name ... already exists), 导致基线永远停在第一版。
       - name: Upload IndexNow baseline artifact
         if: ${{ always() }}
         uses: actions/upload-artifact@v4
@@ -67,4 +100,5 @@ jobs:
           name: indexnow-snapshot
           path: scripts/.indexnow-snapshot/snapshot.xml
           retention-days: 30
+          overwrite: true
           if-no-files-found: warn
