@@ -47,7 +47,7 @@ jobs:
       # ── 通知搜索引擎: 本次发布的 URL 新增 / 修改 / 删除 ──
       # 优先级高于 sitemap: sitemap 只说明「URL 存在」, IndexNow 才说明
       # 「这个 URL 刚刚变了, 优先来抓」。失败不阻断部署。
-      - name: Notify IndexNow (incremental: added + modified + removed)
+      - name: Notify IndexNow (incremental added modified removed)
         run: npm run indexnow
         continue-on-error: true
 
