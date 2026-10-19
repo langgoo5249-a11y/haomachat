@@ -195,13 +195,13 @@ const personSchemaLangood = {
   affiliation: { '@id': `${site}/#organization` },
 };
 
-const personSchemaLangGong = {
+const personSchemaLvGong = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  '@id': `${site}/#person-langgong`,
-  name: '郎工',
-  alternateName: 'langgong',
-  url: `${site}/authors/langgong/`,
+  '@id': `${site}/#person-lvgong`,
+  name: '吕工',
+  alternateName: 'lvgong',
+  url: `${site}/authors/lvgong/`,
   jobTitle: '号码通查站长 · 内容主笔',
   worksFor: { '@id': `${site}/#organization` },
   description: '号码通查站长,机电出身转行IT的一线实操派,专注号码标记申诉实操与企业号码标记治理,所有申诉入口实测后成文。',
@@ -212,7 +212,7 @@ const personSchemaLangGong = {
   affiliation: { '@id': `${site}/#organization` },
 };
 
-const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, personSchemaLangood, personSchemaLangGong, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...schema];
+const allSchema = [orgSchema, websiteSchema, appSchema, personSchemaHaoma, personSchemaLangood, personSchemaLvGong, ...(breadcrumbSchema ? [breadcrumbSchema] : []), ...schema];
 ---
 <!doctype html>
 <html lang={htmlLang}>

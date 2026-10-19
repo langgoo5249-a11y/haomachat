@@ -186,6 +186,9 @@
 /blog/2026-number-marking-clearance-guide/ /blog/2026-enterprise-number-marking-complete-guide/ 301
 /blog/2026-400-800-number-auth-show-company-name/ /blog/2026-enterprise-number-marking-complete-guide/ 301
 
+# 作者笔名更正: 郎工 -> 吕工 (2026-10-19), slug langgong -> lvgong
+/authors/langgong/ /authors/lvgong/ 301
+
 # ===== 动态规则区 (* 通配, 上限100条, 必须置于文件末尾) =====
 # 语法注意: 源路径必须用 * 通配符而非 :splat 占位符 —— Cloudflare 文档明确
 # 占位符不匹配斜杠(分隔符即 /), 旧 :splat 写法导致 /en/tools/xxx/ 带尾斜杠的
