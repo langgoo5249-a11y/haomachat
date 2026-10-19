@@ -12,21 +12,19 @@ const homeFaq = faqData.groups[0].items.slice(0, 10).map((item) => ({
 const faqSchema = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
-  datePublished: '2026-07-06',
-  dateModified: '2026-08-12',
   inLanguage: 'zh-CN',
   mainEntity: homeFaq,
 };
 
-// WebPage schema (含 datePublished/dateModified, 国产AI模型对时效性要求极高)
+// WebPage schema
+// 注: 不携带 datePublished/dateModified —— 首页为常青页, 写死固定值会向
+// Google/AI 引擎传递虚假陈旧信号(原 2026-07-07/2026-08-12 已被体检报告标记为 bug)。
 const webPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
   name: '号码被标记骚扰电话怎么办？免费查询+1-3天清除 | 号码通查',
   description: '号码被误标骚扰、推销、诈骗？号码通查提供免费标记查询与清除入口,聚合中国信通院与Truecaller官方渠道,手机与座机均支持,1-3个工作日恢复来电显示,不存储号码、查询免费。',
   url: 'https://zangxixitech.cn/',
-  datePublished: '2026-07-07',
-  dateModified: '2026-08-12',
   inLanguage: 'zh-CN',
   keywords: '号码被标记骚扰电话怎么办,号码标记清除,号码标记查询免费,手机号被标记怎么解除,座机号被标记清除,号码认证,法人号码核验,170/171号码标记',
   speakable: {
@@ -140,8 +138,6 @@ const advantages = [
   description="号码被误标骚扰、推销、诈骗？号码通查提供免费标记查询与清除入口，聚合中国信通院码号服务推进组与Truecaller官方渠道，手机与座机均支持，1-3个工作日恢复来电显示，不存储号码、查询免费。本页汇总免费查询入口、六大平台分平台申诉指引与号码认证绿标防复标方案，帮你快速恢复来电显示。"
   schema={[faqSchema, webPageSchema]}
   breadcrumbs={breadcrumbs}
-  publishedDate="2026-07-07T00:00:00+08:00"
-  modifiedDate="2026-08-12T00:00:00+08:00"
   keywords={['号码标记通查','号码标记查询','号码标记自查','号码标记清除','手机号码标记','座机号码标记怎么清除','号码归属地查询免费','骚扰电话标记']}
 >
   <!-- Hero 区 -->
@@ -313,21 +309,17 @@ const advantages = [
         <h3 class="font-medium text-slate-800 text-sm mb-1">新办的号码被标记</h3>
         <p class="text-xs text-slate-500">二次放号误标记清除指南</p>
       </a>
-      <a href="/blog/2026-enterprise-400-number-marking-clear-guide/" class="card p-4 hover:border-brand-300">
-        <h3 class="font-medium text-slate-800 text-sm mb-1">企业400号码被标记</h3>
-        <p class="text-xs text-slate-500">400号码标记清除完全攻略</p>
-      </a>
-      <a href="/blog/2026-enterprise-95-96-number-marking-clear-guide/" class="card p-4 hover:border-brand-300">
-        <h3 class="font-medium text-slate-800 text-sm mb-1">95/96号码被标记</h3>
-        <p class="text-xs text-slate-500">95/96企业号码标记清除方案</p>
+      <a href="/blog/2026-enterprise-number-marking-complete-guide/" class="card p-4 hover:border-brand-300">
+        <h3 class="font-medium text-slate-800 text-sm mb-1">企业号码被标记（400/95/96/座机）</h3>
+        <p class="text-xs text-slate-500">企业号码标记清除大全：申诉流程+绿标认证+防回流</p>
       </a>
       <a href="/blog/2026-high-frequency-outbound-number-marking-solution/" class="card p-4 hover:border-brand-300">
         <h3 class="font-medium text-slate-800 text-sm mb-1">销售/客服外呼被标记</h3>
         <p class="text-xs text-slate-500">高频外呼防标记与清除方案</p>
       </a>
-      <a href="/blog/2026-enterprise-number-marking-prevention-guide/" class="card p-4 hover:border-brand-300">
+      <a href="/blog/2026-enterprise-number-marking-complete-guide/" class="card p-4 hover:border-brand-300">
         <h3 class="font-medium text-slate-800 text-sm mb-1">标记清了又回来了？</h3>
-        <p class="text-xs text-slate-500">企业号码标记预防与防回流指南</p>
+        <p class="text-xs text-slate-500">企业号码标记预防与防回流（见大全第4步）</p>
       </a>
       <a href="/blog/2026-phone-marking-removal-complete-guide/" class="card p-4 hover:border-brand-300">
         <h3 class="font-medium text-slate-800 text-sm mb-1">首次被标记不知道怎么弄</h3>

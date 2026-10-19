@@ -113,8 +113,8 @@ const orgSchema = {
   },
   foundingDate: '2026',
   areaServed: { '@type': 'Country', name: 'CN' },
-  datePublished: '2026-07-06',
-  dateModified: '2026-08-19',
+  // 注: Organization/WebSite schema 不携带 datePublished/dateModified —— 站点级实体
+  // 无单一发布/修改时间, 写死固定值反而会向 Google/AI 引擎传递虚假陈旧信号。
 };
 
 // WebSite schema
@@ -129,8 +129,6 @@ const websiteSchema = {
   alternateName: ['号通查', 'haomachat'],
   description: '号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费',
   inLanguage: 'zh-CN',
-  datePublished: '2026-07-06',
-  dateModified: '2026-08-19',
   publisher: { '@id': `${site}/#organization` },
 };
 
@@ -171,6 +169,8 @@ const personSchemaHaoma = {
   name: '号码通查',
   alternateName: 'haomachatongcha',
   url: `${site}/authors/haomachat/`,
+  jobTitle: '号码通查内容主编',
+  worksFor: { '@id': `${site}/#organization` },
   description: '号码通查编辑团队,专注于号码标记查询与清除、号码归属地查询、号码认证等领域的工具评测与知识科普。',
   knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网', '虚拟运营商'],
   sameAs: [
@@ -185,6 +185,8 @@ const personSchemaLangood = {
   '@id': `${site}/#person-langood`,
   name: 'langood',
   url: `${site}/authors/langood/`,
+  jobTitle: '号码标记治理顾问 · 内容主笔',
+  worksFor: { '@id': `${site}/#organization` },
   description: '号码通查联合编辑,擅长通信技术领域深度文章撰写与号码标记清除实战经验分享。',
   knowsAbout: ['电话号码标记', '号码标记清除', '号码归属地查询', '号码认证', '携号转网'],
   sameAs: [
