@@ -12,7 +12,7 @@ const aboutSchema = {
   name: '关于号码通查',
   description: '号码通查提供号码标记查询与清除服务,手机号与座机号均支持。本站提供入口导航与科普内容,标记清除服务由授权合作方提供,数据来源中国信通院与Truecaller。',
   url: 'https://zangxixitech.cn/about',
-  lastReviewed: '2026-10-05',
+  lastReviewed: '2026-10-19',
   mainEntity: {
     '@type': 'Organization',
     name: '号码通查',
@@ -67,6 +67,22 @@ const aboutSchema = {
       <li><strong>可追溯:</strong>所有官方渠道信息均标注来源,用户可自行验证。</li>
     </ul>
     <p>本站的运营与客服事务由主要联系人<strong>吕经理</strong>负责。</p>
+  </section>
+
+  <!-- 编辑团队 -->
+  <section class="prose-content mb-8">
+    <h2>编辑团队</h2>
+    <p>
+      号码通查的内容由一个三人小团队维护,每位作者都有独立的作者主页,全部文章按作者归档可查:
+    </p>
+    <ul>
+      <li><strong><a href="/authors/langgong/">郎工</a>(站长 · 内容主笔):</strong>机电出身转行 IT 的一线实操派,负责申诉教程与实测复盘。所有申诉入口均亲手验证后才成文,文中步骤与线上实际页面不一致时,以读者反馈为准随时修正。</li>
+      <li><strong><a href="/authors/langood/">langood</a>(号码标记治理顾问 · 内容主笔):</strong>长期跟踪工信部与中国信通院的号码标记治理政策,负责政策解读与企业外呼合规方向的内容。</li>
+      <li><strong><a href="/authors/haomachat/">号码通查编辑部</a>:</strong>负责官方政策整理、工具使用指南与全站内容的日常校对更新。</li>
+    </ul>
+    <p>
+      文章中出现的服务入口与数据来源均标注出处;如发现内容与事实不符,欢迎通过文末联系方式纠错,核实后我们会更新对应文章并在文末备注修订记录。
+    </p>
   </section>
 
   <!-- 专业领域 -->
@@ -194,10 +210,11 @@ const aboutSchema = {
         <tr><th>日期</th><th>更新内容</th><th>影响页面</th></tr>
       </thead>
       <tbody>
-        <tr><td>2026-07-06</td><td>新增技术文档页面,补充 API 说明</td><td>/tech-docs</td></tr>
-        <tr><td>2026-07-06</td><td>补充四大法律页面,含 Cookie 与 AdSense 条款</td><td>/privacy /terms /disclaimer /cookie-policy</td></tr>
-        <tr><td>2026-07-06</td><td>新增 3 篇号码百科深度文章</td><td>/blog</td></tr>
-        <tr><td>2026-07-06</td><td>全站 GEO/SEO 优化,补全 OG 标签与结构化数据</td><td>全站</td></tr>
+        <tr><td>2026-10-19</td><td>8 篇企业号码标记分场景文章合并为《企业号码标记大全》一篇,旧文 301 跳转;修复站点级结构化数据日期问题;新增作者「郎工」主页;首页「按场景解决」卡片区扩充至 20 张</td><td>/blog /about /authors /</td></tr>
+        <tr><td>2026-10-19</td><td>新增文章《为什么安卓显示"骚扰电话"、苹果却看不到?》</td><td>/blog</td></tr>
+        <tr><td>2026-10-14</td><td>新增文章《号码被标记可以起诉吗?从两起真实判例看名誉权维权的4个前提》</td><td>/blog</td></tr>
+        <tr><td>2026-10-09</td><td>新增文章《号码标记会自己消失吗?3种会"变淡"的情况,和2种永远清不掉的真相》</td><td>/blog</td></tr>
+        <tr><td>2026-10-05</td><td>核心页标题按搜索意图重写;旧标签页 301 收敛(150→14)</td><td>全站 /tags</td></tr>
       </tbody>
     </table>
   </section>
