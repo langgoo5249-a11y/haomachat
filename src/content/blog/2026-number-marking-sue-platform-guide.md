@@ -6,7 +6,7 @@ updatedDate: 2026-10-14
 author: 号码通查
 heroImage: /images/blog-hero-number-marking-sue-platform.jpg
 heroDescription: 号码被错误标记后，普通人能否以侵犯名誉权起诉标记平台？两起真实判例给出答案。
-tags: [号码标记, 名誉权, 维权, 法律科普]
+tags: ["号码标记", "名誉权", "维权", "法律科普"]
 category: 号码标记法律
 howToSteps:
   - name: 第一步 平台内申诉并完整留痕

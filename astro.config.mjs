@@ -16,6 +16,11 @@ import { fileURLToPath } from 'node:url';
 const THIN_TAG_THRESHOLD = 3;
 const blogDir = join(process.cwd(), 'src/content/blog');
 const tagArticleCount = new Map();
+// 博客文章 lastmod 自动派生表: slug -> frontmatter 的 updatedDate
+// 目的: 根治"手写 pageLastmod 映射表漏配新文章"的长期缺陷 —— 新增文章无需再手动改此文件
+const blogLastmod = new Map();
+// 标签页 lastmod 自动派生: 标签名 -> 该标签下文章的最晚 updatedDate
+const tagLastmod = new Map();
 try {
   for (const file of readdirSync(blogDir)) {
     if (!file.endsWith('.md')) continue;
@@ -23,12 +28,18 @@ try {
     const fmMatch = raw.match(/^---\r?\n([\s\S]*?)\r?\n---/);
     const fm = fmMatch ? fmMatch[1] : '';
     const tags = [];
-    // 兼容两种 YAML 写法: 行内数组 tags: ["a", "b"] 与分块列表 tags:\n  - a
-    const inline = fm.match(/^tags:\s*\[([^\]]*)\]/m);
+    // 兼容三种 YAML 写法:
+    //   1) 行内数组带引号 tags: ["a", "b"]
+    //   2) 行内数组无引号 tags: [a, b]   ← 2026-10-21 修复: 原正则只认带引号, 会漏掉无引号标签
+    //   3) 分块列表 tags:\n  - a
+    const inline = fm.match(/^tags:[ \t]*\[([^\]]*)\]/m);
     if (inline) {
-      for (const t of inline[1].matchAll(/"([^"]+)"|'([^']+)'/g)) tags.push(t[1] ?? t[2]);
+      for (const raw of inline[1].split(',')) {
+        const t = raw.trim().replace(/^["']|["']$/g, '').trim();
+        if (t) tags.push(t);
+      }
     } else {
-      const block = fm.match(/^tags:\s*\r?\n((?:[ \t]+-[ \t]*.+\r?\n?)+)/m);
+      const block = fm.match(/^tags:[ \t]*\r?\n((?:[ \t]+-[ \t]*.+\r?\n?)+)/m);
       if (block) {
         for (const line of block[1].split('\n')) {
           const m = line.match(/^[ \t]*-[ \t]*(.+?)\s*$/);
@@ -37,6 +48,23 @@ try {
       }
     }
     for (const t of tags) tagArticleCount.set(t, (tagArticleCount.get(t) ?? 0) + 1);
+    // 从 frontmatter 派生该文章的 lastmod(优先 updatedDate, 回退 pubDate)
+    const slug = file.replace(/\.md$/, '');
+    const updMatch = fm.match(/^updatedDate:[ \t]*(.+?)[ \t]*$/m);
+    const pubMatch = fm.match(/^pubDate:[ \t]*(.+?)[ \t]*$/m);
+    const rawDate = (updMatch?.[1] ?? pubMatch?.[1] ?? '').replace(/^["']|["']$/g, '').trim();
+    if (rawDate) {
+      const d = new Date(rawDate);
+      if (!Number.isNaN(d.getTime())) {
+        const iso = d.toISOString();
+        blogLastmod.set(slug, iso);
+        // 标签页 lastmod = 该标签下最晚的一篇文章
+        for (const t of tags) {
+          const cur = tagLastmod.get(t);
+          if (!cur || iso > cur) tagLastmod.set(t, iso);
+        }
+      }
+    }
   }
 } catch {
   // 构建环境异常时退化为不过滤, 不阻塞构建
@@ -248,6 +276,37 @@ export default defineConfig({
           // 非法编码时保留原值
         }
         const normalizedPath = path === '' ? '/' : path;
+        // 博客文章页: 优先用 frontmatter 自动派生的 lastmod(随内容走, 永不漏配);
+        // 手写映射表仅作回退, 避免历史条目因缺少 frontmatter 而丢失日期
+        const blogMatch = normalizedPath.match(/^\/blog\/([^/]+)\/?$/);
+        if (blogMatch) {
+          const derived = blogLastmod.get(blogMatch[1]);
+          if (derived) {
+            item.lastmod = derived;
+            return item;
+          }
+        }
+        // 标签页: lastmod 取该标签下最晚文章的日期(随内容自动更新)
+        const tagMatch = normalizedPath.match(/^\/tags\/(.+?)\/?$/);
+        if (tagMatch) {
+          const tagSlug = tagMatch[1];
+          const derivedTag = tagLastmod.get(tagSlug);
+          if (derivedTag) {
+            item.lastmod = derivedTag;
+            return item;
+          }
+        }
+        // 博客列表页: lastmod 取全站最晚文章日期
+        if (normalizedPath === '/blog/' || normalizedPath === '/blog') {
+          let latest = null;
+          for (const iso of blogLastmod.values()) {
+            if (!latest || iso > latest) latest = iso;
+          }
+          if (latest) {
+            item.lastmod = latest;
+            return item;
+          }
+        }
         // 尝试精确匹配,再尝试去掉末尾斜杠匹配
         const date = pageLastmod[normalizedPath] || pageLastmod[normalizedPath.replace(/\/$/, '') + '/'];
         if (date) {
