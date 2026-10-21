@@ -64,8 +64,8 @@ const isThinTagUrl = (url) => {
 // Google 自 2023 起主动使用 lastmod 做抓取调度,但必须是真实内容修改日期
 // 更新页面内容时同步修改此处日期
 const pageLastmod = {
-  '/': '2026-08-19',
-  '/about/': '2026-10-05',
+  '/': '2026-10-21',
+  '/about/': '2026-10-19',
   '/contact/': '2026-10-05',
   '/faq/': '2026-08-24',
   '/tech-docs/': '2026-08-24',
@@ -73,7 +73,7 @@ const pageLastmod = {
   '/terms/': '2026-10-05',
   '/disclaimer/': '2026-10-05',
   '/cookie-policy/': '2026-08-13',
-  '/blog/2026-number-marking-clearance-guide/': '2026-07-13',
+  '/blog/2026-number-marking-clearance-guide/': '2026-10-21',
   '/blog/2026-enterprise-number-marking-solution/': '2026-07-13',
   '/blog/2026-number-marking-platform-comparison/': '2026-07-13',
   '/blog/2026-phone-marking-removal-complete-guide/': '2026-07-13',
@@ -102,7 +102,7 @@ const pageLastmod = {
   '/blog/2026-sogou-number-marking-appeal-guide/': '2026-09-10',
   '/blog/2026-carrier-anti-harassment-appeal-guide/': '2026-09-10',
   '/blog/2026-enterprise-landline-batch-marking-clear-guide/': '2026-09-10',
-  '/blog/2026-400-800-number-auth-show-company-name/': '2026-09-10',
+  '/blog/2026-400-800-number-auth-show-company-name/': '2026-10-21',
   '/blog/2026-number-marking-clear-observation-period-guide/': '2026-09-10',
   '/blog/2026-number-auth-vs-marking-clear-decision-guide/': '2026-09-10',
   '/blog/2026-self-service-vs-agency-appeal-decision/': '2026-09-10',
@@ -149,7 +149,16 @@ const pageLastmod = {
   '/authors/langood/': '2026-08-24',
   '/authors/haomachat/': '2026-08-24',
   '/en/': '2026-08-24',
-};
+
+  '/blog/2026-enterprise-number-marking-complete-guide/': '2026-10-19',
+  '/authors/lvgong/': '2026-10-19',
+  '/blog/2026-help-parents-clear-number-marking-remote-guide/': '2026-10-19',
+  '/blog/2026-ios-android-marking-difference-guide/': '2026-10-19',
+  '/blog/2026-number-marking-auto-disappear-guide/': '2026-10-19',
+  '/blog/2026-number-marking-sue-platform-guide/': '2026-10-19',
+  '/tags/名誉权/': '2026-10-19',
+  '/tags/法律科普/': '2026-10-19',
+  '/tags/维权/': '2026-10-19',};
 
 // 内链尾斜杠归一化 (构建后处理)
 // Cloudflare Pages 对目录页 /path 会 308 跳转到 /path/, 站内链接若不带尾斜杠
