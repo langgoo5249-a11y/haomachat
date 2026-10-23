@@ -88,7 +88,10 @@ const orgSchema = {
   '@type': 'Organization',
   '@id': `${site}/#organization`,
   name: '号码通查',
-  alternateName: ['号通查', 'haomachat'],
+  // 2026-10-23: 移除「号通查」别名 —— 该名称为姊妹站 524900.xyz 的品牌名,
+  // 两站同为号码标记主题, 共用别名词会让搜索引擎的实体消歧产生歧义。
+  // 本站品牌只保留「号码通查」+ 英文名 haomachat。
+  alternateName: 'haomachat',
   url: site,
   logo: {
     '@type': 'ImageObject',
@@ -126,7 +129,7 @@ const websiteSchema = {
   '@id': `${site}/#website`,
   url: site,
   name: '号码通查',
-  alternateName: ['号通查', 'haomachat'],
+  alternateName: 'haomachat',
   description: '号码标记通查服务,包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费',
   inLanguage: 'zh-CN',
   publisher: { '@id': `${site}/#organization` },

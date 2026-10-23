@@ -34,7 +34,7 @@ faq:
 
 2024年8月，北京吕先生发现自己打电话给客户，对方十有八九不接。一查才发现，他的手机号被360手机卫士标记成了"广告骚扰"。他通过中国信通院网络投诉平台提交了申诉，结果被要求提供身份证、手机号实名认证信息、通话记录截图……材料来回补了三轮，前后折腾了两周才清除标记。
 
-这不是个例。据[中国信通院码号服务推进组](https://www.opene164.org.cn/){rel="nofollow noopener" target="_blank"}的数据，截至2021年底，该平台已处理超过**145万**件号码误标记取消申请，其中**近103万**个号码成功取消标记，成功率约71%。而被申请消除错误标记的号码中，手机号码占了**83.45%**，大部分是"二次放号"的号码——也就是别人用过、被运营商回收后重新投放的号码。
+这不是个例。据中国信通院码号服务推进组{rel="nofollow noopener" target="_blank"}的数据，截至2021年底，该平台已处理超过**145万**件号码误标记取消申请，其中**近103万**个号码成功取消标记，成功率约71%。而被申请消除错误标记的号码中，手机号码占了**83.45%**，大部分是"二次放号"的号码——也就是别人用过、被运营商回收后重新投放的号码。
 
 更扎心的是，被错误标记的企业电话，有效沟通率平均**下降40%以上**。你是正经做生意的，但客户手机上显示"骚扰电话"，谁敢接？
 
@@ -64,7 +64,7 @@ faq:
 
 ### 渠道一：信通院码号服务推进组（推荐首选）
 
-[中国信通院码号服务推进组](https://www.opene164.org.cn/){rel="nofollow noopener" target="_blank"}于2019年1月上线号码标记服务平台，对接了360、腾讯、阿里、百度、搜狗、泰迪熊、电话邦等7家主流标记平台。一站式提交，同步到多个平台，是目前最高效的号码标记清除渠道。
+中国信通院码号服务推进组{rel="nofollow noopener" target="_blank"}于2019年1月上线号码标记服务平台，对接了360、腾讯、阿里、百度、搜狗、泰迪熊、电话邦等7家主流标记平台。一站式提交，同步到多个平台，是目前最高效的号码标记清除渠道。
 
 - 官网：opene164.org.cn
 - 费用：免费
@@ -202,7 +202,7 @@ faq:
 
 ---
 
-**数据来源声明**：本文数据来自[工业和信息化部](https://www.miit.gov.cn/){rel="nofollow noopener" target="_blank"}2024-2025年电信服务质量通告、[中国信通院码号服务推进组](https://www.opene164.org.cn/){rel="nofollow noopener" target="_blank"}公开数据、[12321举报中心](https://www.12321.cn/){rel="nofollow noopener" target="_blank"}统计、[艾媒咨询](https://www.iimedia.cn/){rel="nofollow noopener" target="_blank"}市场报告及权威媒体报道。引用的标准为[YD/T 4980-2024《电话号码标记应用技术要求》](https://www.spc.org.cn/online/e0da2e59848146b4b93f39f2b55b62fd.html){rel="nofollow noopener" target="_blank"}。数据截至2025年第三季度，部分数据为目前可查的最新官方公开数据。
+**数据来源声明**：本文数据来自[工业和信息化部](https://www.miit.gov.cn/){rel="nofollow noopener" target="_blank"}2024-2025年电信服务质量通告、中国信通院码号服务推进组{rel="nofollow noopener" target="_blank"}公开数据、[12321举报中心](https://www.12321.cn/){rel="nofollow noopener" target="_blank"}统计、[艾媒咨询](https://www.iimedia.cn/){rel="nofollow noopener" target="_blank"}市场报告及权威媒体报道。引用的标准为[YD/T 4980-2024《电话号码标记应用技术要求》](https://www.spc.org.cn/online/e0da2e59848146b4b93f39f2b55b62fd.html){rel="nofollow noopener" target="_blank"}。数据截至2025年第三季度，部分数据为目前可查的最新官方公开数据。
 
 ---
 
