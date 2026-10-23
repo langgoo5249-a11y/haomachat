@@ -4,7 +4,7 @@ description: "为什么从没打推销电话的人，手机号会被标成骚扰
 pubDate: 2026-10-23
 updatedDate: 2026-10-23
 author: "吕工"
-heroImage: "/images/blog-hero-marking-source-chain.jpg"
+heroImage: "/images/blog-hero-marking-source-chain-v2.jpg"
 heroDescription: "个人信息泄露、获客软件抓取、批量外呼、投诉标记四环节示意图"
 tags: ["号码标记", "号码标记清除", "骚扰电话", "高频外呼", "号码误标"]
 faq:
