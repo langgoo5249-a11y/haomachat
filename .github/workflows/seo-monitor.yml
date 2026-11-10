@@ -1,0 +1,181 @@
+name: SEO Daily Monitor
+
+on:
+  schedule:
+    # 每天北京时间 09:30 执行（UTC 01:30）
+    - cron: '30 1 * * *'
+  workflow_dispatch:
+
+permissions:
+  issues: write # 自动开/关 SEO 告警 Issue 需要
+
+jobs:
+  seo-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run SEO Monitor
+        id: monitor
+        run: |
+          SITE="https://zangxixitech.cn"
+          ALERT_COUNT=0
+          REPORT=""
+          # 预期值基线（2026-11-10 实测，站点升级时同步改这里并注明日期）
+          # 首页 hreflang 3 值（en/x-default/zh-CN）；文章页 1 值（zh-CN，Astro 仅中文）
+
+          # 检查1: 首页 hreflang（预期3个唯一值）
+          HOME_HTML=$(curl -s "$SITE/")
+          HREFLANG_HOME=$(echo "$HOME_HTML" | grep -oi 'hreflang="[^"]*"' | sort -u | wc -l || true)
+          HREFLANG_VALUES=$(echo "$HOME_HTML" | grep -oi 'hreflang="[^"]*"' | sort -u | tr '\n' ' ' || true)
+          if [ "$HREFLANG_HOME" = "3" ]; then
+            REPORT+="✅ 检查1 首页hreflang: ${HREFLANG_VALUES}\n"
+          else
+            REPORT+="❌ 检查1 首页hreflang异常: 预期3, 实际${HREFLANG_HOME} (${HREFLANG_VALUES})\n"
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          # 检查2: 文章页 hreflang（预期1个唯一值 zh-CN —— Astro 站文章页只输出中文）
+          ARTICLE_URL=$(curl -s "$SITE/sitemap-0.xml" | grep -o 'https://zangxixitech.cn/blog/[^<]*</loc>' | grep -v 'blog/</loc>' | head -1 | sed 's/<\/loc>//')
+          ARTICLE_HTML=$(curl -s "$ARTICLE_URL")
+          HREFLANG_ART=$(echo "$ARTICLE_HTML" | grep -oi 'hreflang="[^"]*"' | sort -u | wc -l || true)
+          if [ "$HREFLANG_ART" = "1" ]; then
+            REPORT+="✅ 检查2 文章页hreflang: ${HREFLANG_ART}个\n"
+          else
+            REPORT+="❌ 检查2 文章页hreflang异常: 预期1, 实际${HREFLANG_ART} (${ARTICLE_URL})\n"
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          # 检查3: JSON-LD 结构化数据（首页预期 >=9 块）
+          LD_COUNT=$(echo "$HOME_HTML" | grep -c 'application/ld+json' || true)
+          if [ "$LD_COUNT" -ge 9 ]; then
+            REPORT+="✅ 检查3 JSON-LD: ${LD_COUNT}块\n"
+          else
+            REPORT+="❌ 检查3 JSON-LD不足: 预期>=9, 实际${LD_COUNT}\n"
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          # 检查4: canonical URL
+          CANONICAL=$(echo "$HOME_HTML" | grep -o 'rel="canonical" href="[^"]*"' | head -1)
+          if echo "$CANONICAL" | grep -q 'zangxixitech.cn'; then
+            REPORT+="✅ 检查4 Canonical: ${CANONICAL}\n"
+          else
+            REPORT+="❌ 检查4 Canonical异常: ${CANONICAL}\n"
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          # 检查5: llms.txt 可达（AI 引擎可见度）
+          LLMS_STATUS=$(curl -s -o /dev/null -w '%{http_code}' "$SITE/llms.txt")
+          if [ "$LLMS_STATUS" = "200" ]; then
+            REPORT+="✅ 检查5 llms.txt: 200\n"
+          else
+            REPORT+="❌ 检查5 llms.txt异常: ${LLMS_STATUS}\n"
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          # 检查6: sitemap-index + sitemap-0
+          SITEMAP_STATUS=$(curl -s -o /dev/null -w '%{http_code}' "$SITE/sitemap.xml")
+          SITEMAP_COUNT=$(curl -s "$SITE/sitemap-0.xml" | grep -c '<loc>' || true)
+          if [ "$SITEMAP_STATUS" = "200" ] && [ "$SITEMAP_COUNT" -gt 50 ]; then
+            REPORT+="✅ 检查6 Sitemap: ${SITEMAP_COUNT}个URL\n"
+          else
+            REPORT+="❌ 检查6 Sitemap异常: 状态${SITEMAP_STATUS}, ${SITEMAP_COUNT}个URL\n"
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          # 检查7: robots.txt
+          ROBOTS_STATUS=$(curl -s -o /dev/null -w '%{http_code}' "$SITE/robots.txt")
+          if [ "$ROBOTS_STATUS" = "200" ]; then
+            REPORT+="✅ 检查7 robots.txt: 200\n"
+          else
+            REPORT+="❌ 检查7 robots.txt异常: ${ROBOTS_STATUS}\n"
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          # 检查8: HTTP安全头
+          HEADERS=$(curl -sI "$SITE/")
+          HSTS=$(echo "$HEADERS" | grep -ic 'strict-transport-security' || true)
+          XFRAME=$(echo "$HEADERS" | grep -ic 'x-frame-options' || true)
+          XCTO=$(echo "$HEADERS" | grep -ic 'x-content-type-options' || true)
+          if [ "$HSTS" -ge 1 ] && [ "$XFRAME" -ge 1 ] && [ "$XCTO" -ge 1 ]; then
+            REPORT+="✅ 检查8 安全头: HSTS/XFO/XCTO 全部存在\n"
+          else
+            REPORT+="⚠️ 检查8 安全头缺失: HSTS=${HSTS} XFO=${XFRAME} XCTO=${XCTO}\n"
+          fi
+
+          # 检查9: 关键页面状态码
+          KEY_PAGES=("/" "/blog/" "/about/" "/authors/")
+          PAGE_FAIL=0
+          for page in "${KEY_PAGES[@]}"; do
+            status=$(curl -s -o /dev/null -w '%{http_code}' "$SITE$page")
+            if [ "$status" != "200" ]; then
+              REPORT+="❌ 检查9 ${page} → ${status}\n"
+              PAGE_FAIL=$((PAGE_FAIL + 1))
+            fi
+          done
+          if [ "$PAGE_FAIL" = "0" ]; then
+            REPORT+="✅ 检查9 关键页面全部200(4页)\n"
+          else
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          # 检查10: sitemap URL 随机抽样（排除 sitemap 索引自身）
+          SITEMAP_URLS=$(curl -s "$SITE/sitemap-0.xml" | grep -o 'https://zangxixitech.cn[^<]*</loc>' | sed 's/<\/loc>//' | shuf | head -5)
+          SITEMAP_FAIL=0
+          for url in $SITEMAP_URLS; do
+            status=$(curl -s -o /dev/null -w '%{http_code}' "$url")
+            if [ "$status" != "200" ]; then
+              REPORT+="❌ 检查10 Sitemap URL异常: ${url} → ${status}\n"
+              SITEMAP_FAIL=$((SITEMAP_FAIL + 1))
+            fi
+          done
+          if [ "$SITEMAP_FAIL" = "0" ]; then
+            REPORT+="✅ 检查10 Sitemap抽样5个URL全部200\n"
+          else
+            ALERT_COUNT=$((ALERT_COUNT + 1))
+          fi
+
+          echo "alert_count=$ALERT_COUNT" >> $GITHUB_OUTPUT
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          echo -e "$REPORT" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: Create Issue on Failure
+        if: steps.monitor.outputs.alert_count != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const report = `${{ steps.monitor.outputs.report }}`;
+            const alertCount = `${{ steps.monitor.outputs.alert_count }}`;
+            const date = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: `🚨 SEO 监控告警 - ${date} (${alertCount}个异常)`,
+              body: `## SEO 监控报告（zangxixitech.cn）\n\n执行时间: ${date}\n异常数量: ${alertCount}\n\n### 检查结果\n\n${report}`,
+              labels: ['seo-monitor', 'alert']
+            });
+
+      - name: Close Old Issues on Success
+        if: steps.monitor.outputs.alert_count == '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: 'seo-monitor',
+              state: 'open'
+            });
+            for (const issue of issues.data) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: '✅ SEO 检查已恢复正常，自动关闭此 Issue。'
+              });
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                state: 'closed'
+              });
+            }
