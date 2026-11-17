@@ -71,6 +71,10 @@ const articleSchema = {
   },
   image: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
   mainEntityOfPage: 'https://zangxixitech.cn/guide/how-to-check-marking',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 ---
 <BaseLayout
@@ -119,8 +123,8 @@ const articleSchema = {
       <li>获取标记情况概览,记录被标记的标签类型。</li>
     </ul>
 
-    <h3>2. 中国信通院码号服务推进组(首选)</h3>
-    <p>信通院平台是国内唯一官方跨平台聚合查询入口,一次查询可覆盖多个标记源,应作为查询起点。</p>
+    <h3>2. 中国信通院码号服务推进组</h3>
+    <p>信通院平台是国内唯一官方跨平台聚合查询入口,一次查询可覆盖多个标记源,可先尝试通过该入口查询。如该入口打不开，先到 360、腾讯、百度、华为等平台分别申诉。</p>
     <ul>
       <li>访问 opene164.org.cn。</li>
       <li>在查询页输入待查号码(支持手机号与固话)。</li>

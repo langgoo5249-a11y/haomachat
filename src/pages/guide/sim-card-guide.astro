@@ -71,6 +71,10 @@ const articleSchema = {
   },
   image: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
   mainEntityOfPage: 'https://zangxixitech.cn/guide/sim-card-guide',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 ---
 <BaseLayout

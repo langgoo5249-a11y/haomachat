@@ -39,6 +39,10 @@ const toolWebAppSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
   provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
   featureList: '360标记清除,腾讯标记清除,百度标记清除,华为标记清除,泰迪熊标记清除,电话邦标记清除,信通院跨平台清除',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 
 const howToSchema = {
@@ -105,7 +109,7 @@ const faqs = [
   },
   {
     q: '号码被标记骚扰电话怎么解除？',
-    a: '一共三步。第一步先用本站标记清除入口提交申诉,支持手机号与座机号;第二步到中国信通院码号服务推进组(opene164.org.cn)做官方跨平台申诉,中国联通手机号可一站式清除;第三步,若号码有海外标记,再到 Truecaller 取消收录。三部完成后回到标记自查页复查确认。',
+    a: '一共三步。第一步先用本站标记清除入口提交申诉,支持手机号与座机号;第二步到中国信通院码号服务推进组(opene164.org.cn)做官方跨平台申诉,中国联通手机号可一站式清除;如该入口打不开，先到 360、腾讯、百度、华为等平台分别申诉;第三步,若号码有海外标记,再到 Truecaller 取消收录。三部完成后回到标记自查页复查确认。',
   },
   {
     q: '号码标记清除收费吗？需要提交什么材料？',

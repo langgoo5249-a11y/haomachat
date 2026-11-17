@@ -25,6 +25,10 @@ const toolWebAppSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
   provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
   featureList: '移动选号,联通选号,电信选号,靓号筛选,携号转网,套餐对比',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 
 // 三大运营商选号渠道

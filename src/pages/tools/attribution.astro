@@ -25,6 +25,10 @@ const toolWebAppSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
   provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
   featureList: '归属地查询,运营商查询,号段查询,携号转网查询,座机归属地查询',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 
 // FAQ 单一数据源: 同时用于可见区块与 FAQPage 结构化数据, 保证两者一致

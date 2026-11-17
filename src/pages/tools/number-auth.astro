@@ -25,6 +25,10 @@ const toolWebAppSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
   provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
   featureList: '企业号码认证,绿标申请,号码标记预防,来电显示企业名,接听率提升',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 
 // FAQ 单一数据源: 同时用于可见区块与 FAQPage 结构化数据, 保证两者一致

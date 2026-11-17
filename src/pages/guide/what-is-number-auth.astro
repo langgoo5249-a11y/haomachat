@@ -57,6 +57,10 @@ const articleSchema = {
   },
   image: { '@type': 'ImageObject', url: 'https://zangxixitech.cn/og-default.jpg', width: 1200, height: 630 },
   mainEntityOfPage: 'https://zangxixitech.cn/guide/what-is-number-auth',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 
 // HowTo JSON-LD: "如何开通号码认证"步骤型结构化数据

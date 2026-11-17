@@ -96,6 +96,10 @@ const blogPostingSchema = {
   keywords: post.data.tags.join(', '),
   wordCount: post.body?.length || 0,
   articleSection: '号码百科',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.prose-content blockquote', '.faq-answer'],
+  },
   isPartOf: {
     '@type': 'Blog',
     '@id': 'https://zangxixitech.cn/blog/',

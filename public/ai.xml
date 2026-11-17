@@ -115,6 +115,14 @@
     <!-- 博客文章 - 其他 -->
     <priority url="https://zangxixitech.cn/blog/2026-phone-attribution-accuracy-after-mnp/" type="article" keywords="携号转网后号码归属地查询不准,号码归属地查询准确率" />
     <priority url="https://zangxixitech.cn/blog/2026-number-marking-platform-comparison/" type="article" keywords="360腾讯百度泰迪熊电话邦,号码标记平台对比实测" />
+    <!-- 博客文章 - 补录（此前遗漏，2026-11-17 同步） -->
+    <priority url="https://zangxixitech.cn/blog/2026-international-call-marking-guide/" type="article" keywords="境外来电显示疑似诈骗怎么取消,00开头号码识别规则,境外来电拦截关闭,外贸留学生接听设置" />
+    <priority url="https://zangxixitech.cn/blog/2026-number-labeled-intermediary-realestate-loan-guide/" type="article" keywords="手机号被标记中介房产贷款怎么取消,细分标签申诉,卖房旧号,个体户被标贷款" />
+    <priority url="https://zangxixitech.cn/blog/2026-help-parents-clear-number-marking-remote-guide/" type="article" keywords="爸妈手机号被标骚扰电话,子女远程清除标记,老人号码标记申诉,远程协助" />
+    <priority url="https://zangxixitech.cn/blog/2026-number-marking-auto-disappear-guide/" type="article" keywords="号码标记会自己消失吗,标记变淡,标记清不掉,3步自查" />
+    <priority url="https://zangxixitech.cn/blog/2026-number-marking-sue-platform-guide/" type="article" keywords="号码被标记可以起诉吗,名誉权维权,真实判例,民法典1024条" />
+    <priority url="https://zangxixitech.cn/blog/2026-enterprise-number-marking-complete-guide/" type="article" keywords="企业号码标记大全,企业号码查询清除认证防复标,400/95/96/座机批量申诉,号码认证绿标" />
+    <priority url="https://zangxixitech.cn/blog/2026-ios-android-marking-difference-guide/" type="article" keywords="安卓显示骚扰电话苹果看不到,iOS安卓标记差异,同一号码两系统标记不同" />
     <!-- 博客文章 - 最新文章（2026-10-23 起，与 llms.txt 同步） -->
     <priority url="https://zangxixitech.cn/blog/2026-bulk-number-marking-query-compliance-guide/" type="article" keywords="批量查询号码标记违法吗,外呼名单清洗,合规红线,自查清单" />
     <priority url="https://zangxixitech.cn/blog/2026-number-marking-query-inconsistency-guide/" type="article" keywords="号码标记查询结果不一致,4种查询状态,5层数据源,基线记录法" />

@@ -31,6 +31,7 @@ const pageUpdated = '2026-10-05';
 const toolWebAppSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
+  '@id': 'https://zangxixitech.cn/tools/marking-check/#webapp',
   name: '号码标记自查工具',
   description: '查询手机号码与座机号码在360、腾讯、百度、华为、泰迪熊、电话邦等主流平台的标记情况，支持手机号与固话。',
   url: 'https://zangxixitech.cn/tools/marking-check/',
@@ -40,6 +41,10 @@ const toolWebAppSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
   provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
   featureList: '360标记查询,腾讯标记查询,百度标记查询,华为标记查询,泰迪熊标记查询,电话邦标记查询,信通院跨平台查询',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 
 const howToSchema = {
@@ -96,7 +101,7 @@ const faqs = [
   },
   {
     q: '手机号被标记在哪查最全？',
-    a: '推荐三渠道组合查询。第一步用本站标记查询入口,支持手机号与座机号;第二步到中国信通院码号服务推进组(opene164.org.cn),这是国内唯一官方跨平台查询入口,可一次看到多平台标记;第三步,若号码有国际往来,再到 Truecaller 查海外标记。三渠道配合可覆盖国内与国际标记。',
+    a: '推荐三渠道组合查询。第一步用本站标记查询入口,支持手机号与座机号;第二步到中国信通院码号服务推进组(opene164.org.cn),这是国内唯一官方跨平台查询入口,可一次看到多平台标记;如该入口打不开，先到 360、腾讯、百度、华为等平台分别申诉;第三步,若号码有国际往来,再到 Truecaller 查海外标记。三渠道配合可覆盖国内与国际标记。',
   },
   {
     q: '号码标记查询收费吗？会被存储吗？',

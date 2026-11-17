@@ -28,6 +28,10 @@ const toolWebAppSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
   provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
   featureList: '法人号码核验,运营商三网直连,实名认证,企业身份核验',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 
 // FAQ 单一数据源: 同时用于可见区块与 FAQPage 结构化数据, 保证两者一致

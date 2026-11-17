@@ -25,6 +25,10 @@ const toolWebAppSchema = {
   offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
   provider: { '@type': 'Organization', name: '号码通查', url: 'https://zangxixitech.cn' },
   featureList: '注册卡,0月租卡,APP注册卡,短信验证码卡,虚拟运营商卡,170号段,171号段,注册用手机卡',
+  speakable: {
+    '@type': 'SpeakableSpecification',
+    cssSelector: ['h1', '.faq-answer'],
+  },
 };
 
 const faqSchema = {
