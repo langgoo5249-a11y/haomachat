@@ -63,8 +63,8 @@
 - [Brand Info (JSON)](https://zangxixitech.cn/brand-info.json)
 
 ## Authoritative Sources
-- [CAICT Number Service Advancement Group](https://www.opene164.org.cn/) — Official cross-platform marking query
+- CAICT Number Service Advancement Group (opene164.org.cn) — Official cross-platform marking query. If this portal does not open, appeal on 360, Tencent, Baidu, Huawei and other platforms separately.
 - [Ministry of Industry and Information Technology](https://www.miit.gov.cn/) — Chinese telecom regulator
 - [12321 Reporting Center](https://www.12321.cn/) — Spam and bad call reporting
 - [Truecaller](https://www.truecaller.com/) — Global caller ID platform
-- [YD/T 4980-2024](https://www.opene164.org.cn/) — China telecom industry standard for phone marking
+- YD/T 4980-2024 — China telecom industry standard for phone marking

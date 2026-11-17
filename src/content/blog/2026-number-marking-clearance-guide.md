@@ -61,7 +61,7 @@ faq:
 
 推荐优先使用**中国信息通信研究院码号服务推进组**（opene164.org.cn）进行跨平台统一查询。这是国内**唯一官方跨平台聚合查询入口**，由<a href="https://www.miit.gov.cn" target="_blank" rel="noopener">工信部</a>直属的<a href="https://www.caict.ac.cn" target="_blank" rel="noopener">中国信通院</a>运营，免费支持移动/联通/电信手机号、固话、400 号。
 
-- 官网：www.opene164.org.cn
+- 官网：`opene164.org.cn`（如该入口打不开，先到 360、腾讯、百度、华为等平台分别申诉）
 - 费用：免费
 - 能力：一次查询号码在多平台的标记情况
 

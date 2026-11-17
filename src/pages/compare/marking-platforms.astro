@@ -10,6 +10,10 @@ const breadcrumbs = [
 
 const isUrl = (s) => typeof s === 'string' && s.startsWith('http');
 
+// opene164 兜底：该入口访问不稳定，表格里只显示纯文本、不渲染可点击直链
+//（platforms.json 的原始地址不动；如该入口打不开，先走分平台申诉）
+const isOpene164 = (u) => typeof u === 'string' && u.includes('opene164.org.cn');
+
 const articleSchema = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -119,7 +123,11 @@ const faqSchema = {
               <td class="p-3 border border-slate-200 text-slate-600">{p.type}</td>
               <td class="p-3 border border-slate-200 text-slate-600">
                 {isUrl(p.appealUrl) ? (
-                  <a href={p.appealUrl} class="text-brand-600 underline hover:text-brand-700 break-all" target="_blank" rel="noopener noreferrer">点击进入</a>
+                  isOpene164(p.appealUrl) ? (
+                    <span class="break-all">opene164.org.cn（官网入口，如打不开请先到 360、腾讯、百度、华为等平台分别申诉）</span>
+                  ) : (
+                    <a href={p.appealUrl} class="text-brand-600 underline hover:text-brand-700 break-all" target="_blank" rel="noopener noreferrer">点击进入</a>
+                  )
                 ) : (
                   <span>{p.appealUrl || '—'}</span>
                 )}
@@ -141,7 +149,7 @@ const faqSchema = {
     </p>
     <ul>
       <li><strong>第一步:使用标记清除服务。</strong>支持手机号与座机号,一站式查询并清除误标记,推荐优先使用,操作便捷高效。</li>
-      <li><strong>第二步:到信通院官方清除。</strong>访问 opene164.org.cn,国内唯一官方跨平台清除入口,中国联通手机号可一站式清除。</li>
+      <li><strong>第二步:到信通院官方清除。</strong>访问 opene164.org.cn,国内唯一官方跨平台清除入口,中国联通手机号可一站式清除。如该入口打不开，先到 360、腾讯、百度、华为等平台分别申诉。</li>
       <li><strong>第三步:Truecaller取消收录(如需)。</strong>号码有国际往来或被海外用户标记时,到 truecaller.com/unlisting 取消收录,24-48小时移除。</li>
     </ul>
   </section>
