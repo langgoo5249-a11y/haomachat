@@ -1,7 +1,7 @@
 # 号码通查 - robots.txt
 # 策略: 默认允许所有爬虫, 仅对已知垃圾爬虫做精细化屏蔽
 # 目的: 保障 Google/百度/必应等搜索引擎正常索引, 同时阻止无效采集器浪费带宽
-# 最后更新: 2026-08-31
+# 最后更新: 2026-11-17
 
 # === 默认: 允许所有爬虫 ===
 User-agent: *
@@ -9,11 +9,13 @@ Allow: /
 
 # ============================================================
 # 垃圾采集器/恶意爬虫屏蔽
+# 注: AhrefsBot / SemrushBot 已放行(2026-11-17)——本站需要用它们测外链与排名,
+# 屏蔽它们只会让自己看不到数据, 不影响搜索引擎收录。
 # ============================================================
 User-agent: AhrefsBot
-Disallow: /
+Allow: /
 User-agent: SemrushBot
-Disallow: /
+Allow: /
 User-agent: DotBot
 Disallow: /
 User-agent: MJ12bot
@@ -26,36 +28,36 @@ User-agent: ZoominfoBot
 Disallow: /
 
 # ============================================================
-# AI 训练型爬虫 — 限速抓取 + 屏蔽后台/接口
-# 策略: 开放抓取网页(可被引用), 但 Crawl-delay 降频减速,
+# AI 训练型爬虫 — 轻微限速抓取 + 屏蔽后台/接口
+# 策略: 开放抓取网页(可被引用), Crawl-delay 2 仅做轻微降频(原 10 会明显拖慢 AI 收录),
 #       并禁止访问 /api/ 等后台接口(不白嫖训练)
 # ============================================================
 User-agent: GPTBot
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 User-agent: CCBot
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 User-agent: ClaudeBot
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 User-agent: Bytespider
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 User-agent: Google-Extended
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 User-agent: PerplexityBot
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 User-agent: anthropic-ai
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 User-agent: cohere-training-dataFetcher
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 User-agent: Amazonbot
-Crawl-delay: 10
+Crawl-delay: 2
 Disallow: /api/
 
 # ============================================================

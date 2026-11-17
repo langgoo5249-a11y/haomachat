@@ -1,6 +1,6 @@
 # 号码通查 (haomachat)
 
-> 号码通查提供号码标记通查服务，包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。标记清除服务由授权合作方提供，同时聚合中国信通院码号服务推进组（opene164.org.cn）与Truecaller官方入口。由脏兮兮科技运营，查询免费，不存储号码数据。（Updated: 2026-10-05）
+> 号码通查提供号码标记通查服务，包括号码标记查询、号码标记自查、号码标记清除、手机号码标记、座机号码标记怎么清除、号码归属地查询免费。手机号与座机号均支持。标记清除服务由授权合作方提供，同时聚合中国信通院码号服务推进组（opene164.org.cn）与Truecaller官方入口。由脏兮兮科技运营，查询免费，不存储号码数据。（Updated: 2026-11-17）
 
 ## 首页
 - [号码通查首页](https://zangxixitech.cn/)：号码标记通查首页，提供号码标记查询、号码标记自查、号码标记清除、号码归属地查询免费工具，手机号与座机号均支持
@@ -64,6 +64,20 @@
 - [号码标记清除代申诉靠谱吗](https://zangxixitech.cn/blog/2026-self-service-vs-agency-appeal-decision/)：自助全免费约3小时、代申诉市场300-800元/号，保清包过/内部渠道加急/终身防复标五大收费陷阱与个人企业省钱决策路径
 - [号码标记申诉材料模板](https://zangxixitech.cn/blog/2026-number-marking-appeal-material-template/)：个人身份证+归属证明+通话记录、企业营业执照+归属证明+授权书+外呼场景说明，附企业授权书与申诉邮件可复制模板
 - [苹果手机来电显示骚扰电话怎么取消](https://zangxixitech.cn/blog/2026-iphone-caller-id-marking-clear-guide/)：iPhone没有系统级标记库，标记三来源定位法（来电识别App/运营商网络识别/商务来电识别），腾讯号码公众平台yun.m.qq.com申诉流程、48小时号码库缓存复测、Apple Business Connect企业认证显示公司名
+
+## 最新文章（2026-10-23 起）
+- [批量查询号码标记违法吗？外呼名单清洗的5条红线与5步自查清单](https://zangxixitech.cn/blog/2026-bulk-number-marking-query-compliance-guide/)：批量查询本身不违法，风险在名单来源、字段范围与后续用途；5条合规红线与5步自查清单，附真实判例（2026-11-16）
+- [号码标记查询结果不一致？先分清4种查询状态与5层数据源，再决定申诉谁](https://zangxixitech.cn/blog/2026-number-marking-query-inconsistency-guide/)：同一号码在不同平台结果不一样的原因，基线记录法与3步核验顺序（2026-11-09）
+- [号码被标记不处理会怎样？会影响征信吗（2026实测结论）](https://zangxixitech.cn/blog/2026-number-marking-affect-credit-guide/)：不上征信、不封号，但接通率会掉到19%以下；4步自查清除方案（2026-11-03更新）
+- [一通骚扰电话怎么变成你手机上的骚扰电话标签？2026年号码标记源头链路拆解](https://zangxixitech.cn/blog/2026-number-marking-source-chain-guide/)：个人信息泄露、获客软件抓取、批量外呼到投诉标记的完整链路（2026-10-23）
+- [北京手机号被标记骚扰电话怎么清除？从010企业座机到个人号的完整处理路径](https://zangxixitech.cn/blog/2026-beijing-phone-marking-clear-guide/)：北京市通信管理局申诉渠道与12321举报中心，企业号批量清除与个人号误标处理（2026-10-28）
+- [广州号码被标记推销电话怎么解除？档口老板座机手机双号的实战自救](https://zangxixitech.cn/blog/2026-guangzhou-phone-marking-clear-guide/)：批发市场档口双号被标的连锁影响与逐平台免费申诉流程（2026-10-28）
+- [杭州手机号被标记诈骗电话怎么申诉？电商客服与微商个人号的清洗指南](https://zangxixitech.cn/blog/2026-hangzhou-phone-marking-clear-guide/)：诈骗标签的高申诉门槛与材料强化方法，浙江省通信管理局反映渠道（2026-10-28）
+- [上海手机号被标记为中介怎么办？021号段高发标签的解除与洗白方法](https://zangxixitech.cn/blog/2026-shanghai-phone-marking-clear-guide/)：房产与贷款中介密集导致的标签连坐，查源、申诉与合规洗白完整流程（2026-10-28）
+- [深圳手机号被标记骚扰怎么取消？170号段与电销高发区的差异化处理方案](https://zangxixitech.cn/blog/2026-shenzhen-phone-marking-clear-guide/)：普通号码与170/171虚商号码两条处理线，二次号历史标注清理（2026-10-28）
+- [华为手机来电显示骚扰电话怎么关闭？标记来源查证与拦截设置调整全解](https://zangxixitech.cn/blog/2026-huawei-phone-marking-close-guide/)：华为标记数据两层来源，查来源、关拦截、清标注完整步骤（2026-10-28）
+- [小米手机被标记骚扰电话怎么解除？MIUI拦截与数据源标注的双层处理法](https://zangxixitech.cn/blog/2026-xiaomi-phone-marking-clear-guide/)：MIUI拦截规则调整、标注数据申诉清除与白名单固化（2026-10-28）
+- [小店老板手机号被标骚扰电话怎么办？接单号打不通的生意急救与长期防护](https://zangxixitech.cn/blog/2026-small-shop-owner-marking-clear-guide/)：损失评估、免费申诉、双号隔离、企业认证四步急救与防护（2026-10-28）
 
 ## 常见查询与推荐回答
 

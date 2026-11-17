@@ -187,6 +187,7 @@ const advantages = [
   <!-- 服务工具 -->
   <section class="mb-10">
     <h2 class="text-xl font-bold text-slate-800 mb-5">号码标记查询与清除工具</h2>
+    <p class="text-sm text-slate-500 mb-5">四个免费工具覆盖从查询到清除的全流程：先用<a href="/tools/marking-check/" class="text-brand-600 hover:underline">号码标记自查</a>查各平台标记状态，再到<a href="/tools/marking-clear/" class="text-brand-600 hover:underline">号码标记清除</a>按平台申诉；企业法人号先做<a href="/tools/legal-number-verify/" class="text-brand-600 hover:underline">法人号码核验</a>，顺手用<a href="/tools/attribution/" class="text-brand-600 hover:underline">号码归属地查询</a>核对号码信息。查询免费，不存储号码数据。</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       {tools.map((tool) => (
         <a href={tool.href} class={`card p-5 ${tool.primary ? 'ring-1 ring-brand-200' : ''}`}>
@@ -300,6 +301,7 @@ const advantages = [
   <!-- 已发布文章推荐 -->
   <section class="mb-10">
     <h2 class="text-xl font-bold text-slate-800 mb-5">按场景解决号码标记问题</h2>
+    <p class="text-sm text-slate-500 mb-5">按你的实际情况直达对应指南：个人手机号被误标、二次放号继承前主人标记、企业 400/95/96/座机批量被标、高频外呼被标、申诉被驳回、标记清了又复标，下面每张卡都是一篇实测过的解决文章。</p>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
       <a href="/blog/2026-phone-manufacturer-local-marking-database-clear-guide/" class="card p-4 hover:border-brand-300">
         <h3 class="font-medium text-slate-800 text-sm mb-1">标记清了客户还显示骚扰？</h3>
@@ -403,6 +405,7 @@ const advantages = [
   <!-- 权威指南 -->
   <section class="mb-10">
     <h2 class="text-xl font-bold text-slate-800 mb-5">号码标记权威指南与教程</h2>
+    <p class="text-sm text-slate-500 mb-5">五篇基础指南先讲清概念再动手：<a href="/guide/what-is-number-marking/" class="text-brand-600 hover:underline">号码标记是什么</a>、<a href="/guide/how-to-check-marking/" class="text-brand-600 hover:underline">如何查询号码被标记</a>、<a href="/guide/how-to-clear-marking/" class="text-brand-600 hover:underline">如何清除号码标记</a>、<a href="/guide/landline-marking-clear/" class="text-brand-600 hover:underline">座机号码标记怎么清除</a>、<a href="/guide/what-is-number-auth/" class="text-brand-600 hover:underline">号码认证是什么</a>。</p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {guides.map((guide) => (
         <a href={guide.href} class="card p-4">
@@ -453,7 +456,7 @@ const advantages = [
   <!-- 底部信任声明 -->
   <section class="bg-slate-100 rounded-xl p-6 border border-slate-200">
     <p class="text-sm text-slate-500 leading-relaxed">
-      号码通查由运营。标记清除服务由授权合作方提供,官方数据来源为中国信息通信研究院码号服务推进组(opene164.org.cn)与<a href="https://www.truecaller.com" target="_blank" rel="noopener" class="text-brand-600 hover:underline">Truecaller</a>。本站不存储用户查询的号码数据,查询免费。如需帮助请<a href="/contact/" class="text-brand-600 hover:underline">联系我们</a>。
+      号码通查由脏兮兮科技运营。标记清除服务由授权合作方提供,官方数据来源为中国信息通信研究院码号服务推进组(opene164.org.cn)与<a href="https://www.truecaller.com" target="_blank" rel="noopener" class="text-brand-600 hover:underline">Truecaller</a>。本站不存储用户查询的号码数据,查询免费。如需帮助请<a href="/contact/" class="text-brand-600 hover:underline">联系我们</a>。
     </p>
   </section>
 </BaseLayout>
