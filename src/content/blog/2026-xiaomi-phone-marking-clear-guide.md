@@ -6,7 +6,7 @@ updatedDate: 2026-10-28
 author: "吕工"
 heroImage: "/images/blog-hero-xiaomi-marking-clear.jpg"
 heroDescription: "小米手机骚扰电话标记解除方法：MIUI拦截规则调整、标注数据源申诉清除、误拦与误标的区分处理与白名单设置。"
-tags: ["小米号码标记", "MIUI骚扰拦截", "来电标记解除"]
+tags: ["号码标记清除", "骚扰电话"]
 howToSteps:
   - name: "判断是误拦还是误标"
     text: "查看拨号App的拦截记录：号码被自动挂断进拦截列表是误拦问题，来电正常响铃但屏幕显示骚扰电话是误标问题。两者处理路径不同，先定性再动手。"

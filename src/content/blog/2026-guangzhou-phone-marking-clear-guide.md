@@ -6,7 +6,7 @@ updatedDate: 2026-10-28
 author: "吕工"
 heroImage: "/images/blog-hero-guangzhou-marking-clear.jpg"
 heroDescription: "广州档口号码被标推销电话的解除实战：双号被标影响、免费申诉流程、企业认证置换标签与防复标部署。"
-tags: ["广州号码标记", "推销标记解除", "档口座机标记"]
+tags: ["号码标记清除", "企业号码标记"]
 howToSteps:
   - name: "两个号码分开排查"
     text: "把手机号和020座机当成两个独立案件处理：分别记录各自被标的标注文字、发现渠道、显示机型。两个号码的标记来源经常不同，一套材料包打天下会浪费申诉机会。"

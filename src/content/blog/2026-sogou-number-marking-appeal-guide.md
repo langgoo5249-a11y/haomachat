@@ -6,7 +6,7 @@ updatedDate: 2026-09-10
 author: "langood"
 heroImage: "/images/blog-hero-sogou-marking-appeal.jpg"
 heroDescription: "搜狗号码通标记申诉取消全流程：腾讯系IMETS@tencent.com申诉邮箱、客服电话、5-7个工作日审核与同步腾讯申诉的补救方案。"
-tags: ["号码标记申诉", "搜狗号码通", "号码标记清除"]
+tags: ["号码标记申诉", "标记平台", "号码标记清除"]
 howToSteps:
   - name: "确认号码是否被搜狗号码通标记"
     text: "先通过中国信通院码号服务推进组（opene164.org.cn）一站式查询，或在号码标记自查工具确认号码被搜狗号码通标记及标记类型。搜狗号码通覆盖安卓约8%的来电识别终端，查询结果里出现「数据来源：搜狗号码通」时才需要对它申诉。"

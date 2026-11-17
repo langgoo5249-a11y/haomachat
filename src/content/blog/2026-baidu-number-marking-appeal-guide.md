@@ -6,7 +6,7 @@ updatedDate: 2026-09-10
 author: "langood"
 heroImage: "/images/blog-hero-baidu-marking-appeal.jpg"
 heroDescription: "百度号码标记申诉清除全流程：haoma.baidu.com申诉入口、个人与企业材料清单、审核周期与二次申诉技巧，附企业认证防复标方案。"
-tags: ["号码标记申诉", "百度号码认证", "号码标记清除"]
+tags: ["号码标记申诉", "号码认证", "号码标记清除"]
 howToSteps:
   - name: "确认号码是否被百度标记"
     text: "先通过信通院码号服务推进组（opene164.org.cn）一站式查询，或用号码标记自查工具，确认号码是否被百度号码认证/百度手机卫士标记以及标记类型。没被百度标记就不用提交百度申诉，避免浪费审核资源。"

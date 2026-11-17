@@ -110,10 +110,13 @@ Allow: /
 # --- 其他国际 AI 引擎 ---
 # Applebot-Extended: Apple Intelligence / Siri 的 AI 答案数据抓取
 # Meta-ExternalAgent: Meta AI 的检索代理
+# Meta-ExternalFetcher: Meta AI 的内容抓取器 (与 ai.xml 清单一致)
 # DuckAssistBot: DuckDuckGo AI 答案生成
 User-agent: Applebot-Extended
 Allow: /
 User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: Meta-ExternalFetcher
 Allow: /
 User-agent: DuckAssistBot
 Allow: /
@@ -153,6 +156,9 @@ User-agent: Perplexity-User
 Allow: /
 
 # --- 既有放行清单 ---
+# ZhihuBot: 知乎 AI 搜索抓取 (与 ai.xml 清单一致)
+User-agent: ZhihuBot
+Allow: /
 User-agent: KimiBot
 Allow: /
 User-agent: Qwantify

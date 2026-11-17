@@ -22,10 +22,9 @@ howToMaterials:
   - 中国信通院码号服务平台公众号（免费入口）
 tags:
   - 号码标记
-  - 征信
+  - 号码误标
   - 骚扰电话标记
   - 号码标记清除
-  - 标记影响
 category: 号码标记科普
 draft: false
 faq:

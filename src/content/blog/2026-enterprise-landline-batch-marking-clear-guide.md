@@ -6,7 +6,7 @@ updatedDate: 2026-09-10
 author: "吕工"
 heroImage: "/images/blog-hero-enterprise-landline-batch.jpg"
 heroDescription: "企业座机批量标记清除全流程：信通院跨平台批量申诉、电话邦企业批量邮箱、总机/分机带区号查询与各平台企业材料清单。"
-tags: ["企业号码标记", "号码标记清除", "座机标记"]
+tags: ["企业号码标记", "号码标记清除"]
 howToSteps:
   - name: "汇集被标记座机清单并查询"
     text: "把企业所有被标记的座机（总机/分机）梳理成清单，固定电话务必带区号。先到信通院码号服务推进组（opene164.org.cn）批量查询各号码在360、腾讯、百度、搜狗、泰迪熊、电话邦的标记状态，标记处每家平台的清单。"

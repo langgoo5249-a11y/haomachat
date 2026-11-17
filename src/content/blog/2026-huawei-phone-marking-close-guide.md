@@ -6,7 +6,7 @@ updatedDate: 2026-10-28
 author: "吕工"
 heroImage: "/images/blog-hero-huawei-marking-close.jpg"
 heroDescription: "华为手机骚扰电话标记的处理方法：标记数据两层来源、拦截规则关闭路径、号码标注清除申诉与HarmonyOS版本设置差异说明。"
-tags: ["华为号码标记", "来电显示标记", "骚扰电话拦截"]
+tags: ["号码标记清除", "号码标记", "骚扰电话"]
 howToSteps:
   - name: "确认标记是显示层面还是拦截层面"
     text: "区分两种情况：只是来电时显示骚扰电话字样（展示问题），还是响铃前直接被挂断进拦截记录（拦截规则问题）。两者处理入口不同，先在拨号App的拦截记录里确认。"

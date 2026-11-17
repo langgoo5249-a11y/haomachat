@@ -6,7 +6,7 @@ updatedDate: 2026-10-28
 author: "吕工"
 heroImage: "/images/blog-hero-shanghai-marking-clear.jpg"
 heroDescription: "上海号码被标记为中介的解除方法：021号段标签连坐成因、个人申诉流程、中介从业者合规处理与上海市通信管理局兜底渠道。"
-tags: ["上海号码标记", "中介标记解除", "号码标记申诉"]
+tags: ["号码标记清除", "号码标记申诉"]
 howToSteps:
   - name: "确认标签类型与数据来源"
     text: "记录标记显示的具体文字：中介、房产、贷款、推销还是骚扰。不同标签对应不同的申诉审核口径，中介类标签比骚扰类标签更容易申诉成功，因为误标比例更高。"

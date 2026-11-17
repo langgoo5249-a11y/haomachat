@@ -6,7 +6,7 @@ updatedDate: 2026-10-28
 author: "吕工"
 heroImage: "/images/blog-hero-hangzhou-marking-clear.jpg"
 heroDescription: "杭州号码被标记诈骗电话的申诉方法：电商微商场景的标注成因、诈骗标签申诉材料强化、免费申诉流程与防复标策略。"
-tags: ["杭州号码标记", "诈骗标记申诉", "微商号码标记"]
+tags: ["号码标记清除", "诈骗标记"]
 howToSteps:
   - name: "核实标注文字是否真是诈骗"
     text: "先确认标注的确是诈骗、疑似诈骗还是推销骚扰。诈骗类标签的申诉材料要求和审核严格度完全不同，很多用户把推销类标注误当成诈骗标签，白白准备了过重的材料。"

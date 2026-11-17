@@ -6,7 +6,7 @@ updatedDate: 2026-09-10
 author: "langood"
 heroImage: "/images/blog-hero-dianhua-marking-appeal.jpg"
 heroDescription: "电话邦号码标记申诉清除全流程：dianhua.cn申诉入口、企业批量申诉流程、5个工作日数据同步周期与防骗提示。"
-tags: ["号码标记申诉", "电话邦", "号码标记清除"]
+tags: ["号码标记申诉", "标记平台", "号码标记清除"]
 howToSteps:
   - name: "确认号码是否被电话邦标记"
     text: "先通过信通院码号服务推进组（opene164.org.cn）一站式查询，或用号码标记自查工具，确认号码是否被电话邦标记以及标记类型。查询结果显示「数据来源：电话邦」时，才需要到电话邦申诉。"
