@@ -2,6 +2,7 @@
 // 中文首页 - 以号码标记清除为核心
 import BaseLayout from '@layouts/BaseLayout.astro';
 import faqData from '@data/faq.json';
+import { getCollection } from 'astro:content';
 
 const homeFaq = faqData.groups[0].items.slice(0, 10).map((item) => ({
   '@type': 'Question',
@@ -132,6 +133,12 @@ const advantages = [
   { title: '专业服务', desc: '熟悉各平台标记规则,提供一对一专属客服支持', icon: icons.gem },
   { title: '多渠道覆盖', desc: '合作方+信通院+Truecaller三渠道,覆盖国内与国际标记', icon: icons.shield },
 ];
+
+// 最近更新: 按发布日期自动取最新文章,新文发布后无需改首页即可获得入口
+const latestPosts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
 ---
 <BaseLayout
   title="号码被标记骚扰电话怎么办？免费查询+1-3天清除（手机/座机）| 号码通查"
@@ -399,6 +406,38 @@ const advantages = [
         <h3 class="font-medium text-slate-800 text-sm mb-1">申诉材料不会写？</h3>
         <p class="text-xs text-slate-500">个人/企业材料清单与授权书模板</p>
       </a>
+    </div>
+  </section>
+
+  <!-- 最近更新: 自动取最新文章,新发布内容无需手工挂卡即可获得首页入口 -->
+  <section class="mb-10">
+    <h2 class="text-xl font-bold text-slate-800 mb-5">最近更新</h2>
+    <p class="text-sm text-slate-500 mb-5">号码标记与号码认证领域的最新实测文章，按发布时间排列。</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {latestPosts.map((post) => (
+        <a href={`/blog/${post.id}/`} class="block rounded-xl border border-slate-200 hover:border-brand-400 hover:shadow-md transition-all overflow-hidden">
+          {post.data.heroImage ? (
+            <img
+              src={post.data.heroImage}
+              alt={post.data.heroDescription || post.data.title}
+              class="w-full aspect-[16/9] object-cover"
+              width="1200"
+              height="675"
+              loading="lazy"
+            />
+          ) : (
+            <div class="w-full aspect-[16/9] bg-slate-100"></div>
+          )}
+          <div class="p-4">
+            <div class="text-xs text-slate-400 mb-1">{post.data.pubDate.toLocaleDateString('zh-CN')}</div>
+            <h3 class="text-sm font-semibold text-slate-800 leading-snug line-clamp-2 mb-1">{post.data.title}</h3>
+            <p class="text-xs text-slate-500 line-clamp-2">{post.data.description}</p>
+          </div>
+        </a>
+      ))}
+    </div>
+    <div class="mt-5 text-sm">
+      <a href="/blog/" class="text-brand-600 hover:underline">查看全部文章 →</a>
     </div>
   </section>
 
